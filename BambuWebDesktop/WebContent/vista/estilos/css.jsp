@@ -9,3 +9,11 @@
 
     <link href="../../assets/css/animate.css" rel="stylesheet">
     <link href="../../assets/css/style.css" rel="stylesheet">
+    
+    
+    
+    
+    <link href="../../assets/css/plugins/iCheck/custom.css" rel="stylesheet">
+   
+
+    <link href="../../assets/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">

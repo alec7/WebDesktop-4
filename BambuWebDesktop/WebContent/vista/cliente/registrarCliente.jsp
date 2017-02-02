@@ -20,7 +20,7 @@
                 <div class="col-lg-9" >
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
-                            <h5></h5>
+                            <h5>Datos Básicos</h5>
                             <div class="ibox-tools">
                                 <a class="collapse-link">
                                     <i class="fa fa-chevron-up"></i>
@@ -68,6 +68,18 @@
                                  <div class="form-group"><label class="col-lg-2 control-label">Telefono:</label>
 
                                     <div class="col-lg-10"><input type="text" placeholder="Telefono" class="form-control required"></div>
+                                </div>
+                                
+                                
+                                 <div class="form-group"><label class="col-lg-2 control-label">Referencia:</label>
+
+                                    <div class="col-sm-5"><select class="form-control m-b" name="account">
+                                         <option></option>
+                                        <option>Cirugía</option>
+                                        <option>Spinetti Laser</option>
+                                        <option>No Aplica</option>
+                                    </select>
+                                </div>
                                 </div>
                                 
                                 <div class="form-group">

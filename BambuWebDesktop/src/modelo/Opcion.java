@@ -8,7 +8,10 @@ public class Opcion {
 	String texto;
 	char estatus;
 	
-	
+	public Opcion() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	
 	public Opcion(int id_opcion, int id_padre, String vinculo, String texto, char estatus) {
 		super();
