@@ -1,2 +1,364 @@
-<?page title="Auto Generated index.zul"?>
-<include src="login.jsp"></include>
+ <?link href="assets/css/bootstrap.min.css" rel="stylesheet"?>
+    <?link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet"?>
+
+    <!-- Toastr style -->
+    <?link href="assets/css/plugins/toastr/toastr.min.css" rel="stylesheet"?>
+
+    <!-- Gritter -->
+    <?link href="assets/js/plugins/gritter/jquery.gritter.css" rel="stylesheet"?>
+
+    <?link href="assets/css/animate.css" rel="stylesheet"?>
+    <?link href="assets/css/style.css" rel="stylesheet"?>
+
+
+
+<zk xmlns:h="http://www.w3.org/1999/xhtml" xmlns:zk="http://www.zkoss.org/2005/zk"  >
+<div apply="controlador.Prueba">
+<div id="wrapper">
+<h:nav class="navbar-default navbar-static-side" role="navigation">
+            <div class="sidebar-collapse">
+                <h:ul class="nav metismenu" id="side-menu">
+                    <h:li class="nav-header">
+                    <div class="dropdown profile-element"> <h:span>
+                            <image  class="img-circle" src="assets/img/da1.png" />
+                             </h:span>
+                            <h:a data-toggle="dropdown" class="dropdown-toggle" droppable="" href="#">
+                            <h:span class="clear"> <h:span class="block m-t-xs"> <h:strong class="font-bold">David Williams</h:strong></h:span>
+                             </h:span> <h:span class="text-muted text-xs block">Art Director <h:b class="caret"></h:b></h:span>  </h:a>
+                            <h:ul class="dropdown-menu animated fadeInRight m-t-xs">
+                                <h:li><a href="profile.html">Profile</a></h:li>
+                                <h:li><a href="contacts.html">Contacts</a></h:li>
+                                <h:li><a href="mailbox.html">Mailbox</a></h:li>
+                                <h:li class="divider"></h:li>
+                                <h:li><a href="login.html">Logout</a></h:li>
+                            </h:ul>
+                        </div>
+                        
+                        <div class="logo-element">
+                            IN+
+                        </div>
+                    </h:li>
+                     <h:li class="active">
+                        <a ><h:i class="fa fa-user-circle-o"></h:i> <h:span class="nav-label">Mi Perfil</h:span> <h:span class="fa arrow"></h:span></a>
+                        <h:ul class="nav nav-second-level">
+                            <h:li class="active"><a >Editar Perfil</a></h:li>
+                          <h:li><a href="dashboard_3.html">Preferencia</a></h:li>
+                        </h:ul>
+                    </h:li>
+                    
+                     <h:li>
+                        <a ><h:i class="fa fa-address-book-o"></h:i> <h:span class="nav-label">Clientes</h:span> <h:span class="fa arrow"></h:span></a>
+                        <h:ul class="nav nav-second-level">
+                            <h:li   class="active"><a id="mensaje">Cliente</a></h:li>
+                            <h:li><a onClick="@load(vista/cliente/registrar.zul)">Consulta Diagnostico</a></h:li>
+                            <h:li><a href="dashboard_3.html">Solicitar Servicio</a></h:li>
+                            
+                        </h:ul>
+                    </h:li>
+                   
+                    <h:li>
+                        <a href="#"><h:i class="fa fa-calendar"></h:i> <h:span class="nav-label">Agenda</h:span><h:span class="fa arrow"></h:span></a>
+                        <h:ul class="nav nav-second-level collapse">
+                            <h:li><a href="graph_morris.html">Solicitar Cita</a></h:li>
+                            <h:li><a id="">Citas Programadas</a></h:li>
+                            <h:li><a >Horario</a></h:li>
+                            
+                           
+                        </h:ul>
+                    </h:li>
+                    <h:li>
+                        <a href="mailbox.html"><h:i class="fa fa-tags"></h:i> <span class="nav-label">Servicios</span><span class="fa arrow"></span></a>
+                        <h:ul class="nav nav-second-level collapse">
+                            <h:li><a href="mailbox.html">Servicio</a></h:li>
+                            <h:li><a href="mail_detail.html">Avance</a></h:li>
+                            <h:li><a href="mail_detail.html">Seguimiento al Cliente</a></h:li>
+                        </h:ul>
+                    </h:li>
+                    
+                    <h:li>
+                        <a href="mailbox.html"><h:i class="fa fa-cogs"></h:i> <h:span class="nav-label">Configuraciones </h:span><h:span class="fa arrow"></h:span></a>
+                        <h:ul class="nav nav-second-level collapse">
+                            <h:li>
+                                <a href="#" id="damian">Portal Web<span class="fa arrow"></span></a>
+                                <h:ul class="nav nav-third-level">
+                                    <h:li>
+                                        <a href="#">Desvincular Noticias</a>
+                                    </h:li>
+                                    <h:li>
+                                        <a href="#">Slider</a>
+                                    </h:li>
+                                    <h:li>
+                                        <a href="#">Twitter</a>
+                                    </h:li>
+
+                                </h:ul>
+                                </h:li>
+                                <h:li>
+                                <a href="#" id="d">Web-Desktop<span class="fa arrow"></span></a>
+                                <h:ul class="nav nav-second-level collapse">
+                                    <h:li>
+                                        <a href="#">Deshabilitar Correo</a>
+                                    </h:li>
+                                    <h:li>
+                                        <a href="#">Disponibilidad de Esteticistas</a>
+                                    </h:li>
+                                    <h:li>
+                                        <a href="#">Disponibilidad de Equipos</a>
+                                    </h:li>
+
+                                </h:ul>
+                                </h:li>
+                                
+                                 <h:li>
+                                <a href="#" id="">Seguridad Funcional<span class="fa arrow"></span></a>
+                                <h:ul class="nav nav-second-level collapse">
+                                    <h:li>
+                                        <a href="#">Nuevo Rol</a>
+                                    </h:li>
+                                    <h:li>
+                                        <a href="#">Permisos</a>
+                                    </h:li>
+
+                                </h:ul>
+                                </h:li>
+                            
+                           
+                        </h:ul>
+                    </h:li>
+                    
+                    
+                     <h:li>
+                        <a href="mailbox.html"><h:i class="fa fa-folder"></h:i> <h:span class="nav-label">Tablas Básicas</h:span><h:span class="fa arrow"></h:span></a>
+                        <h:ul class="nav nav-second-level collapse">
+                            <h:li>
+                                <a href="#" >Cliente<span class="fa arrow"></span></a>
+                                <h:ul class="nav nav-third-level">
+                                    <h:li>
+                                        <a href="#">Necesidad</a>
+                                    </h:li>
+                                    <h:li>
+                                        <a href="#">Preferencia</a>
+                                    </h:li>
+                                    <h:li>
+                                        <a href="#">Indicador</a>
+                                    </h:li>
+
+                                </h:ul>
+                                </h:li>
+                                <h:li>
+                                <a href="#" >Agenda<span class="fa arrow"></span></a>
+                                <h:ul class="nav nav-second-level collapse">
+                                    <h:li>
+                                        <a href="#">Turno</a>
+                                    </h:li>
+                                    <h:li>
+                                        <a href="#">Disponibilidad del Esteticista</a>
+                                    </h:li>
+                                   
+
+                                </h:ul>
+                                </h:li>
+                                 <h:li>
+                                <a href="#" >Servicios<span class="fa arrow"></span></a>
+                                <h:ul class="nav nav-third-level">
+                                    <h:li>
+                                        <a href="#">Servicio</a>
+                                    </h:li>
+                                    <h:li>
+                                        <a href="#">Paquete</a>
+                                    </h:li>
+                                    <h:li>
+                                        <a href="#">Esteticista</a>
+                                    </h:li>
+                                    <h:li>
+                                        <a href="#">Cubiculo</a>
+                                    </h:li>
+                                    <h:li>
+                                        <a href="#">Equipo</a>
+                                    </h:li>
+
+                                </h:ul>
+                                </h:li>
+                                 <h:li>
+                                <a href="#" >General<span class="fa arrow"></span></a>
+                                <h:ul class="nav nav-third-level">
+                                    <h:li>
+                                        <a href="#">Incidencia</a>
+                                    </h:li>
+                                    <h:li>
+                                        <a href="#">Eventualidad</a>
+                                    </h:li>
+                                    <h:li>
+                                        <a href="#">Noticia</a>
+                                    </h:li>
+                                    <h:li>
+                                        <a href="#">Pregunta</a>
+                                    </h:li>
+                                    <h:li>
+                                        <a href="#">Repuesta</a>
+                                    </h:li>
+                                    <h:li>
+                                        <a href="#">Promoción</a>
+                                    </h:li>
+                                    <h:li>
+                                        <a href="#">Comentario</a>
+                                    </h:li>
+                                    <h:li>
+                                        <a href="#">Ocupación</a>
+                                    </h:li>
+
+                                </h:ul>
+                                </h:li>
+                            
+                           
+                        </h:ul>
+                    </h:li>
+                    
+                      <h:li>
+                        <a href="mailbox.html"><h:i class="fa fa-bar-chart"></h:i> <span class="nav-label">Reportes</span><span class="fa arrow"></span></a>
+                        <h:ul class="nav nav-second-level collapse">
+                            <h:li><a href="mailbox.html">Servicios más Solicitados</a></h:li>
+                        </h:ul>
+                    </h:li>
+                    
+                   
+                   
+                 
+                </h:ul>
+
+            </div>
+            
+        </h:nav>
+        
+        
+        <div sclass="page-wrapper gray-bg">
+        <div class="row border-bottom">
+        <h:nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><h:i class="fa fa-bars"></h:i> </a>
+            
+        </div>
+            <h:ul class="nav navbar-top-links navbar-right">
+                <h:li>
+                    <h:span class="m-r-sm text-muted welcome-message">Spinneti Spa Gym.</h:span>
+                </h:li>
+             
+                <h:li class="dropdown">
+                    <h:a data-toggle="dropdown" class="dropdown-toggle count-info"  href="#">
+                        <h:i class="fa fa-bell"></h:i>  <span class="label label-primary">8</span>
+                    </h:a>
+                    <h:ul class="dropdown-menu dropdown-alerts">
+                        <h:li>
+                            <a href="mailbox.html">
+                                <div>
+                                    <h:i class="fa fa-envelope fa-fw"></h:i> Tienes 16 mensajes
+                                    <h:span class="pull-right text-muted small">hace 4 minutos</h:span>
+                                </div>
+                            </a>
+                        </h:li>
+                        <h:li class="divider"></h:li>
+                        <h:li>
+                            <a href="profile.html">
+                                <h:div>
+                                    <h:i class="fa fa-twitter fa-fw"></h:i> 3 Nuevos Seguidores
+                                    <h:span class="pull-right text-muted small">hace 12 minutos</h:span>
+                                </h:div>
+                            </a>
+                        </h:li>
+                        <h:li class="divider"></h:li>
+                        <h:li>
+                            <a href="grid_options.html">
+                                <div>
+                                    <h:i class="fa fa-upload fa-fw"></h:i> Servidor reiniciado
+                                    <h:span class="pull-right text-muted small">hace 4 minutos</h:span>
+                                </div>
+                            </a>
+                        </h:li>
+                        <h:li class="divider"></h:li>
+                        <h:li>
+                            <div class="text-center link-block">
+                                <a href="notifications.html">
+                                    <h:strong>Todas las notificaciones</h:strong>
+                                    <h:i class="fa fa-angle-right"></h:i>
+                                </a>
+                            </div>
+                        </h:li>
+                    </h:ul>
+                </h:li>
+
+
+                <h:li>
+                    <a href="login.html">
+                        <h:i class="fa fa-sign-out"></h:i> Cerrar Sesión
+                    </a>
+                </h:li>
+                <h:li>
+                    <a class="right-sidebar-toggle">
+                        <h:i class="fa fa-tasks"></h:i>
+                    </a>
+                </h:li>
+            </h:ul>
+
+        </h:nav>
+        </div>
+           <div class="footer">
+                <div class="pull-right">
+                    <h:strong>TeamPoison</h:strong> 
+                </div>
+                <div>
+                    <h:strong>Bambu Web-desktop</h:strong> 
+                </div>
+            </div>
+        
+       </div>
+
+ 
+          </div>
+          
+           
+       
+        </div>
+       
+  
+
+    <!-- Mainly scripts -->
+    <?script src="assets/js/jquery-3.1.1.min.js"/?>
+    <?script src="assets/js/bootstrap.min.js"/?>
+    <?script src="assets/js/plugins/metisMenu/jquery.metisMenu.js"/?>
+    <?script src="assets/js/plugins/slimscroll/jquery.slimscroll.min.js"/?>
+
+    <!-- Flot -->
+    <?script src="assets/js/plugins/flot/jquery.flot.js"/?>
+    <?script src="assets/js/plugins/flot/jquery.flot.tooltip.min.js"/?>
+    <?script src="assets/js/plugins/flot/jquery.flot.spline.js"/?>
+    <?script src="assets/js/plugins/flot/jquery.flot.resize.js"/?>
+    <?script src="assets/js/plugins/flot/jquery.flot.pie.js"/?>
+
+    <!-- Peity -->
+    <?script src="assets/js/plugins/peity/jquery.peity.min.js"/?>
+    <?script src="assets/js/demo/peity-demo.js"/?>
+
+    <!-- Custom and plugin javascript -->
+    <?script src="assets/js/inspinia.js"/?>
+    <?script src="assets/js/plugins/pace/pace.min.js"/?>
+
+    <!-- jQuery UI -->
+    <?script src="assets/js/plugins/jquery-ui/jquery-ui.min.js"/?>
+
+    <!-- GITTER -->
+    <?script src="assets/js/plugins/gritter/jquery.gritter.min.js"/?>
+
+    <!-- Sparkline -->
+    <?script src="assets/js/plugins/sparkline/jquery.sparkline.min.js"/?>
+
+    <!-- Sparkline demo data  -->
+    <?script src="assets/js/demo/sparkline-demo.js"/?>
+
+    <!-- ChartJS-->
+    <?script src="assetsjs/plugins/chartJs/Chart.min.js"/?>
+
+    <!-- Toastr -->
+    <?script src="assets/js/plugins/toastr/toastr.min.js"/?>
+     <?script src="assets/js/lib.js"/?>
+    
+</zk>

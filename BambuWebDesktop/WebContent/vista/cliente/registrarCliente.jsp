@@ -84,7 +84,7 @@
                                 
                                 <div class="form-group">
                                     <div class="col-lg-offset-2 col-lg-5">
-                                        <button class="btn btn-primary block full-width m-b" type="submit" onclick="_gaq.push(['_trackEvent', 'example, 'try', 'Success']);">Guardar</button>
+                                        <button class="btn btn-primary block full-width m-b" type="submit" onclick="_gaq.push(['_trackEvent', 'example, 'try', 'Success']);"><i class="fa fa-save"></i>&nbsp;Guardar</button>
                                     </div>
                                 </div>
                             </form>

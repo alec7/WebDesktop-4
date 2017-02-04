@@ -96,7 +96,7 @@
                             <li><a href="mail_detail.html">Equipo</a></li>
                             <li><a href="mail_detail.html">Tipo de Servicio</a></li>
                             <li><a href="mail_detail.html">Horario del Esteticista</a></li>
-                           
+                            <li><a href="mail_detail.html">Noticias</a></li>
                             
                             
                         </ul>
@@ -181,7 +181,7 @@ $(document).ready(function(){
    
 function abrir() {
 	
-    var myWindow = window.open("vista/cliente/registrar.zul", "_self");
+    var myWindow = window.open("vista/cliente/perfilCliente.jsp", "_self");
   
 	
 	

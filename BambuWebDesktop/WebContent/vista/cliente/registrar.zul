@@ -16,10 +16,10 @@
 
 
 
-
+<window class="form-horizontal" >
 <div class="row" >
 <div class="col-lg-9" >
-<div class="form-horizontal" >
+
                 <div class="col-sm-8 col-sm-offset-3">
                 
                 
@@ -29,7 +29,7 @@
                         <div class="ibox-content">
                             
                                 <div class="form-group"><label class="col-sm-2 control-label">Cedula</label>
-                                    <div class="col-sm-6"><textbox type="text" class="form-control" id="nombre"></textbox></div>
+                                    <div class="col-sm-6"><textbox type="text" class="form-control" ></textbox></div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
                                 <div class="form-group"><label class="col-sm-2 control-label">Nombre</label>
@@ -66,9 +66,9 @@
                             </div>
                             </div>
 
-                     </div>
+                     
                      </div>
                      </div>
                     
-                
+                </window>
 </zk>
