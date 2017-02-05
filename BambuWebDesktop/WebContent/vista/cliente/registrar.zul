@@ -12,14 +12,11 @@
     <?link href="../../assets/css/style.css" rel="stylesheet"?>
     
 <zk  xmlns:n="native" xmlns:w="client">
-<div id="wrapper">
-<include src="../../dashboard.jsp"></include>
 
 
-<div id="page-wrapper" class="gray-bg"  >
-<include src="../../cabecera.jsp"></include>
-<div class="col-md-12" >
-<div class="wrapper wrapper-content animated fadeInRight">
+
+
+
 <div class="row" >
 <div class="col-lg-9" >
 <div class="form-horizontal" >
@@ -72,9 +69,6 @@
                      </div>
                      </div>
                      </div>
-                     </div>
-                     </div>
-                     </div>
-                     </div>
+                    
                 
 </zk>
