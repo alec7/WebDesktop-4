@@ -171,10 +171,10 @@
                                         <a href="#">Esteticista</a>
                                     </h:li>
                                     <h:li>
-                                        <a href="#">Cubiculo</a>
+                                        <a   id="cubiculo">Cubiculo</a>
                                     </h:li>
                                     <h:li>
-                                        <a href="#">Equipo</a>
+                                        <a  id = "equipo" >Equipo</a>
                                     </h:li>
 
                                 </h:ul>

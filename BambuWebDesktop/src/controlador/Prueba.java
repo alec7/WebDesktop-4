@@ -15,11 +15,17 @@ import org.zkoss.zul.Window;
 
 public class Prueba  extends SelectorComposer<Component>{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	//A a;
 	
 	Li m;
 	
 	A mensaje;
+	A cubiculo;
 	
 	/*@Listen("onClick=#a")
 	public void onClick$a()
@@ -37,8 +43,27 @@ public class Prueba  extends SelectorComposer<Component>{
 	
 	@Listen("onClick =#mensaje")
 	public void mostrarMensaje(MouseEvent event){
-		alert("hola");
+	alert("hola");
 		//Messagebox.show("hola");
 	}
+	
+	
+	
+	@Listen("onClick =#cubiculo")
+	public void mostrarMensajeCubiculo(MouseEvent event){
+	
+	
+		 Executions.sendRedirect("maestrico.zul?myId="+"cubiculo");
+	}
+	
+	@Listen("onClick =#equipo")
+	public void mostrarMensajeEquipo(MouseEvent event){
+	
+	
+		 Executions.sendRedirect("maestrico.zul?myId="+"equipo");
+	}
+	
+	
+	
 
 }
