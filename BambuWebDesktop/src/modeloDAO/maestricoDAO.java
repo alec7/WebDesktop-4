@@ -2,6 +2,8 @@ package modeloDAO;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+
 
 import bean.Conexion;
 import modelo.Maestrico;
@@ -19,25 +21,46 @@ public class maestricoDAO extends ConexionDAO{
 		Conexion.ejecutar(tiraSQL);
 	}   
 	    
-	    
-	/*public void modificarUsuario(Usuario usuario)
-	  {
-		String tiraSQL = "UPDATE usuario  SET password WHERE idusuario = '" +usuario.getPassword() + "'";
-		Conexion.ejecutar(tiraSQL);
-	  }
-	
-	public void eliminarUsuario(Usuario usuario)
-	{
-		String tiraSQL = "UPDATE usuario  SET status = 'I' WHERE idusuario = '" +usuario.getStatus()+"'";
-		Conexion.ejecutar(tiraSQL);
+	public ArrayList<Maestrico> listarMaestricos(String tabla) {
+		String tiraSQL = "SELECT * FROM "+tabla+" ";
+		ResultSet resultSet = Conexion.consultar(tiraSQL);
+		ArrayList<Maestrico> arr_maestricos = new ArrayList<Maestrico>();
+		try {
+			if(resultSet!=null){
+				while(resultSet.next()){
+					arr_maestricos.add(new Maestrico(resultSet.getString("codigo"), resultSet.getString("descripcion")));
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return arr_maestricos;
 	}
 	
-	public void reactivarUsuario(Usuario usuario)
-	{
-		String tiraSQL = "UPDATE usuario  SET status = 'A' WHERE idusuario = '" +usuario.getStatus()+"'";
-		Conexion.ejecutar(tiraSQL);
-	}*/
+	
+	public String TotalRegistros(String tabla ){
+		String tiraSQL = "SELECT * FROM "+tabla+"";
+		ResultSet resultSet = Conexion.consultar(tiraSQL);
+		int numero=1;
+		try {
+			if(resultSet!=null){
+				while(resultSet.next()){
+					numero++;
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			
+		} 
+		return String.valueOf(numero);
+	}
+	
+		
+}   
 	
 
-
-}
+	
+	
+	
+	

@@ -1,4 +1,4 @@
-<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<?page title="Tablas Básicas" contentType="text/html;charset=UTF-8"?>
     <?link href="assets/css/bootstrap.min.css" rel="stylesheet"?>
     <?link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet"?>
 
@@ -15,41 +15,46 @@
 
 <zk xmlns:h="http://www.w3.org/1999/xhtml" xmlns:zk="http://www.zkoss.org/2005/zk" >
 <div apply="controlador.ControladorMaestrico">
-<div class="row">
-
-
-            
+<div class="row">            
                 <div class="col-lg-9" >
                     <h:div class="ibox float-e-margins">
                         <h:div class="ibox-title">
-                            <h:h5>Datos Básicos</h:h5>
-    
+                           <h:h1><label id="titulo" value="Zero" style="font-size:20px"></label> </h:h1>
                         </h:div>
                         <div class="ibox-content">
-                            <h:form class="form-horizontal">
-                             
-                                      
-                               
-                                <div class="form-group"><label class="col-lg-3 control-label">Codigo:</label>
-
-                                    <div class="col-lg-6"><textbox type="text" placeholder="" class="form-control required" constraint="no empty"/> 
-                                    </div>
-                                </div>
+                            <h:form class="form-horizontal" id="maestrico">
                                 <div class="form-group"><label class="col-lg-3 control-label">Descripcion:</label>
 
-                                    <div class="col-lg-6"><textbox id = "txtDescripcion" type="text" placeholder="" class="form-control required" constraint="no empty"/></div>
+                                    <div class="col-lg-6"><textbox id = "txtDescripcion"  placeholder="" class="form-control required" /></div>
                                 </div>
-                                
-                                
-
-                                <space></space>
+                            	 <space></space>
                                 <div class="form-group">
                                     <div class="col-lg-offset-8 col-lg-2">
                                         <button class="btn btn-primary block full-width m-b" id="guardar" >Guardar</button>
                                     </div>
                                 </div>
                             </h:form>
+                            
+                            <vbox>
+							<listbox id="listaMaestricos"  emptyMessage="No se encontraron datos...">
+			                   
+			                   <listhead sizable="true">
+						            <listheader label="Descripcion"  />	
+						             <listheader/>				            
+						       </listhead>
+			                   
+			                   <template name="model">
+									<listitem>
+										
+										<listcell label="${each.descripcion}"> </listcell>																				
+										<listcell > <button id="${each.codigo}">Eliminar</button></listcell>
+										
+									</listitem>
+								</template>
+							</listbox>
+						</vbox>
                         </div>
+                        
                     </h:div>
                 </div>
             </div>
