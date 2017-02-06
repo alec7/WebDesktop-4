@@ -24,14 +24,8 @@
                              </h:span>
                             <h:a data-toggle="dropdown" class="dropdown-toggle" droppable="" href="#">
                             <h:span class="clear"> <h:span class="block m-t-xs"> <h:strong class="font-bold">David Williams</h:strong></h:span>
-                             </h:span> <h:span class="text-muted text-xs block">Art Director <h:b class="caret"></h:b></h:span>  </h:a>
-                            <h:ul class="dropdown-menu animated fadeInRight m-t-xs">
-                                <h:li><a href="profile.html">Profile</a></h:li>
-                                <h:li><a href="contacts.html">Contacts</a></h:li>
-                                <h:li><a href="mailbox.html">Mailbox</a></h:li>
-                                <h:li class="divider"></h:li>
-                                <h:li><a href="login.html">Logout</a></h:li>
-                            </h:ul>
+                             </h:span> <h:span class="text-muted text-xs block">Administrador </h:span>  </h:a>
+                          
                         </div>
                         
                         <div class="logo-element">
@@ -42,7 +36,7 @@
                         <a ><h:i class="fa fa-user-circle-o"></h:i> <h:span class="nav-label">Mi Perfil</h:span> <h:span class="fa arrow"></h:span></a>
                         <h:ul class="nav nav-second-level">
                             <h:li class="active"><a >Editar Perfil</a></h:li>
-                          <h:li><a href="dashboard_3.html">Preferencia</a></h:li>
+                          <h:li><a href="#">Preferencia</a></h:li>
                         </h:ul>
                     </h:li>
                     
@@ -50,7 +44,7 @@
                         <a ><h:i class="fa fa-address-book-o"></h:i> <h:span class="nav-label">Clientes</h:span> <h:span class="fa arrow"></h:span></a>
                         <h:ul class="nav nav-second-level">
                             <h:li   class="active"><a id="mensaje">Cliente</a></h:li>
-                            <h:li><a onClick="@load(vista/cliente/registrar.zul)">Consulta Diagnostico</a></h:li>
+                            <h:li><a onClick="@load(vista/cliente/registrar.zul)">Consulta Diagnóstico</a></h:li>
                             <h:li><a href="dashboard_3.html">Solicitar Servicio</a></h:li>
                             
                         </h:ul>
@@ -67,7 +61,7 @@
                         </h:ul>
                     </h:li>
                     <h:li>
-                        <a href="mailbox.html"><h:i class="fa fa-tags"></h:i> <span class="nav-label">Servicios</span><span class="fa arrow"></span></a>
+                        <a href="·"><h:i class="fa fa-tags"></h:i> <h:span class="nav-label">Servicios</h:span><h:span class="fa arrow"></h:span></a>
                         <h:ul class="nav nav-second-level collapse">
                             <h:li><a href="mailbox.html">Servicio</a></h:li>
                             <h:li><a href="mail_detail.html">Avance</a></h:li>
@@ -113,7 +107,7 @@
                                 <a href="#" id="">Seguridad Funcional<span class="fa arrow"></span></a>
                                 <h:ul class="nav nav-second-level collapse">
                                     <h:li>
-                                        <a href="#">Nuevo Rol</a>
+                                        <a id="rol">Nuevo Rol</a>
                                     </h:li>
                                     <h:li>
                                         <a href="#">Permisos</a>
@@ -134,13 +128,13 @@
                                 <a href="#" >Cliente<span class="fa arrow"></span></a>
                                 <h:ul class="nav nav-third-level">
                                     <h:li>
-                                        <a href="#">Necesidad</a>
+                                        <a id="necesidad">Necesidad</a>
                                     </h:li>
                                     <h:li>
-                                        <a href="#">Preferencia</a>
+                                        <a id="preferencia">Preferencia</a>
                                     </h:li>
                                     <h:li>
-                                        <a href="#">Indicador</a>
+                                        <a id="indicador">Indicador</a>
                                     </h:li>
 
                                 </h:ul>
@@ -154,6 +148,9 @@
                                     <h:li>
                                         <a href="#">Disponibilidad del Esteticista</a>
                                     </h:li>
+                                    <h:li>
+                                        <a href="#">Días Laborables</a>
+                                    </h:li>
                                    
 
                                 </h:ul>
@@ -165,16 +162,16 @@
                                         <a href="#">Servicio</a>
                                     </h:li>
                                     <h:li>
-                                        <a href="#">Paquete</a>
+                                        <a id="paquete">Paquete</a>
                                     </h:li>
                                     <h:li>
                                         <a href="#">Esteticista</a>
                                     </h:li>
                                     <h:li>
-                                        <a href="#">Cubiculo</a>
+                                        <a   id="cubiculo">Cubiculo</a>
                                     </h:li>
                                     <h:li>
-                                        <a href="#">Equipo</a>
+                                        <a  id = "equipo" >Equipo</a>
                                     </h:li>
 
                                 </h:ul>
@@ -183,7 +180,7 @@
                                 <a href="#" >General<span class="fa arrow"></span></a>
                                 <h:ul class="nav nav-third-level">
                                     <h:li>
-                                        <a href="#">Incidencia</a>
+                                        <a id="incidencia">Incidencia</a>
                                     </h:li>
                                     <h:li>
                                         <a href="#">Eventualidad</a>
@@ -192,19 +189,19 @@
                                         <a href="#">Noticia</a>
                                     </h:li>
                                     <h:li>
-                                        <a href="#">Pregunta</a>
+                                        <a id="pregunta">Pregunta</a>
                                     </h:li>
                                     <h:li>
-                                        <a href="#">Repuesta</a>
+                                        <a id="respuesta">Repuesta</a>
                                     </h:li>
                                     <h:li>
                                         <a href="#">Promoción</a>
                                     </h:li>
                                     <h:li>
-                                        <a href="#">Comentario</a>
+                                        <a id="comentario">Comentario</a>
                                     </h:li>
                                     <h:li>
-                                        <a href="#">Ocupación</a>
+                                        <a id="ocupacion">Ocupación</a>
                                     </h:li>
 
                                 </h:ul>
@@ -215,7 +212,7 @@
                     </h:li>
                     
                       <h:li>
-                        <a href="mailbox.html"><h:i class="fa fa-bar-chart"></h:i> <span class="nav-label">Reportes</span><span class="fa arrow"></span></a>
+                        <a href="mailbox.html"><h:i class="fa fa-bar-chart"></h:i> <h:span class="nav-label">Información Estadística</h:span><h:span class="fa arrow"></h:span></a>
                         <h:ul class="nav nav-second-level collapse">
                             <h:li><a href="mailbox.html">Servicios más Solicitados</a></h:li>
                         </h:ul>

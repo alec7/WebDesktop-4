@@ -15,11 +15,27 @@ import org.zkoss.zul.Window;
 
 public class Prueba  extends SelectorComposer<Component>{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	//A a;
 	
 	Li m;
 	
 	A mensaje;
+	A cubiculo;
+	A preferencia;
+	A indicador;
+	A necesidad;
+	A incidencia;
+	A ocupacion;
+	A pregunta;
+	A respuesta;
+	A comentario;
+	A paquete;
+	A rol;
 	
 	/*@Listen("onClick=#a")
 	public void onClick$a()
@@ -37,8 +53,66 @@ public class Prueba  extends SelectorComposer<Component>{
 	
 	@Listen("onClick =#mensaje")
 	public void mostrarMensaje(MouseEvent event){
-		alert("hola");
+	alert("hola");
 		//Messagebox.show("hola");
 	}
+	
+	
+	
+	@Listen("onClick =#cubiculo")
+	public void Cubiculo(MouseEvent event){
+		 Executions.sendRedirect("maestrico.zul?master="+"tb_cubiculo");
+	}
+	
+	@Listen("onClick =#equipo")
+	public void Equipo(MouseEvent event){
+		 Executions.sendRedirect("maestrico.zul?master="+"tb_equipo");
+	}
+	
+	@Listen("onClick =#preferencia")
+	public void Preferencia(MouseEvent event){
+		 Executions.sendRedirect("maestrico.zul?master="+"tb_preferencia");
+	}
+	@Listen("onClick =#necesidad")
+	public void Necesidad(MouseEvent event){
+		 Executions.sendRedirect("maestrico.zul?master="+"tb_necesidad");
+	}
+	@Listen("onClick =#indicador")
+	public void Indicador(MouseEvent event){
+		 Executions.sendRedirect("maestrico.zul?master="+"tb_indicador");
+	}
+	@Listen("onClick =#incidencia")
+	public void Incidencia(MouseEvent event){
+		 Executions.sendRedirect("maestrico.zul?master="+"tb_incidencia");
+	}
+	@Listen("onClick =#ocupacion")
+	public void Ocupacion(MouseEvent event){
+		 Executions.sendRedirect("maestrico.zul?master="+"tb_ocupacion");
+	}
+	@Listen("onClick =#pregunta")
+	public void Pregunta(MouseEvent event){
+		 Executions.sendRedirect("maestrico.zul?master="+"tb_pregunta");
+	}
+	@Listen("onClick =#respuesta")
+	public void Respuesta(MouseEvent event){
+		 Executions.sendRedirect("maestrico.zul?master="+"tb_respuesta");
+	}
+	@Listen("onClick =#comentario")
+	public void Comentario(MouseEvent event){
+		 Executions.sendRedirect("maestrico.zul?master="+"tb_comentario");
+	}
+	@Listen("onClick =#diaLaborable")
+	public void DiaLaborable(MouseEvent event){
+		 Executions.sendRedirect("maestrico.zul?master="+"tb_dia_laborable");
+	}
+	@Listen("onClick =#paquete")
+	public void Paquete(MouseEvent event){
+		 Executions.sendRedirect("maestrico.zul?master="+"tb_paquete");
+	}
+	@Listen("onClick =#rol")
+	public void Rol(MouseEvent event){
+		 Executions.sendRedirect("maestrico.zul?master="+"tb_rol");
+	}
+	
 
 }
