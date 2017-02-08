@@ -25,17 +25,16 @@
                             <h:a data-toggle="dropdown" class="dropdown-toggle" droppable="" href="#">
                             <h:span class="clear"> <h:span class="block m-t-xs"> <h:strong class="font-bold">David Williams</h:strong></h:span>
                              </h:span> <h:span class="text-muted text-xs block">Administrador </h:span>  </h:a>
-                          
                         </div>
                         
                         <div class="logo-element">
                             IN+
                         </div>
                     </h:li>
-                     <h:li class="active">
+                     <h:li >
                         <a ><h:i class="fa fa-user-circle-o"></h:i> <h:span class="nav-label">Mi Perfil</h:span> <h:span class="fa arrow"></h:span></a>
                         <h:ul class="nav nav-second-level">
-                            <h:li class="active"><a >Editar Perfil</a></h:li>
+                            <h:li ><a >Editar Perfil</a></h:li>
                           <h:li><a href="#">Preferencia</a></h:li>
                         </h:ul>
                     </h:li>
@@ -43,9 +42,25 @@
                      <h:li>
                         <a ><h:i class="fa fa-address-book-o"></h:i> <h:span class="nav-label">Clientes</h:span> <h:span class="fa arrow"></h:span></a>
                         <h:ul class="nav nav-second-level">
-                            <h:li   class="active"><a id="mensaje">Cliente</a></h:li>
-                            <h:li><a onClick="@load(vista/cliente/registrar.zul)">Consulta Diagnóstico</a></h:li>
-                            <h:li><a href="dashboard_3.html">Solicitar Servicio</a></h:li>
+                            <h:li><a id="mensaje">Cliente</a></h:li>
+                            
+                            <h:li>
+                                <a href="#" >Consulta Diagnostico<span class="fa arrow"></span></a>
+                                <h:ul class="nav nav-third-level">
+                                    <h:li>
+                                        <a >Test</a>
+                                    </h:li>
+                                    <h:li>
+                                        <a href="#">Hábito</a>
+                                    </h:li>
+                                    <h:li>
+                                        <a href="#">Antecedente</a>
+                                    </h:li>
+
+                                </h:ul>
+                                </h:li>
+                                <h:li><a>Servicio Recomendado</a></h:li>
+                            <h:li><a>Solicitar Servicio</a></h:li>
                             
                         </h:ul>
                     </h:li>
@@ -53,19 +68,67 @@
                     <h:li>
                         <a href="#"><h:i class="fa fa-calendar"></h:i> <h:span class="nav-label">Agenda</h:span><h:span class="fa arrow"></h:span></a>
                         <h:ul class="nav nav-second-level collapse">
-                            <h:li><a href="graph_morris.html">Solicitar Cita</a></h:li>
-                            <h:li><a id="">Citas Programadas</a></h:li>
-                            <h:li><a >Horario</a></h:li>
-                            
+                            <h:li><a>Ver Agenda</a></h:li>
+                            <h:li><a >Solicitar CIta</a></h:li>
                            
                         </h:ul>
                     </h:li>
                     <h:li>
-                        <a href="·"><h:i class="fa fa-tags"></h:i> <h:span class="nav-label">Servicios</h:span><h:span class="fa arrow"></h:span></a>
+                        <a href="·"><h:i class="fa fa-ticket"></h:i> <h:span class="nav-label">Servicio</h:span><h:span class="fa arrow"></h:span></a>
                         <h:ul class="nav nav-second-level collapse">
-                            <h:li><a href="mailbox.html">Servicio</a></h:li>
-                            <h:li><a href="mail_detail.html">Avance</a></h:li>
-                            <h:li><a href="mail_detail.html">Seguimiento al Cliente</a></h:li>
+                            <h:li><a>Servicio Aplicado</a></h:li>
+                            <h:li><a >Avance del Cliente</a></h:li>
+                        </h:ul>
+                    </h:li>
+                    <h:li>
+                        <a href="·"><h:i class="fa fa-tags"></h:i> <h:span class="nav-label">Planificación</h:span><h:span class="fa arrow"></h:span></a>
+                        <h:ul class="nav nav-second-level collapse">
+                             <h:li>
+                                <a href="#" >Horario<span class="fa arrow"></span></a>
+                                <h:ul class="nav nav-third-level">
+                                    <h:li>
+                                        <a >Esteticista</a>
+                                    </h:li>
+                                    <h:li>
+                                        <a href="#">Equipo</a>
+                                    </h:li>
+                                </h:ul>
+                                </h:li>
+                            <h:li>
+                                <a href="#" >Marketing<span class="fa arrow"></span></a>
+                                <h:ul class="nav nav-third-level">
+                                    <h:li>
+                                        <a >Campaña</a>
+                                    </h:li>
+                                    <h:li>
+                                        <a href="#">Promoción</a>
+                                    </h:li>
+                                </h:ul>
+                                </h:li>
+                        </h:ul>
+                    </h:li>
+                    
+                    <h:li>
+                        <a ><h:i class="fa fa-external-link-square"></h:i> <h:span class="nav-label">Difusión</h:span> <h:span class="fa arrow"></h:span></a>
+                        <h:ul class="nav nav-second-level">
+                            <h:li ><a >Evetualidad</a></h:li>
+                          <h:li><a href="#">Noticia</a></h:li>
+                        </h:ul>
+                    </h:li>
+                    
+                     <h:li >
+                        <a ><h:i class="fa fa-handshake-o"></h:i> <h:span class="nav-label">Alianzas y Convenios</h:span> <h:span class="fa arrow"></h:span></a>
+                        <h:ul class="nav nav-second-level">
+                            <h:li ><a >Empresa</a></h:li>
+                          <h:li><a href="#">Convenio</a></h:li>
+                        </h:ul>
+                    </h:li>
+                    
+                    <h:li >
+                        <a ><h:i class="fa fa-lock"></h:i> <h:span class="nav-label">Seguridad Funcional</h:span> <h:span class="fa arrow"></h:span></a>
+                        <h:ul class="nav nav-second-level">
+                            <h:li><a >Nuevo Rol</a></h:li>
+                          <h:li><a href="#">Permisos</a></h:li>
                         </h:ul>
                     </h:li>
                     
@@ -73,7 +136,7 @@
                         <a href="mailbox.html"><h:i class="fa fa-cogs"></h:i> <h:span class="nav-label">Configuraciones </h:span><h:span class="fa arrow"></h:span></a>
                         <h:ul class="nav nav-second-level collapse">
                             <h:li>
-                                <a href="#" id="damian">Portal Web<span class="fa arrow"></span></a>
+                                <a href="#" >Portal Web<span class="fa arrow"></span></a>
                                 <h:ul class="nav nav-third-level">
                                     <h:li>
                                         <a href="#">Desvincular Noticias</a>
@@ -88,35 +151,21 @@
                                 </h:ul>
                                 </h:li>
                                 <h:li>
-                                <a href="#" id="d">Web-Desktop<span class="fa arrow"></span></a>
-                                <h:ul class="nav nav-second-level collapse">
-                                    <h:li>
-                                        <a href="#">Deshabilitar Correo</a>
-                                    </h:li>
-                                    <h:li>
-                                        <a href="#">Disponibilidad de Esteticistas</a>
-                                    </h:li>
-                                    <h:li>
-                                        <a href="#">Disponibilidad de Equipos</a>
-                                    </h:li>
-
-                                </h:ul>
+	                                <a href="#" >Web-Desktop<span class="fa arrow"></span></a>
+	                                <h:ul class="nav nav-second-level collapse">
+	                                    <h:li>
+	                                        <a href="#">Deshabilitar Correo</a>
+	                                    </h:li>
+	                                </h:ul>
                                 </h:li>
-                                
-                                 <h:li>
-                                <a href="#" id="">Seguridad Funcional<span class="fa arrow"></span></a>
-                                <h:ul class="nav nav-second-level collapse">
-                                    <h:li>
-                                        <a id="rol">Nuevo Rol</a>
-                                    </h:li>
-                                    <h:li>
-                                        <a href="#">Permisos</a>
-                                    </h:li>
-
-                                </h:ul>
+                                <h:li>
+	                                <a href="#" >Móvil<span class="fa arrow"></span></a>
+	                                <h:ul class="nav nav-second-level collapse">
+	                                    <h:li>
+	                                        <a href="#">Deshabilitar Notificaciones</a>
+	                                    </h:li>
+	                                </h:ul>
                                 </h:li>
-                            
-                           
                         </h:ul>
                     </h:li>
                     
@@ -136,7 +185,22 @@
                                     <h:li>
                                         <a id="indicador">Indicador</a>
                                     </h:li>
-
+                                     <h:li>
+                                        <a id="ocupacion">Ocupación</a>
+                                    </h:li>
+                                    <h:li>
+                                        <a >Hábito</a>
+                                    </h:li>
+                                    <h:li>
+                                        <a >Antecedencte</a>
+                                    </h:li>
+                                    <h:li>
+                                        <a>Tipo Cliente</a>
+                                    </h:li>
+                                    <h:li>
+                                        <a>Avance</a>
+                                    </h:li>
+	
                                 </h:ul>
                                 </h:li>
                                 <h:li>
@@ -146,17 +210,14 @@
                                         <a href="#">Turno</a>
                                     </h:li>
                                     <h:li>
-                                        <a href="#">Disponibilidad del Esteticista</a>
-                                    </h:li>
-                                    <h:li>
-                                        <a href="#">Días Laborables</a>
+                                        <a href="#">Día Laborable</a>
                                     </h:li>
                                    
 
                                 </h:ul>
                                 </h:li>
                                  <h:li>
-                                <a href="#" >Servicios<span class="fa arrow"></span></a>
+                                <a href="#" >Servicio<span class="fa arrow"></span></a>
                                 <h:ul class="nav nav-third-level">
                                     <h:li>
                                         <a href="#">Servicio</a>
@@ -168,20 +229,27 @@
                                         <a href="#">Esteticista</a>
                                     </h:li>
                                     <h:li>
-                                        <a   id="cubiculo">Cubiculo</a>
+                                        <a   id="cubiculo">Cubículo</a>
                                     </h:li>
                                     <h:li>
                                         <a  id = "equipo" >Equipo</a>
                                     </h:li>
-
+                                    <h:li>
+                                        <a id="incidencia">Incidencia</a>
+                                    </h:li>
+                                    <h:li>
+                                        <a >Orientación del Servicio</a>
+                                    </h:li>
+                                    <h:li>
+                                        <a >Tipo Servicio</a>
+                                    </h:li>
+	
                                 </h:ul>
                                 </h:li>
                                  <h:li>
                                 <a href="#" >General<span class="fa arrow"></span></a>
                                 <h:ul class="nav nav-third-level">
-                                    <h:li>
-                                        <a id="incidencia">Incidencia</a>
-                                    </h:li>
+                                    
                                     <h:li>
                                         <a href="#">Eventualidad</a>
                                     </h:li>
@@ -200,8 +268,23 @@
                                     <h:li>
                                         <a id="comentario">Comentario</a>
                                     </h:li>
+                                     <h:li>
+                                        <a>Tipo Red Social</a>
+                                    </h:li>
                                     <h:li>
-                                        <a id="ocupacion">Ocupación</a>
+                                        <a>Tipo Comentario</a>
+                                    </h:li>
+                                    <h:li>
+                                        <a>Tipo Noticia</a>
+                                    </h:li>
+                                    <h:li>
+                                        <a>Tipo Notificación</a>
+                                    </h:li>
+                                    <h:li>
+                                        <a>Tipo Incidencia</a>
+                                    </h:li>
+                                    <h:li>
+                                        <a>Tipo Campaña</a>
                                     </h:li>
 
                                 </h:ul>
@@ -212,9 +295,10 @@
                     </h:li>
                     
                       <h:li>
-                        <a href="mailbox.html"><h:i class="fa fa-bar-chart"></h:i> <h:span class="nav-label">Información Estadística</h:span><h:span class="fa arrow"></h:span></a>
+                        <a><h:i class="fa fa-bar-chart"></h:i> <h:span class="nav-label">Información Estadística</h:span><h:span class="fa arrow"></h:span></a>
                         <h:ul class="nav nav-second-level collapse">
-                            <h:li><a href="mailbox.html">Servicios más Solicitados</a></h:li>
+                            <h:li><a >Consulta</a></h:li>
+                            <h:li><a >Reporte</a></h:li>
                         </h:ul>
                     </h:li>
                     
@@ -230,9 +314,13 @@
         
         <div sclass="page-wrapper gray-bg">
         <div class="row border-bottom">
+        
+        
+        
         <h:nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
         <div class="navbar-header">
             <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><h:i class="fa fa-bars"></h:i> </a>
+            
             
         </div>
             <h:ul class="nav navbar-top-links navbar-right">
@@ -268,6 +356,7 @@
                                 <div>
                                     <h:i class="fa fa-upload fa-fw"></h:i> Servidor reiniciado
                                     <h:span class="pull-right text-muted small">hace 4 minutos</h:span>
+                                    
                                 </div>
                             </a>
                         </h:li>
@@ -298,6 +387,7 @@
 
         </h:nav>
         </div>
+        
            <div class="footer">
                 <div class="pull-right">
                     <h:strong>TeamPoison</h:strong> 
@@ -308,7 +398,6 @@
             </div>
         
        </div>
-
  
           </div>
           

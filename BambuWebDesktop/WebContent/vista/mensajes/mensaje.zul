@@ -1,46 +1,36 @@
 <?page title="new page title" contentType="text/html;charset=UTF-8"?>
 
-    <?link href="css/bootstrap.min.css" rel="stylesheet"?>
-    <?link href="font-awesome/css/font-awesome.css" rel="stylesheet"?>
+    
+    
 
-    <!-- Sweet Alert -->
-    <?link href="css/plugins/sweetalert/sweetalert.css" rel="stylesheet"?>
-
-    <?link href="css/animate.css" rel="stylesheet"?>
-    <?link href="css/style.css" rel="stylesheet"?>
+    
     
 <zk xmlns:h="http://www.w3.org/1999/xhtml" xmlns:zk="http://www.zkoss.org/2005/zk">
-<window  border="none" width="300px" height="150px">
+<window width="50%" height="50%">
 
-<script type="text/javascript">
-function mensaje () {
+
+
+
+ <script type="text/javascript">
+ $(document).ready(function () {
             swal({
-                title: "Are you sure?",
-                text: "You will not be able to recover this imaginary file!",
+                title: "¿Desea Eliminar El Registro?",
+               
                 type: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#DD6B55",
-                confirmButtonText: "Yes, delete it!",
+                confirmButtonText: "Si",
                 closeOnConfirm: false
             }, function () {
-                swal("Deleted!", "Your imaginary file has been deleted.", "success");
+                swal("El Registro Ha Sido Eliminado", "", "success");
             });
-        };
-</script>
+        });
+ 
+ </script>
+ 
 
 
-<!-- Mainly scripts -->
-    <?script src="js/jquery-3.1.1.min.js"/?>
-    <?script src="js/bootstrap.min.js"/?>
-    <?script src="js/plugins/metisMenu/jquery.metisMenu.js"?>
-    <?script src="js/plugins/slimscroll/jquery.slimscroll.min.js"?>
-
-    <!-- Custom and plugin javascript -->
-    <?script src="js/inspinia.js"/?>
-    <?script src="js/plugins/pace/pace.min.js"/?>
-
-    <!-- Sweet alert -->
-    <?script src="js/plugins/sweetalert/sweetalert.min.js"/?>
-
+  
+   
 </window>
 </zk>
