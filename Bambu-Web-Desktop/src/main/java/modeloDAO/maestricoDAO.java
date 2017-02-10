@@ -4,39 +4,66 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Formatter;
+import java.util.List;
+
+import org.zkoss.zhtml.Messagebox;
 
 import bean.Conexion;
 import modelo.Maestrico;
+import modelo.porsia;
 import modelo.Usuario;
 
 public class maestricoDAO extends ConexionDAO{
+	
 	
 	public maestricoDAO() {
 		super();
 	}
 	
-	public void registrarMaestrico(Maestrico maestrico, String tabla, String status ){
+	/*public void registrarMaestrico(porsia maestrico, String tabla, String status ){
 		String tiraSQL= "INSERT INTO "+tabla+" (codigo,descripcion,status) "
 				+ "VALUES ('"+maestrico.getCodigo()+"'"+",'"+ maestrico.getDescripcion()+"','"+ status+"')";
 		Conexion.ejecutar(tiraSQL);
-	}   
+	}   */
 	
-public void actualizarStatus(String tabla,String cod){
+/*public void actualizarStatus(String tabla,String cod){
 		
 		String tiraSQL= "UPDATE "+tabla+" SET  status= 'Inactivo' WHERE codigo='"+cod+"' ";
 		Conexion.ejecutar(tiraSQL);
 	
-	}
+	}*/
 
 
-public ArrayList<Maestrico> listarMaestricos(String tabla) {
+/*public ArrayList<porsia> listarMaestricos(String tabla) {
 	String tiraSQL = "SELECT * FROM "+tabla+" WHERE status='Activo'";
 	ResultSet resultSet = Conexion.consultar(tiraSQL);
-	ArrayList<Maestrico> arr_maestricos = new ArrayList<Maestrico>();
+	ArrayList<porsia> arr_maestricos = new ArrayList<porsia>();
 	try {
 		if(resultSet!=null){
 			while(resultSet.next()){
-				arr_maestricos.add(new Maestrico(resultSet.getString("codigo"), resultSet.getString("descripcion")));
+				arr_maestricos.add(new porsia(resultSet.getString("codigo"), resultSet.getString("descripcion")));
+			}
+		}
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	return arr_maestricos;
+} */
+
+
+
+
+public List<Maestrico> listarMaestrico(String tabla) { //para listar en el grid la informacion
+	int i=0;
+	String tiraSQL = "SELECT * FROM "+tabla+" where status = 'Activo'";
+	ResultSet resultSet = Conexion.consultar(tiraSQL);
+	List<Maestrico> arr_maestricos = new ArrayList<Maestrico>();
+	try {
+		if(resultSet!=null){
+			while(resultSet.next()){
+				i++;
+				arr_maestricos.add(new Maestrico(i,resultSet.getString("codigo"), resultSet.getString("descripcion"),resultSet.getString("status") ));
 			}
 		}
 	} catch (SQLException e) {
@@ -45,10 +72,39 @@ public ArrayList<Maestrico> listarMaestricos(String tabla) {
 	}
 	return arr_maestricos;
 }
+
+
+//String codigo, String descripcion
+public void modificarMaestrico(String tabla,String codigo, String descripcion) {
+	String tiraSQL = "UPDATE "+tabla+" SET descripcion = '"+ descripcion + "' WHERE codigo = '"+codigo+"'";
+	Conexion.ejecutar(tiraSQL);
+	Messagebox.show(tiraSQL);
+	
+}
+
+public void eliminarMaestrico(String tabla, String codigo){
+	
+	String tiraSQL= "UPDATE "+tabla+" SET  status= 'Inactivo' WHERE codigo='"+codigo+"' ";
+	Conexion.ejecutar(tiraSQL);
+	Messagebox.show(tiraSQL);
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
 	
 	
 	public String TotalRegistros(String tabla ){
-		String tiraSQL = "SELECT * FROM "+tabla+"";
+		String tiraSQL = "SELECT * FROM "+tabla;
 		ResultSet resultSet = Conexion.consultar(tiraSQL);
 		int numero=1;
 		try {
@@ -64,6 +120,16 @@ public ArrayList<Maestrico> listarMaestricos(String tabla) {
 		Formatter fmt = new Formatter();
 		fmt.format("%05d", numero);
 		return String.valueOf(fmt);
+	}
+
+	public void agregarMaestrico(String tabla,String codigo, String descripcion) {
+		
+		String tiraSQL= "INSERT INTO "+tabla+ " (codigo,descripcion,status) "
+				+ "VALUES ('"+codigo+"'"+",'"+ descripcion+"','Activo')";
+		Conexion.ejecutar(tiraSQL);
+		Messagebox.show(tiraSQL);
+		
+		
 	}
 	
 		

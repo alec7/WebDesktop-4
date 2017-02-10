@@ -1,62 +1,55 @@
-<?page title="Tablas Básicas" contentType="text/html;charset=UTF-8"?>
-    <?link href="assets/css/bootstrap.min.css" rel="stylesheet"?>
-    <?link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet"?>
-
-    <!-- Toastr style -->
-    <?link href="assets/css/plugins/toastr/toastr.min.css" rel="stylesheet"?>
-
-    <!-- Gritter -->
-    <?link href="assets/js/plugins/gritter/jquery.gritter.css" rel="stylesheet"?>
-
-    <?link href="assets/css/animate.css" rel="stylesheet"?>
-    <?link href="assets/css/style.css" rel="stylesheet"?>
-
-
-
-<zk xmlns:h="http://www.w3.org/1999/xhtml" xmlns:zk="http://www.zkoss.org/2005/zk" >
-<div apply="controlador.ControladorMaestrico">
-<div class="row">            
-                <div class="col-lg-9" >
-                    <h:div class="ibox float-e-margins">
-                        <h:div class="ibox-title">
-                           <h:h1><label id="titulo" value="Zero" style="font-size:20px"></label> </h:h1>
-                        </h:div>
-                        <div class="ibox-content">
-                            <h:form class="form-horizontal" id="maestrico">
-                                <div class="form-group"><label class="col-lg-3 control-label">Descripcion:</label>
-
-                                    <div class="col-lg-6"><textbox id = "txtDescripcion"  placeholder="" class="form-control required" /></div>
-                                </div>
-                            	 <space></space>
-                                <div class="form-group">
-                                    <div class="col-lg-offset-8 col-lg-2">
-                                        <button class="btn btn-primary block full-width m-b" id="guardar" >Guardar</button>
-                                    </div>
-                                </div>
-                            </h:form>
-                            
-                            <vbox>
-							<listbox id="listaMaestricos"  emptyMessage="No se encontraron datos...">
-			                   
-			                   <listhead sizable="true">
-						            <listheader label="Descripcion"  />	
-						             <listheader/>				            
-						       </listhead>
-			                   
-			                   <template name="model">
-									<listitem>
-										
-										<listcell label="${each.descripcion}"> </listcell>																				
-										<listcell > <button id="${each.codigo}">Eliminar</button></listcell>
-										
-									</listitem>
-								</template>
-							</listbox>
-						</vbox>
-                        </div>
-                        
-                    </h:div>
-                </div>
-            </div>
-            </div>
-</zk>
+<?link rel="stylesheet" type="text/css" href="/style.css"?>
+<window apply="controlador.MaestricoListController" 
+	border="normal" hflex="1" vflex="1" contentStyle="overflow:auto">
+	<label id="titulo" value="prueba" style="font-size:40px" > </label>
+	<borderlayout>
+		<center autoscroll="true" border="none">
+			<vlayout hflex="1" vflex="1">
+				<hbox align="center" hflex="1" sclass="todo-box">
+					<textbox id="maestricoSubject" hflex="1" placeholder="Descripcion" />
+					<button id="addMaestrico" image="imgs/plus.png" width="36px"/>
+				</hbox>		
+				<listbox id="maestricoListbox" vflex="1">
+					<listhead>
+						<listheader width="30px" />
+						<listheader/>
+						<listheader hflex="min"/>
+					</listhead>
+					<template name="model">
+						<listitem sclass="${each.complete?'complete-todo':''}" value="${each}">
+							<listcell>			
+							
+							</listcell>
+							<listcell>
+								<label value="${each.descripcion}"/>
+							</listcell>
+							<listcell>
+								<button forward="onClick=maestricoListbox.onMaestricoDelete" image="imgs/cross.png" width="36px"/>
+							</listcell>
+						</listitem>
+					</template>
+				</listbox>
+			</vlayout>
+		</center>
+		<east id="selectedMaestricoBlock" visible="false" width="300px" border="none" collapsible="false" 
+		splittable="true" minsize="300" autoscroll="true">
+			<vlayout >
+				<hbox align="center"  hflex="1">
+						
+					<textbox id="selectedMaestricoSubject" hflex="1" />
+				</hbox>		
+				<grid hflex="1">
+					<columns>
+						<column align="right" hflex="min"/>
+						<column/>
+					</columns>
+		
+				</grid>
+				<hlayout>
+					<button id="updateSelectedMaestrico" label="Update"/>
+					
+				</hlayout>
+			</vlayout>
+		</east>
+	</borderlayout>
+</window>

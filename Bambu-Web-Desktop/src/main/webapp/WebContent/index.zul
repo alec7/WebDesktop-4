@@ -15,7 +15,7 @@
 <zk xmlns:h="http://www.w3.org/1999/xhtml" xmlns:zk="http://www.zkoss.org/2005/zk" xmlns:n="native">
 <div apply="controlador.Prueba">
 <div id="wrapper">
-<div class="navbar-default navbar-static-side">
+<div class="navbar-default navbar-static-side" >
  <h:li class="nav-header">
                     <div class="dropdown profile-element"> <span>
                             <image  class="img-circle" src="assets/img/da1.png" />
@@ -31,7 +31,8 @@
 
 
 
-<navbar orient="vertical" width="100%">
+<navbar orient="vertical" >
+
             
             
             <nav iconSclass="fa fa-user-circle-o" label="Mi Perfil" sclass="z-navbar-vertical" id="sidemenu">
@@ -40,16 +41,17 @@
 		    </nav>
 		    
 		    <nav iconSclass="fa fa-address-book-o" label="Clientes"  >
-		    <navitem label="Ficha del Cliente" sclass="z-navbar"/>
-		    <navitem label="Consulta Diagnostico" sclass="z-navbar"/>
+		    <navitem label="Ficha del Cliente" sclass="z-navbar" id="registro"/>
+		    <navitem label="Registrar Consulta Diagnostico" sclass="z-navbar"/>
 			<navitem label="Consultar Servicio Recomendado"/>
+			<navitem label="Solicitar Servicio"/>
 		    </nav>
 		    
 		    <nav iconSclass="fa fa-calendar" label="Agenda" sclass="nav metismenu" >
-		    <navitem label="Ver Agenda"/>
-		    <navitem label="Solicitar Cita"/>
-		    <navitem label="Reprogramar Cita"/>
+		     <navitem label="Solicitar Cita"/>
+		     <navitem label="Reprogramar Cita"/>
 		     <navitem label="Cancelar Cita"/>
+		     <navitem label="Ver Agenda"/>
 			</nav>
 		    
 		    <nav iconSclass="fa fa-tags" label="Servicios" sclass="nav metismenu" >
@@ -57,29 +59,21 @@
 			<navitem label="Avances del Servicio"/>
 		    </nav>
 		    
+		     <nav iconSclass="fa fa-bar-chart" label="Consultas y Reportes" sclass="nav metismenu" >
+		    <navitem label="Servicios Solicitados"/>
 		   
-		    <nav iconSclass="fa fa-handshake-o" label="Alianzas y Convenios" sclass="nav metismenu" >
-		    <navitem label="Empresa"/>
-		    <navitem label="Convenio"/>
 			</nav>
-            
-            <nav iconSclass="fa fa-lock" label="Seguridad Funcional" sclass="nav metismenu" >
-		    <navitem label="Nuevo Rol"/>
-		    <navitem label="Permisos"/>
-		    <navitem label="Cambiar Contraseña"/>
-			</nav>
-			
-			
-			 <nav iconSclass="fa fa-cogs" label="Configuración"  >
 		    
+		    
+		   
+			 <nav iconSclass="fa fa-cogs" label="Configuración"  >
+		    <navitem label="Sistema"/>
 			<nav label="Web" iconSclass="fa fa-angle-right">
 				<navitem label="Slider"/>
 				<navitem label="Desvincular Noticia"/>
 				<navitem label="Twitter"/>
-			</nav>
-			<nav label="Web-Desktop" iconSclass="fa fa-angle-right">
-				<navitem label="Deshabilitar Correo"/>
-				<navitem label="Promoción"/>
+				<navitem label="Campaña"/>
+			    <navitem label="Promoción"/>
 			</nav>
 			<nav label="Movil" iconSclass="fa fa-angle-right">
 				<navitem label=""/>
@@ -114,6 +108,8 @@
 				<navitem label="Orientación del Servicio"/>
 			</nav>
 		   <nav label="General" iconSclass="fa fa-angle-right">
+		        <navitem label="Empresa"/>
+		        <navitem label="Convenio"/>
 				<navitem label="Eventualidad"/>
 				<navitem label="Noticia"/>
 				<navitem label="Pregunta" id="pregunta"/>
@@ -136,11 +132,13 @@
 		   </nav>
 			</nav>
 			
-			
-		     <nav iconSclass="fa fa-bar-chart" label="Información Estadística" sclass="nav metismenu" >
-		    <navitem label="Servicios Solicitados"/>
-		   
-			</nav>
+			 <nav iconSclass="fa fa-lock" label="Seguridad Funcional" sclass="nav metismenu" >
+		    <navitem label="Usuarios"/>
+		    <navitem label="Roles"/>
+		    <navitem label="Permisología"/>
+		    <navitem label="Utilitarios" />
+		    </nav>
+		    
 		    
                      
             
@@ -222,7 +220,7 @@
         </div>
         
         
-           <div id="form" width="60%" height="100%"></div>
+           <window visible="false" id="form"></window>
            
            
            <div class="footer" id="footer">

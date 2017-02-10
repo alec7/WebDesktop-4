@@ -1,39 +1,46 @@
 package controlador;
 
 import java.util.ArrayList;
+import java.util.List;
 
-import org.zkoss.zhtml.Button;
+import javax.websocket.Decoder.Text;
+
+import org.zkoss.zhtml.A;
+import org.zkoss.zhtml.B;
+import org.zkoss.zhtml.H2;
 import org.zkoss.zhtml.Li;
 import org.zkoss.zul.Label;
+import org.zkoss.zhtml.Ul;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Execution;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.event.CreateEvent;
-import org.zkoss.zk.ui.event.EventListener;
-import org.zkoss.zk.ui.event.ForwardEvent;
+import org.zkoss.zk.ui.event.MouseEvent;
 import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zk.ui.util.GenericForwardComposer;
+import org.zkoss.zul.Button;
 import org.zkoss.zul.ListModelList;
 import org.zkoss.zul.Listbox;
-import org.zkoss.zul.Listitem;
 import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Textbox;
 import org.zkoss.zul.Window;
-import org.zkoss.zul.Messagebox.ClickEvent;
 
-import modelo.Maestrico;
+import modelo.porsia;
 import modeloDAO.maestricoDAO;
 
-public class ControladorMaestrico  extends GenericForwardComposer<Window>
-{
+public class ControladorMaestrico  extends GenericForwardComposer<Window>{//SelectorComposer<Component>
 	
 	
 	maestricoDAO mdao = new maestricoDAO();
+	A cubiculo;
+	A equipo;
 
 	@Wire
 	private Button guardar;
+	@Wire
+	private Button eliminar;
 	
 	@Wire
 	private Textbox txtDescripcion;
@@ -47,7 +54,6 @@ public class ControladorMaestrico  extends GenericForwardComposer<Window>
 	Li m;
 	
 	Execution execution = Executions.getCurrent();
-	
 	String tabla = execution.getParameter("master");
 	
 
@@ -60,43 +66,29 @@ public class ControladorMaestrico  extends GenericForwardComposer<Window>
 //		this.cargarTabla();
 //		
 //	}
+	
 	public void onClick$guardar(){
+		
 		String codigo = mdao.TotalRegistros(tabla);
 		
-		Maestrico maestrico = new Maestrico(codigo, txtDescripcion.getValue()); 
-		mdao.registrarMaestrico(maestrico, tabla,"Activo");
+	//	porsia maestrico = new porsia(codigo, txtDescripcion.getValue()); 
+	//	mdao.registrarMaestrico(maestrico, tabla, "Activo");
 		this.cargarTabla();
 		txtDescripcion.setValue("");
 	}
 	
-	
-	public void onSelect$listaMaestricos(){
-		   // Executions.createComponents("vista/mensajes/mensaje.zul",null,null);
-			EventListener<ClickEvent> clickListener = new EventListener<Messagebox.ClickEvent>() {
-		        public void onEvent(ClickEvent event) throws Exception {
-		            if(Messagebox.Button.YES.equals(event.getButton())) {
-		            		Maestrico maestrico = listaMaestricos.getSelectedItem().getValue();
-						   mdao.actualizarStatus(tabla, maestrico.getCodigo());
-						   cargarTabla();
-		            }
-		        }
-		    };
-		    Messagebox.show("¿Desea Eliminar El Registro?", "Mensaje de confirmación", new Messagebox.Button[]{
-		            Messagebox.Button.YES, Messagebox.Button.NO },Messagebox.QUESTION,clickListener);
-		}
-	
 	private void cargarTabla(){
-		ArrayList<Maestrico> arr_maestricos = new ArrayList<Maestrico>();
-		arr_maestricos = mdao.listarMaestricos(tabla);
-		listaMaestricos.setModel(new ListModelList<Maestrico>(arr_maestricos));
+		List<porsia> arr_maestricos = new ArrayList<porsia>();
+		//arr_maestricos = mdao.listarMaestricos(tabla);
+		listaMaestricos.setModel(new ListModelList<porsia>(arr_maestricos));
 	}
-	
 	
 	public void onCreate$maestrico(CreateEvent event)
     {
 		this.cargarTabla();
     }
 	
+
 	public void onCreate$titulo(CreateEvent event){
 	String t= "Registrar ";
 	switch (tabla){
@@ -149,6 +141,24 @@ public class ControladorMaestrico  extends GenericForwardComposer<Window>
 		titulo.setValue(t);
 		return;
 	}
+	
+//	if (tabla.equalsIgnoreCase("tb_pregunta")){
+//		t=t+"Pregunta";
+//		titulo.setValue(t);
+//	}
+//	else{
+//		if(tabla.equalsIgnoreCase("tb_respuesta")){
+//			t=t+"Respuesta";
+//			titulo.setValue(t);
+//		}
+//		else{
+//			if(tabla.equalsIgnoreCase("tb_equipo")){
+//				t=t+"Respuesta";
+//				titulo.setValue(t);
+//			}
+//		}
+//		
+//	}
 	
 	
 	}

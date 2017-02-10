@@ -66,6 +66,7 @@ public class Prueba  extends SelectorComposer<Component>{
 	
 	@Listen("onClick =#equipo")
 	public void Equipo(MouseEvent event){
+		
 		 Executions.sendRedirect("maestrico.zul?master="+"tb_equipo");
 	}
 	
@@ -74,7 +75,9 @@ public class Prueba  extends SelectorComposer<Component>{
 		 Executions.sendRedirect("maestrico.zul?master="+"tb_preferencia");
 	}
 	@Listen("onClick =#necesidad")
+
 	public void Necesidad(MouseEvent event){
+		Messagebox.show("Necesidad");
 		 Executions.sendRedirect("maestrico.zul?master="+"tb_necesidad");
 	}
 	@Listen("onClick =#indicador")
@@ -96,6 +99,7 @@ public class Prueba  extends SelectorComposer<Component>{
 	@Listen("onClick =#respuesta")
 	public void Respuesta(MouseEvent event){
 		 Executions.sendRedirect("maestrico.zul?master="+"tb_respuesta");
+		 
 	}
 	@Listen("onClick =#comentario")
 	public void Comentario(MouseEvent event){
