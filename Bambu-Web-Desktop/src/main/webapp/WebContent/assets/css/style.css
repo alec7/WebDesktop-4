@@ -27,12 +27,10 @@ h4 {
   font-size: 14px;
 }
 .z-navbar-vertical > ul .z-nav-content, .z-navbar-vertical > ul .z-navitem-content, .z-navbar-vertical > ul .z-navseparator {
-    background: #e91414;
-}
+    background: #e0eaeb;
+    border-top: #e0eaeb;
+    border-bottom: #e0eaeb;
 
-.z-navbar-vertical > ul .z-nav-content:hover, .z-navbar-vertical > ul .z-navitem-content:hover {
-    color: #f5edd7;
-    background: #9fabcc;
 }
 h5 {
   font-size: 12px;
@@ -58,27 +56,47 @@ h5 {
     font-weight: bold;
 }
 
-
+.z-navbar-vertical>ul .z-nav-content, .z-navbar-vertical>ul .z-navitem-content{
+    color: #4eab4e;
+        	
+    
+}
 .z-navbar-vertical>ul .z-nav-content:hover, .z-navbar-vertical>ul .z-navitem-content:hover {
     color: #f5edd7;
     background: #9fccc8;
+    
 }
 
 .z-navbar .z-navitem-selected .z-navitem-content {
-    color: #f5edd7;
-    background: #9fccc8;
+    color: #3b642d;
+	background: #9fccc8;
+    
 }
-ul .z-navitem-content:hover {
-    background: #4eab4e;
+
+.z-navbar .z-navitem-selected > .z-navbar-vertical>ul{
+
+	background:#ffffff;
 }
+
+.z-navbar .z-navitem-selected .z-navitem-content:hover{
+	   background: #9fccc8;
+	
+}
+
+
 .z-navbar>ul ul .z-nav-content:hover, .z-navbar>ul ul .z-navitem-content:hover {
     color: #f5edd7;
     background: #9fccc8;
 }
 
+.z-navbar-vertical .z-nav-content::before, .z-nav-popup .z-nav-content::before {
+	
+	background: #9fccc8;
+}
 
 .nav.navbar-right > li > a {
   color: #999c9e;
+  
 }
 .nav > li.active > a {
   color: #3b642d;
