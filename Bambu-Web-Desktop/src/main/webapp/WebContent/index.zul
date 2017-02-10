@@ -41,7 +41,11 @@
 		    </nav>
 		    
 		    <nav iconSclass="fa fa-address-book-o" label="Clientes"  >
+<<<<<<< HEAD
 		    <navitem label="Ficha del Cliente" sclass="z-navbar" id="registro"/>
+=======
+		    <navitem label="Ficha del Cliente" sclass="z-navbar"/>
+>>>>>>> 52c926068a70c357b93093809d4191e8c44aa6cc
 		    <navitem label="Registrar Consulta Diagnostico" sclass="z-navbar"/>
 			<navitem label="Consultar Servicio Recomendado"/>
 			<navitem label="Solicitar Servicio"/>
@@ -220,7 +224,11 @@
         </div>
         
         
+<<<<<<< HEAD
            <window visible="false" id="form"></window>
+=======
+           <div id="form" width="60%" height="100%">hola</div>
+>>>>>>> 52c926068a70c357b93093809d4191e8c44aa6cc
            
            
            <div class="footer" id="footer">
