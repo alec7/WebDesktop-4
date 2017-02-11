@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 
     <?link href="assets/css/bootstrap.min.css" rel="stylesheet"?>
     <?link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet"?>
@@ -424,32 +423,3 @@
 
 
 </zk>
-=======
-<window title="Dynamic Menu Example !!" border="normal" height="98%"
- apply="org.zkoss.bind.BindComposer"
- viewModel="@id('vm') @init('zkDynamicMenu.MainMenuVM')">
- <borderlayout>
-      
-       <west size="20%" flex="true" maxsize="250" splittable="true"
-         collapsible="true">
-          <div>
-             <navbar orient="vertical"
-                    children="@load(vm.menuItems)">
-                  <template name="children" var="item">
-                     <nav label="@load(item.name)" 
-                          iconSclass="z-icon-th-list">
-                         <navitem label="${each.name}" id="tb_${each.name}"
-                                forEach="${item.children}" />
-                        </nav>
-                    </template>
-               </navbar>
-         </div>
-        </west>
-       <center border="none" flex="true">
-            <div style="background:#E6D92C">
-              <label value="" style="color:white;font-size:50px" />
-         </div>
-        </center>
- </borderlayout>
-</window>
->>>>>>> 52c926068a70c357b93093809d4191e8c44aa6cc
