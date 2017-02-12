@@ -1,13 +1,24 @@
-<?link rel="stylesheet" type="text/css" href="/style.css"?>
-<window apply="controlador.MaestricoListController" 
-	border="normal" hflex="1" vflex="1" contentStyle="overflow:auto">
+    <?link href="assets/css/bootstrap.min.css" rel="stylesheet"?>
+    <?link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet"?>
+
+    <!-- Toastr style -->
+    <?link href="assets/css/plugins/toastr/toastr.min.css" rel="stylesheet"?>
+
+    <!-- Gritter -->
+    <?link href="assets/js/plugins/gritter/jquery.gritter.css" rel="stylesheet"?>
+
+    <?link href="assets/css/animate.css" rel="stylesheet"?>
+    <?link href="assets/css/style.css" rel="stylesheet"?>
+<window apply="controlador.MaestricoListController" border="normal" hflex="1" vflex="1" contentStyle="overflow:auto">
+	
 	<label id="titulo" value="prueba" style="font-size:40px" > </label>
 	<borderlayout>
 		<center autoscroll="true" border="none">
 			<vlayout hflex="1" vflex="1">
 				<hbox align="center" hflex="1" sclass="todo-box">
-					<textbox id="maestricoSubject" hflex="1" placeholder="Descripcion" />
-					<button id="addMaestrico" image="imgs/plus.png" width="36px"/>
+					<textbox id="maestricoSubject" hflex="1" placeholder="Descripción" maxlength="45" />
+					
+					<button id="addMaestrico"  class="btn btn-primary" iconSclass="fa fa-check" width="36px"></button>
 				</hbox>		
 				<listbox id="maestricoListbox" vflex="1">
 					<listhead>
@@ -24,7 +35,8 @@
 								<label value="${each.descripcion}"/>
 							</listcell>
 							<listcell>
-								<button forward="onClick=maestricoListbox.onMaestricoDelete" image="imgs/cross.png" width="36px"/>
+								
+								<button class="btn btn-danger" forward="onClick=maestricoListbox.onMaestricoDelete" iconSclass="fa fa-trash-o" width="36px"/>
 							</listcell>
 						</listitem>
 					</template>
@@ -46,8 +58,7 @@
 		
 				</grid>
 				<hlayout>
-					<button id="updateSelectedMaestrico" label="Update"/>
-					
+				<button id="updateSelectedMaestrico" class="btn btn-primary " type="button" iconSclass="fa fa-refresh">Actualizar</button>				
 				</hlayout>
 			</vlayout>
 		</east>

@@ -10,7 +10,6 @@ import org.zkoss.zhtml.Messagebox;
 
 import bean.Conexion;
 import modelo.Maestrico;
-import modelo.porsia;
 import modelo.Usuario;
 
 public class maestricoDAO extends ConexionDAO{
@@ -19,39 +18,6 @@ public class maestricoDAO extends ConexionDAO{
 	public maestricoDAO() {
 		super();
 	}
-	
-	/*public void registrarMaestrico(porsia maestrico, String tabla, String status ){
-		String tiraSQL= "INSERT INTO "+tabla+" (codigo,descripcion,status) "
-				+ "VALUES ('"+maestrico.getCodigo()+"'"+",'"+ maestrico.getDescripcion()+"','"+ status+"')";
-		Conexion.ejecutar(tiraSQL);
-	}   */
-	
-/*public void actualizarStatus(String tabla,String cod){
-		
-		String tiraSQL= "UPDATE "+tabla+" SET  status= 'Inactivo' WHERE codigo='"+cod+"' ";
-		Conexion.ejecutar(tiraSQL);
-	
-	}*/
-
-
-/*public ArrayList<porsia> listarMaestricos(String tabla) {
-	String tiraSQL = "SELECT * FROM "+tabla+" WHERE status='Activo'";
-	ResultSet resultSet = Conexion.consultar(tiraSQL);
-	ArrayList<porsia> arr_maestricos = new ArrayList<porsia>();
-	try {
-		if(resultSet!=null){
-			while(resultSet.next()){
-				arr_maestricos.add(new porsia(resultSet.getString("codigo"), resultSet.getString("descripcion")));
-			}
-		}
-	} catch (SQLException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
-	return arr_maestricos;
-} */
-
-
 
 
 public List<Maestrico> listarMaestrico(String tabla) { //para listar en el grid la informacion
@@ -78,7 +44,7 @@ public List<Maestrico> listarMaestrico(String tabla) { //para listar en el grid 
 public void modificarMaestrico(String tabla,String codigo, String descripcion) {
 	String tiraSQL = "UPDATE "+tabla+" SET descripcion = '"+ descripcion + "' WHERE codigo = '"+codigo+"'";
 	Conexion.ejecutar(tiraSQL);
-	Messagebox.show(tiraSQL);
+	
 	
 }
 
@@ -86,7 +52,6 @@ public void eliminarMaestrico(String tabla, String codigo){
 	
 	String tiraSQL= "UPDATE "+tabla+" SET  status= 'Inactivo' WHERE codigo='"+codigo+"' ";
 	Conexion.ejecutar(tiraSQL);
-	Messagebox.show(tiraSQL);
 
 }
 
@@ -127,7 +92,6 @@ public void eliminarMaestrico(String tabla, String codigo){
 		String tiraSQL= "INSERT INTO "+tabla+ " (codigo,descripcion,status) "
 				+ "VALUES ('"+codigo+"'"+",'"+ descripcion+"','Activo')";
 		Conexion.ejecutar(tiraSQL);
-		Messagebox.show(tiraSQL);
 		
 		
 	}

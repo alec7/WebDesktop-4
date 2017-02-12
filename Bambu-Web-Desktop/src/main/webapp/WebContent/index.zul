@@ -40,79 +40,7 @@
 			<navitem label="Preferencias"/>
 		    </nav>
 		    
-		    <nav iconSclass="fa 
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    fa-address-book-o" label="Clientes"  >
+		    <nav iconSclass="fa fa-address-book-o" label="Clientes"  >
 		    <navitem label="Ficha del Cliente" sclass="z-navbar" id="registro"/>
 		    <navitem label="Registrar Consulta Diagnostico" sclass="z-navbar"/>
 			<navitem label="Consultar Servicio Recomendado"/>
@@ -121,6 +49,7 @@
 		    
 		    <nav iconSclass="fa fa-calendar" label="Agenda" sclass="nav metismenu" >
 		     <navitem label="Solicitar Cita"/>
+		     <navitem label="Confirmar Cita"/>
 		     <navitem label="Reprogramar Cita"/>
 		     <navitem label="Cancelar Cita"/>
 		     <navitem label="Ver Agenda"/>
@@ -165,8 +94,8 @@
 				
 			</nav>
 			<nav label="Agenda" iconSclass="fa fa-angle-right">
-				<navitem label="Dia Laborable"/>
-				<navitem label="Turno"/>
+				<navitem label="Dia Laborable" id="dia_laborable"/>
+				<navitem label="Turno" id="turno"/>
 				<navitem label="Bloque"/>
 			</nav>
 			<nav label="Servicio" iconSclass="fa fa-angle-right">
@@ -177,7 +106,7 @@
 				<navitem label="Equipo"/>
 				<navitem label="Avance"/>
 				<navitem label="Incidencia"/>
-				<navitem label="Orientación del Servicio"/>
+				<navitem label="Orientación del Servicio" id="orientacion"/>
 			</nav>
 		   <nav label="General" iconSclass="fa fa-angle-right">
 		        <navitem label="Empresa"/>
@@ -188,19 +117,19 @@
 				<navitem label="Respuesta"/>
 				<navitem label="Promoción"/>
 				<navitem label="Comentario"/>
-				<navitem label="Rol"/>
+				<navitem label="Rol" id="rol"/>
 				
 		   </nav>
 		   
 		   <nav label="Parametros" iconSclass="fa fa-angle-right">
-				<navitem label="Tipo Cliente"/>
-				<navitem label="Tipo de Red Social"/>
-				<navitem label="Tipo de Comentario"/>
-				<navitem label="Tipo de Noticia"/>
-				<navitem label="Tipo de Notificación"/>
-				<navitem label="Tipo de Incidencia"/>
-				<navitem label="Tipo de Campaña"/>
-				<navitem label="Tipo de Servicio"/>
+				<navitem label="Tipo Cliente" id="tipo_cliente"/>
+				<navitem label="Tipo de Red Social" id="tipo_red_social"/>
+				<navitem label="Tipo de Comentario" id="tipo_comentario"/>
+				<navitem label="Tipo de Noticia" id="tipo_noticia"/>
+				<navitem label="Tipo de Notificación" id="tipo_notificacion"/>
+				<navitem label="Tipo de Incidencia" id="tipo_incidencia"/>
+				<navitem label="Tipo de Campaña" id="tipo_campaña"/>
+				<navitem label="Tipo de Servicio" id="tipo_servicio"/>
 		   </nav>
 			</nav>
 			

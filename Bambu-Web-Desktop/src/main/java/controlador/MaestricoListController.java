@@ -20,6 +20,8 @@ import org.zkoss.zhtml.Messagebox;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Execution;
 import org.zkoss.zk.ui.Executions;
+import org.zkoss.zk.ui.Session;
+import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.event.CreateEvent;
 import org.zkoss.zk.ui.event.ForwardEvent;
 import org.zkoss.zk.ui.select.SelectorComposer;
@@ -39,9 +41,10 @@ import org.zkoss.zul.Textbox;
 public class MaestricoListController extends SelectorComposer<Component>{
 	private static final long serialVersionUID = 1L;
 	maestricoDAO mdao = new maestricoDAO();
-	Execution execution = Executions.getCurrent();
-	String tabla = execution.getParameter("master");
-	
+//	Execution execution = Executions.getCurrent();
+//	String tabla = execution.getParameter("master");
+	Session miSession = Sessions.getCurrent();
+	String tabla =  miSession.getAttribute("master").toString();
 	
 	
 	//wire components
@@ -85,6 +88,7 @@ public class MaestricoListController extends SelectorComposer<Component>{
 		
 		//get data from service and wrap it to list-model for the view
 		List<Maestrico> maestricoList = maestricoListService.getMaestricoList();
+		maestricoList = mdao.listarMaestrico(tabla);
 		maestricoListModel = new ListModelList<Maestrico>(maestricoList);
 		maestricoListbox.setModel(maestricoListModel);
 		titulo.setValue(titulo());
@@ -98,9 +102,8 @@ public class MaestricoListController extends SelectorComposer<Component>{
 	public void doMaestricoAdd(){
 		//get user input from view
 		String descripcion = maestricoSubject.getValue();
-		Messagebox.show(descripcion);
 		if(Strings.isBlank(descripcion)){
-			Clients.showNotification("Nothing to do ?",maestricoSubject);
+			Clients.showNotification("Escriba la Descrición",maestricoSubject);
 		}else{
 			//save data
 			String codigo = mdao.TotalRegistros(tabla);
@@ -215,7 +218,7 @@ public class MaestricoListController extends SelectorComposer<Component>{
 	@Listen("onClick = #updateSelectedMaestrico")
 	public void doUpdateClick(){
 		if(Strings.isBlank(selectedMaestricoSubject.getValue())){
-			Clients.showNotification("Nothing to do ?",selectedMaestricoSubject);
+			Clients.showNotification("Escriba la Modificación",selectedMaestricoSubject);
 			return;
 		}
 		
@@ -236,7 +239,7 @@ public class MaestricoListController extends SelectorComposer<Component>{
 		maestricoListModel.set(maestricoListModel.indexOf(selectedMaestrico), selectedMaestrico);
 		
 		//show message for user
-		Clients.showNotification("maestrico saved");
+		Clients.showNotification("Cambios Guardados");
 	} 
 	
 	//when user clicks the update button
@@ -248,25 +251,55 @@ public class MaestricoListController extends SelectorComposer<Component>{
 	public String titulo(){
 		String t= "Registrar ";
 		switch (tabla){
+		case "tb_dia_laborable": 
+			t=t+"Día Laborable";
+			return t;
+		case "tb_estado": 
+			t=t+"Estado";
+			return t;
+		case "tb_orientacion": 
+			t=t+"Orientación del Servicio";
+			return t;
 		case "tb_pregunta": 
 			return t=t+"Pregunta";
-		case "tb_equipo": 
-			t=t+"Equipo";
-			return t;
-		case "tb_dia_laborable": 
-			t=t+"Dia Laborable";
-			return t;
-		case "tb_indicador": 
-			t=t+"Indicador";
-			return t;
-		case "tb_ocupacion": 
-			t=t+"Ocupación";
-			return t;
 		case "tb_rol": 
 			t=t+"Rol";
 			return t;
-		case "tb_necesidad": 
-			t=t+"Necesidad";
+		case "tb_tipo_acuerdo": 
+			t=t+"Tipo de Acuerdo";
+			return t;
+		case "tb_tipo_cliente": 
+			t=t+"Tipo de Cliente";
+			return t;
+		case "tb_tipo_comentario": 
+			t=t+"Tipo de Comentario";
+			return t;
+		case "tb_tipo_incidencia": 
+			t=t+"Tipo de Incidencia";
+			return t;
+		case "tb_tipo_noticia": 
+			t=t+"Tipo de Noticia";
+			return t;
+		case "tb_tipo_notificacion": 
+			t=t+"Tipo de Notificación";
+			return t;
+		case "tb_tipo_organizacion": 
+			t=t+"Tipo de Organización";
+			return t;
+		case "tb_tipo_pregunta": 
+			t=t+"Tipo de Pregunta";
+			return t;
+		case "tb_tipo_red_social": 
+			t=t+"Tipo de Red Social";
+			return t;
+		case "tb_tipo_servicio": 
+			t=t+"Tipo de Servicio";
+			return t;
+		case "tb_turno": 
+			t=t+"Turno";
+			return t;
+		case "tb_tipo_campaña": 
+			t=t+"Tipo de Campaña";
 			return t;
 		}
 		return "";

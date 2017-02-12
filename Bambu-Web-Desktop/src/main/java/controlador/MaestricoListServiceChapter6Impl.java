@@ -16,18 +16,21 @@ import java.util.List;
 import org.zkoss.zhtml.Messagebox;
 import org.zkoss.zk.ui.Execution;
 import org.zkoss.zk.ui.Executions;
+import org.zkoss.zk.ui.Session;
+import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zul.ListModelList;
 
 import modelo.Priority;
 import modelo.Maestrico;
 import controlador.MaestricoListService;
-import modelo.porsia;
 import modeloDAO.maestricoDAO;
 
 public class MaestricoListServiceChapter6Impl implements MaestricoListService {
 	
-	Execution execution = Executions.getCurrent();
-	String tabla = execution.getParameter("master");
+//	Execution execution = Executions.getCurrent();
+//	String tabla = execution.getParameter("master");
+	Session miSession = Sessions.getCurrent();
+	String tabla =  miSession.getAttribute("master").toString();
 
 	static int maestricoId = 0;
 	static List<Maestrico> maestricoList = new ArrayList<Maestrico>();  
@@ -52,7 +55,6 @@ public class MaestricoListServiceChapter6Impl implements MaestricoListService {
 
 			maestricoDAO mdao = new maestricoDAO();
 			//List<Maestrico> todoList = new ArrayList<Maestrico>();
-			Messagebox.show(tabla);
 			maestricoList = mdao.listarMaestrico(tabla);
 
 

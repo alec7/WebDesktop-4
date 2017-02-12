@@ -5,6 +5,8 @@ import org.zkoss.zhtml.Li;
 import org.zkoss.zhtml.Ul;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Executions;
+import org.zkoss.zk.ui.Session;
+import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.event.MouseEvent;
 import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.Listen;
@@ -37,85 +39,101 @@ public class Prueba  extends SelectorComposer<Component>{
 	A paquete;
 	A rol;
 	
-	/*@Listen("onClick=#a")
-	public void onClick$a()
-	{
-		Executions.sendRedirect("login.jsp");
-	}*/
-	
-	
-	/*@Listen("onClick =#a")
-	public void mostrarGridEstudiantes(MouseEvent event){
-		Window grid = (Window)Executions.createComponents("vista/cliente/registrar.zul",null,null);
-		grid.doModal();
-	}*/
-	
-	
-	@Listen("onClick =#mensaje")
-	public void mostrarMensaje(MouseEvent event){
-	alert("hola");
-		//Messagebox.show("hola");
-	}
-	
-	
-	
-	@Listen("onClick =#cubiculo")
-	public void Cubiculo(MouseEvent event){
-		 Executions.sendRedirect("maestrico.zul?master="+"tb_cubiculo");
-	}
-	
-	@Listen("onClick =#equipo")
-	public void Equipo(MouseEvent event){
-		
-		 Executions.sendRedirect("maestrico.zul?master="+"tb_equipo");
-	}
-	
-	@Listen("onClick =#preferencia")
-	public void Preferencia(MouseEvent event){
-		 Executions.sendRedirect("maestrico.zul?master="+"tb_preferencia");
-	}
-	@Listen("onClick =#necesidad")
+	Session miSession = Sessions.getCurrent();
 
-	public void Necesidad(MouseEvent event){
-		Messagebox.show("Necesidad");
-		 Executions.sendRedirect("maestrico.zul?master="+"tb_necesidad");
+//	@Listen("onClick =#mensaje")
+//	public void mostrarMensaje(MouseEvent event){
+//	alert("hola");
+//		//Messagebox.show("hola");
+//	}
+	
+	
+	
+	@Listen("onClick =#dia_laborable")
+	public void diaLabolable(MouseEvent event){
+		miSession.setAttribute("master","tb_dia_laborable");
+		 Executions.sendRedirect("maestrico.zul");
 	}
-	@Listen("onClick =#indicador")
-	public void Indicador(MouseEvent event){
-		 Executions.sendRedirect("maestrico.zul?master="+"tb_indicador");
+	
+	@Listen("onClick =#estado")
+	public void Estado(MouseEvent event){
+		miSession.setAttribute("master","tb_estado");
+		 Executions.sendRedirect("maestrico.zul");
 	}
-	@Listen("onClick =#incidencia")
-	public void Incidencia(MouseEvent event){
-		 Executions.sendRedirect("maestrico.zul?master="+"tb_incidencia");
-	}
-	@Listen("onClick =#ocupacion")
-	public void Ocupacion(MouseEvent event){
-		 Executions.sendRedirect("maestrico.zul?master="+"tb_ocupacion");
+	@Listen("onClick =#orientacion")
+	public void orientacion(MouseEvent event){
+		miSession.setAttribute("master","tb_orientacion");
+		 Executions.sendRedirect("maestrico.zul");
 	}
 	@Listen("onClick =#pregunta")
-	public void Pregunta(MouseEvent event){
-		 Executions.sendRedirect("maestrico.zul?master="+"tb_pregunta");
-	}
-	@Listen("onClick =#respuesta")
-	public void Respuesta(MouseEvent event){
-		 Executions.sendRedirect("maestrico.zul?master="+"tb_respuesta");
-		 
-	}
-	@Listen("onClick =#comentario")
-	public void Comentario(MouseEvent event){
-		 Executions.sendRedirect("maestrico.zul?master="+"tb_comentario");
-	}
-	@Listen("onClick =#diaLaborable")
-	public void DiaLaborable(MouseEvent event){
-		 Executions.sendRedirect("maestrico.zul?master="+"tb_dia_laborable");
-	}
-	@Listen("onClick =#paquete")
-	public void Paquete(MouseEvent event){
-		 Executions.sendRedirect("maestrico.zul?master="+"tb_paquete");
+	public void pregunta(MouseEvent event){
+		miSession.setAttribute("master","tb_pregunta");
+		 Executions.sendRedirect("maestrico.zul");
 	}
 	@Listen("onClick =#rol")
-	public void Rol(MouseEvent event){
-		 Executions.sendRedirect("maestrico.zul?master="+"tb_rol");
+	public void rol(MouseEvent event){
+		miSession.setAttribute("master","tb_rol");
+		 Executions.sendRedirect("maestrico.zul");
+	}
+	@Listen("onClick =#tipo_acuerdo")
+	public void tipoAcuerdo(MouseEvent event){
+		miSession.setAttribute("master","tb_tipo_acuerdo");
+		 Executions.sendRedirect("maestrico.zul");
+	}
+	@Listen("onClick =#tipo_cliente")
+	public void tipo_cliente(MouseEvent event){
+		miSession.setAttribute("master","tb_tipo_cliente");
+		 Executions.sendRedirect("maestrico.zul");
+	}
+	@Listen("onClick =#tipo_comentario")
+	public void tipo_Comentario(MouseEvent event){
+		miSession.setAttribute("master","tb_tipo_comentario");
+		 Executions.sendRedirect("maestrico.zul");
+	}
+	@Listen("onClick =#tipo_incidencia")
+	public void tipo_incidencia(MouseEvent event){
+		miSession.setAttribute("master","tb_tipo_incidencia");
+		 Executions.sendRedirect("maestrico.zul");
+	}
+	@Listen("onClick =#tipo_noticia")
+	public void tipo_noticia(MouseEvent event){
+		miSession.setAttribute("master","tb_tipo_noticia");
+		 Executions.sendRedirect("maestrico.zul");
+	}
+	@Listen("onClick =#tipo_notificacion")
+	public void tipo_notificacion(MouseEvent event){
+		miSession.setAttribute("master","tb_tipo_notificacion");
+		 Executions.sendRedirect("maestrico.zul");
+	}
+	@Listen("onClick =#tipo_organizacion")
+	public void tipo_organizacion(MouseEvent event){
+		miSession.setAttribute("master","tb_tipo_organizacion");
+		 Executions.sendRedirect("maestrico.zul");
+	}
+	@Listen("onClick =#tipo_pregunta")
+	public void tipo_pregunta(MouseEvent event){
+		miSession.setAttribute("master","tb_tipo_pregunta");
+		 Executions.sendRedirect("maestrico.zul");
+	}
+	@Listen("onClick =#tipo_red_social")
+	public void tipo_red_social(MouseEvent event){
+		miSession.setAttribute("master","tb_tipo_red_social");
+		 Executions.sendRedirect("maestrico.zul");
+	}
+	@Listen("onClick =#tipo_servicio")
+	public void tipo_servicio(MouseEvent event){
+		miSession.setAttribute("master","tb_tipo_servicio");
+		 Executions.sendRedirect("maestrico.zul");
+	}
+	@Listen("onClick =#turno")
+	public void turno(MouseEvent event){
+		miSession.setAttribute("master","tb_turno");
+		 Executions.sendRedirect("maestrico.zul");
+	}
+	@Listen("onClick =#tipo_campaña")
+	public void tipo_Campaña(MouseEvent event){
+		miSession.setAttribute("master","tb_tipo_campaña");
+		 Executions.sendRedirect("maestrico.zul");
 	}
 	
 
