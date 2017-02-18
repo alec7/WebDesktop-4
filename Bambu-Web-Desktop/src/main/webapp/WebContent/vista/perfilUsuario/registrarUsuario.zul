@@ -1,0 +1,118 @@
+    <?link href="../../assets/css/bootstrap.min.css" rel="stylesheet"?>
+    <?link href="../../assets/font-awesome/css/font-awesome.css" rel="stylesheet"?>
+
+    <!-- Toastr style -->
+    <?link href="../../assets/css/plugins/toastr/toastr.min.css" rel="stylesheet"?>
+
+    <!-- Gritter -->
+    <?link href="../../assets/js/plugins/gritter/jquery.gritter.css" rel="stylesheet"?>
+
+    <?link href="../../assets/css/animate.css" rel="stylesheet"?>
+    <?link href="../../assets/css/style.css" rel="stylesheet"?>
+    <?link href="../../assets/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet"?>
+    
+
+
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk xmlns:h="http://www.w3.org/1999/xhtml" xmlns:zk="http://www.zkoss.org/2005/zk" >
+<window apply="controlador.ControladorPerfilUsuario" id="perfilUsuario" >
+
+                <div class="col-lg-12" >
+                    <h:div class="ibox float-e-margins">
+                        <h:div class="ibox-title">
+                            <h:h5>Registrar Usuario</h:h5>
+                           
+                        </h:div>
+                        <div class="ibox-content">
+                            <h:form class="form-horizontal">
+                                 <div class="ibox float-e-margins">
+                                <div class="form-group"><label class="col-lg-2 control-label">Cédula:</label>
+
+                                    <div class="col-lg-3"><textbox type="text"  id="cedula" class="form-control required" /> </div>
+                                </div>
+                                 <div class="form-group"><label class="col-lg-2 control-label">Nombre:</label>
+
+                                    <div class="col-lg-3"><textbox type="text" id="nombre" class="form-control required" /></div>
+                                </div>
+                                <div class="form-group"><label class="col-lg-2 control-label">Apellido:</label>
+
+                                    <div class="col-lg-3"><textbox type="text" id="apellido" class="form-control required" /></div>
+                                </div>
+                                <div class="form-group"><label class="col-lg-2 control-label">Dirección:</label>
+
+                                    <div class="col-lg-3"><textbox type="text" id="direccion" class="form-control required" /></div>
+                                </div>
+                                <div class="form-group"><label class="col-lg-2 control-label">Teléfono:</label>
+
+                                    <div class="col-lg-3"><textbox type="text" id="telefono" class="form-control required" /></div>
+                                </div>
+                                <div class="form-group"><label class="col-lg-2 control-label">Correo:</label>
+
+                                    <div class="col-lg-3"><textbox type="text" id="correo" class="form-control required" /></div>
+                                </div>
+                                
+                                <div class="form-group"><label class="col-lg-3 control-label">Sexo</label>
+	                                 <div class="col-lg-4"><listbox mold="select" sclass="form-control" id="sexo">
+										 <listitem label="Femenino"/>
+		                                 <listitem label="Masculino"/>
+		                                 </listbox>
+	                                 </div>
+                                  </div>
+                                  <div class="form-group"><label class="col-lg-3 control-label">Estado Civil</label>
+	                                 <div class="col-lg-4"><listbox mold="select" sclass="form-control" id="estado_civil">
+										 <listitem label="Soltero"/>
+		                                 <listitem label="Casado"/>
+		                                 <listitem label="Divorsiado"/>
+		                                 <listitem label="Viudo"/>
+		                                 </listbox>
+	                                 </div>
+                                  </div>
+                                  
+                                  <div class="form-group"><label class="col-lg-3 control-label">Rol</label>
+	                                 <div class="col-lg-4">
+	                                 <listbox mold="select" sclass="form-control" id="rol">
+		                                 <template name="model">
+											 <listitem label="${each.descripcion}"/>
+			                              </template>
+		                               </listbox>
+	                                 </div>
+                                  </div>
+                                
+                                </div>
+                                
+                              <div class="form-group">
+                                    <div class="col-lg-offset-8 col-lg-2">
+                                       <hbox>
+                                        <button class="btn btn-primary block full-width m-b" iconSclass="fa fa-save" id="guardar">Guardar</button>
+                                        <space></space>
+                                        <button class="btn btn-w-m btn-danger"  iconSclass="fa fa-times" id="cancelar">Cancelar</button>
+                                        </hbox>
+                                    </div>
+                                </div>
+                            </h:form>
+                        </div>
+                    </h:div>
+                </div>
+                
+                
+                <listbox id="usuarios" vflex="1">
+					<listhead>
+						<listheader  label="Usuario" />
+						<listheader  label="Rol"/>
+						<listheader  label=""/>
+					</listhead>
+					<template name="model">
+						<listitem value="${each}">
+							<listcell label="${each.usuario}"></listcell>
+							<listcell label="${each.rol}"></listcell>
+							<listcell>
+								
+								<button class="btn btn-danger" id="${each.usuario}" forward="onClick=usuarios.onUsuarioDelete" iconSclass="fa fa-trash-o" width="36px"/>
+							</listcell>
+						</listitem>
+					</template>
+				</listbox>
+                
+            
+            </window>
+</zk>

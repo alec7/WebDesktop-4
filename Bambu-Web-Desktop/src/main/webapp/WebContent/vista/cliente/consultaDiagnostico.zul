@@ -10,8 +10,7 @@
     <?link href="../../assets/css/animate.css" rel="stylesheet"?>
     <?link href="../../assets/css/style.css" rel="stylesheet"?>
     <?link href="../../assets/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet"?>
-    
-     <?link href="../../assets/css/plugins/dataTables/datatables.min.css" rel="stylesheet"?>
+    <?link href="../../assets/css/plugins/dataTables/datatables.min.css" rel="stylesheet"?>
 
 
 <?page title="Consulta Diagnostico" contentType="text/html;charset=UTF-8"?>
@@ -63,7 +62,7 @@
                                 </div>
                                  <space></space>
                                   <h:div class="ibox-title">
-                                  <h:h5>Diagnostico</h:h5>
+                                  <h:h5>Observacion del Diagnostico</h:h5>
                                   </h:div>
                                  
                                    <div class="form-group">
@@ -73,29 +72,51 @@
                                  
                                 
                                  <div class="col-lg-12">
-                                  <div class="table-responsive">
-                                 <listbox id="maestricoListbox" vflex="1">
-					<listhead>
-						<listheader width="30px" />
-						<listheader/>
-						<listheader hflex="min"/>
-					</listhead>
-					<template name="model">
-						<listitem sclass="${each.complete?'complete-todo':''}" value="${each}">
-							<listcell>			
-							
-							</listcell>
-							<listcell>
-								<label value="${}"/>
-							</listcell>
-							<listcell>
-								<button forward="onClick=maestricoListbox.onMaestricoDelete" image="imgs/cross.png" width="36px"/>
-							</listcell>
-						</listitem>
-					</template>
-				</listbox>
-                        </div>   
-                        
+                                  <div apply="org.zkoss.bind.BindComposer">
+    <style src="/widgets/grid/data_filter/style.css" />
+    <grid model="@load(vm.foodModel)">
+        <auxhead sclass="category-center">
+            <auxheader label="Servicios Recomendados" colspan="6" />
+        </auxhead>
+        <auxhead sclass="category-center">
+            <auxheader colspan="1">
+                 <image src="assets/img/funel.png" height="15px" width="15px"/>
+                <textbox instant="true" width="100px" 
+                    value="@bind(vm.foodFilter.category)" onChange="@command('changeFilter')" />
+            </auxheader>
+            <auxheader colspan="1">
+                 <image src="assets/img/funel.png" height="15px" width="15px"/>
+                <textbox instant="true"  width="100px"
+                    value="@bind(vm.foodFilter.name)" onChange="@command('changeFilter')"/>
+            </auxheader>
+            <auxheader colspan="1">
+                <image src="assets/img/funel.png" height="15px" width="15px"/>
+                <textbox instant="true" width="100px"
+                    value="@bind(vm.foodFilter.nutrients)" onChange="@command('changeFilter')"/>
+            </auxheader>
+           
+        </auxhead>
+        <columns>
+            <column hflex="2">Servicio</column>
+            <column hflex="2">Cantidad de Sesiones</column>
+            <column hflex="2">Resultado</column>
+            
+        </columns>
+        <template name="model">
+            <row>
+                <label value="@load(each.category)" />
+                <label value="@load(each.name)" />
+                <label value="@load(each.topNutrients)" />
+                <label value="@load(each.dailyPercent)" />
+                <label value="@load(each.calories)" />
+                <label value="@load(each.quantity)" />
+            </row>
+        </template>
+        <foot>
+            <footer span="6" class="footer_right" label="@load(vm.footer)" />
+        </foot>
+    </grid>
+</div>
                         <space></space>     
                         <space></space> 
                         <div class="form-group">

@@ -1,56 +1,50 @@
 package modelo;
 
 public class Usuario {
+	String usuario, contrasenna, rol,status;
+
+	public Usuario(String usuario, String contrasenna, String rol,String status) {
+		super();
+		this.usuario = usuario;
+		this.contrasenna = contrasenna;
+		this.rol = rol;
+		this.status = status;
+	}
+
 	
-   int id_usuario;
-   int id_rol;
-   String usuario;
-   String clave;
-   char estatus;
-   
-   
-   
-public Usuario(int id_usuario, int id_rol, String usuario, String clave, char estatus) {
-	super();
-	this.id_usuario = id_usuario;
-	this.id_rol = id_rol;
-	this.usuario = usuario;
-	this.clave = clave;
-	this.estatus = estatus;
-}
+	public String getStatus() {
+		return status;
+	}
 
 
-public int getId_usuario() {
-	return id_usuario;
-}
-public void setId_usuario(int id_usuario) {
-	this.id_usuario = id_usuario;
-}
-public int getId_rol() {
-	return id_rol;
-}
-public void setId_rol(int id_rol) {
-	this.id_rol = id_rol;
-}
-public String getUsuario() {
-	return usuario;
-}
-public void setUsuario(String usuario) {
-	this.usuario = usuario;
-}
-public String getClave() {
-	return clave;
-}
-public void setClave(String clave) {
-	this.clave = clave;
-}
-public char getEstatus() {
-	return estatus;
-}
-public void setEstatus(char estatus) {
-	this.estatus = estatus;
-}
-   
-   
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+
+	public String getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
+	}
+
+	public String getContrasenna() {
+		return contrasenna;
+	}
+
+	public void setContrasenna(String contrasenna) {
+		this.contrasenna = contrasenna;
+	}
+
+	public String getRol() {
+		return rol;
+	}
+
+	public void setRol(String rol) {
+		this.rol = rol;
+	}
+	
 
 }

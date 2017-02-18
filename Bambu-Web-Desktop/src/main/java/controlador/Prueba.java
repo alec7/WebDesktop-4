@@ -1,5 +1,6 @@
 package controlador;
 
+import org.apache.poi.hssf.record.FnGroupCountRecord;
 import org.zkoss.zhtml.A;
 import org.zkoss.zhtml.Li;
 import org.zkoss.zhtml.Ul;
@@ -7,38 +8,26 @@ import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.Session;
 import org.zkoss.zk.ui.Sessions;
+import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.MouseEvent;
 import org.zkoss.zk.ui.select.SelectorComposer;
+import org.zkoss.zk.ui.select.Selectors;
 import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.util.GenericForwardComposer;
 import org.zkoss.zkmax.zul.Navitem;
+import org.zkoss.zul.Iframe;
+import org.zkoss.zul.Include;
 import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Window;
 
-public class Prueba  extends SelectorComposer<Component>{
+public class Prueba  extends GenericForwardComposer{
 	
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
-
-	//A a;
+	//private static final long serialVersionUID = 1L;
 	
-	Li m;
-	
-	A mensaje;
-	A cubiculo;
-	A preferencia;
-	A indicador;
-	A necesidad;
-	A incidencia;
-	A ocupacion;
-	Navitem pregunta;
-	A respuesta;
-	A comentario;
-	A paquete;
-	A rol;
-	
+	private Include myInclude;
 	Session miSession = Sessions.getCurrent();
 
 //	@Listen("onClick =#mensaje")
@@ -47,94 +36,149 @@ public class Prueba  extends SelectorComposer<Component>{
 //		//Messagebox.show("hola");
 //	}
 	
+	public void doAfterCompose(Component comp)throws Exception{
+		super.doAfterCompose(comp);
+	}
 	
-	
-	@Listen("onClick =#dia_laborable")
-	public void diaLabolable(MouseEvent event){
+	public void onClick$dia_laborable(Event e){
 		miSession.setAttribute("master","tb_dia_laborable");
-		 Executions.sendRedirect("maestrico.zul");
+		myInclude.setSrc(null);
+		myInclude.setSrc("maestrico.zul");
 	}
 	
-	@Listen("onClick =#estado")
-	public void Estado(MouseEvent event){
+	public void onClick$estado(Event e)throws InterruptedException{
 		miSession.setAttribute("master","tb_estado");
-		 Executions.sendRedirect("maestrico.zul");
-	}
-	@Listen("onClick =#orientacion")
-	public void orientacion(MouseEvent event){
-		miSession.setAttribute("master","tb_orientacion");
-		 Executions.sendRedirect("maestrico.zul");
-	}
-	@Listen("onClick =#pregunta")
-	public void pregunta(MouseEvent event){
-		miSession.setAttribute("master","tb_pregunta");
-		 Executions.sendRedirect("maestrico.zul");
-	}
-	@Listen("onClick =#rol")
-	public void rol(MouseEvent event){
-		miSession.setAttribute("master","tb_rol");
-		 Executions.sendRedirect("maestrico.zul");
-	}
-	@Listen("onClick =#tipo_acuerdo")
-	public void tipoAcuerdo(MouseEvent event){
-		miSession.setAttribute("master","tb_tipo_acuerdo");
-		 Executions.sendRedirect("maestrico.zul");
-	}
-	@Listen("onClick =#tipo_cliente")
-	public void tipo_cliente(MouseEvent event){
-		miSession.setAttribute("master","tb_tipo_cliente");
-		 Executions.sendRedirect("maestrico.zul");
-	}
-	@Listen("onClick =#tipo_comentario")
-	public void tipo_Comentario(MouseEvent event){
-		miSession.setAttribute("master","tb_tipo_comentario");
-		 Executions.sendRedirect("maestrico.zul");
-	}
-	@Listen("onClick =#tipo_incidencia")
-	public void tipo_incidencia(MouseEvent event){
-		miSession.setAttribute("master","tb_tipo_incidencia");
-		 Executions.sendRedirect("maestrico.zul");
-	}
-	@Listen("onClick =#tipo_noticia")
-	public void tipo_noticia(MouseEvent event){
-		miSession.setAttribute("master","tb_tipo_noticia");
-		 Executions.sendRedirect("maestrico.zul");
-	}
-	@Listen("onClick =#tipo_notificacion")
-	public void tipo_notificacion(MouseEvent event){
-		miSession.setAttribute("master","tb_tipo_notificacion");
-		 Executions.sendRedirect("maestrico.zul");
-	}
-	@Listen("onClick =#tipo_organizacion")
-	public void tipo_organizacion(MouseEvent event){
-		miSession.setAttribute("master","tb_tipo_organizacion");
-		 Executions.sendRedirect("maestrico.zul");
-	}
-	@Listen("onClick =#tipo_pregunta")
-	public void tipo_pregunta(MouseEvent event){
-		miSession.setAttribute("master","tb_tipo_pregunta");
-		 Executions.sendRedirect("maestrico.zul");
-	}
-	@Listen("onClick =#tipo_red_social")
-	public void tipo_red_social(MouseEvent event){
-		miSession.setAttribute("master","tb_tipo_red_social");
-		 Executions.sendRedirect("maestrico.zul");
-	}
-	@Listen("onClick =#tipo_servicio")
-	public void tipo_servicio(MouseEvent event){
-		miSession.setAttribute("master","tb_tipo_servicio");
-		 Executions.sendRedirect("maestrico.zul");
-	}
-	@Listen("onClick =#turno")
-	public void turno(MouseEvent event){
-		miSession.setAttribute("master","tb_turno");
-		 Executions.sendRedirect("maestrico.zul");
-	}
-	@Listen("onClick =#tipo_campaña")
-	public void tipo_Campaña(MouseEvent event){
-		miSession.setAttribute("master","tb_tipo_campaña");
-		 Executions.sendRedirect("maestrico.zul");
+		myInclude.setSrc(null);
+		myInclude.setSrc("maestrico.zul");
 	}
 	
+
+	public void onClick$orientacion(Event e)throws InterruptedException{
+		miSession.setAttribute("master","tb_orientacion");
+		myInclude.setSrc(null);
+		myInclude.setSrc("maestrico.zul");
+	}
+
+	public void onClick$rol(Event e)throws InterruptedException{
+		miSession.setAttribute("master","tb_rol");
+		myInclude.setSrc(null);
+		myInclude.setSrc("maestrico.zul");
+	}
+
+	public void onClick$tipo_acuerdo(Event e)throws InterruptedException{
+		miSession.setAttribute("master","tb_tipo_acuerdo");
+		myInclude.setSrc(null);
+		myInclude.setSrc("maestrico.zul");
+	}
+
+	public void onClick$tipo_cliente(Event e)throws InterruptedException{
+		miSession.setAttribute("master","tb_tipo_cliente");
+		myInclude.setSrc(null);
+		myInclude.setSrc("maestrico.zul");
+	}
+
+	public void onClick$tipo_comentario(Event e)throws InterruptedException{
+		miSession.setAttribute("master","tb_tipo_comentario");
+		myInclude.setSrc(null);
+		myInclude.setSrc("maestrico.zul");
+	}
+
+	public void onClick$tipo_incidencia(Event e)throws InterruptedException{
+		miSession.setAttribute("master","tb_tipo_incidencia");
+		myInclude.setSrc(null);
+		myInclude.setSrc("maestrico.zul");
+	}
+
+	public void onClick$tipo_noticia(Event e)throws InterruptedException{
+		miSession.setAttribute("master","tb_tipo_noticia");
+		myInclude.setSrc(null);
+		myInclude.setSrc("maestrico.zul");
+	}
+
+	public void onClick$tipo_notificacion(Event e)throws InterruptedException{
+		miSession.setAttribute("master","tb_tipo_notificacion");
+		myInclude.setSrc(null);
+		myInclude.setSrc("maestrico.zul");
+	}
+
+	public void onClick$tipo_organizacion(Event e)throws InterruptedException{
+		miSession.setAttribute("master","tb_tipo_organizacion");
+		myInclude.setSrc(null);
+		myInclude.setSrc("maestrico.zul");
+	}
+
+	public void onClick$tipo_pregunta(Event e)throws InterruptedException{
+		miSession.setAttribute("master","tb_tipo_pregunta");
+		myInclude.setSrc(null);
+		myInclude.setSrc("maestrico.zul");
+	}
+
+	public void onClick$tipo_red_social(Event e)throws InterruptedException{
+		miSession.setAttribute("master","tb_tipo_red_social");
+		myInclude.setSrc(null);
+		myInclude.setSrc("maestrico.zul");
+	}
+
+	public void onClick$tipo_servicio(Event e)throws InterruptedException{
+		miSession.setAttribute("master","tb_tipo_servicio");
+		myInclude.setSrc(null);
+		myInclude.setSrc("maestrico.zul");
+	}
+	public void onClick$tipo_referencia(Event e)throws InterruptedException{
+		miSession.setAttribute("master","tb_tipo_referencia");
+		myInclude.setSrc(null);
+		myInclude.setSrc("maestrico.zul");
+	}
+
+	public void onClick$turno(Event e)throws InterruptedException{
+		miSession.setAttribute("master","tb_turno");
+		myInclude.setSrc(null);
+		myInclude.setSrc("maestrico.zul");
+	}
+	public void onClick$antecedente(Event e)throws InterruptedException{
+		miSession.setAttribute("master","tb_antecedente");
+		myInclude.setSrc(null);
+		myInclude.setSrc("maestrico.zul");
+	}
+	public void onClick$avance(Event e)throws InterruptedException{
+		miSession.setAttribute("master","tb_avance");
+		myInclude.setSrc(null);
+		myInclude.setSrc("maestrico.zul");
+	}
+	public void onClick$cubiculo(Event e)throws InterruptedException{
+		miSession.setAttribute("master","tb_cubiculo");
+		myInclude.setSrc(null);
+		myInclude.setSrc("maestrico.zul");
+	}
+	public void onClick$equipo(Event e)throws InterruptedException{
+		miSession.setAttribute("master","tb_equipo");
+		myInclude.setSrc(null);
+		myInclude.setSrc("maestrico.zul");
+	}
+	public void onClick$habito(Event e)throws InterruptedException{
+		miSession.setAttribute("master","tb_habito");
+		myInclude.setSrc(null);
+		myInclude.setSrc("maestrico.zul");
+	}
+	public void onClick$indicador(Event e)throws InterruptedException{
+		miSession.setAttribute("master","tb_indicador");
+		myInclude.setSrc(null);
+		myInclude.setSrc("maestrico.zul");
+	}
+	public void onClick$necesidad(Event e)throws InterruptedException{
+		miSession.setAttribute("master","tb_necesidad");
+		myInclude.setSrc(null);
+		myInclude.setSrc("maestrico.zul");
+	}
+	public void onClick$ocupacion(Event e)throws InterruptedException{
+		miSession.setAttribute("master","tb_ocupacion");
+		myInclude.setSrc(null);
+		myInclude.setSrc("maestrico.zul");
+	}
+	public void onClick$preferencia(Event e)throws InterruptedException{
+		miSession.setAttribute("master","tb_preferencia");
+		myInclude.setSrc(null);
+		myInclude.setSrc("maestrico.zul");
+	}
 
 }

@@ -12,10 +12,10 @@ import bean.Conexion;
 import modelo.Maestrico;
 import modelo.Usuario;
 
-public class maestricoDAO extends ConexionDAO{
+public class MaestricoDAO extends ConexionDAO{
 	
 	
-	public maestricoDAO() {
+	public MaestricoDAO() {
 		super();
 	}
 
@@ -40,6 +40,7 @@ public List<Maestrico> listarMaestrico(String tabla) { //para listar en el grid 
 }
 
 
+
 //String codigo, String descripcion
 public void modificarMaestrico(String tabla,String codigo, String descripcion) {
 	String tiraSQL = "UPDATE "+tabla+" SET descripcion = '"+ descripcion + "' WHERE codigo = '"+codigo+"'";
@@ -55,18 +56,6 @@ public void eliminarMaestrico(String tabla, String codigo){
 
 }
 
-
-
-
-
-
-
-
-
-
-
-
-	
 	
 	public String TotalRegistros(String tabla ){
 		String tiraSQL = "SELECT * FROM "+tabla;

@@ -23,7 +23,7 @@ import org.zkoss.zul.ListModelList;
 import modelo.Priority;
 import modelo.Maestrico;
 import controlador.MaestricoListService;
-import modeloDAO.maestricoDAO;
+import modeloDAO.MaestricoDAO;
 
 public class MaestricoListServiceChapter6Impl implements MaestricoListService {
 	
@@ -53,7 +53,7 @@ public class MaestricoListServiceChapter6Impl implements MaestricoListService {
 	public MaestricoListServiceChapter6Impl() {
 			super();
 
-			maestricoDAO mdao = new maestricoDAO();
+			MaestricoDAO mdao = new MaestricoDAO();
 			//List<Maestrico> todoList = new ArrayList<Maestrico>();
 			maestricoList = mdao.listarMaestrico(tabla);
 

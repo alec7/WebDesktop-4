@@ -1,4 +1,4 @@
-    <?link href="../../assets/css/bootstrap.min.css" rel="stylesheet"?>
+ <?link href="../../assets/css/bootstrap.min.css" rel="stylesheet"?>
     <?link href="../../assets/font-awesome/css/font-awesome.css" rel="stylesheet"?>
 
     <!-- Toastr style -->
@@ -49,22 +49,89 @@
                                   <h:div class="ibox-title">
                                   <h:h5>Hábitos</h:h5>
                                   </h:div>
-                                 <div class="form-group"><label class="col-lg-1 control-label"></label>
-                                    <div class="col-lg-5"> <chosenbox   hflex="1" class="form-control required" /></div>
+                                 <div class="form-group"><label class="col-lg-2 control-label">¿Practica algún Deporte?</label>
+                                      <div class="col-lg-4"><listbox mold="select" sclass="form-control">
+                                 <listitem label="Si"/>
+                                 <listitem label="No"/>
+                                 </listbox>
+                                 </div>
                                 </div>
-                                  <h:div class="ibox-title">
+                                
+                                 <div class="form-group"><label class="col-lg-2 control-label">¿El paciente es fumador?</label>
+                                    <div class="col-lg-4"><listbox mold="select" sclass="form-control">
+                                 <listitem label="Si"/>
+                                 <listitem label="No"/>
+                                 </listbox>
+                                 </div>
+                                </div>
+                                
+                                <div class="form-group"><label class="col-lg-2 control-label">¿Acude con frecuencia al Gimnasio?</label>
+                                   <div class="col-lg-4"><listbox mold="select" sclass="form-control">
+                                 <listitem label="Si"/>
+                                 <listitem label="No"/>
+                                 </listbox>
+                                 </div>
+                                </div>
+                                
+                                <h:div class="ibox-title">
                                   <h:h5>Antecedentes</h:h5>
                                   </h:div>
-                                 <div class="form-group"><label class="col-lg-1 control-label"></label>
-                                     <div class="col-lg-5"> <chosenbox   hflex="1" class="form-control required" /></div>
-                                 
+                                 <div class="form-group"><label class="col-lg-2 control-label">¿Posee algún Marcapaso?</label>
+                                     
+                                 <div class="col-lg-4"><listbox mold="select" sclass="form-control">
+                                 <listitem label="Si"/>
+                                 <listitem label="No"/>
+                                 </listbox>
+                                 </div>
                                      
                                 </div>
                                 
+                                 <div class="form-group"><label class="col-lg-2 control-label">¿Es Alergico(a)?</label>
+                                    <div class="col-lg-4"> <chosenbox   hflex="1" class="form-control required" /></div>
+                                </div>
                                 
+                                <div class="form-group"><label class="col-lg-2 control-label">¿Ha sido intervenido Quirurgicamente?</label>
+                                    <div class="col-lg-4"> <chosenbox   hflex="1" class="form-control required" /></div>
+                                </div>
                                 
-                               
-                               
+                                <div class="form-group"><label class="col-lg-2 control-label">¿Sufre de Diabetes?</label>
+                                    <div class="col-lg-4"><listbox mold="select" sclass="form-control">
+                                 <listitem label="Si"/>
+                                 <listitem label="No"/>
+                                 </listbox>
+                                 </div>
+                                </div>
+                                <div class="form-group"><label class="col-lg-2 control-label">¿Es Hipertenso?</label>
+                                    <div class="col-lg-4"><listbox mold="select" sclass="form-control">
+                                 <listitem label="Si"/>
+                                 <listitem label="No"/>
+                                 </listbox>
+                                 </div>
+                                </div>
+                                <div class="form-group"><label class="col-lg-2 control-label">¿Sufre de la Columna?</label>
+                                    <div class="col-lg-4"><listbox mold="select" sclass="form-control">
+                                 <listitem label="Si"/>
+                                 <listitem label="No"/>
+                                 </listbox>
+                                 </div>
+                                </div>
+                                <div class="form-group"><label class="col-lg-2 control-label">¿Posee una piel sensible?</label>
+                                    <div class="col-lg-4"><listbox mold="select" sclass="form-control">
+                                 <listitem label="Si"/>
+                                 <listitem label="No"/>
+                                 </listbox>
+                                 </div>
+                                </div>
+                                 <h:div class="ibox-title">
+                                  <h:h5>Test</h:h5>
+                                  </h:div>
+                                
+                                <div class="form-group"><label class="col-lg-2 control-label">cintura</label>
+                                    <div class="col-lg-3"> <textbox   hflex="1" class="form-control required" /></div>
+                                </div>
+                                <div class="form-group"><label class="col-lg-2 control-label">Abdomen</label>
+                                    <div class="col-lg-3"> <textbox   hflex="1" class="form-control required" /></div>
+                                </div>
                               <div class="form-group">
                                     <div class="col-lg-offset-8 col-lg-2">
                                        <hbox>
@@ -74,6 +141,7 @@
                                         </hbox>
                                     </div>
                                 </div>
+                                
                             </h:form>
                         </div>
                     </h:div>

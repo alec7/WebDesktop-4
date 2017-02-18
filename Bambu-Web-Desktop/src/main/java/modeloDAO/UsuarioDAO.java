@@ -2,8 +2,11 @@ package modeloDAO;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import bean.Conexion;
+import modelo.Maestrico;
 import modelo.Usuario;
 
 public class UsuarioDAO extends ConexionDAO{
@@ -13,49 +16,39 @@ public class UsuarioDAO extends ConexionDAO{
 	}
 	
 	public void registrarUsuario(Usuario usuario){
-		String tiraSQL = "INSERT INTO usuario"+
-	           "(password,idrol, nombre,status)"+
-			 				 "VALUES("+"','"+usuario.getClave()+
-			 	           "',"+usuario.getId_rol()+",'"+usuario.getUsuario()+"','"+usuario.getEstatus()+"')";
-	   Conexion.ejecutar(tiraSQL);
+		
+		String tiraSQL= "INSERT INTO  tb_usuario (usuario,contrasenna,rol,status) "
+				+ "VALUES ('"+usuario.getUsuario()+"'"+",'"+ usuario.getContrasenna()+"','"+ usuario.getRol()+"','"+ usuario.getStatus()+"')";
+		Conexion.ejecutar(tiraSQL);
+		
 	}   
-	    
-	    
-	/*public void modificarUsuario(Usuario usuario)
-	  {
-		String tiraSQL = "UPDATE usuario  SET password WHERE idusuario = '" +usuario.getPassword() + "'";
-		Conexion.ejecutar(tiraSQL);
-	  }
 	
-	public void eliminarUsuario(Usuario usuario)
-	{
-		String tiraSQL = "UPDATE usuario  SET status = 'I' WHERE idusuario = '" +usuario.getStatus()+"'";
-		Conexion.ejecutar(tiraSQL);
-	}
-	
-	public void reactivarUsuario(Usuario usuario)
-	{
-		String tiraSQL = "UPDATE usuario  SET status = 'A' WHERE idusuario = '" +usuario.getStatus()+"'";
-		Conexion.ejecutar(tiraSQL);
-	}*/
-	
-	public Usuario buscarUsuario(String usuarioIng, String clave){
-		Usuario usuario = null;
-		String tiraSQL = "select * from usuario where usuario='"+usuarioIng+"' and clave='"+clave+"'  ";
+	public List<Usuario> listarUsuario() { //para listar en el grid la informacion
+		String tiraSQL = "SELECT * FROM tb_usuario where status='Activo' ";
 		ResultSet resultSet = Conexion.consultar(tiraSQL);
+		List<Usuario> usuario = new ArrayList<Usuario>();
 		try {
-			if(resultSet.next()){
-				int id_usuario = resultSet.getInt("id_usuario");
-				int id_rol = resultSet.getInt("id_rol");
-				String estatus = resultSet.getString("estatus");
-				usuario = new Usuario(id_usuario, id_rol, usuarioIng, clave, estatus.charAt(0));
+			if(resultSet!=null){
+				while(resultSet.next()){
+					usuario.add(new Usuario(resultSet.getString("usuario"), resultSet.getString("contrasenna"),resultSet.getString("rol"),resultSet.getString("status") ));
+				}
 			}
-			resultSet.close();
 		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return usuario;
 	}
+	
+	public void modificarStatus(String usuario) {
+		String tiraSQL = "UPDATE tb_usuario SET status = 'Inactivo' WHERE usuario = '"+usuario+"'";
+		Conexion.ejecutar(tiraSQL);
+		
+		
+	}
+	    
+
+	
 	
 
 }

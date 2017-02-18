@@ -13,7 +13,7 @@ import java.util.List;
 import controlador.MaestricoListServiceChapter6Impl;
 import modelo.Priority;
 import modelo.Maestrico;
-import modeloDAO.maestricoDAO;
+import modeloDAO.MaestricoDAO;
 import controlador.MaestricoListService;
 import org.zkoss.lang.Strings;
 import org.zkoss.zhtml.Messagebox;
@@ -40,7 +40,7 @@ import org.zkoss.zul.Textbox;
 
 public class MaestricoListController extends SelectorComposer<Component>{
 	private static final long serialVersionUID = 1L;
-	maestricoDAO mdao = new maestricoDAO();
+	MaestricoDAO mdao = new MaestricoDAO();
 //	Execution execution = Executions.getCurrent();
 //	String tabla = execution.getParameter("master");
 	Session miSession = Sessions.getCurrent();
@@ -260,8 +260,6 @@ public class MaestricoListController extends SelectorComposer<Component>{
 		case "tb_orientacion": 
 			t=t+"Orientación del Servicio";
 			return t;
-		case "tb_pregunta": 
-			return t=t+"Pregunta";
 		case "tb_rol": 
 			t=t+"Rol";
 			return t;
@@ -295,11 +293,38 @@ public class MaestricoListController extends SelectorComposer<Component>{
 		case "tb_tipo_servicio": 
 			t=t+"Tipo de Servicio";
 			return t;
+		case "tb_tipo_referencia": 
+			t=t+"Tipo de Referencia";
+			return t;
 		case "tb_turno": 
 			t=t+"Turno";
 			return t;
-		case "tb_tipo_campaña": 
-			t=t+"Tipo de Campaña";
+		case "tb_antecedente": 
+			t=t+"Antecedente";
+			return t;
+		case "tb_avance": 
+			t=t+"Avance";
+			return t;
+		case "tb_cubiculo": 
+			t=t+"Cubículo";
+			return t;
+		case "tb_equipo": 
+			t=t+"Equipo";
+			return t;
+		case "tb_habito": 
+			t=t+"Hábito";
+			return t;
+		case "tb_indicador": 
+			t=t+"Indicador";
+			return t;
+		case "tb_necesidad": 
+			t=t+"Necesidad";
+			return t;
+		case "tb_ocupacion": 
+			t=t+"Ocupación";
+			return t;
+		case "tb_preferencia": 
+			t=t+"Preferencia";
 			return t;
 		}
 		return "";

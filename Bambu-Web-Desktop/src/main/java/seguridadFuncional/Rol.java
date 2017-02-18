@@ -1,4 +1,4 @@
-package modelo;
+package seguridadFuncional;
 
 public class Rol {
 	

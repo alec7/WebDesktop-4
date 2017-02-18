@@ -13,7 +13,9 @@
 
 
 <zk xmlns:h="http://www.w3.org/1999/xhtml" xmlns:zk="http://www.zkoss.org/2005/zk" xmlns:n="native">
-<div apply="controlador.Prueba">
+
+
+<div apply="controlador.ControladorMenu" id="menu"  >
 <div id="wrapper">
 <div class="navbar-default navbar-static-side" >
  <h:li class="nav-header">
@@ -30,123 +32,18 @@
                     </h:li>
 
 
+        <navbar orient="vertical" id="menuNav">
+        
 
-<navbar orient="vertical" >
+        
+        </navbar>
+        
 
-            
-            
-            <nav iconSclass="fa fa-user-circle-o" label="Mi Perfil" sclass="z-navbar-vertical" id="sidemenu">
-			<navitem label="Editar Perfil" sclass="z-navbar"  />
-			<navitem label="Preferencias"/>
-		    </nav>
-		    
-		    <nav iconSclass="fa fa-address-book-o" label="Clientes"  >
-		    <navitem label="Ficha del Cliente" sclass="z-navbar" id="registro"/>
-		    <navitem label="Registrar Consulta Diagnostico" sclass="z-navbar"/>
-			<navitem label="Consultar Servicio Recomendado"/>
-			<navitem label="Solicitar Servicio"/>
-		    </nav>
-		    
-		    <nav iconSclass="fa fa-calendar" label="Agenda" sclass="nav metismenu" >
-		     <navitem label="Solicitar Cita"/>
-		     <navitem label="Confirmar Cita"/>
-		     <navitem label="Reprogramar Cita"/>
-		     <navitem label="Cancelar Cita"/>
-		     <navitem label="Ver Agenda"/>
-			</nav>
-		    
-		    <nav iconSclass="fa fa-tags" label="Servicios" sclass="nav metismenu" >
-		    <navitem label="Registrar Sesión"/>
-			<navitem label="Avances del Servicio"/>
-		    </nav>
-		    
-		     <nav iconSclass="fa fa-bar-chart" label="Consultas y Reportes" sclass="nav metismenu" >
-		    <navitem label="Servicios Solicitados"/>
-		   
-			</nav>
-		    
-		    
-		   
-			 <nav iconSclass="fa fa-cogs" label="Configuración"  >
-		    <navitem label="Sistema"/>
-			<nav label="Web" iconSclass="fa fa-angle-right">
-				<navitem label="Slider"/>
-				<navitem label="Desvincular Noticia"/>
-				<navitem label="Twitter"/>
-				<navitem label="Campaña"/>
-			    <navitem label="Promoción"/>
-			</nav>
-			<nav label="Movil" iconSclass="fa fa-angle-right">
-				<navitem label=""/>
-		   </nav>
-			</nav>
-			
-			
-			 <nav iconSclass="fa fa-folder-o" label="Tablas Básicas"  >
-		    
-			<nav label="Cliente" iconSclass="fa fa-angle-right">
-				<navitem label="Necesidad" id="necesidad" />
-				<navitem label="Preferencia"/>
-				<navitem label="Indicador"/>
-				<navitem label="Ocupación"/>
-				<navitem label="Hábito"/>
-				<navitem label="Antecedente"/>
-				
-			</nav>
-			<nav label="Agenda" iconSclass="fa fa-angle-right">
-				<navitem label="Dia Laborable" id="dia_laborable"/>
-				<navitem label="Turno" id="turno"/>
-				<navitem label="Bloque"/>
-			</nav>
-			<nav label="Servicio" iconSclass="fa fa-angle-right">
-				<navitem label="Servicio"/>
-				<navitem label="Paquete"/>
-				<navitem label="Esteticista"/>
-				<navitem label="Cubiculo"/>
-				<navitem label="Equipo"/>
-				<navitem label="Avance"/>
-				<navitem label="Incidencia"/>
-				<navitem label="Orientación del Servicio" id="orientacion"/>
-			</nav>
-		   <nav label="General" iconSclass="fa fa-angle-right">
-		        <navitem label="Empresa"/>
-		        <navitem label="Convenio"/>
-				<navitem label="Eventualidad"/>
-				<navitem label="Noticia"/>
-				<navitem label="Pregunta" id="pregunta"/>
-				<navitem label="Respuesta"/>
-				<navitem label="Promoción"/>
-				<navitem label="Comentario"/>
-				<navitem label="Rol" id="rol"/>
-				
-		   </nav>
-		   
-		   <nav label="Parametros" iconSclass="fa fa-angle-right">
-				<navitem label="Tipo Cliente" id="tipo_cliente"/>
-				<navitem label="Tipo de Red Social" id="tipo_red_social"/>
-				<navitem label="Tipo de Comentario" id="tipo_comentario"/>
-				<navitem label="Tipo de Noticia" id="tipo_noticia"/>
-				<navitem label="Tipo de Notificación" id="tipo_notificacion"/>
-				<navitem label="Tipo de Incidencia" id="tipo_incidencia"/>
-				<navitem label="Tipo de Campaña" id="tipo_campaña"/>
-				<navitem label="Tipo de Servicio" id="tipo_servicio"/>
-		   </nav>
-			</nav>
-			
-			 <nav iconSclass="fa fa-lock" label="Seguridad Funcional" sclass="nav metismenu" >
-		    <navitem label="Usuarios"/>
-		    <navitem label="Roles"/>
-		    <navitem label="Permisología"/>
-		    <navitem label="Utilitarios" />
-		    </nav>
-		    
-		    
-                     
-            
-       </navbar>
+
         
         </div>
         
+      
         
         <div sclass="pagewrapper gray-bg" id="pagewrapper">
         <div class="row border-bottom">
@@ -220,9 +117,10 @@
     
         </div>
         
-        
-           <window visible="false" id="form"></window>
-           
+         <space></space>
+            <div align="center">
+            <include src="vista/cliente/consultaDiagnostico.zul" id="myInclude"></include>
+           </div>
            
            <div class="footer" id="footer">
                 <div class="pull-right">
