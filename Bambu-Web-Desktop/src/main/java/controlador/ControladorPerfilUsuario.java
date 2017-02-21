@@ -84,7 +84,6 @@ public class ControladorPerfilUsuario extends SelectorComposer<Component>{
 			//AGREGAR MENSAJE VALIDAR USUARIO YA REGISTRADO
 			estdao.agregarPerfilEsteticista(pf);
 			usuarioListModel.add(u);
-			//AGREGAR MENSAJE "USUARIO REGISTRADO"
 			this.cancelar();
 			usuarioListModel.add(u);
 			usuarioListModel.addToSelection(u);
@@ -93,9 +92,9 @@ public class ControladorPerfilUsuario extends SelectorComposer<Component>{
 		else{
 			//AGREGAR MENSAJE VALIDAR USUARIO YA REGISTRADO
 			perfilDao.agregarPerfilUsuario(pf);
-			//AGREGAR MENSAJE "USUARIO REGISTRADO"
 			this.cancelar();
 		}
+		 Messagebox.show("Usuario Registrado Exitosamente", "Información", Messagebox.OK, Messagebox.INFORMATION);
 		this.cargarTabala();
 	}
 	
