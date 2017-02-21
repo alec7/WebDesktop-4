@@ -1,4 +1,4 @@
-package seguridadFuncional;
+package modelo;
 
 public class Opcion_rol {
 	

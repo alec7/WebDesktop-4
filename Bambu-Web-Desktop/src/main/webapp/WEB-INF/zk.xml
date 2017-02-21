@@ -13,4 +13,9 @@
 		<name>org.zkoss.zkmax.tablet.ui.disabled</name>
 		<value>true</value>
 	</library-property>
+	
+	<library-property>
+     <name>org.zkoss.zul.image.preload</name>
+     <value>true</value>
+ </library-property>
 </zk>
