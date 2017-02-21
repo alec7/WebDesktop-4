@@ -1,0 +1,44 @@
+<zk xmlns:h="http://www.w3.org/1999/xhtml" xmlns:zk="http://www.zkoss.org/2005/zk" xmlns:n="native">
+    <?link href="assets/css/bootstrap.min.css" rel="stylesheet"?>
+    <?link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet"?>
+
+    <?link href="assets/css/animate.css" rel="stylesheet"?>
+    <?link href="assets/css/style.css" rel="stylesheet"?>
+    
+<div class="gray-bg" apply="controlador.ControladorSesion">
+
+    <div class="middle-box text-center loginscreen animated fadeInDown">
+        <div>
+            <div>
+
+                <h:h1 class="logo-name">Spa</h:h1>
+
+            </div>
+            <h:h3>Bienvenido a Spinetti Spa Gym</h:h3>
+            
+            <h:p>Iniciar Sesión.</h:p>
+            <h:form class="m-t" role="form" action="index.html">
+                <div class="form-group">
+                    <textbox type="email" class="form-control" placeholder="Usuario"  id="correo"/>
+                </div>
+                <div class="form-group">
+                    <textbox type="password" class="form-control" placeholder="Contraseña" id="contraseña" />
+                </div>
+                <button  class="btn btn-primary block full-width m-b" id="iniciar">Iniciar sesión</button>
+
+                <a href="#"><h:small>Olvidó su contraseña?</h:small></a>
+               
+            </h:form>
+            <h:p class="m-t"> <h:small>Bambú</h:small> </h:p>
+        </div>
+    </div>
+
+    <!-- Mainly scripts -->
+    <?script src="assets/js/jquery-3.1.1.min.js"?>
+    <?script src="assets/js/bootstrap.min.js"?>
+
+</div>
+
+
+
+</zk>

@@ -1,3 +1,4 @@
+    <?init class="controlador.ChequearSesion"?>
     <?link href="assets/css/bootstrap.min.css" rel="stylesheet"?>
     <?link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet"?>
 
@@ -23,11 +24,11 @@
                             <image  class="img-circle" src="assets/img/da1.png" />
                              </span>
                             <a class="dropdown-toggle" droppable="" href="#">
-                            <span class="clear"> <span class="block m-t-xs"> <h:strong class="font-bold">David Williams</h:strong></span>
-                             </span> <span class="text-muted text-xs block">Administrador </span>  </a>
+                            <span class="clear"> <span class="block m-t-xs">  <label value="Bienvenido: ${sessionScope.usuario}"  class="font-bold"/> </span>
+                             </span>   </a>
                           
                         </div>
-                        
+                      
                         
                     </h:li>
 
@@ -102,8 +103,8 @@
 
 
                 <h:li>
-                    <a href="login.html">
-                        <h:i class="fa fa-sign-out"></h:i> Cerrar Sesión
+                    <a id="cerrarSesion">
+                        <h:i class="fa fa-sign-out" ></h:i>Cerrar Sesión
                     </a>
                 </h:li>
                 <h:li>

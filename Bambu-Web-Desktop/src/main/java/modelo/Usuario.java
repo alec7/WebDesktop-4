@@ -2,6 +2,14 @@ package modelo;
 
 public class Usuario {
 	String usuario, contrasenna, rol,status;
+	
+	
+
+	public Usuario() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 
 	public Usuario(String usuario, String contrasenna, String rol,String status) {
 		super();

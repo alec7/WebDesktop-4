@@ -6,7 +6,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import bean.Conexion;
-import seguridadFuncional.Opcion;
+import modelo.Opcion;
+
 
 
 
@@ -21,7 +22,7 @@ public class OpcionDAO extends ConexionDAO{
 	
      public ArrayList<Opcion> buscarPadre(){
 		ArrayList<Opcion> padres = new ArrayList<Opcion>();
-		String tiraSQL = "select b.codigo_opcion, a.codigo_padre, a.vinculo, a.texto, a.status, a.icono from tb_opcion a, tb_opcion_rol b where a.codigo = b.codigo_opcion and b.codigo_rol='00001' and a.codigo_padre = '0' order by b.codigo_opcion";
+		String tiraSQL = "select b.codigo_opcion, a.codigo_padre, a.vinculo, a.texto, a.status, a.icono, a.tabla from tb_opcion a, tb_opcion_rol b where a.codigo = b.codigo_opcion and b.codigo_rol='00001' and a.codigo_padre = '0' order by b.codigo_opcion";
 		ResultSet resultSet = Conexion.consultar(tiraSQL);
 		try {
 			while(resultSet.next()){
@@ -31,7 +32,8 @@ public class OpcionDAO extends ConexionDAO{
 				String texto = resultSet.getString("texto");
 				String status = resultSet.getString("status");
 				String icono = resultSet.getString("icono");
-				Opcion padre = new Opcion(id_opcion, id_padre, vinculo, texto, status, icono);
+				String tabla = resultSet.getString("tabla");
+				Opcion padre = new Opcion(id_opcion, id_padre, vinculo, texto, status, icono, tabla);
 				padres.add(padre);
 			}
 			resultSet.close();
@@ -43,7 +45,7 @@ public class OpcionDAO extends ConexionDAO{
 	
 	public ArrayList<Opcion> buscarHijos(String idrol, String idopcion){
 		ArrayList<Opcion> hijos = new ArrayList<Opcion>();
-		String tiraSQL ="select b.codigo_opcion, a.codigo_padre, a.vinculo, a.texto, a.status, a.icono from tb_opcion a, tb_opcion_rol b where a.codigo = b.codigo_opcion and b.codigo_rol ='"+idrol+"' and a.codigo_padre='"+idopcion+"' order by b.codigo_opcion";
+		String tiraSQL ="select b.codigo_opcion, a.codigo_padre, a.vinculo, a.texto, a.status, a.icono, a.tabla from tb_opcion a, tb_opcion_rol b where a.codigo = b.codigo_opcion and b.codigo_rol ='"+idrol+"' and a.codigo_padre='"+idopcion+"' order by b.codigo_opcion";
 		ResultSet resultSet = Conexion.consultar(tiraSQL);
 		try {
 			while(resultSet.next()){
@@ -53,7 +55,8 @@ public class OpcionDAO extends ConexionDAO{
 				String texto = resultSet.getString("texto");
 				String estatus = resultSet.getString("status");
 				String icono = resultSet.getString("icono");
-				Opcion hijo = new Opcion(fk_id_opcion, id_padre, vinculo, texto, estatus, icono);
+				String tabla = resultSet.getString("tabla");
+				Opcion hijo = new Opcion(fk_id_opcion, id_padre, vinculo, texto, estatus, icono, tabla);
 				hijos.add(hijo);
 			}
 			resultSet.close();
@@ -65,7 +68,7 @@ public class OpcionDAO extends ConexionDAO{
 	
 	public ArrayList<Opcion> buscarNietos(String idrol, String idopcion){
 		ArrayList<Opcion> nietos = new ArrayList<Opcion>();
-		String tiraSQL ="select b.codigo_opcion, a.codigo_padre, a.vinculo, a.texto, a.status, a.icono from tb_opcion a, tb_opcion_rol b where a.codigo = b.codigo_opcion and b.codigo_rol ='"+idrol+"' and a.codigo_padre='"+idopcion+"' order by b.codigo_opcion";
+		String tiraSQL ="select b.codigo_opcion, a.codigo_padre, a.vinculo, a.texto, a.status, a.icono, a.tabla from tb_opcion a, tb_opcion_rol b where a.codigo = b.codigo_opcion and b.codigo_rol ='"+idrol+"' and a.codigo_padre='"+idopcion+"' order by b.codigo_opcion";
 		ResultSet resultSet = Conexion.consultar(tiraSQL);
 		try {
 			while(resultSet.next()){
@@ -75,7 +78,8 @@ public class OpcionDAO extends ConexionDAO{
 				String texto = resultSet.getString("texto");
 				String estatus = resultSet.getString("status");
 				String icono = resultSet.getString("icono");
-				Opcion nieto = new Opcion(fk_id_opcion, id_padre, vinculo, texto, estatus, icono);
+				String tabla = resultSet.getString("tabla");
+				Opcion nieto = new Opcion(fk_id_opcion, id_padre, vinculo, texto, estatus, icono, tabla);
 				nietos.add(nieto);
 			}
 			resultSet.close();
@@ -97,7 +101,8 @@ public class OpcionDAO extends ConexionDAO{
 				String texto = resultSet.getString("texto");
 				String estatus = resultSet.getString("status");
 				String icono = resultSet.getString("icono");
-				Opcion padre = new Opcion(fk_id_opcion, id_padre, vinculo, texto, estatus, icono);
+				String tabla = resultSet.getString("tabla");
+				Opcion padre = new Opcion(fk_id_opcion, id_padre, vinculo, texto, estatus, icono, tabla);
 				padres.add(padre);
 			}
 			resultSet.close();

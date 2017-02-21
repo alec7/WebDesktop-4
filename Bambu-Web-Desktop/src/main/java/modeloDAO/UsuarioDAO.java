@@ -46,7 +46,63 @@ public class UsuarioDAO extends ConexionDAO{
 		
 		
 	}
-	    
+	
+
+	public Usuario buscarUsuario(String correo, String contrasenna){
+		Usuario usuarioIng = null;
+		String tiraSQL = "select * from tb_usuario where usuario='"+correo+"' and contrasenna='"+contrasenna+"'   ";
+		ResultSet resultSet = Conexion.consultar(tiraSQL);
+		try {
+			if(resultSet.next()){
+			    String usuario1 = resultSet.getString("usuario");
+				String rol = resultSet.getString("rol");
+				String estatus = resultSet.getString("status");
+				usuarioIng = new Usuario(usuario1, contrasenna, rol, estatus);
+			}
+			resultSet.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return usuarioIng;
+	}
+	
+	/*public Usuario obtenerNombre(String correo){
+		Usuario usuarioIng = null;
+		String tiraSQL = "select correo, nombre, rol, contrasenna, a.status from tb_cliente a, tb_usuario b where b.usuario ='"+correo+"'";
+		ResultSet resultSet = Conexion.consultar(tiraSQL);
+		try {
+			if(resultSet.next()){
+			    String usuario1 = resultSet.getString("correo");
+				String rol = resultSet.getString("rol");
+				String contrasenna = resultSet.getString("contrasenna");
+				String estatus = resultSet.getString("status");
+				usuarioIng = new Usuario(usuario1, contrasenna, rol, estatus);
+			}
+			resultSet.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return usuarioIng;
+	}*/
+	
+	public String obtenerNombre(String correo)
+	{
+		String nombre = null;
+		String tiraSQL = "select nombre from tb_cliente a, tb_usuario b where b.usuario ='"+correo+"'";
+		ResultSet resultSet = Conexion.consultar(tiraSQL);
+		try{
+			while(resultSet.next()){
+				nombre = resultSet.getString("nombre");
+			}
+			resultSet.close();
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}	
+		
+		return nombre;
+		
+	}
+ 
 
 	
 	
