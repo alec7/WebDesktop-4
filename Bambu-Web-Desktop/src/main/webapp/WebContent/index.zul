@@ -12,8 +12,8 @@
     <?link href="assets/css/style.css" rel="stylesheet"?>
 
 
-
-<zk xmlns:h="http://www.w3.org/1999/xhtml" xmlns:zk="http://www.zkoss.org/2005/zk" xmlns:n="native">
+<?page title="Bambú" contentType="text/html;charset=UTF-8"?>
+<zk  xmlns:h="http://www.w3.org/1999/xhtml" xmlns:zk="http://www.zkoss.org/2005/zk" xmlns:n="native">
 
 
 <div apply="controlador.ControladorMenu" id="menu"  >
@@ -27,25 +27,16 @@
                             <span class="clear"> <span class="block m-t-xs">  <label value="Bienvenido: ${sessionScope.usuario}"  class="font-bold"/> </span>
                              </span>   </a>
                           
-                        </div>
-                      
-                        
+                        </div>                       
                     </h:li>
 
 
-        <navbar orient="vertical" id="menuNav">
-        
-
-        
+        <navbar orient="vertical" id="menuNav" style="overflow:auto;" height="500px">
+       
         </navbar>
-        
-
-
-        
+               
         </div>
-        
-      
-        
+                
         <div sclass="pagewrapper gray-bg" id="pagewrapper">
         <div class="row border-bottom">
         <h:nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
@@ -120,7 +111,7 @@
         
          <space></space>
             <div align="center">
-            <include src="vista/cliente/consultaDiagnostico.zul" id="myInclude"></include>
+            <include  id="myInclude"></include>
            </div>
            
            <div class="footer" id="footer">

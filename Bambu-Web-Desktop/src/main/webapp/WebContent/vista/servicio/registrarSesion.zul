@@ -1,0 +1,105 @@
+    <?link href="../../assets/css/bootstrap.min.css" rel="stylesheet"?>
+    <?link href="../../assets/font-awesome/css/font-awesome.css" rel="stylesheet"?>
+
+    <!-- Toastr style -->
+    <?link href="../../assets/css/plugins/toastr/toastr.min.css" rel="stylesheet"?>
+
+    <!-- Gritter -->
+    <?link href="../../assets/js/plugins/gritter/jquery.gritter.css" rel="stylesheet"?>
+
+    <?link href="../../assets/css/animate.css" rel="stylesheet"?>
+    <?link href="../../assets/css/style.css" rel="stylesheet"?>
+    <?link href="../../assets/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet"?>
+    
+
+
+<?page title="Registro de Sesión" contentType="text/html;charset=UTF-8"?>
+<zk xmlns:h="http://www.w3.org/1999/xhtml" xmlns:zk="http://www.zkoss.org/2005/zk" >
+<window >
+
+            
+                <div class="col-lg-12" >
+                    <h:div class="ibox float-e-margins">
+                        <h:div class="ibox-title">
+                            <h:h5>Registrar Sesión</h:h5>
+                           
+                        </h:div>
+                        <div class="ibox-content">
+                        	<h:h4>Datos del Cliente</h:h4>
+                            <h:form class="form-horizontal">
+                              <div class="form-group"><label class="col-lg-2 control-label">Cédula</label>
+                                      <div class="col-sm-5"> <div class="input-group"><textbox type="text" class="form-control col-lg-2"/> <span class="input-group-btn"> <button type="button" class="btn btn-primary">Buscar
+                                        </button> </span></div>
+                                </div>   
+                                      
+                                </div>
+                                
+                                 <div class="ibox float-e-margins">
+                                <div class="form-group"><label class="col-lg-2 control-label">Nombre</label>
+
+                                    <div class="col-lg-3"><textbox type="text"  id="nombre" class="form-control required" /> 
+                                    </div>
+                                
+                                <div class="form-group"><label class="col-lg-1 control-label">Apellido:</label>
+
+                                    <div class="col-lg-3"><textbox type="text" id="apellido" class="form-control required" /></div>
+                                </div>
+                                </div>
+                                </div>
+                                 <space></space>
+                                  <h:div class="ibox-title">
+                                  
+                                  </h:div>
+                                  <h:h4>¿¿¿¿¿¿¿¿Paquete o Servicio???????</h:h4>
+                                 
+                                    <div class="form-group">
+	                                 <listbox id="listaObjtivos" height="200px" vflex="1" emptyMessage="No hay sesiones registradas"  >
+										<listhead>
+											<listheader  label="Servicio"  width="760px"/>
+											<listheader  label="Ejecución"/>
+											<listheader  label="Avance"/>
+										</listhead>
+										<template name="model">
+											<listitem value="${each}">
+												<listcell ></listcell>
+												<listcell ></listcell>
+												<listcell >
+													<button class="btn btn-danger" id="${each.codigo}" forward="onClick=listaObjtivos.onObjetivoDelete" iconSclass="fa fa-trash-o" width="36px"/>
+												</listcell>
+											</listitem>
+										</template>
+									</listbox>
+	                                 
+                                  </div>
+                                 
+                                 
+                                 <h:div class="ibox-title">
+                                  
+                                  </h:div>
+                                  <h:h4>Avances (Ejemplo Modal)</h:h4>
+                                
+                                <div class="form-group"><label class="col-lg-3 control-label">Servicio:</label><div class="form-group"><label class="col-lg-3 control-label">Cavitación</label></div></div>
+                                 <div class="form-group"><label class="col-lg-3 control-label">Aca va otra cosa:</label>
+	                                 <div class="col-lg-4"><listbox mold="select" sclass="form-control" id="Otracosa">
+										 <listitem label="No se "/>
+		                                 <listitem label="Aca menos"/>
+		                                 </listbox>
+	                                 </div>
+                                  </div>
+
+                              <div class="form-group">
+                                    <div class="col-lg-offset-8 col-lg-2">
+                                       <hbox>
+                                        <space></space>
+                                        <button class="btn btn-w-m btn-danger"  iconSclass="fa fa-times">Atras</button>
+                                        </hbox>
+                                    </div>
+                                </div>
+                                
+                            </h:form>
+                        </div>
+                    </h:div>
+                </div>
+            
+            </window>
+</zk>

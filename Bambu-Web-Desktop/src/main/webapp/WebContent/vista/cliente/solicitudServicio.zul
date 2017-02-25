@@ -13,23 +13,30 @@
     
 
 
-<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<?page title="Solicitar Servicio" contentType="text/html;charset=UTF-8"?>
 <zk xmlns:h="http://www.w3.org/1999/xhtml" xmlns:zk="http://www.zkoss.org/2005/zk" >
-<window >
+
 
             
                 <div class="col-lg-12" >
-                    <h:div class="ibox float-e-margins">
+                    <h:div >
                         <h:div class="ibox-title">
-                            <h:h5>Solicitud de Servicio</h:h5>
+                            <h:h5>Contratar Servicio</h:h5>
                            
                         </h:div>
                         <div class="ibox-content">
+                        	<h:h4>Datos del Cliente</h:h4>
                             <h:form class="form-horizontal">
                              
+                              <div class="form-group"><label class="col-lg-2 control-label">Cédula:</label>
+                                      <div class="col-sm-5"> <div class="input-group"><textbox type="text" class="form-control col-lg-2"/> <span class="input-group-btn"> <button type="button" class="btn btn-primary">Buscar
+                                        </button> </span></div>
+                                </div>   
+                                      
+                                </div>
                                 
                                  <div class="ibox float-e-margins">
-                                <div class="form-group"><label class="col-lg-2 control-label">Nombre</label>
+                                <div class="form-group"><label class="col-lg-2 control-label">Nombre:</label>
 
                                     <div class="col-lg-3"><textbox type="text"  id="nombre" class="form-control required" /> 
                                     </div>
@@ -41,16 +48,76 @@
                                 </div>
                                 </div>
                                
-                       <h:div class="ibox-title">
-                            <h:h5>Datos del Servicio</h:h5>
-                       </h:div>       
-                                
-                                
-                                 
-                                
-                                
+                       <h:div class="ibox-content">
+                       </h:div>  
+                       <h:h4>Datos del Servicio</h:h4>
                                
+                            
+                              <div class="form-group"><label class="col-lg-2 control-label">Servicio:</label>
+                                    <div class="col-lg-4"><listbox mold="select" sclass="form-control">
+                                 <listitem label="Cavitación"/>
+                                 <listitem label="Mesoterapia"/>
+                                 <listitem label="Sauna"/>
+                                 <listitem label="Masaje"/>
+                                 <listitem label="Depilación"/>
+                                 </listbox>
+                                 </div>
+                                 <label class="col-lg-2 control-label">Paquete:</label>
+                                    <div class="col-lg-4"><listbox mold="select" sclass="form-control">
+                                 <listitem label="Cavitación 6 sesiones"/>
+                                 <listitem label="Masaje Reductos + Sauna 4 sesiones"/>
+                                 <listitem label="Depilación Laser 12 sesiones"/>
+                                 </listbox>
+                                 </div>
+                                 <space></space>
+                                 <div class="form-group">
+                                    <div class="col-lg-offset-8 col-lg-2">
+                                       <hbox>
+                                        <button class="btn btn-primary block full-width m-b" type="submit" iconSclass="fa fa-save">Agregar</button>
+                                        </hbox>
+                                    </div>
+                                </div>
+                                </div>
+                                 <h:div class="ibox-content">  </h:div>
+		                        <h:h4>Detalle del Paquete</h:h4>
+                                <div class="form-group"><label class="col-lg-1 control-label"></label>
+	                                 <listbox id="listaObjtivos" height="150px" width="740px" vflex="1">
+										<listhead>
+											<listheader  label=""/>
+										</listhead>
+											<listitem >
+												<listcell label="Servicio 1"></listcell>
+												<listcell>
+													<button class="btn btn-danger"  iconSclass="fa fa-trash-o" width="36px"/>
+												</listcell>
+											</listitem>
+											<listitem >
+												<listcell label="Servicio 2"></listcell>
+												<listcell>
+												<button class="btn btn-danger"  iconSclass="fa fa-trash-o" width="36px"/>
+												</listcell>
+											</listitem>
+											<listitem >
+												<listcell label="Servicio 3"></listcell>
+												<listcell>
+												<button class="btn btn-danger"  iconSclass="fa fa-trash-o" width="36px"/>
+												</listcell>
+											</listitem>
+									</listbox>
+	                                 
+                                  </div>
+                                 
+                                <div class="form-group">
+                                    <div class="col-lg-offset-8 col-lg-2">
+                                       <hbox>
+                                        <button class="btn btn-primary block full-width m-b" type="submit" iconSclass="fa fa-save">Guardar</button>
+                                        <space></space>
+                                        <button class="btn btn-w-m btn-danger"  iconSclass="fa fa-times">Cancelar</button>
+                                        </hbox>
+                                    </div>
+                                </div>
                                 
+                                 <h:h5>Luego de guardar va a la ventana solicitar cita</h:h5>
                                 
                                 
                               
@@ -59,5 +126,5 @@
                     </h:div>
                 </div>
             
-            </window>
+            
 </zk>

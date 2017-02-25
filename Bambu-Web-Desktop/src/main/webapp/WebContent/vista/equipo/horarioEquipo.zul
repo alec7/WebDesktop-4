@@ -20,22 +20,22 @@
                 <div class="col-lg-12" >
                     <h:div class="ibox float-e-margins">
                         <h:div class="ibox-title">
-                            <h:h5>Horario del Esteticista</h:h5>
+                            <h:h5>Horaio del Equipo</h:h5>
                            
                         </h:div>
                         <div class="ibox-content">
                             <h:form class="form-horizontal">
                                  <div class="ibox float-e-margins">
-                                 <div class="form-group"><label class="col-lg-2 control-label">Cedula:</label>
-                                    <div class="col-sm-5"> <div class="input-group"><textbox id="cedula" type="text" class="form-control col-lg-2"/> <span class="input-group-btn"> <button id="buscar" type="button" class="btn btn-primary">Buscar
-                                        	</button> </span></div>
-                                		</div> 
-                                </div>
+                                 <div class="form-group"><label class="col-lg-2 control-label">Equipo:</label>
+		
+		                                    <div class="col-lg-3"><listbox mold="select" sclass="form-control">
+		                                 <listitem label="E1"/>
+		                                 <listitem label="E2"/>
+		                                 <listitem label="E3"/>
+		                                 </listbox>
+		                                 </div>
+		                                </div>
                                
-                                 <div class="form-group"><label class="col-lg-2 control-label">Nombre:</label>
-
-                                    <div class="col-lg-3"><textbox type="text"  id="nombre" class="form-control" /> </div>
-                                </div>
                                  <h:div class="ibox-title">
 		                            <h:h5>Día Laborable</h:h5>
 		                        </h:div>

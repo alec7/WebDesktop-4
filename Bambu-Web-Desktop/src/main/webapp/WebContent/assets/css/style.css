@@ -8626,3 +8626,21 @@ body.md-skin {
    content: "\2605";
    position: absolute;
 }
+
+.btn.btn-primary.z-button:hover{
+	background: #1ab394;
+	}
+	
+.btn.btn-primary.z-button:focus{
+	background: #1ab394;
+	
+}
+
+.btn.btn-w-m.btn-danger.z-button:hover{
+	background: #ed5565;
+}
+
+.btn.btn-w-m.btn-danger.z-button:focus{
+	background: #ed5565;
+}
+

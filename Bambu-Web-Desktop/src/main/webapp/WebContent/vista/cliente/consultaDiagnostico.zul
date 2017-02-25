@@ -22,34 +22,20 @@
                     <h:div class="ibox float-e-margins">
                     <div class="ibox-title">
                             <h:h5>Consulta Diagnostico</h:h5>
-                            <div class="ibox-tools">
-                                <h:a class="collapse-link">
-                                    <h:i class="fa fa-chevron-up"></h:i>
-                                </h:a>
-                                <h:a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                    <h:i class="fa fa-wrench"></h:i>
-                                </h:a>
-                                
-                                <a class="close-link">
-                                    <h:i class="fa fa-times"></h:i>
-                                </a>
-                            </div>
                         </div>
-                        <h:div class="ibox-title">
-                            <h:h5>Datos del Cliente</h:h5>
-                           
-                        </h:div>
+                       
                         <div class="ibox-content">
+                        	<h:h4>Datos del Cliente</h:h4>
                             <h:form class="form-horizontal">
-                              <div class="form-group"><label class="col-lg-2 control-label">Cédula</label>
-                                      <div class="col-sm-5"> <div class="input-group"><textbox type="text" class="form-control col-lg-2"/> <span class="input-group-btn"> <button type="button" class="btn btn-primary">Buscar
+                              <div class="form-group" style="margin-top:30px; margin-bottom:30px;"><label class="col-lg-2 control-label">Cédula:</label>
+                                      <div class="col-sm-4"> <div class="input-group"><textbox type="text" class="form-control col-lg-2"/> <span class="input-group-btn"> <button type="button" class="btn btn-primary">Buscar
                                         </button> </span></div>
                                      </div>   
                                       
                                 </div>
                                 
                                  <div class="ibox float-e-margins">
-                                <div class="form-group"><label class="col-lg-2 control-label">Nombre</label>
+                                <div class="form-group"><label class="col-lg-2 control-label">Nombre:</label>
 
                                     <div class="col-lg-3"><textbox type="text"  id="nombre" class="form-control required" /> 
                                     </div>
@@ -60,77 +46,108 @@
                                 </div>
                                 </div>
                                 </div>
-                                 <space></space>
-                                  <h:div class="ibox-title">
-                                  <h:h5>Observacion del Diagnostico</h:h5>
-                                  </h:div>
-                                 
-                                   <div class="form-group">
-
-                                    <div class="col-lg-12"><textbox type="text" rows="5" id="consulta" class="form-control required" /></div>
-                                </div>
-                                 
+                                  <h:div class="ibox-title"></h:div>
+                                 	 <h:h4>Test</h:h4>
+								<div class="ibox float-e-margins" style="overflow:auto;" height="400px">
+	                                <div class="form-group"><label class="col-lg-2 control-label">¿Posee algún Marcapaso?</label>
+		
+		                                     <div class="col-lg-3"><listbox mold="select" sclass="form-control">
+		                                 <listitem label="Si"/>
+		                                 <listitem label="No"/>
+		                                 </listbox>
+		                                 </div>
+		                                 
+		                                 <label class="col-lg-2 control-label">¿Es Alergico(a)?</label>
+		
+		                                     <div class="col-lg-3"><listbox mold="select" sclass="form-control">
+		                                 <listitem label="Si"/>
+		                                 <listitem label="No"/>
+		                                 </listbox>
+		                                 </div>
+		                                 
+	                                
+	                                
+	                                </div>
+	                                <div class="form-group"><label class="col-lg-2 control-label">¿Ha sido intervenido Quirurgicamente?</label>
+		
+		                                     <div class="col-lg-3"><listbox mold="select" sclass="form-control">
+		                                 <listitem label="Si"/>
+		                                 <listitem label="No"/>
+		                                 </listbox>
+		                                 </div>
+		                                 <label class="col-lg-2 control-label">¿Sufre de Diabetes?</label>
+		
+		                                     <div class="col-lg-3"><listbox mold="select" sclass="form-control">
+		                                 <listitem label="Si"/>
+		                                 <listitem label="No"/>
+		                                 </listbox>
+		                                 </div>
+	                                
+	                                
+	                                </div>
+	                                 <div class="form-group"><label class="col-lg-2 control-label">¿Es Hipertenso?</label>
+		
+		                                     <div class="col-lg-3"><listbox mold="select" sclass="form-control">
+		                                 <listitem label="Si"/>
+		                                 <listitem label="No"/>
+		                                 </listbox>
+		                                 </div>
+		                                 <label class="col-lg-2 control-label">¿Sufre de la Columna?</label>
+		
+		                                     <div class="col-lg-3"><listbox mold="select" sclass="form-control">
+		                                 <listitem label="Si"/>
+		                                 <listitem label="No"/>
+		                                 </listbox>
+		                                 </div>
+	                                
+	                                
+	                                </div>
+	                                <div class="form-group"><label class="col-lg-2 control-label">¿Posee una piel sensible?</label>
+		
+		                                     <div class="col-lg-3"><listbox mold="select" sclass="form-control">
+		                                 <listitem label="Si"/>
+		                                 <listitem label="No"/>
+		                                 </listbox>
+		                                 </div>
+	                                </div>
+	                                
+                                </div>                                 
                                 
+                                 	 
                                  <div class="col-lg-12">
-                                  <div apply="org.zkoss.bind.BindComposer">
-    <style src="/widgets/grid/data_filter/style.css" />
-    <grid model="@load(vm.foodModel)">
-        <auxhead sclass="category-center">
-            <auxheader label="Servicios Recomendados" colspan="6" />
-        </auxhead>
-        <auxhead sclass="category-center">
-            <auxheader colspan="1">
-                 <image src="assets/img/funel.png" height="15px" width="15px"/>
-                <textbox instant="true" width="100px" 
-                    value="@bind(vm.foodFilter.category)" onChange="@command('changeFilter')" />
-            </auxheader>
-            <auxheader colspan="1">
-                 <image src="assets/img/funel.png" height="15px" width="15px"/>
-                <textbox instant="true"  width="100px"
-                    value="@bind(vm.foodFilter.name)" onChange="@command('changeFilter')"/>
-            </auxheader>
-            <auxheader colspan="1">
-                <image src="assets/img/funel.png" height="15px" width="15px"/>
-                <textbox instant="true" width="100px"
-                    value="@bind(vm.foodFilter.nutrients)" onChange="@command('changeFilter')"/>
-            </auxheader>
-           
-        </auxhead>
-        <columns>
-            <column hflex="2">Servicio</column>
-            <column hflex="2">Cantidad de Sesiones</column>
-            <column hflex="2">Resultado</column>
-            
-        </columns>
-        <template name="model">
-            <row>
-                <label value="@load(each.category)" />
-                <label value="@load(each.name)" />
-                <label value="@load(each.topNutrients)" />
-                <label value="@load(each.dailyPercent)" />
-                <label value="@load(each.calories)" />
-                <label value="@load(each.quantity)" />
-            </row>
-        </template>
-        <foot>
-            <footer span="6" class="footer_right" label="@load(vm.footer)" />
-        </foot>
-    </grid>
-</div>
-                        <space></space>     
-                        <space></space> 
-                        <div class="form-group">
-                                    <div class="col-lg-offset-8 col-lg-2">
-                                    <hbox>
-                                        <button class="btn btn-primary block full-width m-b" type="submit" iconSclass="fa fa-save">Guardar</button>
-                                        <space></space>
-                                        <button class="btn btn-w-m btn-danger"  iconSclass="fa fa-times">Cancelar</button>
-                                        </hbox>
-                                    </div>
-                                </div>                         
-                        </div>
+			                        <space></space>      
+			                        <div class="form-group">
+			                                    <div class="col-lg-offset-8 col-lg-2">
+			                                    <hbox>
+			                                        <button class="btn btn-primary block full-width m-b" type="submit" iconSclass="fa fa-save">Guardar</button>
+			                                        <space></space>
+			                                        <button class="btn btn-w-m btn-danger"  iconSclass="fa fa-times">Cancelar</button>
+			                                        </hbox>
+			                                    </div>
+			                                </div>                         
+                        		</div>
                                 
                             </h:form>
+                             <h:div class="ibox-title"></h:div>
+                                 	 <h:h4>(Ejemplo de Modal Guardar)</h:h4>
+                            <div class="ibox float-e-margins">
+	                                <div class="form-group">
+                                    <listbox id="listaRedes" height="200px" width="740px" vflex="1" emptyMessage="No puede realizarse ningún servicio"  >
+										<listhead>
+											<listheader  label="Servicios Recomendados" />
+										</listhead>
+											<listitem>
+												<listcell label="Servicio 1"></listcell>
+											</listitem>
+											<listitem>
+												<listcell label="Servicio 2"></listcell>
+											</listitem>
+											<listitem>
+												<listcell label="Servicio 3"></listcell>
+											</listitem>
+									</listbox>
+									</div>
+                                </div> 
                         </div>
                     </h:div>
                 </div>
