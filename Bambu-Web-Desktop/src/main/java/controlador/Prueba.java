@@ -158,7 +158,7 @@ public class Prueba  extends GenericForwardComposer{
 	public void onClick$habito(Event e)throws InterruptedException{
 		miSession.setAttribute("master","tb_habito");
 		myInclude.setSrc(null);
-		myInclude.setSrc("maestrico.zul");
+		myInclude.setSrc("maestro.zul");
 	}
 	public void onClick$indicador(Event e)throws InterruptedException{
 		miSession.setAttribute("master","tb_indicador");
