@@ -184,7 +184,7 @@ public List<Servicio> listarServicios() { //para listar todos los servicios
 		if(resultSet!=null){
 			while(resultSet.next()){
 				
-				arr_servicios.add(new Servicio(resultSet.getString("codigo"), resultSet.getString("descripcion"), resultSet.getString("tipo_servicio"), resultSet.getString("codigo_equipo"), resultSet.getString("status"), resultSet.getString("codigo_organizacion"), resultSet.getTimestamp("duracion")));
+				arr_servicios.add(new Servicio(resultSet.getString("codigo"), resultSet.getString("descripcion"), resultSet.getString("tipo_servicio"), resultSet.getString("status"), resultSet.getString("codigo_organizacion"), resultSet.getTimestamp("duracion")));
 			
 			}
 		}

@@ -307,7 +307,7 @@ public class MaestroListController extends SelectorComposer<Component>{
 		Cod_Des cd = null;
 		cd = listaServiciosSeleccionados.getSelectedItem().getValue();
 		
-		Servicio ser = new Servicio(cd.getCodigo(), cd.getDescripcion(), null, null, "Activo", null, null);
+		Servicio ser = new Servicio(cd.getCodigo(), cd.getDescripcion(), null, "Activo", null, null);
 		
 	
 		

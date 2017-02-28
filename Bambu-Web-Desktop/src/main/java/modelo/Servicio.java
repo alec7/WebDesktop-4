@@ -5,17 +5,16 @@ import java.sql.Timestamp;
 public class Servicio 
 {
 	
-String codigo,descripcion, tipo_servicio, codigo_equipo, status, codigo_organizacion;
+String codigo,descripcion, tipo_servicio, status, codigo_organizacion;
 Timestamp duracion;
 
 boolean complete;
-public Servicio(String codigo, String descripcion, String tipo_servicio, String codigo_equipo, String status,
+public Servicio(String codigo, String descripcion, String tipo_servicio, String status,
 		String codigo_organizacion, Timestamp duracion) {
 	super();
 	this.codigo = codigo;
 	this.descripcion = descripcion;
 	this.tipo_servicio = tipo_servicio;
-	this.codigo_equipo = codigo_equipo;
 	this.status = status;
 	this.codigo_organizacion = codigo_organizacion;
 	this.duracion = duracion;
@@ -38,12 +37,7 @@ public String getTipo_servicio() {
 public void setTipo_servicio(String tipo_servicio) {
 	this.tipo_servicio = tipo_servicio;
 }
-public String getCodigo_equipo() {
-	return codigo_equipo;
-}
-public void setCodigo_equipo(String codigo_equipo) {
-	this.codigo_equipo = codigo_equipo;
-}
+
 public String getStatus() {
 	return status;
 }
