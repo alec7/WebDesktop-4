@@ -43,11 +43,14 @@ public class ControladorMenu extends  GenericForwardComposer<Window> {
 	  ArrayList<Opcion> submenu = new ArrayList<Opcion>();
 	  ArrayList<Opcion> submenuNieto = new ArrayList<Opcion>();
 	  
+	 
+	  
 	  private Include myInclude;
 		Session miSession = Sessions.getCurrent();
 		Session miSession1 = Sessions.getCurrent();
 		Session miSession2 = Sessions.getCurrent();
     
+	
 		
 		
 	
