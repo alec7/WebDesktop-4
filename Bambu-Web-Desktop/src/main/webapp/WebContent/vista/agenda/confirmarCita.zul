@@ -16,7 +16,7 @@
 <?page title="new page title" contentType="text/html;charset=UTF-8"?>
 <zk xmlns:h="http://www.w3.org/1999/xhtml" xmlns:zk="http://www.zkoss.org/2005/zk" >
 
-               <div id="confirmacion" >
+               <div id="confirmacion" apply="controlador.ControladorConfirmarCita">
             
                 <div class="col-lg-12" >
                     <h:div >
@@ -28,7 +28,7 @@
                             <h:form class="form-horizontal">
                              
                               <div class="form-group"><label class="col-lg-2 control-label">Cédula</label>
-                                      <div class="col-sm-5"> <div class="input-group"><textbox type="text" id="cedula" class="form-control col-lg-2"/> <span class="input-group-btn"> <button type="button" class="btn btn-primary">Buscar
+                                      <div class="col-sm-5"> <div class="input-group"><textbox type="text" id="cedula" class="form-control col-lg-2"/> <span class="input-group-btn"> <button id="BuscarCliente" type="button" class="btn btn-primary">Buscar
                                         </button> </span></div>
                                 </div>   
                                       
