@@ -55,10 +55,21 @@
 				
 				
 				
+				<grid hflex="1">
+					<columns>
+						<column align="right" hflex="min"/>
+						
+						
+						<column/>
+					</columns>
+		
+				</grid>
 					<div>
+					
+					
+					<hbox><label >Todos los Servicios: </label><label style="margin-left:65px">Servicios Asociados</label></hbox>	
 						
-						
-
+				
 							
 							<hbox>
 						
@@ -81,8 +92,8 @@
 							
 							<vbox>
 							
-							<button width="30px" id="agregar" class="btn btn-primary " type="button" > > </button>
-							<button width = "30px" id="quitar" class="btn btn-primary " type="button" > -  </button>
+							<button  id="agregar" class="btn btn-primary " type="button" iconSclass="fa fa-arrow-right" height= "30px" width="30px" >  </button>
+							<button id="quitar" class="btn btn-primary " type="button" iconSclass="fa fa-arrow-left"  height= "30px" width="30px">  </button>
 							</vbox>
 							
 							

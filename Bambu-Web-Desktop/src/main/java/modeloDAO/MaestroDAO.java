@@ -7,6 +7,7 @@ import java.util.Formatter;
 import java.util.List;
 
 import org.zkoss.zhtml.Messagebox;
+import org.zkoss.zul.Listbox;
 
 import bean.Conexion;
 import modelo.Cod_Des;
@@ -128,6 +129,40 @@ public void eliminarMaestro(String tabla, String codigo){
 		return arr_cod_des;
 	}
 	
+	public List<Cod_Des> CargarHistoricoDeServiciosAsociados( String codigo, String tabla_maestro_servicio) { // para traer todos los servicios que estan en la base de datos sin importar su estatus
+		int i=0;
+		String tiraSQL = "select tb_servicio.descripcion, tb_servicio.codigo from tb_servicio, "+tabla_maestro_servicio+" where codigo_maestro = '"+codigo+"'  and codigo_servicio = tb_servicio.codigo" ;
+		Maestro_servicio mase;
+		String cod;
+		ResultSet resultSet = Conexion.consultar(tiraSQL);
+		
+	
+		List<Cod_Des> arr_cod_des2 = new ArrayList<Cod_Des>();
+		try {
+			if(resultSet!=null){
+				while(resultSet.next()){
+					
+					
+					cod=TotalRegistros(tabla_maestro_servicio);
+					//Messagebox.show("codigo de la tabla tb_pref_serv "+cod);
+					//Messagebox.show("Codigo del maestro " +resultSet.getString("codigo_maestro"));
+					//Messagebox.show("codigo del servicio "+resultSet.getString("codigo"));
+					
+					arr_cod_des2.add(new Cod_Des(resultSet.getString("codigo"),resultSet.getString("descripcion")));
+					//Messagebox.show(String.valueOf(arr_mase.size()));
+				}
+			}
+		} catch (SQLException e) {
+		//	Messagebox.show(tiraSQL);
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		Messagebox.show(tiraSQL);
+	
+		return arr_cod_des2;
+	}
+	
 
 
 
@@ -167,7 +202,7 @@ public void ActualizarServiciosDeMaestro(String codigo_maestro,String tabla_Maes
 	
 	List<Cod_Des> actual = new ArrayList<Cod_Des>();
 	
-	actual=CargarServiciosAsociados(codigo_maestro,tabla_Maestro_servicio );
+	actual=CargarHistoricoDeServiciosAsociados(codigo_maestro,tabla_Maestro_servicio );
 	
 	
 	for (int i = 0; i < actual.size(); i++) {
@@ -179,9 +214,10 @@ public void ActualizarServiciosDeMaestro(String codigo_maestro,String tabla_Maes
 		{
 			if(actual.get(i).getCodigo().equals(modificada.get(k).getCodigo())) //si esta en ACTUAL y en MODIFICADA 
 			{
+			
 				//NO HAGO NADA
 				
-				String tiraSQL = "UPDATE "+tabla_Maestro_servicio+" SET status = 'Activo'  WHERE codigo_servicio = '"+actual.get(i).getCodigo()+"'";
+				String tiraSQL = "UPDATE "+tabla_Maestro_servicio+" SET status = 'Activo'  WHERE codigo_servicio = '"+actual.get(i).getCodigo()+"' AND codigo_maestro = '"+codigo_maestro+"'";
 				Conexion.ejecutar(tiraSQL);
 				Messagebox.show(tiraSQL);
 				
@@ -198,12 +234,12 @@ public void ActualizarServiciosDeMaestro(String codigo_maestro,String tabla_Maes
 			
 		}
 		
-		if(a == false) //  SI ESTA EN ACTUAL Y NO EN MODIFICAR
+		if(a == false) //  SI ESTA EN ACTUAL Y NO EN MODIFICADA
 		{
 			
 			//Elimino (Cambio status a Inactivo)
 			
-			String tiraSQL = "UPDATE "+tabla_Maestro_servicio+" SET status = 'Inactivo'  WHERE codigo_servicio = '"+actual.get(i).getCodigo()+"'";
+			String tiraSQL = "UPDATE "+tabla_Maestro_servicio+" SET status = 'Inactivo'  WHERE codigo_servicio = '"+actual.get(i).getCodigo()+"' AND codigo_maestro = '"+codigo_maestro+"'";
 			Conexion.ejecutar(tiraSQL);
 			Messagebox.show(tiraSQL);
 
@@ -235,6 +271,7 @@ public void ActualizarServiciosDeMaestro(String codigo_maestro,String tabla_Maes
 		
 		if(b == false) // Si no existe 
 		{
+			//Messagebox()
 			
 			//Inserto
 			

@@ -1,10 +1,5 @@
 /* 
-	Description:
-		ZK Essentials
-	History:
-		Created by dennis
-
-Copyright (C) 2012 Potix Corporation. All Rights Reserved.
+Autor: Jesus Kahwati
 */
 package controlador;
 
@@ -44,26 +39,19 @@ import org.zkoss.zul.Listbox;
 import org.zkoss.zul.Listitem;
 import org.zkoss.zul.Radiogroup;
 import org.zkoss.zul.Textbox;
-
+//--------------------------------------------------------------------------------------------------
 public class MaestroListController extends SelectorComposer<Component>{
 	private static final long serialVersionUID = 1L;
-	MaestroDAO mdao = new MaestroDAO();
 	
+	
+	MaestroDAO mdao = new MaestroDAO();
 	List<Servicio> listaTodosServicios = new ArrayList<Servicio>();
 	List<Cod_Des> listaServiciosAsociados = new ArrayList<Cod_Des>();
 	List<Servicio> listaTodosServiciosFiltrado = new ArrayList<Servicio>();
-	
-	
-	
-//	Execution execution = Executions.getCurrent();
-//	String tabla = execution.getParameter("master");
 	Session miSession = Sessions.getCurrent();
 	String tabla =  miSession.getAttribute("master").toString();
-	 //String tabla_maestro_servicio =  miSession.getAttribute("master_servicio").toString();
-	
-	
-	
-	//wire components
+
+	//------------------------wire components------------------------------------------------------
 	@Wire
 	Textbox maestroSubject;
 	@Wire
@@ -72,7 +60,6 @@ public class MaestroListController extends SelectorComposer<Component>{
 	Button addMaestro;
 	@Wire
 	Listbox maestroListbox;
-	
 	@Wire
 	Component selectedMaestroBlock;
 	@Wire
@@ -87,32 +74,28 @@ public class MaestroListController extends SelectorComposer<Component>{
 	Textbox selectedMaestroDescription;
 	@Wire
 	Button updateSelectedMaestro;
-	
 	@Wire
 	Button agregar;
-	
 	@Wire
 	Button quitar;
 	@Wire
 	Listbox listaServicios;
-	
 	@Wire
 	Listbox listaServiciosSeleccionados;
 	
+	//------------------------wire components------------------------------------------------------
 	
 	//services
 	MaestroListService maestroListService = new MaestroListServiceChapter6Impl();
-	
 	//data for the view
 	ListModelList<Maestro> maestroListModel;
 	ListModelList<Cod_Des> servicioListModel;
 	//ListModelList<Cod_Des> lista ;
-	
 	Maestro selectedMaestro;
 	Servicio selectedServicio;
 	
 	
-	
+	//-----------------------------------Inicio-----------------------------------------------------
 	@Override
 	public void doAfterCompose(Component comp) throws Exception{
 		super.doAfterCompose(comp);
@@ -124,10 +107,9 @@ public class MaestroListController extends SelectorComposer<Component>{
 		maestroListbox.setModel(maestroListModel);
 		titulo.setValue(titulo());
 		
- 
-		
-
 	}
+	
+	//-----------------------------------Click o enter en agregar-----------------------------------------------------
 	
 	//when user clicks on the button or enters on the textbox
 	@Listen("onClick = #addMaestro; onOK = #maestroSubject")
@@ -140,11 +122,7 @@ public class MaestroListController extends SelectorComposer<Component>{
 			//save data
 			String codigo = mdao.TotalRegistros(tabla);
 			selectedMaestro = maestroListService.saveMaestro(new Maestro(descripcion, codigo));
-			//Messagebox.show(selectedTodo.get);
-			
-			//Messagebox.show(selectedTodo.getCodigo() +" "+ selectedTodo.getDescripcion()+" "+ selectedTodo.getStatus());
-			
-			
+
 			//update the model of listbox
 			maestroListModel.add(selectedMaestro);
 			//set the new selection
@@ -152,11 +130,7 @@ public class MaestroListController extends SelectorComposer<Component>{
 			
 			
 			//Guardando en la Base de Datos
-			
-			
 			mdao.agregarMaestro(tabla,codigo,descripcion);
-		
-			
 			//refresh detail view
 			refreshDetailView();
 			
@@ -165,6 +139,8 @@ public class MaestroListController extends SelectorComposer<Component>{
 			
 		}
 	}
+	
+	//---------------------Eliminar-------------------------------------------------------------------------------
 	
 	
 	//when user clicks the delete button of each todo on the list
@@ -189,7 +165,7 @@ public class MaestroListController extends SelectorComposer<Component>{
 		}
 	}
 
-	//cuando el usuario selecciona un Maestro del listbox
+	//-------------------------cuando el usuario selecciona un Maestro del listbox------------------------------
 	@Listen("onSelect = #maestroListbox")
 	
 	public void doMaestroSelect() {
@@ -203,44 +179,26 @@ public class MaestroListController extends SelectorComposer<Component>{
 			
 			//Agarro el maestro seleccionado
 			selectedMaestro = maestroListModel.getSelection().iterator().next();
-			
-			
-			
-			
 			//Cargo los Servicios asociados
 			listaServiciosAsociados= mdao.CargarServiciosAsociados(selectedMaestro.getCodigo(),tabla+"_servicio" );
 			
-			
-		//Filtro los servicios. (listaTodosServicios INTERSECTADO listaServiciosAsociados)
-			
+		//Filtro los servicios. (listaTodosServicios INTERSECTADO listaServiciosAsociados)	
 			Filtrar(listaTodosServicios,listaServiciosAsociados);
-			
-			
 			
 			//Muestro todos los servicios
 			listaServicios.setModel(new ListModelList<Servicio>(listaTodosServicios));//carga los servicios en la vista
-			
-			
-			
-			
 			//Muestro los servicios asociados
 			listaServiciosSeleccionados.setModel(new ListModelList<Cod_Des>(listaServiciosAsociados));
-			
-			
-			
-			
-			
-			
-			
+
+		
 			
 		}
 		refreshDetailView();
 	}
 	
+	//------Filtra la lista de todo los servicios dependiendo de los que estan seleccionados------------------------------------------------------------------------------
+
 	private void Filtrar(List<Servicio> lts, List<Cod_Des> lsa) {
-		
-		//List<Servicio> listaFiltrada = new ArrayList<Servicio>();
-		
 		
 		for (int i = 0; i < lts.size(); i++) {
 			
@@ -248,43 +206,29 @@ public class MaestroListController extends SelectorComposer<Component>{
 			{
 				if(lts.get(i).getCodigo().equals(lsa.get(k).getCodigo()))
 				{
-					listaTodosServicios.remove(i);
-					
-					
+					listaTodosServicios.remove(i);		
 				}
-				
-			}
-			
-		
-			
+			}	
 		}
-		
-		
 	}
+	
+	//-------------------Refresh------------------------------------------------------------------------
 
 	private void refreshDetailView() {
 		//refresh the detail view of selected todo
 		if(selectedMaestro==null){
 			//clean
 			selectedMaestroBlock.setVisible(false);
-			//selectedTodoCheck.setChecked(false);
 			selectedMaestroSubject.setValue(null);
-			//selectedTodoDate.setValue(null);
-			//electedTodoDescription.setValue(null);
 			updateSelectedMaestro.setDisabled(true);
-			
-			//priorityListModel.clearSelection();
 		}else{
 			selectedMaestroBlock.setVisible(true);
-			//selectedTodoCheck.setChecked(selectedTodo.isComplete());
 			selectedMaestroSubject.setValue(selectedMaestro.getDescripcion());
-			//selectedTodoDate.setValue(selectedTodo.getDate());
-			//selectedTodoDescription.setValue(selectedTodo.getDescripcion());
 			updateSelectedMaestro.setDisabled(false);
-			
-			//priorityListModel.addToSelection(selectedTodo.getPriority());
 		}
 	} 
+	
+	//---------------------Click en Boton Actualizar-------------------------------------------------------------------
 	
 	//when user clicks the update button
 	@Listen("onClick = #updateSelectedMaestro")
@@ -294,12 +238,7 @@ public class MaestroListController extends SelectorComposer<Component>{
 			return;
 		}
 		
-		//selectedTodo.setComplete(selectedTodoCheck.isChecked());
 		selectedMaestro.setDescripcion(selectedMaestroSubject.getValue());
-		//selectedTodo.setDate(selectedTodoDate.getValue());
-		//selectedTodo.setDescription(selectedTodoDescription.getValue());
-		//selectedTodo.setPriority(priorityListModel.getSelection().iterator().next());
-		
 		//save data and get updated Todo object
 		selectedMaestro = maestroListService.updateMaestro(selectedMaestro);
 		
@@ -312,8 +251,6 @@ public class MaestroListController extends SelectorComposer<Component>{
 		
 		
 		//Guarda en la BAse de datos la informacion de los servicios asociados a un maestro (TABLA MAESTRO_SERVICIO)
-		
-		
 		mdao.ActualizarServiciosDeMaestro(selectedMaestro.getCodigo(),tabla+"_servicio",listaServiciosAsociados);
 		
 		
@@ -321,18 +258,26 @@ public class MaestroListController extends SelectorComposer<Component>{
 		Clients.showNotification("Cambios Guardados");
 	} 
 	
-	
+	//----------------------------Agregar----------------------------------------------------------------
 	
 	@Listen("onClick = #agregar")
 	public void doAgregar()
 	{
+		
+		if(listaServicios.getSelectedIndex() == -1)
+		{
+			Messagebox.show("Debe Serleccionar un servicio");
+		}
+		
+		else
+		{
 		Servicio serv = null;
 		serv = listaServicios.getSelectedItem().getValue();
-	
+		
+		
+		
 		
 		Cod_Des cd = new Cod_Des(serv.getCodigo(), serv.getDescripcion());
-		
-		
 		
 		listaServiciosAsociados.add(listaServiciosAsociados.size(),cd );
 
@@ -340,23 +285,25 @@ public class MaestroListController extends SelectorComposer<Component>{
 				
 		listaServiciosSeleccionados.setModel(servicioListModel);
 		
-		
 		listaTodosServicios.remove(listaServicios.getSelectedIndex());
 		
-		 
-		
 		listaServicios.setModel(new ListModelList<Servicio>(listaTodosServicios));
-		
-		
 
-		
 		}
-		
-		
+	}
+	//------------------------Quitar--------------------------------------------------------------------	
 	
 	@Listen("onClick = #quitar")
 	public void doQuitar()
 	{
+		
+		if(listaServiciosSeleccionados.getSelectedIndex() == -1)
+		{
+			Messagebox.show("Debe Serleccionar un servicio");
+		}
+		
+		else
+		{
 		Cod_Des cd = null;
 		cd = listaServiciosSeleccionados.getSelectedItem().getValue();
 		
@@ -377,30 +324,11 @@ public class MaestroListController extends SelectorComposer<Component>{
 		listaServiciosSeleccionados.setModel(new ListModelList<Cod_Des>(listaServiciosAsociados));
 		
 		}
+	}
+	
+	//--------------------------------------------------------------------------------------------
 		
 
-		
-	
-	
-
-
-		
-		
-	
-		
-		
-		//Messagebox.show("hola");
-		
-		
-	
-		
-	
-	
-	
-	
-	
-	
-	
 	//when user clicks the update button
 	@Listen("onClick = #reloadSelectedMaestro")
 	public void doReloadClick(){
