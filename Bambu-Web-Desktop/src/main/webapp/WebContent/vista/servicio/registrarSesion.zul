@@ -50,7 +50,7 @@
                                   <h:div class="ibox-title">
                                   
                                   </h:div>
-                                  <h:h4>¿¿¿¿¿¿¿¿Paquete o Servicio???????</h:h4>
+                                  <h:h4>Paquete o Servicio</h:h4>
                                  
                                     <div class="form-group">
 	                                 <listbox id="listaObjtivos" height="200px" vflex="1" emptyMessage="No hay sesiones registradas"  >

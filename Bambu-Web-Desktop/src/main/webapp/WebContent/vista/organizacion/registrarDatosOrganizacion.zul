@@ -142,7 +142,7 @@
                                 <div class="form-group">
                                     <div class="col-lg-offset-8 col-lg-2" style="margin-right:-100px;">
                                        <hbox>
-                                        <button class="btn btn-primary block full-width m-b" iconSclass="fa fa-check" id="agregarObj">Agregar Objetivo</button>
+                                        <button class="btn btn-primary block full-width m-b" iconSclass="fa fa-plus" id="agregarObj">Agregar Objetivo</button>
                                         </hbox>
                                     </div>
                                 </div>
@@ -185,7 +185,7 @@
                                     <div class="form-group">
 	                                    <div class="col-lg-offset-8 col-lg-2">
 	                                       <hbox>
-	                                        <button class="btn btn-primary block full-width m-b" iconSclass="fa fa-check" id="agregarRed">Agregar Red Social</button>
+	                                        <button class="btn btn-primary block full-width m-b" iconSclass="fa fa-plus" id="agregarRed">Agregar Red Social</button>
 	                                        </hbox>
 	                                    </div>
                                		 </div>

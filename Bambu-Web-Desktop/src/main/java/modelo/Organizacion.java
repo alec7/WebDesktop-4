@@ -1,7 +1,10 @@
 package modelo;
 
+import java.io.FileInputStream;
+
 public class Organizacion {
 	private String rif,nombre, tipo_organizacion, correo, direccion, telefono,mision, vision,status;
+	//private FileInputStream logo;
 
 	public Organizacion(String rif, String nombre, String tipo_organizacion, String correo, String direccion,
 			String telefono, String mision, String vision, String status) {
@@ -15,7 +18,10 @@ public class Organizacion {
 		this.mision = mision;
 		this.vision = vision;
 		this.status = status;
+		
 	}
+	
+	
 
 	public String getRif() {
 		return rif;

@@ -9,7 +9,7 @@
 
     <?link href="assets/css/animate.css" rel="stylesheet"?>
     <?link href="assets/css/style.css" rel="stylesheet"?>
-<window apply="controlador.MaestricoListController" border="none" width="1250px" height="600px" contentStyle="overflow:auto">
+<window apply="controlador.MaestricoListController" border="none" width="1100px" height="600px" contentStyle="overflow:auto">
 	
 	<label id="titulo" value="" style="font-size:40px" > </label>
 	<borderlayout>

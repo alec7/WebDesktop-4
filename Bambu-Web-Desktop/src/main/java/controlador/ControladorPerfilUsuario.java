@@ -78,7 +78,7 @@ public class ControladorPerfilUsuario extends SelectorComposer<Component>{
 	public void guargar(){
 		PerfilUsuario pf = new PerfilUsuario(cedula.getText(), nombre.getText(), apellido.getText(), direccion.getText(), correo.getText(), sexo.getSelectedItem().getLabel(), estado_civil.getSelectedItem().getLabel(), telefono.getText(), "00001","Activo");
 		String codigo = roldao.buscarRol(rol.getSelectedItem().getLabel());
-		u = new Usuario(cedula.getText(), "1234",codigo,"Activo");
+		u = new Usuario(correo.getText(), cedula.getText(),codigo,"Activo");
 		udao.registrarUsuario(u);
 		if(rol.getSelectedItem().getLabel().equalsIgnoreCase("Esteticista")){
 			//AGREGAR MENSAJE VALIDAR USUARIO YA REGISTRADO

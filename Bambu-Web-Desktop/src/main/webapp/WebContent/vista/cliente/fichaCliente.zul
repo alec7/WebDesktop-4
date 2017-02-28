@@ -109,18 +109,13 @@
 							        
 							        <tabpanel  style="overflow:auto;">
 							        <space></space>
-							        	<div class="form-group"><label class="col-lg-2 control-label">¿Practica algún Deporte?</label>
-                                      	<div class="col-lg-4"><listbox mold="select" sclass="form-control">
-		                                 <listitem label="Si"/>
-		                                 <listitem label="No"/>
-		                                 </listbox>
-		                                 </div>
-		                                 <label class="col-lg-2 control-label">¿El paciente es fumador?</label>
-		                                    <div class="col-lg-4"><listbox mold="select" sclass="form-control">
-		                                 <listitem label="Si"/>
-		                                 <listitem label="No"/>
-		                                 </listbox>
-		                                 </div>
+							        	<div class="form-group">
+								        	<label class="col-lg-2 control-label">¿Practica algún Deporte?</label>
+	                                      	<div class="col-lg-4"><listbox mold="select" sclass="form-control">
+			                                 <listitem label="Si"/>
+			                                 <listitem label="No"/>
+			                                 </listbox>
+			                                 </div>
 		                                </div>
 		                                
 		                                <div class="form-group"><label class="col-lg-2 control-label">¿Acude con frecuencia al Gimnasio?</label>

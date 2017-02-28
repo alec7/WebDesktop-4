@@ -16,7 +16,7 @@
 <?page title="new page title" contentType="text/html;charset=UTF-8"?>
 <zk xmlns:h="http://www.w3.org/1999/xhtml" xmlns:zk="http://www.zkoss.org/2005/zk" >
 
-               <div id="confirmacion" >
+
             
                 <div class="col-lg-12" >
                     <h:div >
@@ -27,8 +27,8 @@
                         <div class="ibox-content">
                             <h:form class="form-horizontal">
                              
-                              <div class="form-group"><label class="col-lg-2 control-label">Cédula</label>
-                                      <div class="col-sm-5"> <div class="input-group"><textbox type="text" id="cedula" class="form-control col-lg-2"/> <span class="input-group-btn"> <button type="button" class="btn btn-primary">Buscar
+                              <div class="form-group"><label class="col-lg-2 control-label"></label>
+                                      <div class="col-sm-5"> <div class="input-group"><textbox type="text" class="form-control col-lg-2"/> <span class="input-group-btn"> <button type="button" class="btn btn-primary">Buscar
                                         </button> </span></div>
                                 </div>   
                                       
@@ -40,39 +40,12 @@
                                     <div class="col-lg-3"><textbox type="text"  id="nombre" class="form-control required" /> 
                                     </div>
                                 
-                                <div class="form-group"><label class="col-lg-1 control-label">Apellido</label>
+                                <div class="form-group"><label class="col-lg-1 control-label">Apellido:</label>
 
                                     <div class="col-lg-3"><textbox type="text" id="apellido" class="form-control required" /></div>
                                 </div>
                                 </div>
                                 </div>
-                        <h:div class="ibox-title">
-                            <h:h5>Citas</h:h5>
-                       </h:div> 
-         <div>
-               <listbox model="${win$composer.carsModel}" checkmark="true" mold="paging" pageSize="9" width="50%">
-        <listhead>
-            <listheader width="32px" />
-            <listheader label="fecha" align="center" sort="auto(model)" />
-            <listheader label="hora" align="center" sort="auto(make)" />
-            <listheader label="Servicio" align="center" sort="auto(make)" />
-        </listhead>
-        <template name="model">
-            <listitem>
-                <listcell />
-                <listcell label="${each.model}" />
-                <listcell label="${each.make}" />
-                <listcell label="${each.model}" />
-              
-                
-            </listitem>
-        </template>
-    </listbox>
-                </div> 
-                
-                <space></space>   
-                 <space></space>     
-                                
                                
                        <h:div class="ibox-title">
                             <h:h5>Confirmación de Cita</h:h5>
@@ -100,10 +73,7 @@
                                     <div class="col-lg-offset-6 col-lg-2">
                                        <hbox>
                                         <button class="btn btn-primary block full-width m-b" type="submit" iconSclass="fa fa-check-circle-o">Confirmar</button>
-                                          <space></space>
-                                          <button class="btn btn-primary block full-width m-b"  iconSclass="fa fa-times">Reprogramar</button>
-                                          <space></space>
-                                          <button class="btn btn-w-m btn-danger"  iconSclass="fa fa-times">Cancelar</button>
+                                       
                                         </hbox>
                                     </div>
                                 </div>
@@ -118,5 +88,5 @@
                     </h:div>
                 </div>
             
-            </div>
+            
 </zk>

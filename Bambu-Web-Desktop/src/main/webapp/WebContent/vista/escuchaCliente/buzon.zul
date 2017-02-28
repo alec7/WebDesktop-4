@@ -1,0 +1,61 @@
+<?link href="../../assets/css/bootstrap.min.css" rel="stylesheet"?>
+    <?link href="../../assets/font-awesome/css/font-awesome.css" rel="stylesheet"?>
+
+<!-- Toastr style -->
+<?link href="../../assets/css/plugins/toastr/toastr.min.css" rel="stylesheet"?>
+
+<!-- Gritter -->
+<?link href="../../assets/js/plugins/gritter/jquery.gritter.css" rel="stylesheet"?>
+
+<?link href="../../assets/css/animate.css" rel="stylesheet"?>
+<?link href="../../assets/css/style.css" rel="stylesheet"?>
+
+
+<zk xmlns:h="http://www.w3.org/1999/xhtml" xmlns:zk="http://www.zkoss.org/2005/zk">
+ 
+ 
+  <div class="col-lg-9 animated fadeInRight" height="600px" width="1100px">
+  <div class="mail-box-header">
+ <h:form method="get" action="index.html" class="pull-right mail-search">
+                   <div class="input-group">
+                        <textbox type="text" class="form-control input-sm" name="buscar" placeholder=""/>
+                        <div class="input-group-btn">
+                            <button type="submit" class="btn btn-sm btn-primary">
+                                Buscar
+                            </button>
+                        </div>
+                    </div>
+                </h:form>
+                
+                 <h:h2>
+                    Bandeja de Entrada (0)
+                </h:h2>
+                <div class="mail-tools tooltip-demo m-t-md">
+                    <div class="btn-group pull-right">
+                        
+                    </div>
+                    
+
+                </div>
+                <div class="mail-box">
+                <listbox id="lstListaSubasta"  emptyMessage="No hay mensajes" class="table table-hover table-mail">
+                   <template name="model">
+						<listitem>
+							<listcell>
+								<hbox>
+								 <image src="${each.preview}" width="20px" height="20px" />
+									<hbox>
+									    <label value="${each.nombreSub}"/> 
+			                            <label value="${each.fechaCierre}" /> 
+										<label value="${each.montoMaximo}" />
+                                   </hbox>
+								</hbox>
+							</listcell>
+						</listitem>
+					</template>
+
+				</listbox>
+                </div>
+                </div>
+                </div>
+</zk>

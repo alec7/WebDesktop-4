@@ -1,0 +1,109 @@
+    <?link href="../../assets/css/bootstrap.min.css" rel="stylesheet"?>
+    <?link href="../../assets/font-awesome/css/font-awesome.css" rel="stylesheet"?>
+
+    <!-- Toastr style -->
+    <?link href="../../assets/css/plugins/toastr/toastr.min.css" rel="stylesheet"?>
+
+    <!-- Gritter -->
+    <?link href="../../assets/js/plugins/gritter/jquery.gritter.css" rel="stylesheet"?>
+
+    <?link href="../../assets/css/animate.css" rel="stylesheet"?>
+    <?link href="../../assets/css/style.css" rel="stylesheet"?>
+    <?link href="../../assets/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet"?>
+    <?link href="../../assets/css/plugins/dataTables/datatables.min.css" rel="stylesheet"?>
+
+
+<?page title="Registro de Notificación" contentType="text/html;charset=UTF-8"?>
+<zk xmlns:h="http://www.w3.org/1999/xhtml" xmlns:zk="http://www.zkoss.org/2005/zk" >
+<window apply="controlador.ControladorNotificacion" >
+
+            
+                <div class="col-lg-12" >
+                    <h:div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                            <h:h5>Registro de Notificación</h:h5>
+                        </div>
+                        <h:div class="ibox-title">
+                            <h:h5>Datos de la Notificación</h:h5>
+                           
+                        </h:div>
+                        <div class="ibox-content">
+                            <h:form class="form-horizontal">
+                            
+                                
+                             
+                             <div class="form-group"><label class="col-lg-2 control-label">Tipo de Notificación:</label>
+
+                                     <div class="col-lg-3"><listbox mold="select" sclass="form-control" id="tipoNotificacion">
+		                                 <template name="model">
+											 <listitem label="${each.descripcion}"/>
+			                              </template>
+		                               </listbox>
+                                 </div>
+                                </div>
+                             
+                                <div class="form-group"><label class="col-lg-2 control-label">Título:</label>
+
+                                    <div class="col-lg-3"><textbox type="text"  rows="3"  id="titulo" class="form-control required" /> 
+                                    </div>
+                                   
+                                </div>
+
+                                
+                                 
+                                 <div class="form-group"><label class="col-lg-2 control-label">Contenido:</label>
+                                 
+                                  <div class="form-group">
+
+                                    <div class="col-lg-6"><textbox type="text" rows="5" id="contenido" class="form-control required" /></div>
+                                </div>
+                                </div>
+                               
+                               
+                                 <div class="col-lg-12">
+                                 
+                        <space></space>     
+                        <space></space> 
+                        <div class="form-group">
+                                    <div class="col-lg-offset-8 col-lg-2">
+                                    <hbox>
+                                        <button class="btn btn-primary block full-width m-b" id="guardar" iconSclass="fa fa-save">Guardar</button>
+                                        <space></space>
+                                        <button class="btn btn-w-m btn-danger" id="cancelar"  iconSclass="fa fa-times">Cancelar</button>
+                                        </hbox>
+                                    </div>
+                                </div> 
+                                
+                         <div class="form-group"><label class="col-lg-2 control-label">Lista de Notificaciones</label>
+	                                 <listbox id="notificaciones" vflex="1" emptyMessage="No hay notificaciones registradas" height="500px" >
+					<listhead>
+						<listheader  label="Notificación" />
+						<listheader  label="Tipo de Notificación"/>
+						<listheader  label=""/>
+					</listhead>
+					<template name="model">
+						<listitem value="${each}">
+							<listcell label="${each.titulo}"></listcell>
+							<listcell label="${each.tipo_notificacion}"></listcell>
+							<listcell>
+								
+								<button class="btn btn-danger" id="${each.codigo}" forward="onClick=notificaciones.onNotificacionDelete" iconSclass="fa fa-trash-o" width="36px"/>
+							</listcell>
+						</listitem>
+					</template>
+				</listbox>
+	                                 
+                                  </div>
+                        
+                                                
+                        </div>
+                                
+                            </h:form>
+                        </div>
+                    </h:div>
+                </div>
+            
+            </window>
+                
+            
+</zk>

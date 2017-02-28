@@ -13,39 +13,33 @@
     
 
 
-<?page title="Registrar Bloque" contentType="text/html;charset=UTF-8"?>
+<?page title="Registrar Incidencia" contentType="text/html;charset=UTF-8"?>
 <zk xmlns:h="http://www.w3.org/1999/xhtml" xmlns:zk="http://www.zkoss.org/2005/zk" >
 
 
 
-<window apply="controlador.ControladorBloque">
+<window apply="controlador.ControladorIncidencia">
 			<div class="col-lg-12" >
                     <h:div class="ibox float-e-margins">
                         <h:div class="ibox-title">
-                            <h:h5>Registrar Bloque</h:h5>
-                           
+                            <h:h5>Registrar Incidencia</h:h5>
                         </h:div>
                         <div class="ibox-content">
                             <h:form class="form-horizontal">
                                  <div class="ibox float-e-margins">
-                                 <div class="form-group"><label class="col-lg-2 control-label">Bloque:</label>
-                                    <div class="col-sm-2"> <div class="input-group"><textbox id="bloque" type="text" class="form-control col-lg-2"/> <span class="input-group-btn"> 
-                                        	 </span></div>
-                                		</div> 
+                                 <div class="form-group"><label class="col-lg-2 control-label">Tipo de Incidencia:</label>
+	                                 <div class="col-lg-4">
+	                                 <listbox mold="select" sclass="form-control" id="tipoIncidencia">
+		                                 <template name="model">
+											 <listitem label="${each.descripcion}"/>
+			                              </template>
+		                               </listbox>
+	                                 </div>
                                 </div>
-                               
-                                 <div class="form-group"><label class="col-lg-2 control-label">Hora de Inicio:</label>
+		                         <div class="form-group"><label class="col-lg-2 control-label">Incidencia:</label>
 
-                                    <div class="col-sm-2"><timebox cols="12" id="horaInicio" format="a hh:mm" mold="rounded" onCreate="self.value = new Date()" />
-                                	</div>
+                                    <div class="col-lg-3"><textbox type="text"  id="incidencia" class="form-control" /> </div>
                                 </div>
-                                <div class="form-group"><label class="col-lg-2 control-label">Hora de Finalización:</label>
-
-                                    <div class="col-sm-2"><timebox cols="12" id="horaFin" format="a hh:mm" mold="rounded" onCreate="self.value = new Date()" />
-                               		</div>
-                                </div>
-                                
-                            
 		                
                                 </div>
                                 
@@ -60,6 +54,24 @@
                         </div>
                     </h:div>
                 </div>
+                
+                 <listbox id="incidencias" vflex="1" emptyMessage="No hay incidencias registradas" height="350px" width="740px">
+					<listhead>
+						<listheader  label="Incidencia" />
+						<listheader  label="Tipo de Incidencia"/>
+						<listheader  label=""/>
+					</listhead>
+					<template name="model">
+						<listitem value="${each}">
+							<listcell label="${each.descripcion}"></listcell>
+							<listcell label="${each.tipo_incidencia}"></listcell>
+							<listcell>
+								
+								<button class="btn btn-danger" id="${each.codigo}" forward="onClick=incidencias.onIncidenciaDelete" iconSclass="fa fa-trash-o" width="36px"/>
+							</listcell>
+						</listitem>
+					</template>
+				</listbox>
 
   
             </window>
