@@ -12,6 +12,10 @@ import modelo.Maestrico;
 
 public class IncidenciaDAO extends ConexionDAO{
 	
+	public IncidenciaDAO() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	public void registrarIncidencia(Incidencia i){
 		
 		String tiraSQL= "INSERT INTO  tb_incidencia (codigo,descripcion,status,tipo_incidencia) "
