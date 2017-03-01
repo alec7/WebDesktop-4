@@ -253,20 +253,27 @@ public class MaestricoListController extends SelectorComposer<Component>{
 		refreshDetailView();
 	} 
 	
-	public String titulo(){
-		String t= "Registrar ";
+	public String titulo(){		
+		String t= null;
+		t = "Registrar ";
 		switch (tabla){
+		case "tb_rol": 
+			t=t+"Rol";
+			return t;
+		case "tb_equipo": 
+			t=t+"Equipo";
+			return t;
 		case "tb_dia_laborable": 
 			t=t+"Día Laborable";
+			return t;
+		case "tb_respuesta": 
+			t=t+"Respuesta";
 			return t;
 		case "tb_estado": 
 			t=t+"Estado";
 			return t;
 		case "tb_orientacion": 
 			t=t+"Orientación del Servicio";
-			return t;
-		case "tb_rol": 
-			t=t+"Rol";
 			return t;
 		case "tb_tipo_acuerdo": 
 			t=t+"Tipo de Acuerdo";
@@ -292,14 +299,14 @@ public class MaestricoListController extends SelectorComposer<Component>{
 		case "tb_tipo_pregunta": 
 			t=t+"Tipo de Pregunta";
 			return t;
-		case "tb_tipo_red_social": 
-			t=t+"Tipo de Red Social";
+		case "tb_tipo_preferencia": 
+			t=t+"Clasificación de Preferencia";
 			return t;
 		case "tb_tipo_servicio": 
 			t=t+"Tipo de Servicio";
 			return t;
-		case "tb_tipo_referencia": 
-			t=t+"Tipo de Referencia";
+		case "tb_referencia": 
+			t=t+"Referencia";
 			return t;
 		case "tb_turno": 
 			t=t+"Turno";
@@ -313,14 +320,8 @@ public class MaestricoListController extends SelectorComposer<Component>{
 		case "tb_cubiculo": 
 			t=t+"Cubículo";
 			return t;
-		case "tb_equipo": 
-			t=t+"Equipo";
-			return t;
 		case "tb_habito": 
 			t=t+"Hábito";
-			return t;
-		case "tb_indicador": 
-			t=t+"Indicador";
 			return t;
 		case "tb_necesidad": 
 			t=t+"Necesidad";
@@ -331,6 +332,13 @@ public class MaestricoListController extends SelectorComposer<Component>{
 		case "tb_preferencia": 
 			t=t+"Preferencia";
 			return t;
+		case "tb_tipo_encuesta": 
+			t=t+"Tipo de Encuesta";
+			return t;
+		case "tb_tipo_formulario": 
+			t=t+"Tipo de Formulario";
+			return t;
+		
 		}
 		return "";
 	}

@@ -1,0 +1,41 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+
+    <?link href="../../assets/css/bootstrap.min.css" rel="stylesheet"?>
+    <?link href="../../assets/font-awesome/css/font-awesome.css" rel="stylesheet"?>
+
+    <!-- Sweet Alert -->
+    <?link href="../../assets/css/plugins/sweetalert/sweetalert.css" rel="stylesheet"?>
+
+    <?link href="../../assets/css/animate.css" rel="stylesheet"?>
+    <?link href="../../assets/css/style.css" rel="stylesheet"?>
+    
+<zk xmlns:h="http://www.w3.org/1999/xhtml" xmlns:zk="http://www.zkoss.org/2005/zk">
+<window  border="none" width="300px" height="500px">
+
+<script type="text/javascript">
+$('.demo2').click(function(){
+            swal({
+                title: "Cita Registrada!",
+                text: "Tu cita ha sido registrada satisfactoriamente!",
+                type: "success"
+            });
+        });
+
+</script>
+
+
+<!-- Mainly scripts -->
+    <?script src="../../assets/js/jquery-3.1.1.min.js"/?>
+    <?script src="../../assets/js/bootstrap.min.js"/?>
+    <?script src="../../assets/js/plugins/metisMenu/jquery.metisMenu.js"?>
+    <?script src="../../assets/js/plugins/slimscroll/jquery.slimscroll.min.js"?>
+
+    <!-- Custom and plugin javascript -->
+    <?script src="../../assets/js/inspinia.js"/?>
+    <?script src="../../assets/js/plugins/pace/pace.min.js"/?>
+
+    <!-- Sweet alert -->
+    <?script src="js/plugins/sweetalert/sweetalert.min.js"/?>
+
+</window>
+</zk>

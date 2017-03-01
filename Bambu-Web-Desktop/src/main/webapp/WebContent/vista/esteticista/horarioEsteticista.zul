@@ -20,13 +20,13 @@
                 <div class="col-lg-12" >
                     <h:div class="ibox float-e-margins">
                         <h:div class="ibox-title">
-                            <h:h5>Esteticista</h:h5>
+                            <h:h5>Horario del Esteticista</h:h5>
                            
                         </h:div>
                         <div class="ibox-content">
                             <h:form class="form-horizontal">
                                  <div class="ibox float-e-margins">
-                                 <div class="form-group"><label class="col-lg-2 control-label">Cedula</label>
+                                 <div class="form-group"><label class="col-lg-2 control-label">Cedula:</label>
                                     <div class="col-sm-5"> <div class="input-group"><textbox id="cedula" type="text" class="form-control col-lg-2"/> <span class="input-group-btn"> <button id="buscar" type="button" class="btn btn-primary">Buscar
                                         	</button> </span></div>
                                 		</div> 
@@ -47,10 +47,10 @@
                                 </div>
                                 
                               <h:div class="ibox-title" >
-		                            <label class="col-lg-2 control-label">Bloque:</label><h:br></h:br>
+		                            
 	                                     
 		                        	</h:div>
-		                        	
+		                        	<label class="col-lg-2 control-label">Bloques:</label><h:br></h:br>
 		                        	<tabbox id="tb" height="300px">
 									    <tabs id="tabs">
 									    </tabs>
@@ -118,8 +118,7 @@
 									
 												
 		                        
-		                     <!--    <timebox cols="12" format="a hh:mm:ss" mold="rounded"
-                            onCreate="self.value = new Date()" /> -->
+		                    
                       
 		                        
 		                        

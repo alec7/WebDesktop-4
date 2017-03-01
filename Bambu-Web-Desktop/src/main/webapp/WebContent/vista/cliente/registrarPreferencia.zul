@@ -1,0 +1,120 @@
+    <?link href="../../assets/css/bootstrap.min.css" rel="stylesheet"?>
+    <?link href="../../assets/font-awesome/css/font-awesome.css" rel="stylesheet"?>
+
+    <!-- Toastr style -->
+    <?link href="../../assets/css/plugins/toastr/toastr.min.css" rel="stylesheet"?>
+
+    <!-- Gritter -->
+    <?link href="../../assets/js/plugins/gritter/jquery.gritter.css" rel="stylesheet"?>
+
+    <?link href="../../assets/css/animate.css" rel="stylesheet"?>
+    <?link href="../../assets/css/style.css" rel="stylesheet"?>
+    <?link href="../../assets/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet"?>
+    
+
+
+<?page title="Registrar Preferencia" contentType="text/html;charset=UTF-8"?>
+<zk xmlns:h="http://www.w3.org/1999/xhtml" xmlns:zk="http://www.zkoss.org/2005/zk" >
+<window apply="controlador.ControladorPreferencia" id="registrarDatos" >
+
+                <div class="col-lg-12" >
+                    <h:div class="ibox float-e-margins">
+                        <h:div class="ibox-title">
+                            <h:h5>Registrar Preferencia</h:h5>
+                           
+                        </h:div>
+                        <div class="ibox-content">
+                       	<h:form class="form-horizontal">
+						<space></space>
+							        
+						<div class="row">
+						<div class="col-lg-6">     
+						<div class="ibox float-e-margins">
+							<div class="form-group">
+								<label class="col-lg-4 control-label">
+									Tipo de Preferencia
+								</label>
+
+								<div class="col-lg-8">
+									<listbox mold="select" sclass="form-control" id="tipo_preferencia">
+		                                 <template name="model">
+											 <listitem label="${each.descripcion}"/>
+			                              </template>
+		                               </listbox>
+								</div>
+							</div>
+						</div>
+						<div class="ibox float-e-margins">
+							<div class="form-group">
+								<label class="col-lg-4 control-label">
+									Descrpcion
+								</label>
+								<div class="col-lg-8">
+									<textbox type="text" id="titulo"
+										class="form-control required" />
+								</div>
+							</div>
+						</div>
+
+						</div>
+						
+						<div class="col-lg-6">
+							<div class="col-lg-12">
+									<button
+										style="width:200px; height:200px;" id="uploadBtnImg2" label=""
+										upload="true" sclass="button"
+										image="../../imgs/SubirImagen.jpg" />
+									<image id="image2" />
+									<image src="../../imgs/cerrar.png"
+										id="imgCerrarImg2" width="30px" height="30px" visible="false" />
+									<space></space>
+								</div>
+						
+							</div>        
+                                </div>
+                                
+                                
+                             
+                            <h:br></h:br>
+                             <h:br></h:br>
+                            <space></space>
+                            <space></space>
+                            <space></space>
+                            <space></space>
+                            <space></space>
+                            <space></space>
+                                <div class="form-group"><label class="col-lg-2 control-label">Preferencias</label>
+	                                 <listbox id="listaObjtivos" height="150px" width="740px" vflex="1" emptyMessage="No hay preferencias registradas"  >
+										<listhead>
+											<listheader  label="Titulo"  width="460px"/>
+											<listheader  label="Tipo de preferencia"/>
+											<listheader  label="Imagen"/>
+										</listhead>
+										<template name="model">
+											<listitem value="${each}">
+												<listcell label="${each.descripcion}"></listcell>
+												<listcell label="${each.tipo_objetivo}"></listcell>
+												<listcell >
+													<button class="btn btn-danger" id="${each.codigo}" forward="onClick=listaObjtivos.onObjetivoDelete" iconSclass="fa fa-trash-o" width="36px"/>
+												</listcell>
+											</listitem>
+										</template>
+									</listbox>
+	                                 
+                                  </div>
+							        
+							          <div class="form-group">
+                                    <div class="col-lg-offset-8 col-lg-2">
+                                       <hbox>
+                                        <button class="btn btn-primary block full-width m-b" type="submit" iconSclass="fa fa-save" id="guardar">Guardar</button>
+                                        <space></space>
+                                        <button class="btn btn-w-m btn-danger"  iconSclass="fa fa-times" id="cancelar">Cancelar</button>
+                                        </hbox>
+                                    </div>
+                                </div>
+                            </h:form>
+                        </div>
+                    </h:div>
+                </div>              
+            </window>
+</zk>

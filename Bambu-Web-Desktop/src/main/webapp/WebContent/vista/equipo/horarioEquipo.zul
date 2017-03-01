@@ -1,0 +1,144 @@
+    <?link href="../../assets/css/bootstrap.min.css" rel="stylesheet"?>
+    <?link href="../../assets/font-awesome/css/font-awesome.css" rel="stylesheet"?>
+
+    <!-- Toastr style -->
+    <?link href="../../assets/css/plugins/toastr/toastr.min.css" rel="stylesheet"?>
+
+    <!-- Gritter -->
+    <?link href="../../assets/js/plugins/gritter/jquery.gritter.css" rel="stylesheet"?>
+
+    <?link href="../../assets/css/animate.css" rel="stylesheet"?>
+    <?link href="../../assets/css/style.css" rel="stylesheet"?>
+    <?link href="../../assets/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet"?>
+    
+
+
+<?page title="Horario Esteticista" contentType="text/html;charset=UTF-8"?>
+<zk xmlns:h="http://www.w3.org/1999/xhtml" xmlns:zk="http://www.zkoss.org/2005/zk" >
+<window apply="controlador.ControladorHorarioEsteticista" id="horarioEsteticista" >
+
+                <div class="col-lg-12" >
+                    <h:div class="ibox float-e-margins">
+                        <h:div class="ibox-title">
+                            <h:h5>Horaio del Equipo</h:h5>
+                           
+                        </h:div>
+                        <div class="ibox-content">
+                            <h:form class="form-horizontal">
+                                 <div class="ibox float-e-margins">
+                                 <div class="form-group"><label class="col-lg-2 control-label">Equipo:</label>
+		
+		                                    <div class="col-lg-3"><listbox mold="select" sclass="form-control">
+		                                 <listitem label="E1"/>
+		                                 <listitem label="E2"/>
+		                                 <listitem label="E3"/>
+		                                 </listbox>
+		                                 </div>
+		                                </div>
+                               
+                                 <h:div class="ibox-title">
+		                            <h:h5>Día Laborable</h:h5>
+		                        </h:div>
+                                
+                                <div id="dias_laborables">
+                                
+                                	
+                                	
+                                </div>
+                                
+                              <h:div class="ibox-title" >
+		                            
+	                                     
+		                        	</h:div>
+		                        	<label class="col-lg-2 control-label">Bloques:</label><h:br></h:br>
+		                        	<tabbox id="tb" height="300px">
+									    <tabs id="tabs">
+									    </tabs>
+									    <tabpanels id="tabpanels">
+									        <tabpanel>
+									        	<div apply="org.zkoss.bind.BindComposer"
+												viewModel="@id('vm') @init('controlador.ControladorHorarioEsteticista')" >
+												<chosenbox model="@load(vm.model)" selectedObjects="@bind(vm.selectedObjects)" height="100px" width="500px" />
+													<button label="show selection" onClick="@command('showSelection')" />	
+												</div>
+									        </tabpanel>
+									        <tabpanel>
+									        	<div apply="org.zkoss.bind.BindComposer"
+												viewModel="@id('vm') @init('controlador.ControladorHorarioEsteticista')" >
+												<chosenbox model="@load(vm.model)" selectedObjects="@bind(vm.selectedObjects)" width="500px" height="100px"/>
+													<button label="show selection" onClick="@command('showSelection')" />	
+												</div>
+									        </tabpanel>
+									        <tabpanel>
+									        	<div apply="org.zkoss.bind.BindComposer"
+												viewModel="@id('vm') @init('controlador.ControladorHorarioEsteticista')" >
+												<chosenbox model="@load(vm.model)" selectedObjects="@bind(vm.selectedObjects)" width="500px" height="100px"/>
+													<button label="show selection" onClick="@command('showSelection')" />	
+												</div>
+									        </tabpanel>
+									        <tabpanel>
+									        	<div apply="org.zkoss.bind.BindComposer"
+												viewModel="@id('vm') @init('controlador.ControladorHorarioEsteticista')" >
+												<chosenbox model="@load(vm.model)" selectedObjects="@bind(vm.selectedObjects)" width="500px" height="100px"/>
+													<button label="show selection" onClick="@command('showSelection')" />	
+												</div>
+									        </tabpanel>
+									        <tabpanel>
+									        	<div apply="org.zkoss.bind.BindComposer"
+												viewModel="@id('vm') @init('controlador.ControladorHorarioEsteticista')" >
+												<chosenbox model="@load(vm.model)" selectedObjects="@bind(vm.selectedObjects)" width="500px" height="100px" />
+													<button label="show selection" onClick="@command('showSelection')" />	
+												</div>
+									        </tabpanel>
+									        <tabpanel>
+									        	<div apply="org.zkoss.bind.BindComposer"
+												viewModel="@id('vm') @init('controlador.ControladorHorarioEsteticista')" >
+												<chosenbox model="@load(vm.model)" selectedObjects="@bind(vm.selectedObjects)" width="500px" height="100px" />
+													<button label="show selection" onClick="@command('showSelection')" />	
+												</div>
+									        </tabpanel>
+									        <tabpanel>
+									        	<div apply="org.zkoss.bind.BindComposer"
+												viewModel="@id('vm') @init('controlador.ControladorHorarioEsteticista')" >
+												<chosenbox model="@load(vm.model)" selectedObjects="@bind(vm.selectedObjects)" width="500px" height="100px"/>
+													<button label="show selection" onClick="@command('showSelection')" />	
+												</div>
+									        </tabpanel>
+									        <tabpanel>
+									        	<div apply="org.zkoss.bind.BindComposer"
+												viewModel="@id('vm') @init('controlador.ControladorHorarioEsteticista')" >
+												<chosenbox model="@load(vm.model)" selectedObjects="@bind(vm.selectedObjects)" width="500px" height="100px"/>
+													<button label="show selection" onClick="@command('showSelection')" />	
+												</div>
+									        </tabpanel>
+									        
+									       
+									    </tabpanels>
+									</tabbox>
+									
+												
+		                        
+		                    
+                      
+		                        
+		                        
+                                
+                                <h:div class="ibox-title">
+		                            
+		                        </h:div>
+                                
+                                </div>
+                                
+                              <div class="form-group">
+                                    <div class="col-lg-offset-8 col-lg-2">
+                                       <hbox>
+                                        <button class="btn btn-primary block full-width m-b" iconSclass="fa fa-save" id="guardar">Guardar</button>
+                                        </hbox>
+                                    </div>
+                                </div>
+                            </h:form>
+                        </div>
+                    </h:div>
+                </div>
+            </window>
+</zk>

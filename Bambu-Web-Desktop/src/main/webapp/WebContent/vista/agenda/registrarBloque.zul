@@ -1,0 +1,66 @@
+    <?link href="../../assets/css/bootstrap.min.css" rel="stylesheet"?>
+    <?link href="../../assets/font-awesome/css/font-awesome.css" rel="stylesheet"?>
+
+    <!-- Toastr style -->
+    <?link href="../../assets/css/plugins/toastr/toastr.min.css" rel="stylesheet"?>
+
+    <!-- Gritter -->
+    <?link href="../../assets/js/plugins/gritter/jquery.gritter.css" rel="stylesheet"?>
+
+    <?link href="../../assets/css/animate.css" rel="stylesheet"?>
+    <?link href="../../assets/css/style.css" rel="stylesheet"?>
+    <?link href="../../assets/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet"?>
+    
+
+
+<?page title="Registrar Bloque" contentType="text/html;charset=UTF-8"?>
+<zk xmlns:h="http://www.w3.org/1999/xhtml" xmlns:zk="http://www.zkoss.org/2005/zk" >
+
+
+
+<window apply="controlador.ControladorBloque">
+			<div class="col-lg-12" >
+                    <h:div class="ibox float-e-margins">
+                        <h:div class="ibox-title">
+                            <h:h5>Registrar Bloque</h:h5>
+                           
+                        </h:div>
+                        <div class="ibox-content">
+                            <h:form class="form-horizontal">
+                                 <div class="ibox float-e-margins">
+                                 <div class="form-group"><label class="col-lg-2 control-label">Bloque:</label>
+                                    <div class="col-sm-2"> <div class="input-group"><textbox id="bloque" type="text" class="form-control col-lg-2"/> <span class="input-group-btn"> 
+                                        	 </span></div>
+                                		</div> 
+                                </div>
+                               
+                                 <div class="form-group"><label class="col-lg-2 control-label">Hora de Inicio:</label>
+
+                                    <div class="col-sm-2"><timebox cols="12" id="horaInicio" format="a hh:mm" mold="rounded" onCreate="self.value = new Date()" />
+                                	</div>
+                                </div>
+                                <div class="form-group"><label class="col-lg-2 control-label">Hora de Finalización:</label>
+
+                                    <div class="col-sm-2"><timebox cols="12" id="horaFin" format="a hh:mm" mold="rounded" onCreate="self.value = new Date()" />
+                               		</div>
+                                </div>
+                                
+                            
+		                
+                                </div>
+                                
+                              <div class="col-lg-offset-8 col-lg-2">
+                                       <hbox>
+                                        <button class="btn btn-primary block full-width m-b" id="guardar" type="button" iconSclass="fa fa-save">Guardar</button>
+                                        <space></space>
+                                        <button class="btn btn-w-m btn-danger" id="cancelar" iconSclass="fa fa-times" type="button">Cancelar</button>
+                                        </hbox>
+                                    </div>
+                            </h:form>
+                        </div>
+                    </h:div>
+                </div>
+
+  
+            </window>
+</zk>

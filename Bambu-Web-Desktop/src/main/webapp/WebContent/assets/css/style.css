@@ -8627,6 +8627,7 @@ body.md-skin {
    position: absolute;
 }
 
+
 /* para el checkbox*/
 .onoffswitch {
     position: relative; width: 90px;
@@ -8674,3 +8675,21 @@ body.md-skin {
     right: 0px; 
 }
 /* fin de stilos para el checkbox*/
+.btn.btn-primary.z-button:hover{
+	background: #1ab394;
+	}
+	
+.btn.btn-primary.z-button:focus{
+	background: #1ab394;
+	
+}
+
+.btn.btn-w-m.btn-danger.z-button:hover{
+	background: #ed5565;
+}
+
+.btn.btn-w-m.btn-danger.z-button:focus{
+	background: #ed5565;
+}
+
+

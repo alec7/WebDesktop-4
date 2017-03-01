@@ -13,9 +13,9 @@
     
 
 
-<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<?page title="Ficha del Cliente" contentType="text/html;charset=UTF-8"?>
 <zk xmlns:h="http://www.w3.org/1999/xhtml" xmlns:zk="http://www.zkoss.org/2005/zk" >
-<window >
+<window id="ficha" apply="controlador.ControladorConsultaDiagnostico">
 
             
                 <div class="col-lg-12" >
@@ -26,112 +26,121 @@
                         </h:div>
                         <div class="ibox-content">
                             <h:form class="form-horizontal">
-                              <div class="form-group"><label class="col-lg-2 control-label">Cédula</label>
-                                      <div class="col-sm-5"> <div class="input-group"><textbox type="text" class="form-control col-lg-2"/> <span class="input-group-btn"> <button type="button" class="btn btn-primary">Buscar
-                                        </button> </span></div>
-                                </div>   
-                                      
-                                </div>
-                                
-                                 <div class="ibox float-e-margins">
-                                <div class="form-group"><label class="col-lg-2 control-label">Nombre</label>
-
-                                    <div class="col-lg-3"><textbox type="text"  id="nombre" class="form-control required" /> 
-                                    </div>
-                                
-                                <div class="form-group"><label class="col-lg-1 control-label">Apellido:</label>
-
-                                    <div class="col-lg-3"><textbox type="text" id="apellido" class="form-control required" /></div>
-                                </div>
-                                </div>
-                                </div>
-                                 <space></space>
-                                  <h:div class="ibox-title">
-                                  <h:h5>Hábitos</h:h5>
-                                  </h:div>
-                                 <div class="form-group"><label class="col-lg-2 control-label">¿Practica algún Deporte?</label>
-                                      <div class="col-lg-4"><listbox mold="select" sclass="form-control">
-                                 <listitem label="Si"/>
-                                 <listitem label="No"/>
-                                 </listbox>
-                                 </div>
-                                </div>
-                                
-                                 <div class="form-group"><label class="col-lg-2 control-label">¿El paciente es fumador?</label>
-                                    <div class="col-lg-4"><listbox mold="select" sclass="form-control">
-                                 <listitem label="Si"/>
-                                 <listitem label="No"/>
-                                 </listbox>
-                                 </div>
-                                </div>
-                                
-                                <div class="form-group"><label class="col-lg-2 control-label">¿Acude con frecuencia al Gimnasio?</label>
-                                   <div class="col-lg-4"><listbox mold="select" sclass="form-control">
-                                 <listitem label="Si"/>
-                                 <listitem label="No"/>
-                                 </listbox>
-                                 </div>
-                                </div>
-                                
-                                <h:div class="ibox-title">
-                                  <h:h5>Antecedentes</h:h5>
-                                  </h:div>
-                                 <div class="form-group"><label class="col-lg-2 control-label">¿Posee algún Marcapaso?</label>
-                                     
-                                 <div class="col-lg-4"><listbox mold="select" sclass="form-control">
-                                 <listitem label="Si"/>
-                                 <listitem label="No"/>
-                                 </listbox>
-                                 </div>
-                                     
-                                </div>
-                                
-                                 <div class="form-group"><label class="col-lg-2 control-label">¿Es Alergico(a)?</label>
-                                    <div class="col-lg-4"> <chosenbox   hflex="1" class="form-control required" /></div>
-                                </div>
-                                
-                                <div class="form-group"><label class="col-lg-2 control-label">¿Ha sido intervenido Quirurgicamente?</label>
-                                    <div class="col-lg-4"> <chosenbox   hflex="1" class="form-control required" /></div>
-                                </div>
-                                
-                                <div class="form-group"><label class="col-lg-2 control-label">¿Sufre de Diabetes?</label>
-                                    <div class="col-lg-4"><listbox mold="select" sclass="form-control">
-                                 <listitem label="Si"/>
-                                 <listitem label="No"/>
-                                 </listbox>
-                                 </div>
-                                </div>
-                                <div class="form-group"><label class="col-lg-2 control-label">¿Es Hipertenso?</label>
-                                    <div class="col-lg-4"><listbox mold="select" sclass="form-control">
-                                 <listitem label="Si"/>
-                                 <listitem label="No"/>
-                                 </listbox>
-                                 </div>
-                                </div>
-                                <div class="form-group"><label class="col-lg-2 control-label">¿Sufre de la Columna?</label>
-                                    <div class="col-lg-4"><listbox mold="select" sclass="form-control">
-                                 <listitem label="Si"/>
-                                 <listitem label="No"/>
-                                 </listbox>
-                                 </div>
-                                </div>
-                                <div class="form-group"><label class="col-lg-2 control-label">¿Posee una piel sensible?</label>
-                                    <div class="col-lg-4"><listbox mold="select" sclass="form-control">
-                                 <listitem label="Si"/>
-                                 <listitem label="No"/>
-                                 </listbox>
-                                 </div>
-                                </div>
-                                 <h:div class="ibox-title">
-                                  <h:h5>Test</h:h5>
-                                  </h:div>
-                                
-                                <div class="form-group"><label class="col-lg-2 control-label">cintura</label>
-                                    <div class="col-lg-3"> <textbox   hflex="1" class="form-control required" /></div>
-                                </div>
-                                <div class="form-group"><label class="col-lg-2 control-label">Abdomen</label>
-                                    <div class="col-lg-3"> <textbox   hflex="1" class="form-control required" /></div>
-                                </div>
+                            
+                            <tabbox id="tb" height="500px" width="1000px" >
+							    <tabs id="tabs">
+							        <tab id="A" label="Datos Personales" />
+							        <tab id="C" label="Hábitos" />
+							        <tab id="D" label="Antecedentes" />
+							        <tab id="B" label="Servicios Recomendados" />
+							    </tabs>
+							    <tabpanels>
+							        <tabpanel style="overflow:auto;">
+							        <space></space>
+									        	<div class="form-group" style="margin-top:30px; margin-bottom:30px;"><label class="col-lg-2 control-label">Cédula:</label>
+		                                      <div class="col-sm-4"> <div class="input-group"><textbox type="text" class="form-control col-lg-2"/> <span class="input-group-btn"> <button type="button" class="btn btn-primary">Buscar
+		                                        </button> </span></div>
+		                                </div>   
+		                                      
+		                                </div>
+		                                
+		                                 <div class="ibox float-e-margins">
+		                                <div class="form-group"><label class="col-lg-2 control-label">Nombre:</label>
+		
+		                                    <div class="col-lg-3"><textbox type="text"  id="nombre" class="form-control required" /> 
+		                                    </div>
+		                                
+		                                <div class="form-group"><label class="col-lg-1 control-label">Apellido:</label>
+		
+		                                    <div class="col-lg-3"><textbox type="text" id="apellido" class="form-control required" /></div>
+		                                </div>
+		                                </div>
+		                                </div>
+		                                
+		                                <div class="ibox float-e-margins">
+		                                <div class="form-group"><label class="col-lg-2 control-label">Estado Civil:</label>
+		
+		                                    <div class="col-lg-3"><listbox mold="select" sclass="form-control">
+		                                 <listitem label="Soltero"/>
+		                                 <listitem label="Casado"/>
+		                                 <listitem label="Divorsiado"/>
+		                                 <listitem label="Viudo"/>
+		                                 </listbox>
+		                                 </div>
+		                                
+		                                <div class="form-group"><label class="col-lg-1 control-label">Ocupación:</label>
+		
+		                                     <div class="col-lg-3"><listbox mold="select" sclass="form-control">
+		                                 <listitem label="Ama de Casa"/>
+		                                 <listitem label="Enfermera"/>
+		                                 <listitem label="Obrero"/>
+		                                 <listitem label="Comenciante"/>
+		                                 </listbox>
+		                                 </div>
+		                                </div>
+		                                </div>
+		                                </div>
+		                                
+		                                <div class="form-group"><label class="col-lg-2 control-label">Dirección:</label>
+		
+		                                    <div class="col-lg-7"><textbox type="text" rows="2"  class="form-control required" /></div>
+		                                </div>
+		                                <div class="ibox float-e-margins">
+		                                <div class="form-group"><label class="col-lg-2 control-label">Estado:</label>
+		
+		                                    <div class="col-lg-3"><listbox mold="select" sclass="form-control">
+		                                 <listitem label="Lara"/>
+		                                 <listitem label="Zulia"/>
+		                                 </listbox>
+		                                 </div>
+		                                
+		                                <div class="form-group"><label class="col-lg-1 control-label">Ciudad:</label>
+		
+		                                     <div class="col-lg-3"><listbox mold="select" sclass="form-control">
+		                                 <listitem label="Barquisimeto"/>
+		                                 <listitem label="Cabudare"/>
+		                                 </listbox>
+		                                 </div>
+		                                </div>
+		                                </div>
+		                                </div>
+		                                
+							        </tabpanel>
+							        
+							        <tabpanel  style="overflow:auto;" id="tabHabitos">
+							        <space></space>
+							        	
+							        </tabpanel>
+							        
+							        <tabpanel  style="overflow:auto;" id="tabAntecedentes">
+							        <space></space>
+							        </tabpanel>
+							        
+							       <tabpanel>	
+							        	<space></space>
+							        	<div class="ibox float-e-margins">
+			                                <div class="form-group">
+		                                    <listbox id="listaRedes" height="400px" width="740px" vflex="1" emptyMessage="No puede realizarse ningún servicio"  >
+												<listhead>
+													<listheader   />
+												</listhead>
+													<listitem>
+														<listcell label="Servicio 1"></listcell>
+													</listitem>
+													<listitem>
+														<listcell label="Servicio 2"></listcell>
+													</listitem>
+													<listitem>
+														<listcell label="Servicio 3"></listcell>
+													</listitem>
+											</listbox>
+											</div>
+		                                </div> 
+							        
+							        </tabpanel>
+							    </tabpanels>
+							</tabbox>
+							<space></space>
                               <div class="form-group">
                                     <div class="col-lg-offset-8 col-lg-2">
                                        <hbox>
@@ -141,6 +150,7 @@
                                         </hbox>
                                     </div>
                                 </div>
+                                
                                 
                             </h:form>
                         </div>

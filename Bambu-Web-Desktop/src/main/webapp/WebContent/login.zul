@@ -5,18 +5,18 @@
     <?link href="assets/css/animate.css" rel="stylesheet"?>
     <?link href="assets/css/style.css" rel="stylesheet"?>
     
-<div class="gray-bg" apply="controlador.ControladorSesion">
+<div class="gray-bg" style="height: 100%;" apply="controlador.ControladorSesion">
 
     <div class="middle-box text-center loginscreen animated fadeInDown">
         <div>
             <div>
 
-                <h:h1 class="logo-name">Spa</h:h1>
+                <h:h1 class="logo-name"><image  class="img-circle" src="assets/img/logo.png" /></h:h1>
 
             </div>
-            <h:h3>Bienvenido a Spinetti Spa Gym</h:h3>
+            <h:h3>Bienvenido a Bambú</h:h3>
             
-            <h:p>Iniciar Sesión.</h:p>
+            <h:p>Iniciar Sesión</h:p>
             <h:form class="m-t" role="form" action="index.html">
                 <div class="form-group">
                     <textbox type="email" class="form-control" placeholder="Usuario"  id="correo"/>
@@ -24,7 +24,7 @@
                 <div class="form-group">
                     <textbox type="password" class="form-control" placeholder="Contraseña" id="contraseña" />
                 </div>
-                <button  class="btn btn-primary block full-width m-b" id="iniciar">Iniciar sesión</button>
+                <button  class="btn btn-primary block full-width m-b" id="iniciar">Iniciar Sesión</button>
 
                 <a href="#"><h:small>Olvidó su contraseña?</h:small></a>
                

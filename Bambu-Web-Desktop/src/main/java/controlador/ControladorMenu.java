@@ -43,11 +43,14 @@ public class ControladorMenu extends  GenericForwardComposer<Window> {
 	  ArrayList<Opcion> submenu = new ArrayList<Opcion>();
 	  ArrayList<Opcion> submenuNieto = new ArrayList<Opcion>();
 	  
+	 
+	  
 	  private Include myInclude;
 		Session miSession = Sessions.getCurrent();
 		Session miSession1 = Sessions.getCurrent();
 		Session miSession2 = Sessions.getCurrent();
     
+	
 		
 		
 	
@@ -85,18 +88,34 @@ public class ControladorMenu extends  GenericForwardComposer<Window> {
 				 final String vinculo = opcionHijo.getVinculo();
 				 final String tabla = opcionHijo.getTabla();
 				 navHijo.addEventListener(Events.ON_OPEN ,new EventListener() {
-					 @Override
-					 public void onEvent(Event event1) throws Exception{
-					    	
+//					@Override
+						public void onEvent(Event event) throws Exception {
+							
+							if(tabla!=null)
+					    	{
+					    		miSession1.setAttribute("master",tabla);
 								myInclude.setSrc(null);
 								myInclude.setSrc(vinculo);
-					    	
-					    	
-					    	
-					    	// Executions.sendRedirect(vinculo);
-					    	 //Messagebox.show(opcionHijo.getVinculo());
-					    }
-					});
+					    	}
+					    	else
+					    	{
+					    		myInclude.setSrc(null);
+								myInclude.setSrc(vinculo);
+					    	}
+						}						 
+					 });
+					// @Override
+//					 public void onEvent(Event event1) throws Exception{
+//					    	
+//								myInclude.setSrc(null);
+//								myInclude.setSrc(vinculo);
+//					    	
+//					    	
+//					    	
+//					    	// Executions.sendRedirect(vinculo);
+//					    	 //Messagebox.show(opcionHijo.getVinculo());
+//					    }
+//					});
 				 navHijo.setParent(nav);
 				 submenuNieto = dao.buscarNietos("00001",  submenu.get(j).getCodigo());
 				 //System.out.println(menu.get(j).getId_opcion());

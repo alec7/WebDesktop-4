@@ -1,0 +1,105 @@
+    <?link href="../../assets/css/bootstrap.min.css" rel="stylesheet"?>
+    <?link href="../../assets/font-awesome/css/font-awesome.css" rel="stylesheet"?>
+
+    <!-- Toastr style -->
+    <?link href="../../assets/css/plugins/toastr/toastr.min.css" rel="stylesheet"?>
+
+    <!-- Gritter -->
+    <?link href="../../assets/js/plugins/gritter/jquery.gritter.css" rel="stylesheet"?>
+
+    <?link href="../../assets/css/animate.css" rel="stylesheet"?>
+    <?link href="../../assets/css/style.css" rel="stylesheet"?>
+    <?link href="../../assets/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet"?>
+    
+
+
+<?page title="Preferencias" contentType="text/html;charset=UTF-8"?>
+<zk xmlns:h="http://www.w3.org/1999/xhtml" xmlns:zk="http://www.zkoss.org/2005/zk" >
+
+
+
+<window >
+
+           
+                <div class="col-lg-12" >
+                    <h:div class="ibox float-e-margins">
+                        <h:div class="ibox-title">
+                            <h:h5>Preferencias</h:h5>
+                           
+                        </h:div>
+                      
+                      <div class="ibox-content">
+                      <h:h4>Datos Personales</h:h4>
+                            <h:form class="form-horizontal">
+                                 <div class="ibox float-e-margins">
+                                 		<div class="form-group"><label class="col-lg-2 control-label">Nombre:</label>
+
+                                    <div class="col-lg-3"><textbox type="text" id="nombre" class="form-control required" /></div>
+                               	<label class="col-lg-2 control-label">Apellido:</label>
+
+                                 <div class="col-lg-3"><textbox type="text" id="apellido" class="form-control required" /></div>
+                               	</div>
+                                 </div>
+                             </h:form>
+                       </div>            
+                           
+                   
+                 
+                    </h:div>
+                </div>
+         <space /> <space /> <space /> <space /> <space /> <space /> <space /> <space /> <space />
+
+					<h:div class="ibox-title">
+                             <h:h5>Preferencia 1</h:h5>
+                             </h:div>	
+                             
+                   		<div class="ibox-content" style="overflow:auto;" height="400px">
+                           		
+                            		<div class = "col-sm-6 col-md-3">
+							      <a href = "#" class = "thumbnail">
+							        <image src="img\a2.jpg"/>
+							      </a>
+							   </div>
+							   <div class = "col-sm-6 col-md-3">
+							      <a href = "#" class = "thumbnail">
+							      <image src="img\a3.jpg"/>
+							      </a>
+							   </div>
+			                         			
+			                         			
+			                            		<div class = "col-sm-6 col-md-3">
+							      <a href = "#" class = "thumbnail">
+							        <image src="img\a2.jpg"/>
+							      </a>
+							   </div>
+							   <div class = "col-sm-6 col-md-3">
+							      <a href = "#" class = "thumbnail">
+							      <image src="img\a3.jpg"/>
+							      </a>
+							 
+			                         			</div>
+			                         			
+			                            		<div class = "col-sm-6 col-md-3">
+							      <a href = "#" class = "thumbnail">
+							        <image src="img\a2.jpg"/>
+							      </a>
+							   </div>
+							   <div class = "col-sm-6 col-md-3">
+							      <a href = "#" class = "thumbnail">
+							      <image src="img\a3.jpg"/>
+							      </a>
+							   </div>
+                         </div>    			
+                                  <div class="form-group">
+                             	 <div class="col-lg-offset-8 col-lg-2">
+                                  <hbox>
+                                   <button class="btn btn-primary block full-width m-b" type="submit" iconSclass="fa fa-save">Guardar</button>
+                                   <space></space>
+                                   <button class="btn btn-w-m btn-danger"  iconSclass="fa fa-times">Cancelar</button>
+                                   </hbox>
+                               </div>
+                           </div>
+    
+  
+            </window>
+</zk>

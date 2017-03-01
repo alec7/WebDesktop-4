@@ -1,0 +1,78 @@
+    <?link href="../../assets/css/bootstrap.min.css" rel="stylesheet"?>
+    <?link href="../../assets/font-awesome/css/font-awesome.css" rel="stylesheet"?>
+
+    <!-- Toastr style -->
+    <?link href="../../assets/css/plugins/toastr/toastr.min.css" rel="stylesheet"?>
+
+    <!-- Gritter -->
+    <?link href="../../assets/js/plugins/gritter/jquery.gritter.css" rel="stylesheet"?>
+
+    <?link href="../../assets/css/animate.css" rel="stylesheet"?>
+    <?link href="../../assets/css/style.css" rel="stylesheet"?>
+    <?link href="../../assets/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet"?>
+    
+
+
+<?page title="Registrar Incidencia" contentType="text/html;charset=UTF-8"?>
+<zk xmlns:h="http://www.w3.org/1999/xhtml" xmlns:zk="http://www.zkoss.org/2005/zk" >
+
+
+
+<window apply="controlador.ControladorIncidencia">
+			<div class="col-lg-12" >
+                    <h:div class="ibox float-e-margins">
+                        <h:div class="ibox-title">
+                            <h:h5>Registrar Incidencia</h:h5>
+                        </h:div>
+                        <div class="ibox-content">
+                            <h:form class="form-horizontal">
+                                 <div class="ibox float-e-margins">
+                                 <div class="form-group"><label class="col-lg-2 control-label">Tipo de Incidencia:</label>
+	                                 <div class="col-lg-4">
+	                                 <listbox mold="select" sclass="form-control" id="tipoIncidencia">
+		                                 <template name="model">
+											 <listitem label="${each.descripcion}"/>
+			                              </template>
+		                               </listbox>
+	                                 </div>
+                                </div>
+		                         <div class="form-group"><label class="col-lg-2 control-label">Incidencia:</label>
+
+                                    <div class="col-lg-3"><textbox type="text"  id="incidencia" class="form-control" /> </div>
+                                </div>
+		                
+                                </div>
+                                
+                              <div class="col-lg-offset-8 col-lg-2">
+                                       <hbox>
+                                        <button class="btn btn-primary block full-width m-b" id="guardar" type="button" iconSclass="fa fa-save">Guardar</button>
+                                        <space></space>
+                                        <button class="btn btn-w-m btn-danger" id="cancelar" iconSclass="fa fa-times" type="button">Cancelar</button>
+                                        </hbox>
+                                    </div>
+                            </h:form>
+                        </div>
+                    </h:div>
+                </div>
+                
+                 <listbox id="incidencias" vflex="1" emptyMessage="No hay incidencias registradas" height="350px" width="740px">
+					<listhead>
+						<listheader  label="Incidencia" />
+						<listheader  label="Tipo de Incidencia"/>
+						<listheader  label=""/>
+					</listhead>
+					<template name="model">
+						<listitem value="${each}">
+							<listcell label="${each.descripcion}"></listcell>
+							<listcell label="${each.tipo_incidencia}"></listcell>
+							<listcell>
+								
+								<button class="btn btn-danger" id="${each.codigo}" forward="onClick=incidencias.onIncidenciaDelete" iconSclass="fa fa-trash-o" width="36px"/>
+							</listcell>
+						</listitem>
+					</template>
+				</listbox>
+
+  
+            </window>
+</zk>

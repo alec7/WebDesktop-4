@@ -50,7 +50,11 @@ private UsuarioDAO dao = new UsuarioDAO ();
 		if(usuario!=null)
 		{
 		 Session miSession = Sessions.getCurrent();
+		 Session miSession1 = Sessions.getCurrent();
+		 Session miSession2 = Sessions.getCurrent();
 		 miSession.setAttribute("usuario", nombreUsuario);
+		 miSession1.setAttribute("correo", correoUsuario);
+		 miSession2.setAttribute("rol", usuario.getRol());
 		   datos.asignarDatos(correoUsuario, contraseñaUsuario,usuario.getRol(), usuario.getStatus());
 			Executions.sendRedirect("index.zul");
 		}

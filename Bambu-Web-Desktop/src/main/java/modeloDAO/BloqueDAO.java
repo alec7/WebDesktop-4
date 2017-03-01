@@ -3,10 +3,12 @@ package modeloDAO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Formatter;
 import java.util.List;
 
 import bean.Conexion;
 import modelo.Bloque;
+import modelo.PerfilUsuario;
 
 
 public class BloqueDAO extends ConexionDAO {
@@ -27,6 +29,33 @@ public class BloqueDAO extends ConexionDAO {
 		}
 		return arr_bloque;
 	}
+	
+	public void agregarBloque(Bloque b) {
+		
+		String tiraSQL= "INSERT INTO tb_bloque (codigo,descripcion,hora_inicio,hora_fin,status)"
+				+ "VALUES ('"+b.getCodigo()+"'"+",'"+ b.getDescripcion()+"','"+ b.getHora_inicio()+"','"+b.getHora_fin()+"','"+ b.getStatus()+"')";
+		Conexion.ejecutar(tiraSQL);
+	}
+	
+	public String TotalRegistros(){
+		String tiraSQL = "SELECT * FROM tb_bloque ";
+		ResultSet resultSet = Conexion.consultar(tiraSQL);
+		int numero=1;
+		try {
+			if(resultSet!=null){
+				while(resultSet.next()){
+					numero++;
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			
+		} 
+		Formatter fmt = new Formatter();
+		fmt.format("%05d", numero);
+		return String.valueOf(fmt);
+	}
+
 	
 	
 	

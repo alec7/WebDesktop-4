@@ -1,0 +1,94 @@
+    <?link href="../../assets/css/bootstrap.min.css" rel="stylesheet"?>
+    <?link href="../../assets/font-awesome/css/font-awesome.css" rel="stylesheet"?>
+
+   
+    <?link href="../../assets/css/plugins/toastr/toastr.min.css" rel="stylesheet"?>
+
+    
+    <?link href="../../assets/js/plugins/gritter/jquery.gritter.css" rel="stylesheet"?>
+
+    <?link href="../../assets/css/animate.css" rel="stylesheet"?>
+    <?link href="../../assets/css/style.css" rel="stylesheet"?>
+    <?link href="../../assets/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet"?>
+    
+
+
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk xmlns:h="http://www.w3.org/1999/xhtml" xmlns:zk="http://www.zkoss.org/2005/zk" >
+
+               <div id="slider" apply="controlador.ControladorSlider">
+            
+                <div class="col-lg-12" >
+                    <h:div >
+                        <h:div class="ibox-title">
+                            <h:h5>Slider</h:h5>
+                           
+                        </h:div>
+                        <div class="ibox-content">
+                            <h:form class="form-horizontal">
+                                <div class="form-group"><label class="col-lg-2 control-label">Titulo</label>
+                                    <div class="col-lg-3"><textbox type="text" id="titulo" class="form-control required" /></div>
+                                </div>
+                                
+                                 <div class="form-group"><label class="col-lg-2 control-label">Subtitulo</label>
+                                    <div class="col-lg-3"><textbox type="text" id="subtitulo" class="form-control required" /></div>
+                                </div>
+                                
+                                 
+                                <div class="form-group"><label class="col-lg-2 control-label">Contenido</label>
+                                <div class="col-lg-7"><textbox type="text" id="contenido" class="form-control required" rows="3"/></div>
+                                </div>
+                                
+                                 <div class="form-group"><label class="col-lg-2 control-label">Imagen</label>
+                                 <div class="col-lg-2"> <button upload="true" id="uploadImagen" iconSclass="fa fa-paperclip" class="btn btn-primary block full-width m-b" >Cargar Imagen</button></div>
+                                 <image id="imagen" width="200px" height="200px"/>
+                                 </div>
+                                 
+                              
+                                 
+                                <div class="form-group">
+                                    <div class="col-lg-offset-6 col-lg-2">
+                                       <button class="btn btn-primary block full-width m-b"  iconSclass="fa fa-save" id="registrar">Guardar</button>
+                                    </div>
+                                </div>
+                             </h:form>
+                        </div>
+                        
+                        
+                     <h:div class="ibox-title">
+                            <h:h5>Imagenes</h:h5>
+                     </h:div>
+                     
+                     
+                     
+        <listbox id="listaSlider"  mold="paging" pageSize="9" width="100%">
+        <listhead>
+            <listheader width="32px" />
+            <listheader label="Titulo" align="center"  />
+            <listheader label="Imagen" align="center"  />
+            <listheader label="Acción" align="center"  />
+        </listhead>
+        <template name="model">
+            <listitem>
+                <listcell />
+                <listcell label="${each.titulo}" />
+                <listcell>  <image src="http://localhost:8080/${each.imagen}" width="40px" height="40px" sclass="zoom"/> </listcell>
+                <listcell>
+			    <button class="btn btn-danger" forward="onClick=slider.onSliderDelete" iconSclass="fa fa-trash-o" width="36px"/>
+				</listcell>
+              
+                
+            </listitem>
+        </template>
+    </listbox>
+                    </h:div>
+                    
+                     
+                     
+                     
+                  
+                    
+                </div>
+            
+            </div>
+</zk>
