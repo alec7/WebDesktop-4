@@ -3,59 +3,56 @@ package modelo;
 public class Opcion_rol {
 	
 	
-    String	id_opcion_rol;
-    String fk_id_opcion;
-    String fk_id_rol;
-    char estatus;
+    String	codigo;
+    String codigo_opcion;
+    String codigo_rol;
+    Boolean status;
     
-    public Opcion_rol(String id_opcion_rol, String fk_id_opcion, String fk_id_rol, char estatus) {
+	public Opcion_rol() {
 		super();
-		this.id_opcion_rol = id_opcion_rol;
-		this.fk_id_opcion = fk_id_opcion;
-		this.fk_id_rol = fk_id_rol;
-		this.estatus = estatus;
+		// TODO Auto-generated constructor stub
 	}
+
+	public Opcion_rol(String codigo, String codigo_opcion, Boolean status, String codigo_rol ) {
+		super();
+		this.codigo = codigo;
+		this.codigo_opcion = codigo_opcion;
+		this.codigo_rol = codigo_rol;
+		this.status = status;
+	}
+
+	public String getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
+	}
+
+	public String getCodigo_opcion() {
+		return codigo_opcion;
+	}
+
+	public void setCodigo_opcion(String codigo_opcion) {
+		this.codigo_opcion = codigo_opcion;
+	}
+
+	public String getCodigo_rol() {
+		return codigo_rol;
+	}
+
+	public void setCodigo_rol(String codigo_rol) {
+		this.codigo_rol = codigo_rol;
+	}
+
+	public Boolean getStatus() {
+		return status;
+	}
+
+	public void setStatus(Boolean status) {
+		this.status = status;
+	}
+
 	
 	
-	public String getId_opcion_rol() {
-		return id_opcion_rol;
-	}
-
-
-	public void setId_opcion_rol(String id_opcion_rol) {
-		this.id_opcion_rol = id_opcion_rol;
-	}
-
-
-	public String getFk_id_opcion() {
-		return fk_id_opcion;
-	}
-
-
-	public void setFk_id_opcion(String fk_id_opcion) {
-		this.fk_id_opcion = fk_id_opcion;
-	}
-
-
-	public String getFk_id_rol() {
-		return fk_id_rol;
-	}
-
-
-	public void setFk_id_rol(String fk_id_rol) {
-		this.fk_id_rol = fk_id_rol;
-	}
-
-
-	public char getEstatus() {
-		return estatus;
-	}
-	public void setEstatus(char estatus) {
-		this.estatus = estatus;
-	}
-    
-    
-    
-    
-
 }

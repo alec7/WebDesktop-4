@@ -34,7 +34,7 @@ import modelo.Usuario;
 import modeloDAO.BloqueDAO;
 import modeloDAO.EsteticistaDAO;
 import modeloDAO.MaestricoDAO;
-import seguridadFuncional.Opcion;
+
 
 
 public class ControladorHorarioEsteticista extends SelectorComposer<Component>{

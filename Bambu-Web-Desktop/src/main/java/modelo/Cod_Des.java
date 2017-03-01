@@ -1,31 +1,29 @@
 package modelo;
 
-public class Rol {
+public class Cod_Des {
+
+	String texto;
+	String codigo;
+	Boolean status;
 	
-	
-	String descripcion;
-	String  codigo;
-	String status;
-	
-	public Rol() {
-	
+	public Cod_Des() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
-	public Rol( String descripcion, String codigo, String status) {
+	public Cod_Des(String texto, String codigo, Boolean status) {
 		super();
-		this.descripcion = descripcion;
+		this.texto = texto;
 		this.codigo = codigo;
 		this.status = status;
 	}
 
-	
-
 	public String getDescripcion() {
-		return descripcion;
+		return texto;
 	}
 
 	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
+		this.texto = descripcion;
 	}
 
 	public String getCodigo() {
@@ -36,20 +34,13 @@ public class Rol {
 		this.codigo = codigo;
 	}
 
-	public String getStatus() {
+	public Boolean getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(Boolean status) {
 		this.status = status;
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-
 }

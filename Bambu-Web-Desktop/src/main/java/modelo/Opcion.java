@@ -6,7 +6,7 @@ public class Opcion {
 	String codigo_padre;
 	String vinculo;
 	String texto;
-	String estatus;
+	Boolean status;
 	String icono;
 	String tabla;
 	
@@ -19,14 +19,14 @@ public class Opcion {
 
 
 
-	public Opcion(String codigo, String codigo_padre, String vinculo, String texto, String estatus, String icono,
+	public Opcion(String codigo, String codigo_padre, String vinculo, String texto, Boolean status, String icono,
 			String tabla) {
 		super();
 		this.codigo = codigo;
 		this.codigo_padre = codigo_padre;
 		this.vinculo = vinculo;
 		this.texto = texto;
-		this.estatus = estatus;
+		this.status = status;
 		this.icono = icono;
 		this.tabla = tabla;
 	}
@@ -81,14 +81,14 @@ public class Opcion {
 
 
 
-	public String getEstatus() {
-		return estatus;
+	public Boolean getStatus() {
+		return status;
 	}
 
 
 
-	public void setEstatus(String estatus) {
-		this.estatus = estatus;
+	public void setStatus(Boolean status) {
+		this.status = status;
 	}
 
 
@@ -114,10 +114,8 @@ public class Opcion {
 	public void setTabla(String tabla) {
 		this.tabla = tabla;
 	}
-	
-	
 
-	
+
 	
 	
 
