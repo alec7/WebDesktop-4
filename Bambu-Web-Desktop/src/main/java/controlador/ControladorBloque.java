@@ -5,18 +5,13 @@ import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
-
 import org.zkoss.zhtml.Messagebox;
 import org.zkoss.zk.ui.Component;
-import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zul.Textbox;
 import org.zkoss.zul.Timebox;
-import org.zkoss.zul.Window;
-
 import modelo.Bloque;
 import modeloDAO.BloqueDAO;
 
@@ -31,10 +26,13 @@ public class ControladorBloque extends SelectorComposer<Component> {
 	@Wire
 	private Timebox horaFin;
 	
+	
+	
 	BloqueDAO bloqueDao = new BloqueDAO(); 
 	
 	@Listen("onClick = #guardar")
 	public void guardarBloque(){
+		
 		String codigo = bloqueDao.TotalRegistros();
 		String horaI = horaInicio.getText();
 		String horaF = horaFin.getText();

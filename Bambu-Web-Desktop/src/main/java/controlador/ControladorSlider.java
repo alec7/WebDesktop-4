@@ -78,8 +78,8 @@ public class ControladorSlider extends  SelectorComposer<Component>{
 	private Listbox listaSlider;
 	@Wire
 	private Button registrar;
+
 	
-  
     
     
 	SliderDAO dao = new SliderDAO();
@@ -201,7 +201,7 @@ public class ControladorSlider extends  SelectorComposer<Component>{
 	            }
 	        }
 	    };
-	    Messagebox.show("¿Seguro de eliminar este Acuerdo?", "Mensaje de confirmación", new Messagebox.Button[]{
+	    Messagebox.show("¿Seguro de eliminar esta imagen?", "Mensaje de confirmación", new Messagebox.Button[]{
 	            Messagebox.Button.YES, Messagebox.Button.NO },Messagebox.QUESTION,clickListener);
 	}
 	

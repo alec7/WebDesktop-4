@@ -14,7 +14,7 @@
 <zk xmlns:h="http://www.w3.org/1999/xhtml" xmlns:zk="http://www.zkoss.org/2005/zk">
  
  
-  <div class="col-lg-9 animated fadeInRight" height="600px" width="1100px">
+  <div class="col-lg-9 animated fadeInRight" height="600px" width="1100px" apply="controlador.ControladorComentario">
   <div class="mail-box-header">
  <h:form method="get" action="index.html" class="pull-right mail-search">
                    <div class="input-group">
@@ -37,17 +37,18 @@
                     
 
                 </div>
-                <div class="mail-box">
-                <listbox id="lstListaSubasta"  emptyMessage="No hay mensajes" class="table table-hover table-mail">
+                <div >
+                <listbox id="listaComentarios"  emptyMessage="No hay mensajes"  mold="paging" pageSize="9">
                    <template name="model">
-						<listitem>
+						<listitem value="${each}">
 							<listcell>
 								<hbox>
-								 <image src="${each.preview}" width="20px" height="20px" />
+								 <image src="../../assets/img/comentarios.png" width="15px" height="10px" />
 									<hbox>
-									    <label value="${each.nombreSub}"/> 
-			                            <label value="${each.fechaCierre}" /> 
-										<label value="${each.montoMaximo}" />
+									    <label value="${each.tipo_comentario}"/> 
+									    <label value="${each.codigo_usuario}" />
+			                            <label value="${each.descripcion}" /> 
+										
                                    </hbox>
 								</hbox>
 							</listcell>

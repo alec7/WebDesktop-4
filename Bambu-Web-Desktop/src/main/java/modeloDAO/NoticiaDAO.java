@@ -14,8 +14,8 @@ public class NoticiaDAO extends ConexionDAO {
 	
 	public void agregarNoticia(Noticia n) {
 		
-		String tiraSQL= "INSERT INTO tb_noticia (codigo,descripcion,status,imagen,codigo_sistema,fecha) "
-				+ "VALUES ('"+n.getCodigo()+"'"+",'"+ n.getDescripcion()+"','"+ n.getStatus()+"','"+ n.getImagen()+"','"+ n.getCodigo_sistema()+"','"+ n.getFecha()+"')";
+		String tiraSQL= "INSERT INTO tb_noticia (codigo,status,codigo_sistema,fecha,tipo_noticia,titulo,contenido,imagen) "
+				+ "VALUES ('"+n.getCodigo()+"'"+",'"+ n.getStatus()+"','"+ n.getCodigo_sistema()+"','"+ n.getFecha()+"','"+ n.getTipo_noticia()+"','"+n.getTitulo() +"','"+n.getContenido() +"','"+n.getImagen() +"')";
 		Conexion.ejecutar(tiraSQL);
 	}
 	
@@ -45,7 +45,7 @@ public class NoticiaDAO extends ConexionDAO {
 		try {
 			if(resultSet!=null){
 				while(resultSet.next()){
-					arr_noticia.add(new Noticia(resultSet.getString("codigo"), resultSet.getString("descripcion"), resultSet.getString("status"), resultSet.getString("imagen"), resultSet.getString("codigo_sistema"), resultSet.getString("tipo_noticias"),resultSet.getDate("fecha")));
+					arr_noticia.add(new Noticia(resultSet.getString("codigo"), resultSet.getString("status"), resultSet.getString("codigo_sistema"), resultSet.getDate("fecha"), resultSet.getString("tipo_noticia"), resultSet.getString("titulo"),resultSet.getString("contenido"),resultSet.getString("imagen")));
 				}
 			}
 		} catch (SQLException e) {

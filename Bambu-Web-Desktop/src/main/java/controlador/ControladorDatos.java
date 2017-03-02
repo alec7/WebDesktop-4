@@ -15,6 +15,7 @@ public class ControladorDatos implements Serializable {
 	
 	public Usuario obtenerDatos(){
 		Session session = Sessions.getCurrent();
+		
 		Usuario datos = (Usuario)session.getAttribute("UsuarioCesion");
 		
 		return datos;
@@ -23,10 +24,11 @@ public class ControladorDatos implements Serializable {
 	public void asignarDatos(String usuario, String contrasenna,
 			String rol, String status)
 	{
+		Session session1 = Sessions.getCurrent();
 		Session session= Sessions.getCurrent();
 		Usuario datos = new Usuario(usuario,contrasenna,rol, status);
 		session.setAttribute("UsuarioCesion",datos);
-	
+		//session1.setAttribute("rol", datos.getRol());
 				
 	}
 	
