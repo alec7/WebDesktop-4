@@ -8,12 +8,16 @@ Copyright (C) 2012 Potix Corporation. All Rights Reserved.
 */
 package controlador;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import controlador.MaestricoListServiceChapter6Impl;
 import modelo.Priority;
 import modelo.Maestrico;
+import modelo.Opcion;
 import modeloDAO.MaestricoDAO;
+import modeloDAO.OpcionDAO;
+import modeloDAO.Opcion_RolDAO;
 import controlador.MaestricoListService;
 import org.zkoss.lang.Strings;
 import org.zkoss.zhtml.Messagebox;
@@ -80,7 +84,8 @@ public class MaestricoListController extends SelectorComposer<Component>{
 	ListModelList<Priority> priorityListModel;
 	Maestrico selectedMaestrico;
 	
-	
+	Opcion opcion;
+	Opcion_RolDAO opcionroldao = new Opcion_RolDAO();
 	
 	@Override
 	public void doAfterCompose(Component comp) throws Exception{
@@ -119,10 +124,10 @@ public class MaestricoListController extends SelectorComposer<Component>{
 			maestricoListModel.addToSelection(selectedMaestrico);
 			
 			
-			//Guardando en la Base de Datos
-			
-			
 			mdao.agregarMaestrico(tabla,codigo,descripcion);
+			
+			
+			
 		
 			
 			//refresh detail view

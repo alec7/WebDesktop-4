@@ -35,7 +35,6 @@ import modeloDAO.BloqueDAO;
 import modeloDAO.EsteticistaDAO;
 import modeloDAO.MaestricoDAO;
 
-
 public class ControladorHorarioEsteticista extends SelectorComposer<Component>{
 	private static final long serialVersionUID = 1L;
 	
