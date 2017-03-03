@@ -17,7 +17,7 @@ import modelo.Maestrico;
 import modelo.Opcion;
 import modeloDAO.MaestricoDAO;
 import modeloDAO.OpcionDAO;
-import modeloDAO.Opcion_RolDAO;
+//import modeloDAO.Opcion_RolDAO;
 import controlador.MaestricoListService;
 import org.zkoss.lang.Strings;
 import org.zkoss.zhtml.Messagebox;
@@ -84,8 +84,8 @@ public class MaestricoListController extends SelectorComposer<Component>{
 	ListModelList<Priority> priorityListModel;
 	Maestrico selectedMaestrico;
 	
-	Opcion opcion;
-	Opcion_RolDAO opcionroldao = new Opcion_RolDAO();
+	//Opcion opcion;
+//	Opcion_RolDAO opcionroldao = new Opcion_RolDAO();
 	
 	@Override
 	public void doAfterCompose(Component comp) throws Exception{
