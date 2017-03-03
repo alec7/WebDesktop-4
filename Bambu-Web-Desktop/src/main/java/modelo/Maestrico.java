@@ -34,10 +34,7 @@ public class Maestrico implements Serializable, Cloneable {
 	String description;
 	*/
 	Integer id;
-	public Maestrico() {
-		// TODO Auto-generated constructor stub
-	}
-	
+
 
 	public Maestrico() {
 		super();
