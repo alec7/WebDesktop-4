@@ -52,18 +52,20 @@ public class ControladorMenu extends  GenericForwardComposer<Window> {
 		Session miSession1 = Sessions.getCurrent();
 		Session miSession2 = Sessions.getCurrent();
 		Session miSession3 = Sessions.getCurrent();
-		
-		
-		
-	
+
+
+
 		
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void onCreate$menu()
 	{
+
 		Messagebox.show(miSession3.getAttribute("rol").toString());
 		menu= dao.buscarPadre(miSession3.getAttribute("rol").toString());
-		 
+		 		
+	
+
 		  for(int i=0; i< menu.size(); i++)
 		  {
 			 opcion = menu.get(i);
@@ -75,7 +77,7 @@ public class ControladorMenu extends  GenericForwardComposer<Window> {
 			 nav.setParent(menuNav);
 			 //Messagebox.show(texto);
 			 submenu = dao.buscarHijos(miSession3.getAttribute("rol").toString(), menu.get(i).getCodigo());
-			
+
 			 if(submenu.size()!=0){
 			 for(int j=0; j<submenu.size(); j++)
 			 {
@@ -127,7 +129,7 @@ public class ControladorMenu extends  GenericForwardComposer<Window> {
 					 String subTextoNieto = opcionNieto.getTexto();
 					 Navitem navNieto = new Navitem();
 					 navNieto.setLabel(subTextoNieto);
-					final String vinculoNieto = opcionNieto.getVinculo();
+					 final String vinculoNieto = opcionNieto.getVinculo();
 					 final String tabla1 = opcionNieto.getTabla();
 					 navNieto.addEventListener(Events.ON_CLICK, new EventListener() {
 

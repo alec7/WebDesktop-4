@@ -30,12 +30,10 @@
                             <tabbox id="tb" height="500px" width="1000px" >
 							    <tabs id="tabs">
 							        <tab id="A" label="Datos Personales" />
-							        <tab id="C" label="Hábitos" />
-							        <tab id="D" label="Antecedentes" />
 							        <tab id="B" label="Servicios Recomendados" />
 							    </tabs>
 							    <tabpanels>
-							        <tabpanel style="overflow:auto;">
+							        <tabpanel>
 							        <space></space>
 									        	<div class="form-group" style="margin-top:30px; margin-bottom:30px;"><label class="col-lg-2 control-label">Cédula:</label>
 		                                      <div class="col-sm-4"> <div class="input-group"><textbox type="text" class="form-control col-lg-2"/> <span class="input-group-btn"> <button type="button" class="btn btn-primary">Buscar
@@ -86,15 +84,14 @@
 		                                    <div class="col-lg-7"><textbox type="text" rows="2"  class="form-control required" /></div>
 		                                </div>
 		                                <div class="ibox float-e-margins">
-		                                <div class="form-group"><label class="col-lg-2 control-label">Estado:</label>
+		                                		                                
+		                                 <div class="ibox float-e-margins">
+		                                <div class="form-group"><label class="col-lg-2 control-label">Referencia:</label>
 		
-		                                    <div class="col-lg-3"><listbox mold="select" sclass="form-control">
-		                                 <listitem label="Lara"/>
-		                                 <listitem label="Zulia"/>
-		                                 </listbox>
+		                                    <div class="col-lg-3"><textbox type="text" id="referencia" class="form-control required" />
 		                                 </div>
 		                                
-		                                <div class="form-group"><label class="col-lg-1 control-label">Ciudad:</label>
+		                                <div class="form-group"><label class="col-lg-1 control-label">Empresa:</label>
 		
 		                                     <div class="col-lg-3"><listbox mold="select" sclass="form-control">
 		                                 <listitem label="Barquisimeto"/>
@@ -102,19 +99,22 @@
 		                                 </listbox>
 		                                 </div>
 		                                </div>
+		                                                           
+		                                </div>
+		                                
+		                                
+		                                </div>
+		                                 <div class="form-group"><label class="col-lg-2 control-label">Fecha de Nacimiento:</label>
+		
+		                                    <div class="col-lg-7"><datebox /></div>
 		                                </div>
 		                                </div>
 		                                
 							        </tabpanel>
 							        
-							        <tabpanel  style="overflow:auto;" id="tabHabitos">
-							        <space></space>
-							        	
-							        </tabpanel>
+							       
 							        
-							        <tabpanel  style="overflow:auto;" id="tabAntecedentes">
-							        <space></space>
-							        </tabpanel>
+				
 							        
 							       <tabpanel>	
 							        	<space></space>

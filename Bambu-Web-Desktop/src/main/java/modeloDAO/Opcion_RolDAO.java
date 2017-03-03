@@ -156,7 +156,8 @@ public class Opcion_RolDAO extends ConexionDAO {
 			
 			
 			try {
-				if (resultSet.next()) {
+				Messagebox.show("esto es lo que trae resulset.getfetcheSize : "+String.valueOf(resultSet.getFetchSize()));
+				if (resultSet.isLast()) {
 					encontro = true;
 					
 				}else{

@@ -1,117 +1,178 @@
-    <?link href="../../assets/css/bootstrap.min.css" rel="stylesheet"?>
-    <?link href="../../assets/font-awesome/css/font-awesome.css" rel="stylesheet"?>
+<?link href="../../assets/css/bootstrap.min.css" rel="stylesheet"?>
+<?link href="../../assets/font-awesome/css/font-awesome.css" rel="stylesheet"?>
 
-    <!-- Toastr style -->
-    <?link href="../../assets/css/plugins/toastr/toastr.min.css" rel="stylesheet"?>
+<!-- Toastr style -->
+<?link href="../../assets/css/plugins/toastr/toastr.min.css" rel="stylesheet"?>
 
-    <!-- Gritter -->
-    <?link href="../../assets/js/plugins/gritter/jquery.gritter.css" rel="stylesheet"?>
+<!-- Gritter -->
+<?link href="../../assets/js/plugins/gritter/jquery.gritter.css" rel="stylesheet"?>
 
-    <?link href="../../assets/css/animate.css" rel="stylesheet"?>
-    <?link href="../../assets/css/style.css" rel="stylesheet"?>
-    <?link href="../../assets/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet"?>
-    <?link href="../../assets/css/plugins/dataTables/datatables.min.css" rel="stylesheet"?>
+<?link href="../../assets/css/animate.css" rel="stylesheet"?>
+<?link href="../../assets/css/style.css" rel="stylesheet"?>
+<?link href="../../assets/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet"?>
+<?link href="../../assets/css/plugins/dataTables/datatables.min.css" rel="stylesheet"?>
 
 
 <?page title="Consulta Diagnostico" contentType="text/html;charset=UTF-8"?>
-<zk xmlns:h="http://www.w3.org/1999/xhtml" xmlns:zk="http://www.zkoss.org/2005/zk" >
-<window id="diagnostico" apply="controlador.ControladorConsultaDiagnostico">
+<zk xmlns:h="http://www.w3.org/1999/xhtml"
+	xmlns:zk="http://www.zkoss.org/2005/zk">
+	<window id="diagnostico"
+		apply="controlador.ControladorConsultaDiagnostico">
 
-            
-                <div class="col-lg-12" >
-                    <h:div class="ibox float-e-margins">
-                    <div class="ibox-title">
-                            <h:h5>Consulta Diagnostico</h:h5>
-                        </div>
-                       
-                        <div class="ibox-content">
-                        	<h:h4>Datos del Cliente</h:h4>
-                            <h:form class="form-horizontal">
-                              <div class="form-group" style="margin-top:30px; margin-bottom:30px;"><label class="col-lg-2 control-label">Cédula:</label>
-                                      <div class="col-sm-4"> <div class="input-group"><textbox type="text" id="cedula" class="form-control col-lg-2"/> <span class="input-group-btn"> <button type="button" id="buscar" class="btn btn-primary">Buscar
-                                        </button> </span></div>
-                                     </div>   
-                                      
-                                </div>
-                                
-                                 <div class="ibox float-e-margins">
-                                <div class="form-group"><label class="col-lg-2 control-label">Nombre:</label>
 
-                                    <div class="col-lg-3"><textbox type="text"  id="nombre" class="form-control required" /> 
-                                    </div>
-                                
-                                <div class="form-group"><label class="col-lg-1 control-label">Apellido:</label>
+		<div class="col-lg-12">
+			<h:div class="ibox float-e-margins">
+				<div class="ibox-title">
+					<h:h5>Consulta Diagnostico</h:h5>
+				</div>
 
-                                    <div class="col-lg-3"><textbox type="text" id="apellido" class="form-control required" /></div>
-                                </div>
-                                </div>
-                                </div>
-                                
-                                <div class="ibox-title">
-                            <h:h5>Interes</h:h5>
-                        </div>
-                        
-                        <div class="form-group">
-                        
-                        <listbox id="necesidades" height="150px" width="740px" vflex="1" emptyMessage="No posee ninguna necesidad"  >
-										<listhead>
-											<listheader  label="Necesidades" />
-										</listhead>
-										<template name="model">
-											<listitem value="${each}">
-												<listcell label="${each.codigo}"></listcell>
-											</listitem>
-										</template>
-									</listbox>
+				<div class="ibox-content">
+					<h:h4>Datos del Cliente</h:h4>
+					<h:form class="form-horizontal">
+						<div class="form-group"
+							style="margin-top:30px; margin-bottom:30px;">
+							<label class="col-lg-2 control-label">
+								Cédula:
+							</label>
+							<div class="col-sm-4">
+								<div class="input-group">
+									<textbox type="text" id="cedula"
+										class="form-control col-lg-2" />
+									<span class="input-group-btn">
+										<button type="button"
+											id="buscar" class="btn btn-primary">
+											Buscar
+										</button>
+									</span>
+								</div>
+							</div>
+
+						</div>
+
+						<div class="ibox float-e-margins">
+							<div class="form-group">
+								<label class="col-lg-2 control-label">
+									Nombre:
+								</label>
+
+								<div class="col-lg-3">
+									<textbox type="text" id="nombre"
+										class="form-control required" />
+								</div>
+
+								<div class="form-group">
+									<label
+										class="col-lg-1 control-label">
+										Apellido:
+									</label>
+
+									<div class="col-lg-3">
+										<textbox type="text"
+											id="apellido" class="form-control required" />
 									</div>
-                       
-                                
-                                  <h:div class="ibox-title"></h:div>
-                                 	 <h:h4>Test</h:h4>
-								                              
-                                <div id="divIndicadores">
-                                <space></space>
-                                </div>
-                                 	 
-                                 <div class="col-lg-12">
-			                        <space></space>      
-			                        <div class="form-group">
-			                                    <div class="col-lg-offset-8 col-lg-2">
-			                                    <hbox>
-			                                        <button class="btn btn-primary block full-width m-b"  iconSclass="fa fa-save">Guardar</button>
-			                                        <space></space>
-			                                        <button class="btn btn-w-m btn-danger"  iconSclass="fa fa-times">Cancelar</button>
-			                                        </hbox>
-			                                    </div>
-			                                </div>                         
-                        		</div>
-                                
-                            </h:form>
-                             <h:div class="ibox-title"></h:div>
-                                 	 <h:h4>(Ejemplo de Modal Guardar)</h:h4>
-                            <div class="ibox float-e-margins">
-	                                <div class="form-group">
-                                    <listbox id="listaRedes" height="200px" width="740px" vflex="1" emptyMessage="No puede realizarse ningún servicio"  >
-										<listhead>
-											<listheader  label="Servicios Recomendados" />
-										</listhead>
-											<listitem>
-												<listcell label="Servicio 1"></listcell>
-											</listitem>
-											<listitem>
-												<listcell label="Servicio 2"></listcell>
-											</listitem>
-											<listitem>
-												<listcell label="Servicio 3"></listcell>
-											</listitem>
-									</listbox>
-									</div>
-                                </div> 
-                        </div>
-                    </h:div>
-                </div>
-            
-            </window>
-                
-            
+								</div>
+							</div>
+						</div>
+
+						<div class="ibox-title">
+							<h:h5>Necesidades</h:h5>
+						</div>
+
+						<div class="form-group">
+
+							<listbox id="necesidades" height="150px"
+								width="740px" vflex="1"
+								emptyMessage="No posee ninguna necesidad">
+								<listhead>
+									<listheader label="" />
+								</listhead>
+								<template name="model">
+									<listitem value="${each}">
+										<listcell
+											label="${each.codigo}">
+										</listcell>
+									</listitem>
+								</template>
+							</listbox>
+						</div>
+
+						<div class="ibox-title">
+							<h:h5>Información</h:h5>
+						</div>
+
+						<tabbox id="tb" height="500px" width="900px">
+							<tabs id="tabs">
+								<tab id="A" label="Hábitos" />
+								<tab id="B" label="Antecedentes" />
+								<tab id="C" label="Test" />
+
+							</tabs>
+							<tabpanels>
+								<tabpanel id="tabHabitos">
+									<space></space>
+
+								</tabpanel>
+
+								<tabpanel id="tabAntecedentes">
+									<space></space>
+								</tabpanel>
+
+								<tabpanel id="tabIndicadores">
+									<space></space>
+								</tabpanel>
+							</tabpanels>
+						</tabbox>
+
+
+						<div class="col-lg-12">
+							<space></space>
+							<div class="form-group">
+								<div class="col-lg-offset-8 col-lg-2">
+									<hbox>
+										<button
+											class="btn btn-primary block full-width m-b"
+											iconSclass="fa fa-save">
+											Guardar
+										</button>
+										<space></space>
+										<button
+											class="btn btn-w-m btn-danger" iconSclass="fa fa-times">
+											Cancelar
+										</button>
+									</hbox>
+								</div>
+							</div>
+						</div>
+
+					</h:form>
+					<h:div class="ibox-title"></h:div>
+					<h:h4>(Ejemplo de Modal Guardar)</h:h4>
+					<div class="ibox float-e-margins">
+						<div class="form-group">
+							<listbox id="listaRedes" height="200px"
+								width="740px" vflex="1"
+								emptyMessage="No puede realizarse ningún servicio">
+								<listhead>
+									<listheader
+										label="Servicios Recomendados" />
+								</listhead>
+								<listitem>
+									<listcell label="Servicio 1"></listcell>
+								</listitem>
+								<listitem>
+									<listcell label="Servicio 2"></listcell>
+								</listitem>
+								<listitem>
+									<listcell label="Servicio 3"></listcell>
+								</listitem>
+							</listbox>
+						</div>
+					</div>
+				</div>
+			</h:div>
+		</div>
+
+	</window>
+
+
 </zk>

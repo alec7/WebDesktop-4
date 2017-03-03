@@ -90,8 +90,10 @@ public class OpcionDAO extends ConexionDAO{
 	}
 	
 	public ArrayList<Opcion> ObtenerTodos(){
+
 		ArrayList<Opcion> padres = new ArrayList<Opcion>();
 		String tiraSQL ="select * from tb_opcion";
+
 		ResultSet resultSet = Conexion.consultar(tiraSQL);
 		try {
 			while(resultSet.next()){
