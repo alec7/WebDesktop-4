@@ -20,6 +20,7 @@ import org.zkoss.zul.Div;
 import org.zkoss.zul.Label;
 import org.zkoss.zul.ListModel;
 import org.zkoss.zul.ListModelList;
+import org.zkoss.zul.Listbox;
 import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Tab;
 import org.zkoss.zul.Tabpanel;
@@ -28,8 +29,11 @@ import org.zkoss.zul.Tabs;
 import org.zkoss.zul.Textbox;
 
 import modelo.Bloque;
+import modelo.Cod_Des;
 import modelo.Esteticista;
+import modelo.Incidencia;
 import modelo.Maestrico;
+import modelo.Servicio;
 import modelo.Usuario;
 import modeloDAO.BloqueDAO;
 import modeloDAO.EsteticistaDAO;
@@ -52,62 +56,25 @@ public class ControladorHorarioEsteticista extends SelectorComposer<Component>{
 	private Tabpanels tabpanels;
 	@Wire
 	private Chosenbox chosen;
+	@Wire
+	private Listbox listaLunes;
+	@Wire
+	private Listbox listaLunesSeleccionados;
 	
 	
 	BloqueDAO bloqueDao = new BloqueDAO(); 
 	EsteticistaDAO estDao = new EsteticistaDAO();
-	List<Bloque> descripcion = bloqueDao.listarBloques();
+	List<Bloque> listaBloquesSeleccionados = new ArrayList<Bloque>();
 	List<Maestrico> diasLab = new ArrayList<Maestrico>();
-	ListModelList<Bloque> bloques;
+	ListModelList<Bloque> bloquesModel;
+	ListModelList<Bloque> bloquesSeleccionadoModel;
+	List<Bloque> listaBloques = bloqueDao.listarBloques();
 	Esteticista est;
 	MaestricoDAO mdao = new MaestricoDAO();
 	List l = new ArrayList();
-	String[] array = new String[]{};
 
 	String horaInicio = new String();
 	String horaFin = new String();
-	
-
-	
-	private ListModelList _model;
-	private Set _selectedObjects;
-	public ListModel getModel () {
-		if (_model == null) {		
-			for(int i=0; i<descripcion.size();i++){
-				horaInicio = new SimpleDateFormat("HH:mm a").format(descripcion.get(i).getHora_inicio());
-				horaFin = new SimpleDateFormat("HH:mm a").format(descripcion.get(i).getHora_fin());
-				l.add(horaInicio+"-"+horaFin);
-				//l.add(descripcion.get(i).getDescripcion());
-			}
-			_model = new ListModelList(l);
-		}
-		return _model;
-	}
-	public void setSelectedObjects (Set selectedObjects) {
-		_selectedObjects = selectedObjects;
-	}
-	public Set getSelectedObjects () {
-		if (_selectedObjects == null) {
-			_selectedObjects = new HashSet();
-		}
-		return _selectedObjects;
-	}
-	@Command
-	public void showSelection () {
-		Clients.alert(getSelectedObjects().toString());
-		 Set<String> set = new HashSet<String>();
-		 set= _selectedObjects;
-		 array = set.toArray(new String[0]);
-		System.out.println(set);
-		String cadena = "12|juan|13|jose|"; 
-
-		String[] separada = cadena.split("|"); 
-		for(int i=0; i<separada.length;i++){
-			Messagebox.show(separada[i]);
-			
-		}
-		
-		}
 	
 	@Listen("onClick = #buscar")
 	public void buscarEsteticista(){
@@ -130,13 +97,103 @@ public class ControladorHorarioEsteticista extends SelectorComposer<Component>{
 			tab.setId(diasLab.get(i).getCodigo());
 			tab.setLabel(diasLab.get(i).getDescripcion());
 			tab.setParent(tabs);
-			//tabpanel.set
-			
-//			Label label = new Label();
-//			label.setValue(diasLab.get(i).getDescripcion());
-//			label.setParent(dias_laborables);
+
 		}
+		listarBloques();
 		
     }
+	
+	public void listarBloques(){
+		
+		bloquesModel = new ListModelList<Bloque>(listaBloques);
+		listaLunes.setModel(bloquesModel);
+	}
+	@Listen("onClick = #agregarLunes")
+	public void doAgregar()
+	{
+		
+		if(listaLunes.getSelectedIndex() == -1)
+		{
+			Messagebox.show("Debe Serleccionar un Bloque");
+		}
+		else{
+			Bloque b = null;
+			b = listaLunes.getSelectedItem().getValue();
+			listaBloquesSeleccionados.add(b);
+			bloquesSeleccionadoModel = new ListModelList<Bloque>(listaBloquesSeleccionados);
+			listaLunesSeleccionados.setModel(bloquesSeleccionadoModel);
+			
+			//listaBloques.remove(bloquesSeleccionadoModel.get)
+			//listaTodosServicios.remove(listaServicios.getSelectedIndex());
+		}
+	}
+	
+	
+//	private ListModelList _model1;
+//	private Set _selectedObjects1;
+//	public ListModel getModel1 () {
+//		if (_model1 == null) {		
+//			for(int i=0; i<listaBloques.size();i++){
+//				horaInicio = new SimpleDateFormat("HH:mm a").format(listaBloques.get(i).getHora_inicio());
+//				horaFin = new SimpleDateFormat("HH:mm a").format(listaBloques.get(i).getHora_fin());
+//				l.add(horaInicio+"-"+horaFin);
+//				//l.add(descripcion.get(i).getDescripcion());
+//			}
+//			_model1 = new ListModelList(l);
+//		}
+//		return _model1;
+//	}
+//	public void setSelectedObjects1 (Set selectedObjects) {
+//		_selectedObjects1 = selectedObjects;
+//	}
+//	public Set getSelectedObjects1 () {
+//		if (_selectedObjects1 == null) {
+//			_selectedObjects1 = new HashSet();
+//		}
+//		return _selectedObjects1;
+//	}
+//	@Command
+//	public void showSelection1 () {
+//		Clients.alert(getSelectedObjects1().toString());
+//		 Set<String> set = new HashSet<String>();
+//		 set= _selectedObjects1;
+//		System.out.println(set);
+//
+//		
+//		}
+//	
+//	private ListModelList _model2;
+//	private Set _selectedObjects2;
+//	public ListModel getModel2 () {
+//		if (_model2 == null) {		
+//			for(int i=0; i<listaBloques.size();i++){
+//				horaInicio = new SimpleDateFormat("hh:mm a").format(listaBloques.get(i).getHora_inicio());
+//				horaFin = new SimpleDateFormat("hh:mm a").format(listaBloques.get(i).getHora_fin());
+//				l.add(horaInicio+"-"+horaFin);
+//				//l.add(descripcion.get(i).getDescripcion());
+//			}
+//			_model2 = new ListModelList(l);
+//		}
+//		return _model2;
+//	}
+//	public void setSelectedObjects2 (Set selectedObjects) {
+//		_selectedObjects2 = selectedObjects;
+//	}
+//	public Set getSelectedObjects2 () {
+//		if (_selectedObjects2 == null) {
+//			_selectedObjects2 = new HashSet();
+//		}
+//		return _selectedObjects2;
+//	}
+//	@Command
+//	public void showSelection2 () {
+//		Clients.alert(getSelectedObjects2().toString());
+//		 Set<String> set = new HashSet<String>();
+//		 set= _selectedObjects2;
+//		System.out.println(set);
+//
+//		
+//		}
+	
 	
 }

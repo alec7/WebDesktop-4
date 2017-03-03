@@ -113,7 +113,7 @@ public class OpcionDAO extends ConexionDAO{
 	
 	public ArrayList<Opcion> ObtenerTodos(){
 		ArrayList<Opcion> opciones = new ArrayList<Opcion>();
-		String tiraSQL ="select * from tb_opcion WHERE status ='null'  ORDER BY codigo";
+		String tiraSQL ="select * from tb_opcion WHERE status ='Activo'  ORDER BY codigo";
 		ResultSet resultSet = Conexion.consultar(tiraSQL);
 		try {
 			while(resultSet.next()){

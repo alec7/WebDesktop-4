@@ -88,7 +88,7 @@ public class UsuarioDAO extends ConexionDAO{
 	public String obtenerNombre(String correo)
 	{
 		String nombre = null;
-		String tiraSQL = "select nombre from tb_cliente a, tb_usuario b where b.usuario ='"+correo+"'";
+		String tiraSQL = "select nombre from tb_cliente a where a.correo ='"+correo+"'";
 		ResultSet resultSet = Conexion.consultar(tiraSQL);
 		try{
 			while(resultSet.next()){
