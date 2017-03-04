@@ -97,6 +97,8 @@ public class ControladorAsignarOpciones extends SelectorComposer<Component>{
 		
 		List<Opcion_rol> opcionesPorRolSeleccionado = opcionRolDAO.ObtenerOpcionesPorRol(codigoRolSeleccionado);
 		
+		
+		Messagebox.show(codigoRolSeleccionado);
 	
 		
 		for (int i = 0; i < opciones.size(); i++) {
