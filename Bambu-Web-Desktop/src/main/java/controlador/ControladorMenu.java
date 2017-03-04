@@ -2,7 +2,7 @@ package controlador;
 
 import java.util.ArrayList;
 
-//import org.apache.catalina.util.StringParser;
+import org.apache.catalina.util.StringParser;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.Session;
 import org.zkoss.zk.ui.Sessions;
@@ -22,6 +22,7 @@ import org.zkoss.zul.Messagebox.ClickEvent;
 
 import modeloDAO.OpcionDAO;
 import modelo.Opcion;
+import modelo.Usuario;
 
 public class ControladorMenu extends  GenericForwardComposer<Window> {
 
@@ -39,6 +40,7 @@ public class ControladorMenu extends  GenericForwardComposer<Window> {
 	  Opcion opcion = new Opcion();
 	  Opcion opcionHijo = new Opcion();
 	  Opcion opcionNieto = new Opcion();
+	  Usuario usuario = new Usuario();
 	  ArrayList<Opcion> menu = new ArrayList<Opcion>();
 	  ArrayList<Opcion> submenu = new ArrayList<Opcion>();
 	  ArrayList<Opcion> submenuNieto = new ArrayList<Opcion>();
@@ -49,19 +51,21 @@ public class ControladorMenu extends  GenericForwardComposer<Window> {
 		Session miSession = Sessions.getCurrent();
 		Session miSession1 = Sessions.getCurrent();
 		Session miSession2 = Sessions.getCurrent();
-    
-	
-		
-		
-	
+		Session miSession3 = Sessions.getCurrent();
+
+
+
 		
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void onCreate$menu()
 	{
-		
-		menu= dao.buscarPadre();
-		 
+
+		Messagebox.show(miSession3.getAttribute("rol").toString());
+		menu= dao.buscarPadre(miSession3.getAttribute("rol").toString());
+		 		
+	
+
 		  for(int i=0; i< menu.size(); i++)
 		  {
 			 opcion = menu.get(i);
@@ -72,10 +76,8 @@ public class ControladorMenu extends  GenericForwardComposer<Window> {
 			 nav.setLabel(texto);
 			 nav.setParent(menuNav);
 			 //Messagebox.show(texto);
-			 submenu = dao.buscarHijos("00001", menu.get(i).getCodigo());
-			// System.out.println(menu.get(i).getId_opcion());
-			 //Messagebox.show(String.valueOf(menu.size()));
-			// Messagebox.show(String.valueOf(submenu.size()));
+			 submenu = dao.buscarHijos(miSession3.getAttribute("rol").toString(), menu.get(i).getCodigo());
+
 			 if(submenu.size()!=0){
 			 for(int j=0; j<submenu.size(); j++)
 			 {
@@ -117,7 +119,7 @@ public class ControladorMenu extends  GenericForwardComposer<Window> {
 //					    }
 //					});
 				 navHijo.setParent(nav);
-				 submenuNieto = dao.buscarNietos("00001",  submenu.get(j).getCodigo());
+				 submenuNieto = dao.buscarNietos(miSession3.getAttribute("rol").toString(),  submenu.get(j).getCodigo());
 				 //System.out.println(menu.get(j).getId_opcion());
 				 // Messagebox.show(opcionHijo.getVinculo());
 				
@@ -127,7 +129,7 @@ public class ControladorMenu extends  GenericForwardComposer<Window> {
 					 String subTextoNieto = opcionNieto.getTexto();
 					 Navitem navNieto = new Navitem();
 					 navNieto.setLabel(subTextoNieto);
-					final String vinculoNieto = opcionNieto.getVinculo();
+					 final String vinculoNieto = opcionNieto.getVinculo();
 					 final String tabla1 = opcionNieto.getTabla();
 					 navNieto.addEventListener(Events.ON_CLICK, new EventListener() {
 

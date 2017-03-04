@@ -56,73 +56,83 @@
 									    </tabs>
 									    <tabpanels id="tabpanels">
 									        <tabpanel>
-									        	<div apply="org.zkoss.bind.BindComposer"
-												viewModel="@id('vm') @init('controlador.ControladorHorarioEsteticista')" >
-												<chosenbox model="@load(vm.model)" selectedObjects="@bind(vm.selectedObjects)" height="100px" width="500px" />
-													<button label="show selection" onClick="@command('showSelection')" />	
-												</div>
+									        	<div>
+					
+					
+													<hbox><label style="margin-left:200px">Todos los Bloques: </label><label style="margin-left:600px">Bloques Asociados</label></hbox>	
+								
+															<hbox>
+								
+															<listbox id="listaLunes">
+																<template name="model">
+																	<listitem>
+																		<listcell
+																			label="${each.descripcion}" id="${each.descripcion}">
+																		</listcell>
+																	</listitem>
+																</template>
+															</listbox>
+															<vbox>
+															
+															<button  id="agregarLunes" class="btn btn-primary " type="button" iconSclass="fa fa-arrow-right" height= "30px" width="30px" >  </button>
+															<button id="quitarLunes" class="btn btn-primary " type="button" iconSclass="fa fa-arrow-left"  height= "30px" width="30px">  </button>
+															</vbox>
+															
+															
+																			<listbox id="listaLunesSeleccionados">
+																<template name="model">
+																	<listitem>
+																		<listcell
+																			label="${each.descripcion}">
+																		</listcell>
+																	</listitem>
+																</template>
+															</listbox>
+															</hbox>
+													</div>
 									        </tabpanel>
 									        <tabpanel>
-									        	<div apply="org.zkoss.bind.BindComposer"
-												viewModel="@id('vm') @init('controlador.ControladorHorarioEsteticista')" >
-												<chosenbox model="@load(vm.model)" selectedObjects="@bind(vm.selectedObjects)" width="500px" height="100px"/>
-													<button label="show selection" onClick="@command('showSelection')" />	
-												</div>
+									        	<div>
+					
+					
+													<hbox><label style="margin-left:200px">Todos los Bloques: </label><label style="margin-left:600px">Bloques Asociados</label></hbox>	
+								
+															<hbox>
+								
+															<listbox id="listaMartes">
+																<template name="model">
+																	<listitem>
+																		<listcell
+																			label="${each.descripcion}">
+																		</listcell>
+																	</listitem>
+																</template>
+															</listbox>
+															<vbox>
+															
+															<button  id="agregarMartes" class="btn btn-primary " type="button" iconSclass="fa fa-arrow-right" height= "30px" width="30px" >  </button>
+															<button id="quitarMartes" class="btn btn-primary " type="button" iconSclass="fa fa-arrow-left"  height= "30px" width="30px">  </button>
+															</vbox>
+															
+															
+																			<listbox id="listaMartesSeleccionados">
+																<template name="model">
+																	<listitem>
+																		<listcell
+																			label="${each.descripcion}">
+																		</listcell>
+																	</listitem>
+																</template>
+															</listbox>
+															</hbox>
+													</div>
 									        </tabpanel>
-									        <tabpanel>
-									        	<div apply="org.zkoss.bind.BindComposer"
-												viewModel="@id('vm') @init('controlador.ControladorHorarioEsteticista')" >
-												<chosenbox model="@load(vm.model)" selectedObjects="@bind(vm.selectedObjects)" width="500px" height="100px"/>
-													<button label="show selection" onClick="@command('showSelection')" />	
-												</div>
-									        </tabpanel>
-									        <tabpanel>
-									        	<div apply="org.zkoss.bind.BindComposer"
-												viewModel="@id('vm') @init('controlador.ControladorHorarioEsteticista')" >
-												<chosenbox model="@load(vm.model)" selectedObjects="@bind(vm.selectedObjects)" width="500px" height="100px"/>
-													<button label="show selection" onClick="@command('showSelection')" />	
-												</div>
-									        </tabpanel>
-									        <tabpanel>
-									        	<div apply="org.zkoss.bind.BindComposer"
-												viewModel="@id('vm') @init('controlador.ControladorHorarioEsteticista')" >
-												<chosenbox model="@load(vm.model)" selectedObjects="@bind(vm.selectedObjects)" width="500px" height="100px" />
-													<button label="show selection" onClick="@command('showSelection')" />	
-												</div>
-									        </tabpanel>
-									        <tabpanel>
-									        	<div apply="org.zkoss.bind.BindComposer"
-												viewModel="@id('vm') @init('controlador.ControladorHorarioEsteticista')" >
-												<chosenbox model="@load(vm.model)" selectedObjects="@bind(vm.selectedObjects)" width="500px" height="100px" />
-													<button label="show selection" onClick="@command('showSelection')" />	
-												</div>
-									        </tabpanel>
-									        <tabpanel>
-									        	<div apply="org.zkoss.bind.BindComposer"
-												viewModel="@id('vm') @init('controlador.ControladorHorarioEsteticista')" >
-												<chosenbox model="@load(vm.model)" selectedObjects="@bind(vm.selectedObjects)" width="500px" height="100px"/>
-													<button label="show selection" onClick="@command('showSelection')" />	
-												</div>
-									        </tabpanel>
-									        <tabpanel>
-									        	<div apply="org.zkoss.bind.BindComposer"
-												viewModel="@id('vm') @init('controlador.ControladorHorarioEsteticista')" >
-												<chosenbox model="@load(vm.model)" selectedObjects="@bind(vm.selectedObjects)" width="500px" height="100px"/>
-													<button label="show selection" onClick="@command('showSelection')" />	
-												</div>
-									        </tabpanel>
+									       
 									        
 									       
 									    </tabpanels>
 									</tabbox>
 									
-												
-		                        
-		                    
-                      
-		                        
-		                        
-                                
                                 <h:div class="ibox-title">
 		                            
 		                        </h:div>
@@ -140,5 +150,6 @@
                         </div>
                     </h:div>
                 </div>
+                
             </window>
 </zk>

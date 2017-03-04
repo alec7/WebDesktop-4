@@ -1,5 +1,6 @@
 package controlador;
 
+import java.io.FileOutputStream;
 import java.sql.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -7,6 +8,8 @@ import java.util.Calendar;
 import java.util.Formatter;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.zkoss.util.media.Media;
 import org.zkoss.zhtml.Textarea;
@@ -32,7 +35,9 @@ import org.zkoss.zul.Messagebox.ClickEvent;
 import modelo.Maestrico;
 import modelo.Noticia;
 import modelo.Organizacion;
+import modelo.Slider;
 import modelo.Usuario;
+import modeloDAO.MaestricoDAO;
 import modeloDAO.NoticiaDAO;
 
 public class ControladorNoticia extends SelectorComposer<Component> {
@@ -43,23 +48,32 @@ public class ControladorNoticia extends SelectorComposer<Component> {
 	@Wire
 	private Textbox titulo;
 	@Wire
+	private Textbox contenido;
+	@Wire
 	private Listbox tipo_noticia;
 	@Wire
-	private Listbox listaObjtivos;
+	private Listbox listaNoticias;
 	@Wire
 	private Window registrarDatos;
+	
 	@Wire
-	private Image image2;
+	private Image imagen;
+	
 	@Wire
-	private Image imgCerrarImg2;
+	private Media media;
+	
 	@Wire
-	private Button  uploadBtnImg2;
+	private Button uploadImagen;
+	
+	
 	
 	NoticiaDAO ndao = new NoticiaDAO();
-	Noticia n;
+	MaestricoDAO dao = new MaestricoDAO();
+	Noticia n = new Noticia();
+	Maestrico maestrico = new Maestrico();
 	ListModelList<Maestrico> tipoNoticia;
-	String tipoNot = "";
 	
+	List<Maestrico> tipo_noticia1 = dao.listarMaestrico("tb_tipo_noticia") ;
 	
 	@Listen("onCreate = #registrarDatos")
 	public void cargarOrg(CreateEvent event){
@@ -70,19 +84,34 @@ public class ControladorNoticia extends SelectorComposer<Component> {
 		
     }
 	
+	@Listen("onCreate = #listaObjtivos")
+	public void noticia(CreateEvent event)
+    {
+		
+		this.cargarTabla();
+    }
+	
+	public void cargarTabla(){
+//		
+		List<Noticia> noticias = ndao.listaNoticia();
+		listaNoticias.setModel(new ListModelList<Noticia>(noticias));
+	
+//	
+	}
+	
 	public void cargarComboBox(){
 	
 		
-	
-		
-		for(int i=0;i<tipo_noticia.getItemCount();i++){
+		/*for(int i=0;i<tipo_noticia.getItemCount();i++){
 			if(tipo_noticia.getItemAtIndex(i).getLabel().equalsIgnoreCase(tipoNot)){
-				tipo_noticia.setSelectedIndex(i);
-				
+				 tipo_noticia.setSelectedIndex(i);
+				 
 			}
+		}*/
+		tipo_noticia.setModel(new ListModelList<Maestrico>(tipo_noticia1));
 		}
-	}
 	
+
 	
 	@Listen("onCreate = #tipo_noticia")
 	public void tipoOrg(CreateEvent event)
@@ -99,42 +128,55 @@ public class ControladorNoticia extends SelectorComposer<Component> {
 	
 	
 	
-	
-	/*@Listen("onCreate = #listaObjtivos")
-	public void cargarObjetivos(CreateEvent event)
-    {	
-		
-		cargarTablaObjetivos();
-		
-    }*/
-	
-	
-	
-	/*@Listen("onClick = #agregarObj")
-	public void agregarObj(){
-		String codigo = objdao.TotalRegistros();
-		
-		listaObjetivos.add(new Objetivo(codigo, objetivos.getText(),tipo_objetivo.getSelectedItem().getLabel() , "Activo"));
-		cargarTablaObjetivos();
-		
+	@Listen("onUpload = #uploadImagen")
+	public void onUpload$uploadImagen(UploadEvent e)
+	{
+		media = e.getMedia();
+	    imagen.setContent((org.zkoss.image.Image) media);
+	    uploadImagen.setVisible(false);
 	}
-	*/
 
 	
 	@Listen("onClick = #guardar")
 	public void guargar(){
-		if(tipo_noticia.getSelectedItem()==null|| titulo.getText().isEmpty()){
-			Messagebox.show("Debe llenar Todos los campos", "Información", Messagebox.OK, Messagebox.INFORMATION);
-		}else{
-			Date fecha = new Date(System.currentTimeMillis());
-			n = new Noticia(ndao.TotalRegistros().toString(),titulo.getText(),"Activo",uploadBtnImg2.getImage(),"codigo_sistema",tipo_noticia.getSelectedItem().toString(),fecha);
-			Messagebox.show("Datos Guardados Exitosamente", "Información", Messagebox.OK, Messagebox.INFORMATION);
-			//cancelar();
-			
+		String dir="";
+		 if(media instanceof org.zkoss.image.Image) {
+	             try {
+	                
+	            	 String carpeta = "C:\\Users\\Jalid\\git\\WebDesktop\\Bambu-Web-Desktop\\src\\main\\webapp\\WebContent\\assets\\imagenesSlider";
+	            	 FileOutputStream fileOutputStream=new FileOutputStream(carpeta+"\\"+media.getName());
+	                 dir="Bambu-Web-Desktop/WebContent/assets/imagenesSlider/"+media.getName();
+	            	 fileOutputStream.write(media.getByteData());
+	            	 
+
+		         		
+
+		             if(tipo_noticia.getSelectedItem()==null|| titulo.getText().isEmpty()){
+		         			Messagebox.show("Debe llenar Todos los campos", "Información", Messagebox.OK, Messagebox.INFORMATION);
+		         		}else{
+		         			Date fecha = new Date(System.currentTimeMillis());
+		         			n = new Noticia(ndao.TotalRegistros().toString(),"Activo","00001",fecha,tipo_noticia1.get(tipo_noticia.getSelectedIndex()).getCodigo(),titulo.getText(),contenido.getText(),dir);
+		         			ndao.agregarNoticia(n);
+		         			Messagebox.show("Datos Guardados Exitosamente", "Información", Messagebox.OK, Messagebox.INFORMATION);
+		         			Messagebox.show(tipo_noticia.getSelectedItem().toString());
+		         		};
+		         			 
+		         		fileOutputStream.close();
+		         		
+	            	
+	            	
+	             }catch (Exception ex) {
+	                 Logger.getLogger(ControladorNoticia.class.getName()).log(Level.SEVERE, null, ex);
+	             }
+	             
+		
+	             	
 
 		}
 		
 	}
+	
+	
 	@Listen("onClick = #cancelar")
 public void cancelar(){
 	    titulo.setText("");
@@ -153,82 +195,6 @@ public void cancelar(){
 //		tipo_red_social.clearSelection();
 	}
 	
-	/*@Listen("onUpload = #uploadBtnImg2")
-	public void imagen(UploadEvent e) throws Exception
-	{
-	 media2 = e.getMedia();
-	     
-        //media.getByteData()
-        //media.getStreamData()
-        //media.getReaderData()
-        if(media2 instanceof org.zkoss.image.Image) {
-        	image2.setVisible(true);
-        	image2.setWidth("100px");
-        	image2.setHeight("100px");
-        	image2.setContent((org.zkoss.image.Image) media2);
-        	imgCerrarImg2.setVisible(true);
-        	
-        	
-        }
-        uploadBtnImg2.setVisible(false);
-	}*/
-	/*
-	@Listen("onClick = #imgCerrarImg2")
-	public void cerrarImagen()
-	{
-		
-	            image2.setVisible(false);
-	            
-	        
-	        uploadBtnImg2.setVisible(true);
-	        imgCerrarImg2.setVisible(false);
-	}
-	
-	@Listen("onObjetivoDelete = #listaObjtivos")
-	public void onObjetivoDelete$listaOjtivos(ForwardEvent evt){
-		Button btn = (Button)evt.getOrigin().getTarget();
-		Listitem litem = (Listitem)btn.getParent().getParent();
-		 obj = (Objetivo)litem.getValue();
-		EventListener<ClickEvent> clickListener = new EventListener<Messagebox.ClickEvent>() {
-	        public void onEvent(ClickEvent event) throws Exception {
-	            if(Messagebox.Button.YES.equals(event.getButton())) {
-	            	objdao.modificarStatus(obj.getCodigo());
-	            	cargarTablaObjetivos();
-					   
-	            }
-	        }
-	    };
-	    Messagebox.show("¿Seguro de eliminar esta red social?", "Mensaje de confirmación", new Messagebox.Button[]{
-	            Messagebox.Button.YES, Messagebox.Button.NO },Messagebox.QUESTION,clickListener);
-	}
-	
-	/*@Listen("onRedesDelete = #listaRedes")
-	public void onRedesDelete$listaRedes(ForwardEvent evt){
-		Button btn = (Button)evt.getOrigin().getTarget();
-		Listitem litem = (Listitem)btn.getParent().getParent();
-		 rs = (RedSocial)litem.getValue();
-		EventListener<ClickEvent> clickListener = new EventListener<Messagebox.ClickEvent>() {
-	        public void onEvent(ClickEvent event) throws Exception {
-	            if(Messagebox.Button.YES.equals(event.getButton())) {
-	            	reddao.modificarStatus(rs.getCodigo());
-	            	cargarTablaRedesSociales();
-					   
-	            }
-	        }
-	    };
-	    Messagebox.show("¿Seguro de eliminar esta red social?", "Mensaje de confirmación", new Messagebox.Button[]{
-	            Messagebox.Button.YES, Messagebox.Button.NO },Messagebox.QUESTION,clickListener);
-	}*/
-/*	public void cargarTablaObjetivos(){
-		//listaObjetivos = objdao.listaObjetivo();
-		listObjt = new ListModelList<Objetivo>(listaObjetivos);
-		listaObjtivos.setModel(listObjt);
-	}
-	
-	/*public void cargarTablaRedesSociales(){
-		//listaRedSocial = reddao.listaRedesSociales();
-		listRed = new ListModelList<RedSocial>(listaRedSocial);
-		listaRedes.setModel(listRed);
-	}*/
 
-}
+	}
+

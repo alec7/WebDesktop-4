@@ -34,7 +34,7 @@ public class ControladorConsultaDiagnostico extends SelectorComposer<Component> 
 	@Wire
 	Tabpanel tabAntecedentes;
 	@Wire
-	Div divIndicadores;
+	Tabpanel tabIndicadores;
 	@Wire
 	Textbox cedula;
 	@Wire
@@ -93,17 +93,20 @@ public void nombreNecesidad(){
 	}
 	
 	
-	@Listen("onCreate = #ficha")
+	@Listen("onCreate = #diagnostico")
 	public void onCreate$ficha()
 	{
 		
 		
 		HabitoDAO dao = new HabitoDAO();
 		AntecedenteDAO aDao = new AntecedenteDAO();
+		IndicadorDAO iDao = new IndicadorDAO();
 		ArrayList<Maestrico> habitos = new ArrayList<Maestrico>();
 	    ArrayList<Maestrico> antecedentes = new ArrayList<Maestrico>();
+	    ArrayList<Maestrico> indicadores = new ArrayList<Maestrico>();
 	    habitos = dao.listaHabito();
 	    antecedentes = aDao.listaAntecedente();
+	    indicadores = iDao.listaIndicador();
 	    
 	    
 	   // Messagebox.show(String.valueOf(habitos.size()));
@@ -141,22 +144,13 @@ public void nombreNecesidad(){
 	        
 	    }
 	    
-	 	}
-	
-	@Listen("onCreate = #diagnostico")
-	public void onCreate$diagnostico(){
-		
-		IndicadorDAO iDao = new IndicadorDAO();
-		ArrayList<Maestrico> indicadores = new ArrayList<Maestrico>();
-		indicadores = iDao.listaIndicador();
-		
-		// Cargar Indicadores de Diagnostico
 	    for(int k=0; k<indicadores.size(); k++)
 	    {
+	    	
 	    	maestrico = indicadores.get(k);
 	        Div div = new Div();
 	        div.setClass("form-group");
-	        div.setParent(divIndicadores);
+	        div.setParent(tabIndicadores);
 	        Label label = new Label();
 	        label.setClass("col-lg-2 control-label");
 	        label.setValue(maestrico.getDescripcion());
@@ -166,6 +160,7 @@ public void nombreNecesidad(){
 	        
 	        
 	    }
-	}
-
+	 	}
+	
+	
 }
