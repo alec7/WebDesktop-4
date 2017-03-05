@@ -61,7 +61,7 @@ public class ControladorMenu extends  GenericForwardComposer<Window> {
 	public void onCreate$menu()
 	{
 
-		Messagebox.show(miSession3.getAttribute("rol").toString());
+		//Messagebox.show(miSession3.getAttribute("rol").toString());
 		menu= dao.buscarPadre(miSession3.getAttribute("rol").toString());
 		 		
 	

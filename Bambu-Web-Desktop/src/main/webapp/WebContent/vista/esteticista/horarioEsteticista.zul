@@ -34,10 +34,10 @@
                                
                                  <div class="form-group"><label class="col-lg-2 control-label">Nombre:</label>
 
-                                    <div class="col-lg-3"><textbox type="text"  id="nombre" class="form-control" /> </div>
+                                    <div class="col-lg-3"><textbox type="text"  id="nombre"  class="form-control" /> </div>
                                 </div>
                                  <h:div class="ibox-title">
-		                            <h:h5>Día Laborable</h:h5>
+		                            <h:h5>Bloque Laborable por Día</h:h5>
 		                        </h:div>
                                 
                                 <div id="dias_laborables">
@@ -50,7 +50,6 @@
 		                            
 	                                     
 		                        	</h:div>
-		                        	<label class="col-lg-2 control-label">Bloques:</label><h:br></h:br>
 		                        	<tabbox id="tb" height="300px">
 									    <tabs id="tabs">
 									    </tabs>
@@ -59,7 +58,7 @@
 									        	<div>
 					
 					
-													<hbox><label style="margin-left:200px">Todos los Bloques: </label><label style="margin-left:600px">Bloques Asociados</label></hbox>	
+													<hbox><label style="margin-left:-100px">Todos los Bloques: </label><label style="margin-left:300px">Bloques Asociados</label></hbox>	
 								
 															<hbox>
 								
@@ -95,7 +94,7 @@
 									        	<div>
 					
 					
-													<hbox><label style="margin-left:200px">Todos los Bloques: </label><label style="margin-left:600px">Bloques Asociados</label></hbox>	
+													<hbox><label style="margin-left:-100px">Todos los Bloques: </label><label style="margin-left:300px">Bloques Asociados</label></hbox>	
 								
 															<hbox>
 								
@@ -116,6 +115,186 @@
 															
 															
 																			<listbox id="listaMartesSeleccionados">
+																<template name="model">
+																	<listitem>
+																		<listcell
+																			label="${each.descripcion}">
+																		</listcell>
+																	</listitem>
+																</template>
+															</listbox>
+															</hbox>
+													</div>
+									        </tabpanel>
+									        <tabpanel>
+									        	<div>
+					
+					
+													<hbox><label style="margin-left:-100px">Todos los Bloques: </label><label style="margin-left:300px">Bloques Asociados</label></hbox>	
+								
+															<hbox>
+								
+															<listbox id="listaMiercoles">
+																<template name="model">
+																	<listitem>
+																		<listcell
+																			label="${each.descripcion}">
+																		</listcell>
+																	</listitem>
+																</template>
+															</listbox>
+															<vbox>
+															
+															<button  id="agregarMiercoles" class="btn btn-primary " type="button" iconSclass="fa fa-arrow-right" height= "30px" width="30px" >  </button>
+															<button id="quitarMiercoles" class="btn btn-primary " type="button" iconSclass="fa fa-arrow-left"  height= "30px" width="30px">  </button>
+															</vbox>
+															
+															
+																			<listbox id="listaMiercolesSeleccionados">
+																<template name="model">
+																	<listitem>
+																		<listcell
+																			label="${each.descripcion}">
+																		</listcell>
+																	</listitem>
+																</template>
+															</listbox>
+															</hbox>
+													</div>
+									        </tabpanel>
+									        <tabpanel>
+									        	<div>
+					
+					
+													<hbox><label style="margin-left:-100px">Todos los Bloques: </label><label style="margin-left:300px">Bloques Asociados</label></hbox>	
+								
+															<hbox>
+								
+															<listbox id="listaJueves">
+																<template name="model">
+																	<listitem>
+																		<listcell
+																			label="${each.descripcion}">
+																		</listcell>
+																	</listitem>
+																</template>
+															</listbox>
+															<vbox>
+															
+															<button  id="agregarJueves" class="btn btn-primary " type="button" iconSclass="fa fa-arrow-right" height= "30px" width="30px" >  </button>
+															<button id="quitarJueves" class="btn btn-primary " type="button" iconSclass="fa fa-arrow-left"  height= "30px" width="30px">  </button>
+															</vbox>
+															
+															
+																			<listbox id="listaJuevesSeleccionados">
+																<template name="model">
+																	<listitem>
+																		<listcell
+																			label="${each.descripcion}">
+																		</listcell>
+																	</listitem>
+																</template>
+															</listbox>
+															</hbox>
+													</div>
+									        </tabpanel>
+									        <tabpanel>
+									        	<div>
+					
+					
+													<hbox><label style="margin-left:-100px">Todos los Bloques: </label><label style="margin-left:300px">Bloques Asociados</label></hbox>	
+								
+															<hbox>
+								
+															<listbox id="listaViernes">
+																<template name="model">
+																	<listitem>
+																		<listcell
+																			label="${each.descripcion}">
+																		</listcell>
+																	</listitem>
+																</template>
+															</listbox>
+															<vbox>
+															
+															<button  id="agregarViernes" class="btn btn-primary " type="button" iconSclass="fa fa-arrow-right" height= "30px" width="30px" >  </button>
+															<button id="quitarViernes" class="btn btn-primary " type="button" iconSclass="fa fa-arrow-left"  height= "30px" width="30px">  </button>
+															</vbox>
+															
+															
+																			<listbox id="listaViernesSeleccionados">
+																<template name="model">
+																	<listitem>
+																		<listcell
+																			label="${each.descripcion}">
+																		</listcell>
+																	</listitem>
+																</template>
+															</listbox>
+															</hbox>
+													</div>
+									        </tabpanel>
+									        <tabpanel>
+									        	<div>
+					
+					
+													<hbox><label style="margin-left:-100px">Todos los Bloques: </label><label style="margin-left:300px">Bloques Asociados</label></hbox>	
+								
+															<hbox>
+								
+															<listbox id="listaSabado">
+																<template name="model">
+																	<listitem>
+																		<listcell
+																			label="${each.descripcion}">
+																		</listcell>
+																	</listitem>
+																</template>
+															</listbox>
+															<vbox>
+															
+															<button  id="agregarSabado" class="btn btn-primary " type="button" iconSclass="fa fa-arrow-right" height= "30px" width="30px" >  </button>
+															<button id="quitarSabado" class="btn btn-primary " type="button" iconSclass="fa fa-arrow-left"  height= "30px" width="30px">  </button>
+															</vbox>
+															
+															
+																			<listbox id="listaSabadoSeleccionados">
+																<template name="model">
+																	<listitem>
+																		<listcell
+																			label="${each.descripcion}">
+																		</listcell>
+																	</listitem>
+																</template>
+															</listbox>
+															</hbox>
+													</div>
+									        </tabpanel>
+									        <tabpanel>
+									        	<div>
+					
+					
+													<hbox><label style="margin-left:-100px">Todos los Bloques: </label><label style="margin-left:300px">Bloques Asociados</label></hbox>	
+								
+															<hbox>
+								
+															<listbox id="listaDomingo">
+																<template name="model">
+																	<listitem>
+																		<listcell
+																			label="${each.descripcion}">
+																		</listcell>
+																	</listitem>
+																</template>
+															</listbox>
+															<vbox>
+															
+															<button  id="agregarDomingo" class="btn btn-primary " type="button" iconSclass="fa fa-arrow-right" height= "30px" width="30px" >  </button>
+															<button id="quitarDomingo" class="btn btn-primary " type="button" iconSclass="fa fa-arrow-left"  height= "30px" width="30px">  </button>
+															</vbox>
+															
+															
+																			<listbox id="listaDomingoSeleccionados">
 																<template name="model">
 																	<listitem>
 																		<listcell

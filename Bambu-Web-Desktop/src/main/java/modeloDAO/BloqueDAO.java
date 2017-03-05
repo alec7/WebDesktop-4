@@ -14,7 +14,7 @@ import modelo.PerfilUsuario;
 public class BloqueDAO extends ConexionDAO {
 	
 	public List<Bloque> listarBloques() { //para listar en el grid la informacion
-		String tiraSQL = "SELECT * FROM tb_bloque where status = 'Activo'";
+		String tiraSQL = "SELECT * FROM tb_bloque where status = 'Activo' order by codigo";
 		ResultSet resultSet = Conexion.consultar(tiraSQL);
 		List<Bloque> arr_bloque = new ArrayList<Bloque>();
 		try {

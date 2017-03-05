@@ -5,6 +5,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import org.zkoss.zhtml.Messagebox;
+import org.zkoss.zk.ui.Executions;
+
 import bean.Conexion;
 import modelo.Opcion;
 
@@ -38,7 +41,8 @@ public class OpcionDAO extends ConexionDAO{
 			}
 			resultSet.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Messagebox.show("Ha expirado su sesión");
+			Executions.sendRedirect("login.zul");
 		}
 		return padres;
 	}
