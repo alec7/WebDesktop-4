@@ -84,7 +84,7 @@ public class ControladorNoticia extends SelectorComposer<Component> {
 		
     }
 	
-	@Listen("onCreate = #listaObjtivos")
+	@Listen("onCreate = #listaNoticias")
 	public void noticia(CreateEvent event)
     {
 		

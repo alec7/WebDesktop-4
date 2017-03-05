@@ -2,7 +2,7 @@ package controlador;
 
 import java.util.ArrayList;
 
-//import org.apache.catalina.util.StringParser;
+import org.apache.catalina.util.StringParser;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.Session;
 import org.zkoss.zk.ui.Sessions;
@@ -61,8 +61,8 @@ public class ControladorMenu extends  GenericForwardComposer<Window> {
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void onCreate$menu()
 	{
-		Messagebox.show(miSession3.getAttribute("rol").toString());
-		menu= dao.buscarPadre();
+		
+		menu= dao.buscarPadre(miSession3.getAttribute("rol").toString());
 		 
 		  for(int i=0; i< menu.size(); i++)
 		  {

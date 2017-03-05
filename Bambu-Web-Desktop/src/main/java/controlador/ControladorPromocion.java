@@ -1,6 +1,6 @@
 package controlador;
 
-import java.text.DateFormat;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -21,9 +21,6 @@ import org.zkoss.zul.Listbox;
 import org.zkoss.zul.Listitem;
 import org.zkoss.zul.Textbox;
 import org.zkoss.zul.Messagebox.ClickEvent;
-
-import modelo.Maestrico;
-import modelo.Notificacion;
 import modelo.Paquete;
 import modelo.Promocion;
 import modeloDAO.PaqueteDAO;

@@ -21,6 +21,7 @@ import org.postgresql.core.Utils;
 import org.zkoss.util.media.Media;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Page;
+import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.event.CreateEvent;
 import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zk.ui.event.ForwardEvent;
@@ -88,6 +89,7 @@ public class ControladorSlider extends  SelectorComposer<Component>{
 	@Listen("onCreate = #listaSlider")
 	public void acuerdo(CreateEvent event)
     {
+		Messagebox.show("getContextPath(): " + Sessions.getCurrent().getWebApp().getNativeContext());
 		this.cargarTabla();
     }
 	
