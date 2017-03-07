@@ -1,5 +1,7 @@
 package controlador;
 
+
+import modelo.Acuerdo;
 import modelo.Cliente;
 import modelo.Cod_Des;
 import modeloDAO.ClienteDAO;
@@ -10,6 +12,7 @@ import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zul.ListModelList;
+import org.zkoss.zul.Listbox;
 import org.zkoss.zul.Textbox;
 
 public class ControladorFichaCliente extends SelectorComposer<Component>{
@@ -21,6 +24,8 @@ public class ControladorFichaCliente extends SelectorComposer<Component>{
 	Textbox apellido;
 	@Wire
 	Textbox nombre;
+	@Wire
+	Listbox estado_civil;
 	
 	ClienteDAO cdao = new ClienteDAO();
 	Cliente c;
@@ -39,6 +44,17 @@ public class ControladorFichaCliente extends SelectorComposer<Component>{
 		
 	}
 	
-	
+	@Listen("onClick = #guardar")
+	public void guargar(){
+		if(estado_civil.getSelectedItem()!=null){
+			
+		cdao.modificarCliente(cedula.getText(), estado_civil.getSelectedItem().toString());
+			
+		}
+		else{
+			Messagebox.show("Debe Seleccionar un Tipo de Acuerdo ", "Información", Messagebox.OK, Messagebox.INFORMATION);
+		}
+		
+	}
 	
 }

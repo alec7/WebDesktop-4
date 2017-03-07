@@ -60,8 +60,11 @@ public class ControladorPerfil extends GenericForwardComposer<Window> {
 	ArrayList<Cliente> clientes = new ArrayList<Cliente>();
 	ListModelList<Maestrico> ocupacionCliente;
 	List<Maestrico> ocupacion1 = dao.listarMaestrico("tb_ocupacion");
+	
+	
 
 	public void onCreate$perfil() {
+		Messagebox.show(String.valueOf(ocupacion1.size()));
 
 		usuario = (Usuario) miSession.getAttribute("UsuarioCesion");
 		cliente = clienteDao.BuscarClienteXCorreo(usuario.getUsuario());
@@ -79,7 +82,12 @@ public class ControladorPerfil extends GenericForwardComposer<Window> {
 		sexo.setSelectedIndex(obtenerSexoCliente(cliente.getSexo()));
 		estado_civil.setSelectedIndex(obtenerEstadoCivilCliente(cliente
 				.getEsta_civil()));
-		ocupacion.setSelectedIndex(obtenerOcupacionCliente(cliente.getCodigo_ocupacion()));
+		
+	
+		//ocupacion.setModel(ocupacionCliente);
+		//ocupacion.setSelectedIndex(1);
+		
+		ocupacion.setModel(new ListModelList<Maestrico>(ocupacion1));
 	}
 
 	public void onCreate$preferenciaCliente() {
@@ -117,15 +125,13 @@ public class ControladorPerfil extends GenericForwardComposer<Window> {
 			if (ocupacionCliente.equals(ocupacion1.get(i).getCodigo()))
 				ocupacionC = i;
 		}
-		Messagebox.show(String.valueOf(ocupacionC));
+		//Messagebox.show(String.valueOf(ocupacionC));
 		return ocupacionC;
 		
 	}
 
 	public void onCreate$ocupacion(CreateEvent event) {
-		List<Maestrico> descripcion = clienteDao.ocupacion();
-		ocupacionCliente = new ListModelList<Maestrico>(descripcion);
-		ocupacion.setModel(ocupacionCliente);
+		
 		
 
 	}

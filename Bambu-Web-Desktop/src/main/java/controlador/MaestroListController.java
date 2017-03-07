@@ -354,8 +354,8 @@ public class MaestroListController extends SelectorComposer<Component>{
 		case "tb_ocupacion": 
 			t=t+"Ocupación";
 			return t;
-		case "tb_equipo": 
-			t=t+"Equipo";
+		case "tb_cubiculo": 
+			t=t+"Cubículo";
 			return t;
 		
 		}

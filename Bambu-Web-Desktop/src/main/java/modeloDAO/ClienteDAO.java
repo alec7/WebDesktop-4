@@ -16,6 +16,7 @@ public class ClienteDAO extends ConexionDAO {
 	public void modificarCliente(String cedula, String estado_civil) {
 		String tiraSQL = "UPDATE tb_cliente SET estado_civil = '"+estado_civil+"' WHERE cedula = '"+cedula+"'";
 		Conexion.ejecutar(tiraSQL);
+		System.out.println(estado_civil);
 			
 	}
 
