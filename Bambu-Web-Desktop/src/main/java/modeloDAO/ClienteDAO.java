@@ -13,14 +13,11 @@ import bean.Conexion;
 
 public class ClienteDAO extends ConexionDAO {
 	
-public void registrarCliente(Cliente c){
-		
-		String tiraSQL= "INSERT INTO  tb_cliente (estado_civil,codigo_ocupacion,direccion,codigo_acuerdo,) "
-				+ "VALUES ('"+c.getEsta_civil()+"'"+",'"+ c.getCodigo_ocupacion()+"','"+c.getDireccion()+"','"+ c.getCodigo_acuerdo()+"')";
+	public void modificarCliente(String cedula, String estado_civil) {
+		String tiraSQL = "UPDATE tb_cliente SET estado_civil = '"+estado_civil+"' WHERE cedula = '"+cedula+"'";
 		Conexion.ejecutar(tiraSQL);
-		
-	} 
-
+			
+	}
 
 	public Cliente buscarCliente(String cedula) { //para listar en el grid la informacion
 		String tiraSQL = "SELECT * FROM tb_cliente where cedula='"+cedula+"'";
