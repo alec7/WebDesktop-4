@@ -15,12 +15,8 @@
 
 <?page title="Preferencias" contentType="text/html;charset=UTF-8"?>
 <zk xmlns:h="http://www.w3.org/1999/xhtml" xmlns:zk="http://www.zkoss.org/2005/zk" >
-
-
-
-<window >
-
-           
+<window id="preferenciasCliente" apply="controlador.ControladorFichaCliente">
+          
                 <div class="col-lg-12" >
                     <h:div class="ibox float-e-margins">
                         <h:div class="ibox-title">
