@@ -48,7 +48,7 @@ public class ControladorMenu extends  GenericForwardComposer<Window> {
 	 
 	  
 	  private Include myInclude;
-		Session miSession = Sessions.getCurrent();
+	    Session miSession = Sessions.getCurrent();
 		Session miSession1 = Sessions.getCurrent();
 		Session miSession2 = Sessions.getCurrent();
 		Session miSession3 = Sessions.getCurrent();
@@ -61,7 +61,7 @@ public class ControladorMenu extends  GenericForwardComposer<Window> {
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void onCreate$menu()
 	{
-		
+		Messagebox.show(miSession.getAttribute("usuario").toString());
 		menu= dao.buscarPadre(miSession3.getAttribute("rol").toString());
 		 
 		  for(int i=0; i< menu.size(); i++)
