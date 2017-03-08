@@ -5,6 +5,7 @@ import java.util.List;
 
 import modelo.Cliente;
 import modelo.Cod_Des;
+import modelo.HabitoCliente;
 import modelo.Incidencia;
 import modelo.Maestrico;
 import modeloDAO.AntecedenteDAO;
@@ -15,6 +16,9 @@ import modeloDAO.NecesidadDAO;
 
 import org.zkoss.zhtml.Messagebox;
 import org.zkoss.zk.ui.Component;
+import org.zkoss.zk.ui.event.Event;
+import org.zkoss.zk.ui.event.EventListener;
+import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
@@ -34,7 +38,7 @@ public class ControladorConsultaDiagnostico extends SelectorComposer<Component> 
 	@Wire
 	Tabpanel tabAntecedentes;
 	@Wire
-	Tabpanel tabIndicadores;
+	Div divIndicadores;
 	@Wire
 	Textbox cedula;
 	@Wire
@@ -44,9 +48,14 @@ public class ControladorConsultaDiagnostico extends SelectorComposer<Component> 
 	@Wire
 	Listbox necesidades;
 	
+	String nombreCliente;
+	
 	Maestrico maestrico = new Maestrico();
 	ClienteDAO cdao = new ClienteDAO();
 	NecesidadDAO nDao = new NecesidadDAO();
+	HabitoCliente habCliente = new HabitoCliente();
+	HabitoDAO habDao = new HabitoDAO();
+	
 	Cliente c;
 	Cod_Des cd;
 	ListModelList<Cod_Des> necesidadListModel;
@@ -58,10 +67,12 @@ public class ControladorConsultaDiagnostico extends SelectorComposer<Component> 
 	@Listen("onClick = #buscar")
 	public void buscar()
 	{
+		
 		c = cdao.buscarCliente(cedula.getText());
 		if(c!=null){
 			nombre.setText(c.getNombre());
 			apellido.setText(c.getApellido());
+			
 		
 //				String codigoIncidencia = inDao.obtenerCodigo(tipoIncidencia.getSelectedItem().getLabel());
 //				Messagebox.show(codigoIncidencia);
@@ -69,7 +80,7 @@ public class ControladorConsultaDiagnostico extends SelectorComposer<Component> 
 				nombreNecesidad();
 				necesidadListModel = new ListModelList<Cod_Des>(listNecesidad);
 				
-				necesidades.setModel(necesidadListModel);
+				//necesidades.setModel(necesidadListModel);
 				
 			
 		}
@@ -93,20 +104,18 @@ public void nombreNecesidad(){
 	}
 	
 	
-	@Listen("onCreate = #diagnostico")
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@Listen("onCreate = #ficha")
 	public void onCreate$ficha()
 	{
 		
 		
-		HabitoDAO dao = new HabitoDAO();
+		
 		AntecedenteDAO aDao = new AntecedenteDAO();
-		IndicadorDAO iDao = new IndicadorDAO();
 		ArrayList<Maestrico> habitos = new ArrayList<Maestrico>();
 	    ArrayList<Maestrico> antecedentes = new ArrayList<Maestrico>();
-	    ArrayList<Maestrico> indicadores = new ArrayList<Maestrico>();
-	    habitos = dao.listaHabito();
+	    habitos = habDao.listaHabito();
 	    antecedentes = aDao.listaAntecedente();
-	    indicadores = iDao.listaIndicador();
 	    
 	    
 	   // Messagebox.show(String.valueOf(habitos.size()));
@@ -120,9 +129,23 @@ public void nombreNecesidad(){
 	        Label label = new Label();
 	        label.setClass("col-lg-2 control-label");
 	        label.setValue(maestrico.getDescripcion());
+	        
 	        label.setParent(div);
+	        
 	        Checkbox check = new Checkbox();
 	        check.setParent(div);
+	        check.setId(maestrico.getCodigo());
+	        check.addEventListener(Events.ON_CHECK, new EventListener() {
+
+				@Override
+				public void onEvent(Event event) throws Exception {
+					
+					habCliente = new HabitoCliente(maestrico.getCodigo(),cedula.getText(),habDao.TotalRegistros(),true);
+					habDao.agregarHabitoACliente(habCliente);
+				}						 
+			 });
+	        
+	        
 	        
 	        
 	    }
@@ -144,13 +167,23 @@ public void nombreNecesidad(){
 	        
 	    }
 	    
+	 	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@Listen("onCreate = #diagnostico")
+	public void onCreate$diagnostico(){
+		
+		IndicadorDAO iDao = new IndicadorDAO();
+		ArrayList<Maestrico> indicadores = new ArrayList<Maestrico>();
+		indicadores = iDao.listaIndicador();
+		
+		// Cargar Indicadores de Diagnostico
 	    for(int k=0; k<indicadores.size(); k++)
 	    {
-	    	
 	    	maestrico = indicadores.get(k);
 	        Div div = new Div();
 	        div.setClass("form-group");
-	        div.setParent(tabIndicadores);
+	        div.setParent(divIndicadores);
 	        Label label = new Label();
 	        label.setClass("col-lg-2 control-label");
 	        label.setValue(maestrico.getDescripcion());
@@ -158,9 +191,19 @@ public void nombreNecesidad(){
 	        Checkbox check = new Checkbox();
 	        check.setParent(div);
 	        
+	        check.addEventListener(Events.ON_CLICK, new EventListener() {
+
+				@Override
+				public void onEvent(Event event) throws Exception {
+					
+			    	
+				}						 
+			 });
 	        
 	    }
-	 	}
+	}
 	
 	
+	
+
 }

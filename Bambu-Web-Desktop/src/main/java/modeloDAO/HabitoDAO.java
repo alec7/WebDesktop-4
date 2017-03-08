@@ -3,10 +3,10 @@ package modeloDAO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Formatter;
 import java.util.List;
 
-
-
+import modelo.HabitoCliente;
 import modelo.Maestrico;
 import bean.Conexion;
 
@@ -29,6 +29,37 @@ public class HabitoDAO extends ConexionDAO{
 			e.printStackTrace();
 		}
 		return arr_habito;
+	}
+	
+	
+	
+	public String TotalRegistros(){
+		String tiraSQL = "SELECT * FROM tb_Habito_cliente";
+		ResultSet resultSet = Conexion.consultar(tiraSQL);
+		int numero=1;
+		try {
+			if(resultSet!=null){
+				while(resultSet.next()){
+					numero++;
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			
+		} 
+		Formatter fmt = new Formatter();
+		fmt.format("%05d", numero);
+		return String.valueOf(fmt);
+	}
+	
+	
+public void agregarHabitoACliente(HabitoCliente habito) {
+		
+		String tiraSQL= "INSERT INTO tb_Habito_cliente (codigo_habito,codigo_cliente,codigo,status) "
+				+ "VALUES ('"+habito.getCodigo_habito()+"'"+",'"+habito.getCodigo_cliente()+"','"+habito.getCodigo()+"','"+habito.getStatus()+"')";
+		Conexion.ejecutar(tiraSQL);
+		
+		
 	}
 
 }

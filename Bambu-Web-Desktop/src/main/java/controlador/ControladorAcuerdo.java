@@ -9,7 +9,7 @@ import modelo.Maestrico;
 import modelo.Acuerdo;
 import modeloDAO.AcuerdoDAO;
 
-import org.w3c.dom.ls.LSInput;
+
 import org.zkoss.zhtml.Messagebox;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.event.CreateEvent;

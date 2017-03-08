@@ -42,7 +42,6 @@ public class OpcionDAO extends ConexionDAO{
 		}
 		return padres;
 	}
-
 	
 	public ArrayList<Opcion> buscarHijos(String idrol, String idopcion){
 		ArrayList<Opcion> hijos = new ArrayList<Opcion>();
@@ -91,10 +90,8 @@ public class OpcionDAO extends ConexionDAO{
 	}
 	
 	public ArrayList<Opcion> ObtenerTodos(){
-
-		ArrayList<Opcion> opciones = new ArrayList<Opcion>();
-		String tiraSQL ="SELECT * from tb_opcion WHERE status ='false'  ORDER BY codigo";
-
+		ArrayList<Opcion> padres = new ArrayList<Opcion>();
+		String tiraSQL ="select * from tb_opcion";
 		ResultSet resultSet = Conexion.consultar(tiraSQL);
 		try {
 			while(resultSet.next()){
@@ -105,35 +102,13 @@ public class OpcionDAO extends ConexionDAO{
 				Boolean estatus = resultSet.getBoolean("status");
 				String icono = resultSet.getString("icono");
 				String tabla = resultSet.getString("tabla");
-				Opcion opcion = new Opcion(fk_id_opcion, id_padre, vinculo, texto, estatus, icono, tabla);
-				opciones.add(opcion);
+				Opcion padre = new Opcion(fk_id_opcion, id_padre, vinculo, texto, estatus, icono, tabla);
+				padres.add(padre);
 			}
 			resultSet.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return opciones;
+		return padres;
 	}
-	 public Opcion buscarPadreDeOpcion(String codigo){
-	 		Opcion op = new Opcion();
-	 		String tiraSQL = "SELECT * FROM tb_opcion WHERE  codigo = '"+codigo+"'" ;
-	 		ResultSet resultSet = Conexion.consultar(tiraSQL);
-	 		try {
-	 			while(resultSet.next()){
-	 				String id_opcion = resultSet.getString("codigo");
-	 				String id_padre = resultSet.getString("codigo_padre");
-	 				String vinculo = resultSet.getString("vinculo");
-	 				String texto = resultSet.getString("texto");
-	 				Boolean status = resultSet.getBoolean("status");
-	 				String icono = resultSet.getString("icono");
-	 				String tabla = resultSet.getString("tabla");
-	 				op = new Opcion(id_opcion, id_padre, vinculo, texto, status, icono, tabla);
-	 				
-	 			}
-	 			resultSet.close();
-	 		} catch (SQLException e) {
-	 			e.printStackTrace();
-	 		}
-	 		return op;
-	 	}
 }

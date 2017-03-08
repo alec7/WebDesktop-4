@@ -62,7 +62,7 @@ public class ClienteDAO extends ConexionDAO {
 	public Cliente obtenerCliente(String correo)
 	{
 		Cliente cliente = null;
-		String tiraSQL = "select cedula, nombre, apellido, sexo, estado_civil, telefono, direccion, correo, ciudad from tb_cliente a where a.correo='"+correo+"'";
+		String tiraSQL = "select cedula, nombre, apellido, sexo, estado_civil, telefono, direccion, correo, ciudad, tipo_cliente, codigo_acuerdo, codigo_referencia, codigo_organizacion, status, codigo_ocupacion, fecha_nacimiento  from tb_cliente a where a.correo='"+correo+"'";
 		ResultSet resultSet = Conexion.consultar(tiraSQL);
 		try {
 			if(resultSet.next()){
@@ -114,7 +114,7 @@ public class ClienteDAO extends ConexionDAO {
 	public Cliente BuscarClienteXCedula(String cedulaCliente)
 	{
 		Cliente cliente = null;
-		String tiraSQL = "select cedula, nombre, apellido, sexo, estado_civil, telefono, direccion, correo, ciudad from tb_cliente a where a.cedula='"+cedulaCliente+"'";
+		String tiraSQL = "select cedula, nombre, apellido, sexo, estado_civil, telefono, direccion, correo, ciudad, tipo_cliente, codigo_acuerdo, codigo_referencia, codigo_organizacion, status, codigo_ocupacion, fecha_nacimiento  from tb_cliente a where a.cedula='"+cedulaCliente+"'";
 		ResultSet resultSet = Conexion.consultar(tiraSQL);
 		try {
 			if(resultSet.next()){
