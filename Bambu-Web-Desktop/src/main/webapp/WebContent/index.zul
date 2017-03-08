@@ -31,7 +31,7 @@
                     </h:li>
 
 
-        <navbar orient="vertical" id="menuNav" style="overflow:auto;" height="500px">
+        <navbar orient="vertical"  id="menuNav" style="overflow:auto;" height="500px">
        
         </navbar>
                
@@ -54,41 +54,16 @@
                         <h:i class="fa fa-bell"></h:i>  <span class="label label-primary">8</span>
                     </h:a>
                     <h:ul class="dropdown-menu dropdown-alerts">
-                        <h:li>
-                            <a href="mailbox.html">
-                                <div>
-                                    <h:i class="fa fa-envelope fa-fw"></h:i> Tienes 16 mensajes
-                                    <h:span class="pull-right text-muted small">hace 4 minutos</h:span>
-                                </div>
-                            </a>
-                        </h:li>
-                        <h:li class="divider"></h:li>
-                        <h:li>
-                            <a href="profile.html">
-                                <h:div>
-                                    <h:i class="fa fa-twitter fa-fw"></h:i> 3 Nuevos Seguidores
-                                    <h:span class="pull-right text-muted small">hace 12 minutos</h:span>
-                                </h:div>
-                            </a>
-                        </h:li>
-                        <h:li class="divider"></h:li>
-                        <h:li>
-                            <a href="grid_options.html">
-                                <div>
-                                    <h:i class="fa fa-upload fa-fw"></h:i> Servidor reiniciado
-                                    <h:span class="pull-right text-muted small">hace 4 minutos</h:span>
-                                </div>
-                            </a>
-                        </h:li>
-                        <h:li class="divider"></h:li>
-                        <h:li>
-                            <div class="text-center link-block">
-                                <a href="notifications.html">
-                                    <h:strong>Todas las notificaciones</h:strong>
-                                    <h:i class="fa fa-angle-right"></h:i>
-                                </a>
-                            </div>
-                        </h:li>
+                         <listbox id="listaObjtivos" >
+										
+											<listitem >
+												<listcell label="Servicio 1"></listcell>
+												<listcell>
+													<button class="btn btn-danger"  iconSclass="fa fa-trash-o" width="36px"/>
+												</listcell>
+											</listitem>
+											
+									</listbox>
                     </h:ul>
                 </h:li>
 

@@ -48,25 +48,22 @@ public class ControladorMenu extends  GenericForwardComposer<Window> {
 	 
 	  
 	  private Include myInclude;
-		Session miSession = Sessions.getCurrent();
+	    Session miSession = Sessions.getCurrent();
 		Session miSession1 = Sessions.getCurrent();
 		Session miSession2 = Sessions.getCurrent();
 		Session miSession3 = Sessions.getCurrent();
-
-
-
+		
+		
+		
+	
 		
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void onCreate$menu()
 	{
 
-		
-		
 		menu= dao.buscarPadre(miSession3.getAttribute("rol").toString());
-		 		
-	
-
+		 
 		  for(int i=0; i< menu.size(); i++)
 		  {
 			 opcion = menu.get(i);
@@ -76,9 +73,8 @@ public class ControladorMenu extends  GenericForwardComposer<Window> {
 			 nav.setIconSclass(icono);
 			 nav.setLabel(texto);
 			 nav.setParent(menuNav);
-			 //Messagebox.show(texto);
 			 submenu = dao.buscarHijos(miSession3.getAttribute("rol").toString(), menu.get(i).getCodigo());
-
+			
 			 if(submenu.size()!=0){
 			 for(int j=0; j<submenu.size(); j++)
 			 {
@@ -91,8 +87,7 @@ public class ControladorMenu extends  GenericForwardComposer<Window> {
 				 final String vinculo = opcionHijo.getVinculo();
 				 final String tabla = opcionHijo.getTabla();
 				 navHijo.addEventListener(Events.ON_OPEN ,new EventListener() {
-//					@Override
-						public void onEvent(Event event) throws Exception {
+                 public void onEvent(Event event) throws Exception {
 							
 							if(tabla!=null)
 					    	{
@@ -107,30 +102,16 @@ public class ControladorMenu extends  GenericForwardComposer<Window> {
 					    	}
 						}						 
 					 });
-					// @Override
-//					 public void onEvent(Event event1) throws Exception{
-//					    	
-//								myInclude.setSrc(null);
-//								myInclude.setSrc(vinculo);
-//					    	
-//					    	
-//					    	
-//					    	// Executions.sendRedirect(vinculo);
-//					    	 //Messagebox.show(opcionHijo.getVinculo());
-//					    }
-//					});
+					
 				 navHijo.setParent(nav);
 				 submenuNieto = dao.buscarNietos(miSession3.getAttribute("rol").toString(),  submenu.get(j).getCodigo());
-				 //System.out.println(menu.get(j).getId_opcion());
-				 // Messagebox.show(opcionHijo.getVinculo());
-				
 				 for(int k=0; k<submenuNieto.size(); k++)
 				 {
 					 opcionNieto = submenuNieto.get(k);
 					 String subTextoNieto = opcionNieto.getTexto();
 					 Navitem navNieto = new Navitem();
 					 navNieto.setLabel(subTextoNieto);
-					 final String vinculoNieto = opcionNieto.getVinculo();
+					final String vinculoNieto = opcionNieto.getVinculo();
 					 final String tabla1 = opcionNieto.getTabla();
 					 navNieto.addEventListener(Events.ON_CLICK, new EventListener() {
 

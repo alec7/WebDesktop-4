@@ -13,64 +13,34 @@
 
 
 
-<?page title="Registrar Noticia" contentType="text/html;charset=UTF-8"?>
+<?page title="Registrar Tipo de Noticia" contentType="text/html;charset=UTF-8"?>
 <zk xmlns:h="http://www.w3.org/1999/xhtml"
 	xmlns:zk="http://www.zkoss.org/2005/zk">
-	<window apply="controlador.ControladorNoticia"
-		id="registrarDatos">
+	<window apply="controlador.ControladorTipoNoticia" id="registrarDatos">
 
 		<div class="col-lg-12">
 			<h:div class="ibox float-e-margins">
 				<h:div class="ibox-title">
-					<h:h5>Registrar Noticia</h:h5>
+					<h:h5>Registrar Tipo de Noticia</h:h5>
 
 				</h:div>
 				<div class="ibox-content">
 					<h:form class="form-horizontal">
 
-
-						<space></space>
-<div class="row">
+                 <space></space>
+                  <div class="row">
 						<div class="col-lg-6">   
-						<div class="ibox float-e-margins">
-							<div class="form-group">
-								<label class="col-lg-4 control-label">
-									Tipo de Noticia
-								</label>
-
-								<div class="col-lg-8">
-									<listbox mold="select"
-										sclass="form-control" id="tipo_noticia">
-										<template name="model">
-											<listitem
-												label="${each.descripcion}" />
-										</template>
-									</listbox>
-								</div>
-</div>
-</div>
-
-<div class="ibox float-e-margins">
-							<div class="form-group">
-								<label class="col-lg-4 control-label">
-									Titulo
-								</label>
-								<div class="col-lg-8">
-									<textbox type="text" id="titulo"
-										class="form-control required" />
-								</div>
-							</div>
-							
-							
-						</div>
+						
+                       
 						
 						<div class="ibox float-e-margins">
-						<div class="form-group"><label class="col-lg-4 control-label">Contenido</label>
-                                <div class="col-lg-8"><textbox type="text" id="contenido" class="form-control required" rows="3"/></div>
+						<div class="form-group"><label class="col-lg-4 control-label">Descripción</label>
+                                <div class="col-lg-8"><textbox type="text" id="descripcion" class="form-control required" rows="3"/></div>
                                 </div>
 						</div>
 						
-						
+							
+							
 						</div>
 						<div class="col-lg-6">
 									<div class="col-lg-12">
@@ -95,23 +65,18 @@
 						</div>
 						<h:br></h:br>
 						<h:br></h:br>
-						<space></space>
-						<space></space>
-						<space></space>
-						<space></space>
-						<space></space>
-						<space></space>
+						
 						
 						
 						<div class="form-group">
 							<label class="col-lg-2 control-label">
-								Noticias
+								
 							</label>
-							<listbox id="listaNoticias" height="150px"
+							<listbox id="listaTipoNoticia" height="150px"
 								width="740px" vflex="1"
 								emptyMessage="No hay noticias registradas">
 								<listhead>
-									<listheader label="Titulo"
+									<listheader label="Descripción"
 										width="460px" />
 									<listheader
 										label="Imagen" />
@@ -123,7 +88,7 @@
 										
 										
 										<listcell
-											label="${each.titulo}">
+											label="${each.descripcion}">
 										</listcell>
 										
 										<listcell>  <image src="http://localhost:8080/${each.imagen}" width="40px" height="40px" /> </listcell>
@@ -132,7 +97,7 @@
 										<listcell>
 											<button
 												class="btn btn-danger" id="${each.codigo}"
-												forward="onClick=listaObjtivos.onObjetivoDelete"
+												forward="onClick=listaTipoNoticia.onDelete"
 												iconSclass="fa fa-trash-o" width="36px" />
 										</listcell>
 									</listitem>

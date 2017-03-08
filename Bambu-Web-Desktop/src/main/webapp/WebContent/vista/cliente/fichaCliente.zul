@@ -36,7 +36,9 @@
 							        <tabpanel>
 							        <space></space>
 									        	<div class="form-group" style="margin-top:30px; margin-bottom:30px;"><label class="col-lg-2 control-label">Cédula:</label>
-		                                      <div class="col-sm-4"> <div class="input-group"><textbox type="text" class="form-control col-lg-2"/> <span class="input-group-btn"> <button type="button" id="buscarCliente" class="btn btn-primary">Buscar
+
+		                                      <div class="col-sm-4"> <div class="input-group"><textbox id="cedula" type="text" class="form-control col-lg-2"/> <span class="input-group-btn"> <button id="buscar" type="button" class="btn btn-primary">Buscar
+
 		                                        </button> </span></div>
 		                                </div>   
 		                                      

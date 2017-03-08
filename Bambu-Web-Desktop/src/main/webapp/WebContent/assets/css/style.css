@@ -27,9 +27,11 @@ h4 {
   font-size: 14px;
 }
 .z-navbar-vertical > ul .z-nav-content, .z-navbar-vertical > ul .z-navitem-content, .z-navbar-vertical > ul .z-navseparator {
+
     background: #8ac249;
     border-top: #8ac249;
     border-bottom: #8ac249;
+
 
 }
 h5 {

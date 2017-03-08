@@ -15,7 +15,7 @@
 
 <?page title="Registro de Sesión" contentType="text/html;charset=UTF-8"?>
 <zk xmlns:h="http://www.w3.org/1999/xhtml" xmlns:zk="http://www.zkoss.org/2005/zk" >
-<window >
+<window apply="controlador.ControladorRegistrarSesion" >
 
             
                 <div class="col-lg-12" >
@@ -28,7 +28,7 @@
                         	<h:h4>Datos del Cliente</h:h4>
                             <h:form class="form-horizontal">
                               <div class="form-group"><label class="col-lg-2 control-label">Cédula</label>
-                                      <div class="col-sm-5"> <div class="input-group"><textbox type="text" class="form-control col-lg-2"/> <span class="input-group-btn"> <button type="button" class="btn btn-primary">Buscar
+                                      <div class="col-sm-5"> <div class="input-group"><textbox id="cedula" type="text" class="form-control col-lg-2"/> <span class="input-group-btn"> <button type="button" id="BuscarCliente" class="btn btn-primary">Buscar
                                         </button> </span></div>
                                 </div>   
                                       
@@ -53,7 +53,7 @@
                                   <h:h4>Paquete o Servicio</h:h4>
                                  
                                     <div class="form-group">
-	                                 <listbox id="listaObjtivos" height="200px" vflex="1" emptyMessage="No hay sesiones registradas"  >
+	                                 <listbox id="listaSesiones" height="200px" vflex="1" emptyMessage="No hay sesiones registradas"  >
 										<listhead>
 											<listheader  label="Servicio"  width="760px"/>
 											<listheader  label="Ejecución"/>
@@ -61,10 +61,15 @@
 										</listhead>
 										<template name="model">
 											<listitem value="${each}">
-												<listcell ></listcell>
-												<listcell ></listcell>
+												<listcell
+											     label="${each.descripcionServicio}">
+										        </listcell>
+										
+												<listcell> 
+												<checkbox value="${each.ejecucion}"></checkbox>
+												</listcell>
 												<listcell >
-													<button class="btn btn-danger" id="${each.codigo}" forward="onClick=listaObjtivos.onObjetivoDelete" iconSclass="fa fa-trash-o" width="36px"/>
+													<button class="btn btn-danger"   iconSclass="fa fa-trash-o" width="36px"/>
 												</listcell>
 											</listitem>
 										</template>

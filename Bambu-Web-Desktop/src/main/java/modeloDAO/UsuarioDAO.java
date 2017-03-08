@@ -89,7 +89,7 @@ public class UsuarioDAO extends ConexionDAO{
 	{
 		String nombre = null;
 
-		String tiraSQL = "select a.nombre from tb_cliente a, tb_usuario b where b.usuario ='"+correo+"'";
+		String tiraSQL = "select a.nombre from tb_cliente a where a.correo ='"+correo+"'";
 
 		ResultSet resultSet = Conexion.consultar(tiraSQL);
 		try{
