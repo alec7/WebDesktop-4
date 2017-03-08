@@ -97,22 +97,28 @@ public class ControladorAsignarOpciones extends SelectorComposer<Component>{
 		
 		List<Opcion_rol> opcionesPorRolSeleccionado = opcionRolDAO.ObtenerOpcionesPorRol(codigoRolSeleccionado);
 		
-	
+		
+		//System.out.println("el codigo del rol seleccionado :"  + String.valueOf(codigoRolSeleccionado));
+		
+		//System.out.println("tamaño del arreglo de opciones :"  + String.valueOf(opciones.size()));
+		
+		//System.out.println("tamaño del arreglo de opciones por rol resleccionado :"  + String.valueOf(opcionesPorRolSeleccionado.size()));
 		
 		for (int i = 0; i < opciones.size(); i++) {
-			for (int j = 0; j < opcionesPorRolSeleccionado.size(); j++) {
+			
 				if (opcionesPorRolSeleccionado.size() > 0) {
-						
-					if (Integer.parseInt(opcionesPorRolSeleccionado.get(j).getCodigo_opcion()) == Integer.parseInt(opciones.get(i).getCodigo())) {
-						System.out.println("pase por el if ... o sea encontre unos iguales");
-						System.out.println("Estatus del encontrado en arrOpciones antes de la modificacion es : " + opciones.get(i).getStatus() );
-						opciones.get(i).setStatus(opcionesPorRolSeleccionado.get(j).getStatus());
-						System.out.println("Estatus del encontrado en arrOpciones despues de la modificacion es : " + opciones.get(i).getStatus() );
+					for (int j = 0; j < opcionesPorRolSeleccionado.size(); j++) {
+						if (Integer.parseInt(opcionesPorRolSeleccionado.get(j).getCodigo_opcion()) == Integer.parseInt(opciones.get(i).getCodigo())) {
+							//System.out.println("pase por el if ... o sea encontre unos iguales");
+							//System.out.println("Estatus del encontrado en arrOpciones antes de la modificacion es : " + opciones.get(i).getStatus() );
+							opciones.get(i).setStatus(opcionesPorRolSeleccionado.get(j).getStatus());
+							//System.out.println("Estatus del encontrado en arrOpciones despues de la modificacion es : " + opciones.get(i).getStatus() );
+						}
 					}
 				}else{
 					opciones.get(i).setStatus(false);
 				}
-			}
+			
 		
 		}
 		
@@ -140,8 +146,8 @@ public class ControladorAsignarOpciones extends SelectorComposer<Component>{
 		int posicion ;
 		checked = cbox.isChecked();
 		posicion = litem.getIndex();
-	/*	
-		String codigoPadre = opciones.get(posicion).getCodigo_padre();
+		
+	/*	String codigoPadre = opciones.get(posicion).getCodigo_padre();
 		
 		if (!codigoPadre.equals("0"))
 		{
@@ -157,10 +163,9 @@ public class ControladorAsignarOpciones extends SelectorComposer<Component>{
 	*/
 		
 		arrOpcionesModificadas.get(posicion).setStatus(checked);
-		/*
+		
 		arrayOpcionListModel = new ListModelList<Opcion>(arrOpcionesModificadas);
 		listaOpciones.setModel(arrayOpcionListModel);
-		*/
 	}
 	@Listen("onClick = button#cancelar")
 	public void cancelar(){
@@ -207,13 +212,17 @@ public class ControladorAsignarOpciones extends SelectorComposer<Component>{
 					}
 					if ( a== false) 
 					{ //aqui entra si la opcione no fue encontrada en el arreglo de opciones por rol seleccionado
+						System.out.println("no enoctro lo opcione en opcion rol");
+						System.out.println(arrOpcionesModificadas.get(i).getStatus());
 						if (arrOpcionesModificadas.get(i).getStatus() == true) 
 						{
+							System.out.println("en el arreglo de opciones la opcion tiene status true");
 							
 							//Messagebox.show("NO ENCONTRO LA OPCION"+ arrOpcionesModificadas.get(i).getCodigo() +" EN OPCIONROL, PERO ESTA OPCION TIENE TRUE EN EL MODIFICADO");
 							String codigoTabla = opcionRolDAO.TotalRegistros("tb_opcion_rol");
 							String codigoOpcion = arrOpcionesModificadas.get(i).getCodigo();
-							if(opcionRolDAO.encontrarOpcion(codigoOpcion) == false ){
+							
+							if(opcionRolDAO.encontrarOpcionConRolEspef(codigoOpcion,codigoRolSeleccionado ) == false ){
 								opcionRolDAO.insertarNuevaOpcionARol(codigoTabla, codigoOpcion, codigoRolSeleccionado, true);
 							}
 						}
@@ -231,7 +240,7 @@ public class ControladorAsignarOpciones extends SelectorComposer<Component>{
 					//Messagebox.show("NO ENCONTRO LA OPCION"+ arrOpcionesModificadas.get(i).getCodigo() +" EN OPCIONROL, PERO ESTA OPCION TIENE TRUE EN EL MODIFICADO");
 					String codigoTabla = opcionRolDAO.TotalRegistros("tb_opcion_rol");
 					String codigoOpcion = arrOpcionesModificadas.get(i).getCodigo();
-					if(opcionRolDAO.encontrarOpcion(codigoOpcion) == false ){
+					if(opcionRolDAO.encontrarOpcionConRolEspef(codigoOpcion,codigoRolSeleccionado ) == false  ){
 						opcionRolDAO.insertarNuevaOpcionARol(codigoTabla, codigoOpcion, codigoRolSeleccionado, true);
 					}
 				}
@@ -294,7 +303,6 @@ public class ControladorAsignarOpciones extends SelectorComposer<Component>{
 		
 			arrOpcionesModificadas = new ArrayList<Opcion>();
 		arrOpcionesModificadas = opciondao.ObtenerTodos();
-
 		*/
 	
 		Messagebox.show("Opciones guardadas con exito");

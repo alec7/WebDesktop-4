@@ -168,6 +168,29 @@ public class Opcion_RolDAO extends ConexionDAO {
 			}
 			return encontro;
 		}
+
+
+
+		public boolean encontrarOpcionConRolEspef(String codigoOpcion, String codigoRolSeleccionado) {
+			boolean encontro=true;
+			String tiraSQL = "SELECT codigo, codigo_opcion, status, codigo_rol FROM tb_opcion_rol "
+							+" WHERE codigo_opcion='"+codigoOpcion+"' AND codigo_rol='"+codigoRolSeleccionado+"' LIMIT 1 ";
+			ResultSet resultSet = Conexion.consultar(tiraSQL);
+			
+			
+			try {
+				if (resultSet.next()) {
+					encontro = true;
+					
+				}else{
+					encontro = false;
+				}
+				resultSet.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return encontro;
+		}
 		
 		
 		

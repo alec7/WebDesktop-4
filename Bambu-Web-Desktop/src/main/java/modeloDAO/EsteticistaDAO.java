@@ -8,6 +8,7 @@ import java.sql.SQLException;
 
 import bean.Conexion;
 import modelo.Esteticista;
+import modelo.Horario;
 import modelo.PerfilUsuario;
 
 public class EsteticistaDAO extends ConexionDAO {
@@ -18,6 +19,12 @@ public void agregarPerfilEsteticista(PerfilUsuario pf) {
 				+ "VALUES ('"+pf.getCedula()+"'"+",'"+ pf.getNombre()+"','"+ pf.getApellido()+"','"+ pf.getDireccion()+"','"+ pf.getTelefono()+"','"+ pf.getSexo()+"','"+ pf.getEstado_civil()+"','"+ pf.getCorreo()+"','"+ pf.getEstado()+"','"+ pf.getStatus()+"')";
 		Conexion.ejecutar(tiraSQL);
 	}
+public void agregarHoriarioEsteticista(Horario h,String codigo_esteticista,String codigo_agenda,String codigo) {
+	
+	String tiraSQL= "INSERT INTO tb_horario_esteticista (codigo_horario,codigo_esteticista,codigo,status,codigo_agenda) "
+			+ "VALUES ('"+h.getCodigo()+"'"+",'"+ codigo_esteticista+"','"+codigo+"','Activo','"+codigo_agenda+"')";
+	Conexion.ejecutar(tiraSQL);
+}
 
 
 public Esteticista buscarEsteticista(String cedula) {
@@ -34,4 +41,7 @@ public Esteticista buscarEsteticista(String cedula) {
 	}
 	return null;
 }
+
+
+
 }

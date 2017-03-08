@@ -31,12 +31,15 @@ import org.zkoss.zul.Textbox;
 import modelo.Bloque;
 import modelo.Cod_Des;
 import modelo.Esteticista;
+import modelo.Horario;
+import modelo.Horario_Esteticista;
 import modelo.Incidencia;
 import modelo.Maestrico;
 import modelo.Servicio;
 import modelo.Usuario;
 import modeloDAO.BloqueDAO;
 import modeloDAO.EsteticistaDAO;
+import modeloDAO.HorarioDAO;
 import modeloDAO.MaestricoDAO;
 
 public class ControladorHorarioEsteticista extends SelectorComposer<Component>{
@@ -86,6 +89,7 @@ public class ControladorHorarioEsteticista extends SelectorComposer<Component>{
 	private Listbox listaDomingoSeleccionados;
 	
 	BloqueDAO bloqueDao = new BloqueDAO(); 
+	HorarioDAO hDao = new HorarioDAO();
 	EsteticistaDAO estDao = new EsteticistaDAO();
 	List<Bloque> listaBloquesLunesSeleccionados = new ArrayList<Bloque>();
 	List<Bloque> listaBloquesMartesSeleccionados = new ArrayList<Bloque>();
@@ -95,6 +99,10 @@ public class ControladorHorarioEsteticista extends SelectorComposer<Component>{
 	List<Bloque> listaBloquesSabadoSeleccionados = new ArrayList<Bloque>();
 	List<Bloque> listaBloquesDomingoSeleccionados = new ArrayList<Bloque>();
 	List<Maestrico> diasLab = new ArrayList<Maestrico>();
+	List<Horario_Esteticista> horariosEst = new ArrayList<Horario_Esteticista>();
+	List<Horario> horarios = new ArrayList<Horario>();
+	List<Horario> horariosPorEsteticistas = new ArrayList<Horario>();
+	List<Tab> TabDias = new ArrayList<Tab>();
 	ListModelList<Bloque> bloquesModel;
 	ListModelList<Bloque> bloquesSeleccionadoModel;
 	List<Bloque> listaBloquesLunes = bloqueDao.listarBloques();
@@ -118,9 +126,163 @@ public class ControladorHorarioEsteticista extends SelectorComposer<Component>{
 		}
 		else{
 			nombre.setText(est.getNombre()+" "+est.getApellido());
+			horariosEst = hDao.listaHorariosEsteticista(est.getCedula());
+			horarios = hDao.listaHorarios();
+			TabDias = tabs.getChildren();
+			for(int i=0; i<horariosEst.size();i++){
+				for(int j=0;j<horarios.size();j++){
+					if(horariosEst.get(i).getCodigo_horario().equals(horarios.get(j).getCodigo())){
+						bloqueDao.buscarBloque(horarios.get(j).getCodigo_bloque());
+						if(TabDias.size()>=1){
+							if(horarios.get(j).getCodigo_dia_laborable().equals(TabDias.get(0).getId())){
+								listaBloquesLunesSeleccionados.add(bloqueDao.buscarBloque(horarios.get(j).getCodigo_bloque()));
+								FiltrarLunes(listaBloquesLunes, listaBloquesLunesSeleccionados);
+								bloquesSeleccionadoModel = new ListModelList<Bloque>(listaBloquesLunesSeleccionados);
+								listaLunesSeleccionados.setModel(bloquesSeleccionadoModel);
+							}}
+							if(TabDias.size()>=2){
+							if(horarios.get(j).getCodigo_dia_laborable().equals(TabDias.get(1).getId())){
+								listaBloquesMartesSeleccionados.add(bloqueDao.buscarBloque(horarios.get(j).getCodigo_bloque()));
+								FiltrarMartes(listaBloquesMartes, listaBloquesMartesSeleccionados);
+								bloquesSeleccionadoModel = new ListModelList<Bloque>(listaBloquesMartesSeleccionados);
+								listaMartesSeleccionados.setModel(bloquesSeleccionadoModel);
+							}}
+							if(TabDias.size()>=3){
+							if(horarios.get(j).getCodigo_dia_laborable().equals(TabDias.get(2).getId())){
+								listaBloquesMiercolesSeleccionados.add(bloqueDao.buscarBloque(horarios.get(j).getCodigo_bloque()));
+								FiltrarMiercoles(listaBloquesMiercoles, listaBloquesMiercolesSeleccionados);
+								bloquesSeleccionadoModel = new ListModelList<Bloque>(listaBloquesMiercolesSeleccionados);
+								listaMiercolesSeleccionados.setModel(bloquesSeleccionadoModel);
+							}}
+							if(TabDias.size()>=4){
+							if(horarios.get(j).getCodigo_dia_laborable().equals(TabDias.get(3).getId())){
+								listaBloquesJuevesSeleccionados.add(bloqueDao.buscarBloque(horarios.get(j).getCodigo_bloque()));
+								FiltrarJueves(listaBloquesJueves, listaBloquesJuevesSeleccionados);
+								bloquesSeleccionadoModel = new ListModelList<Bloque>(listaBloquesJuevesSeleccionados);
+								listaJuevesSeleccionados.setModel(bloquesSeleccionadoModel);
+							}}
+							if(TabDias.size()>=5){
+							if(horarios.get(j).getCodigo_dia_laborable().equals(TabDias.get(4).getId())){
+								listaBloquesViernesSeleccionados.add(bloqueDao.buscarBloque(horarios.get(j).getCodigo_bloque()));
+								FiltrarViernes(listaBloquesViernes, listaBloquesViernesSeleccionados);
+								bloquesSeleccionadoModel = new ListModelList<Bloque>(listaBloquesViernesSeleccionados);
+								listaViernesSeleccionados.setModel(bloquesSeleccionadoModel);
+							}}
+							if(TabDias.size()>=6){
+							if(horarios.get(j).getCodigo_dia_laborable().equals(TabDias.get(5).getId())){
+								listaBloquesSabadoSeleccionados.add(bloqueDao.buscarBloque(horarios.get(j).getCodigo_bloque()));
+								FiltrarSabado(listaBloquesSabado, listaBloquesSabadoSeleccionados);
+								bloquesSeleccionadoModel = new ListModelList<Bloque>(listaBloquesSabadoSeleccionados);
+								listaSabadoSeleccionados.setModel(bloquesSeleccionadoModel);
+							}}
+							if(TabDias.size()>=7){
+							if(horarios.get(j).getCodigo_dia_laborable().equals(TabDias.get(6).getId())){
+								listaBloquesDomingoSeleccionados.add(bloqueDao.buscarBloque(horarios.get(j).getCodigo_bloque()));
+								FiltrarDomingo(listaBloquesDomingo, listaBloquesDomingoSeleccionados);
+								bloquesSeleccionadoModel = new ListModelList<Bloque>(listaBloquesDomingoSeleccionados);
+								listaDomingoSeleccionados.setModel(bloquesSeleccionadoModel);
+							}
+						}
+					}
+				}
+			}
+			listarBloques();
 		}
 		
 	}
+	
+	private void FiltrarLunes(List<Bloque> todos, List<Bloque> est) {
+		
+		for (int i = 0; i < todos.size(); i++) {
+			
+			for (int k = 0; k < est.size(); k++) 
+			{
+				if(todos.get(i).getCodigo().equals(est.get(k).getCodigo()))
+				{
+					listaBloquesLunes.remove(i);		
+				}
+			}	
+		}
+	}
+private void FiltrarMartes(List<Bloque> todos, List<Bloque> est) {
+		
+		for (int i = 0; i < todos.size(); i++) {
+			
+			for (int k = 0; k < est.size(); k++) 
+			{
+				if(todos.get(i).getCodigo().equals(est.get(k).getCodigo()))
+				{
+					listaBloquesMartes.remove(i);		
+				}
+			}	
+		}
+	}
+private void FiltrarMiercoles(List<Bloque> todos, List<Bloque> est) {
+	
+	for (int i = 0; i < todos.size(); i++) {
+		
+		for (int k = 0; k < est.size(); k++) 
+		{
+			if(todos.get(i).getCodigo().equals(est.get(k).getCodigo()))
+			{
+				listaBloquesMiercoles.remove(i);		
+			}
+		}	
+	}
+}
+private void FiltrarJueves(List<Bloque> todos, List<Bloque> est) {
+	
+	for (int i = 0; i < todos.size(); i++) {
+		
+		for (int k = 0; k < est.size(); k++) 
+		{
+			if(todos.get(i).getCodigo().equals(est.get(k).getCodigo()))
+			{
+				listaBloquesJueves.remove(i);		
+			}
+		}	
+	}
+}
+private void FiltrarViernes(List<Bloque> todos, List<Bloque> est) {
+	
+	for (int i = 0; i < todos.size(); i++) {
+		
+		for (int k = 0; k < est.size(); k++) 
+		{
+			if(todos.get(i).getCodigo().equals(est.get(k).getCodigo()))
+			{
+				listaBloquesViernes.remove(i);		
+			}
+		}	
+	}
+}
+private void FiltrarSabado(List<Bloque> todos, List<Bloque> est) {
+	
+	for (int i = 0; i < todos.size(); i++) {
+		
+		for (int k = 0; k < est.size(); k++) 
+		{
+			if(todos.get(i).getCodigo().equals(est.get(k).getCodigo()))
+			{
+				listaBloquesSabado.remove(i);		
+			}
+		}	
+	}
+}
+private void FiltrarDomingo(List<Bloque> todos, List<Bloque> est) {
+	
+	for (int i = 0; i < todos.size(); i++) {
+		
+		for (int k = 0; k < est.size(); k++) 
+		{
+			if(todos.get(i).getCodigo().equals(est.get(k).getCodigo()))
+			{
+				listaBloquesDomingo.remove(i);		
+			}
+		}	
+	}
+}
+	
 	
 	@Listen("onCreate = #dias_laborables")
 	public void usuarios(CreateEvent event)
@@ -133,7 +295,7 @@ public class ControladorHorarioEsteticista extends SelectorComposer<Component>{
 			tab.setParent(tabs);
 
 		}
-		listarBloques();
+		
 		
     }
 	
@@ -178,6 +340,9 @@ public class ControladorHorarioEsteticista extends SelectorComposer<Component>{
 					//listaTodosServicios.remove(listaServicios.getSelectedIndex());
 			}
 		}
+	}
+	public void cargarBloquesEsteticista(){
+		
 	}
 	@Listen("onClick = #agregarMartes")
 	public void doAgregarMartes()
@@ -468,75 +633,383 @@ public class ControladorHorarioEsteticista extends SelectorComposer<Component>{
 		listaDomingo.setModel(bloquesModel);
 		listaBloquesDomingoSeleccionados.remove(listaDomingoSeleccionados.getSelectedIndex());
 		listaDomingoSeleccionados.setModel(new ListModelList<Bloque>(listaBloquesDomingoSeleccionados));
-		
 		}
 	}
+
+//	if(listaBloquesLunesSeleccionados.size()>0){
+//		codigoDia =TabDias.get(0).getId();
+//		for(int i=0; i<listaBloquesLunesSeleccionados.size();i++){
+//				String codigo = hDao.TotalRegistros();
+//				Horario h = new Horario(codigo, codigoDia, listaBloquesLunesSeleccionados.get(i).getCodigo(), "Activo");
+//				String codigoAgenda = hDao.codigoAgenda(codigoDia);
+//				String codigoHorarioEst = hDao.TotalRegistrosHorarioEsteticista();
+//				if(listaBloquesLunesSeleccionados.size()>horariosEst.size()){
+//						//hDao.buscarHorarioEst(horariosEst.get(j).getCodigo_horario(),horariosEst.get(j).getCodigo_esteticista(),horariosEst.get(j).getCodigo_agenda())
+//							hDao.registrarHorario(h);
+//							estDao.agregarHoriarioEsteticista(h, cedula.getText(), codigoAgenda, codigoHorarioEst);
+//						
+//				}
+//			}
+//		}
+
+	@Listen("onClick = #guardar")
+	public void guardar(){
+		TabDias = tabs.getChildren();
+		String codigoDia= null;
+		for(int i=0;i<horarios.size();i++){
+			for(int j=0;j<horariosEst.size();j++){
+				if(horarios.get(i).getCodigo().equals(horariosEst.get(j).getCodigo_horario())){
+					horariosPorEsteticistas.add(hDao.horariosPorEstetictas(horarios.get(i)));
+				}
+			}
+		}
+		if(listaBloquesLunesSeleccionados.size()>0){
+			codigoDia =TabDias.get(0).getId();
+			for(int i=0; i<listaBloquesLunesSeleccionados.size();i++){
+				String codigo = hDao.TotalRegistros();
+				Horario ho = hDao.validarHorario(codigoDia, listaBloquesLunesSeleccionados.get(i).getCodigo());
+				if(horariosPorEsteticistas.size()>0){
+					for(int l=0;l<horariosPorEsteticistas.size();l++){
+						Horario h = new Horario(codigo, codigoDia, listaBloquesLunesSeleccionados.get(i).getCodigo(), "Activo");
+						if(horariosEst.get(l).getCodigo_horario().equals(ho.getCodigo())){
+							String codigoAgenda = hDao.codigoAgenda(codigoDia);
+							String codigoHorarioEst = hDao.TotalRegistrosHorarioEsteticista();
+							Horario horar=hDao.buscarHorario(horariosEst.get(l).getCodigo_horario());
+							if(!(h.getCodigo_bloque().equals(horar.getCodigo_bloque())& h.getCodigo_dia_laborable().equals(horar.getCodigo_dia_laborable()))){
+								hDao.registrarHorario(h);
+								estDao.agregarHoriarioEsteticista(h, cedula.getText(), codigoAgenda, codigoHorarioEst);
+							}
+							
+						}
+						else{
+								Horario horar=hDao.buscarHorario(horariosEst.get(l).getCodigo_horario());
+								hDao.actualizarHorario(horar);
+								hDao.actualizarHorarioEsteticista(horariosEst.get(l));
+
+						}
+						
+					}
+				}
+				else{
+					Horario h = new Horario(codigo, codigoDia, listaBloquesLunesSeleccionados.get(i).getCodigo(), "Activo");
+//					if(!horariosEst.get(l).getCodigo_horario().equals(ho.getCodigo())){
+//						Messagebox.show("IF");
+						String codigoAgenda = hDao.codigoAgenda(codigoDia);
+						String codigoHorarioEst = hDao.TotalRegistrosHorarioEsteticista();
+						hDao.registrarHorario(h);
+						estDao.agregarHoriarioEsteticista(h, cedula.getText(), codigoAgenda, codigoHorarioEst);
+//					}
+				}
+				
+			}
+		}
+		else{	
+			for(int i=0; i<horariosPorEsteticistas.size();i++){
+				Horario horar=hDao.buscarHorario(horariosEst.get(i).getCodigo_horario());
+				hDao.actualizarHorario(horar);
+				hDao.actualizarHorarioEsteticista(horariosEst.get(i));
+			}
+			
+		}
+		
+		
+		
 	
-//	private ListModelList _model1;
-//	private Set _selectedObjects1;
-//	public ListModel getModel1 () {
-//		if (_model1 == null) {		
-//			for(int i=0; i<listaBloques.size();i++){
-//				horaInicio = new SimpleDateFormat("HH:mm a").format(listaBloques.get(i).getHora_inicio());
-//				horaFin = new SimpleDateFormat("HH:mm a").format(listaBloques.get(i).getHora_fin());
-//				l.add(horaInicio+"-"+horaFin);
-//				//l.add(descripcion.get(i).getDescripcion());
-//			}
-//			_model1 = new ListModelList(l);
-//		}
-//		return _model1;
-//	}
-//	public void setSelectedObjects1 (Set selectedObjects) {
-//		_selectedObjects1 = selectedObjects;
-//	}
-//	public Set getSelectedObjects1 () {
-//		if (_selectedObjects1 == null) {
-//			_selectedObjects1 = new HashSet();
-//		}
-//		return _selectedObjects1;
-//	}
-//	@Command
-//	public void showSelection1 () {
-//		Clients.alert(getSelectedObjects1().toString());
-//		 Set<String> set = new HashSet<String>();
-//		 set= _selectedObjects1;
-//		System.out.println(set);
-//
-//		
-//		}
-//	
-//	private ListModelList _model2;
-//	private Set _selectedObjects2;
-//	public ListModel getModel2 () {
-//		if (_model2 == null) {		
-//			for(int i=0; i<listaBloques.size();i++){
-//				horaInicio = new SimpleDateFormat("hh:mm a").format(listaBloques.get(i).getHora_inicio());
-//				horaFin = new SimpleDateFormat("hh:mm a").format(listaBloques.get(i).getHora_fin());
-//				l.add(horaInicio+"-"+horaFin);
-//				//l.add(descripcion.get(i).getDescripcion());
-//			}
-//			_model2 = new ListModelList(l);
-//		}
-//		return _model2;
-//	}
-//	public void setSelectedObjects2 (Set selectedObjects) {
-//		_selectedObjects2 = selectedObjects;
-//	}
-//	public Set getSelectedObjects2 () {
-//		if (_selectedObjects2 == null) {
-//			_selectedObjects2 = new HashSet();
-//		}
-//		return _selectedObjects2;
-//	}
-//	@Command
-//	public void showSelection2 () {
-//		Clients.alert(getSelectedObjects2().toString());
-//		 Set<String> set = new HashSet<String>();
-//		 set= _selectedObjects2;
-//		System.out.println(set);
-//
-//		
-//		}
+		if(listaBloquesMartesSeleccionados.size()>0){
+			codigoDia =TabDias.get(1).getId();
+			for(int i=0; i<listaBloquesMartesSeleccionados.size();i++){
+				String codigo = hDao.TotalRegistros();
+				Horario ho = hDao.validarHorario(codigoDia, listaBloquesMartesSeleccionados.get(i).getCodigo());
+				if(horariosPorEsteticistas.size()>0){
+					for(int l=0;l<horariosPorEsteticistas.size();l++){
+						Horario h = new Horario(codigo, codigoDia, listaBloquesMartesSeleccionados.get(i).getCodigo(), "Activo");
+						if(horariosEst.get(l).getCodigo_horario().equals(ho.getCodigo())){
+							String codigoAgenda = hDao.codigoAgenda(codigoDia);
+							String codigoHorarioEst = hDao.TotalRegistrosHorarioEsteticista();
+							Horario horar=hDao.buscarHorario(horariosEst.get(l).getCodigo_horario());
+							if(!(h.getCodigo_bloque().equals(horar.getCodigo_bloque())& h.getCodigo_dia_laborable().equals(horar.getCodigo_dia_laborable()))){
+								hDao.registrarHorario(h);
+								estDao.agregarHoriarioEsteticista(h, cedula.getText(), codigoAgenda, codigoHorarioEst);
+							}
+							
+						}
+						else{
+								Horario horar=hDao.buscarHorario(horariosEst.get(l).getCodigo_horario());
+								hDao.actualizarHorario(horar);
+								hDao.actualizarHorarioEsteticista(horariosEst.get(l));
+
+						}
+						
+					}
+				}
+				else{
+					Horario h = new Horario(codigo, codigoDia, listaBloquesMartesSeleccionados.get(i).getCodigo(), "Activo");
+//					if(!horariosEst.get(l).getCodigo_horario().equals(ho.getCodigo())){
+//						Messagebox.show("IF");
+						String codigoAgenda = hDao.codigoAgenda(codigoDia);
+						String codigoHorarioEst = hDao.TotalRegistrosHorarioEsteticista();
+						hDao.registrarHorario(h);
+						estDao.agregarHoriarioEsteticista(h, cedula.getText(), codigoAgenda, codigoHorarioEst);
+//					}
+				}
+				
+			}
+		}
+		else{	
+			for(int i=0; i<horariosPorEsteticistas.size();i++){
+				Horario horar=hDao.buscarHorario(horariosEst.get(i).getCodigo_horario());
+				hDao.actualizarHorario(horar);
+				hDao.actualizarHorarioEsteticista(horariosEst.get(i));
+			}
+			
+		}
+		
+		if(listaBloquesMiercolesSeleccionados.size()>0){
+			codigoDia =TabDias.get(2).getId();
+			for(int i=0; i<listaBloquesMiercolesSeleccionados.size();i++){
+				String codigo = hDao.TotalRegistros();
+				Horario ho = hDao.validarHorario(codigoDia, listaBloquesMiercolesSeleccionados.get(i).getCodigo());
+				if(horariosPorEsteticistas.size()>0){
+					for(int l=0;l<horariosPorEsteticistas.size();l++){
+						Horario h = new Horario(codigo, codigoDia, listaBloquesMiercolesSeleccionados.get(i).getCodigo(), "Activo");
+						if(horariosEst.get(l).getCodigo_horario().equals(ho.getCodigo())){
+							String codigoAgenda = hDao.codigoAgenda(codigoDia);
+							String codigoHorarioEst = hDao.TotalRegistrosHorarioEsteticista();
+							Horario horar=hDao.buscarHorario(horariosEst.get(l).getCodigo_horario());
+							if(!(h.getCodigo_bloque().equals(horar.getCodigo_bloque())& h.getCodigo_dia_laborable().equals(horar.getCodigo_dia_laborable()))){
+								hDao.registrarHorario(h);
+								estDao.agregarHoriarioEsteticista(h, cedula.getText(), codigoAgenda, codigoHorarioEst);
+							}
+							
+						}
+						else{
+								Horario horar=hDao.buscarHorario(horariosEst.get(l).getCodigo_horario());
+								hDao.actualizarHorario(horar);
+								hDao.actualizarHorarioEsteticista(horariosEst.get(l));
+
+						}
+						
+					}
+				}
+				else{
+					Horario h = new Horario(codigo, codigoDia, listaBloquesMiercolesSeleccionados.get(i).getCodigo(), "Activo");
+//					if(!horariosEst.get(l).getCodigo_horario().equals(ho.getCodigo())){
+//						Messagebox.show("IF");
+						String codigoAgenda = hDao.codigoAgenda(codigoDia);
+						String codigoHorarioEst = hDao.TotalRegistrosHorarioEsteticista();
+						hDao.registrarHorario(h);
+						estDao.agregarHoriarioEsteticista(h, cedula.getText(), codigoAgenda, codigoHorarioEst);
+//					}
+				}
+				
+			}
+		}
+		else{	
+			for(int i=0; i<horariosPorEsteticistas.size();i++){
+				Horario horar=hDao.buscarHorario(horariosEst.get(i).getCodigo_horario());
+				hDao.actualizarHorario(horar);
+				hDao.actualizarHorarioEsteticista(horariosEst.get(i));
+			}
+			
+		}
+
+
+		if(listaBloquesJuevesSeleccionados.size()>0){
+			codigoDia =TabDias.get(3).getId();
+			for(int i=0; i<listaBloquesJuevesSeleccionados.size();i++){
+				String codigo = hDao.TotalRegistros();
+				Horario ho = hDao.validarHorario(codigoDia, listaBloquesJuevesSeleccionados.get(i).getCodigo());
+				if(horariosPorEsteticistas.size()>0){
+					for(int l=0;l<horariosPorEsteticistas.size();l++){
+						Horario h = new Horario(codigo, codigoDia, listaBloquesJuevesSeleccionados.get(i).getCodigo(), "Activo");
+						if(horariosEst.get(l).getCodigo_horario().equals(ho.getCodigo())){
+							String codigoAgenda = hDao.codigoAgenda(codigoDia);
+							String codigoHorarioEst = hDao.TotalRegistrosHorarioEsteticista();
+							Horario horar=hDao.buscarHorario(horariosEst.get(l).getCodigo_horario());
+							if(!(h.getCodigo_bloque().equals(horar.getCodigo_bloque())& h.getCodigo_dia_laborable().equals(horar.getCodigo_dia_laborable()))){
+								hDao.registrarHorario(h);
+								estDao.agregarHoriarioEsteticista(h, cedula.getText(), codigoAgenda, codigoHorarioEst);
+							}
+							
+						}
+						else{
+								Horario horar=hDao.buscarHorario(horariosEst.get(l).getCodigo_horario());
+								hDao.actualizarHorario(horar);
+								hDao.actualizarHorarioEsteticista(horariosEst.get(l));
+
+						}
+						
+					}
+				}
+				else{
+					Horario h = new Horario(codigo, codigoDia, listaBloquesJuevesSeleccionados.get(i).getCodigo(), "Activo");
+//					if(!horariosEst.get(l).getCodigo_horario().equals(ho.getCodigo())){
+//						Messagebox.show("IF");
+						String codigoAgenda = hDao.codigoAgenda(codigoDia);
+						String codigoHorarioEst = hDao.TotalRegistrosHorarioEsteticista();
+						hDao.registrarHorario(h);
+						estDao.agregarHoriarioEsteticista(h, cedula.getText(), codigoAgenda, codigoHorarioEst);
+//					}
+				}
+				
+			}
+		}
+		else{	
+			for(int i=0; i<horariosPorEsteticistas.size();i++){
+				Horario horar=hDao.buscarHorario(horariosEst.get(i).getCodigo_horario());
+				hDao.actualizarHorario(horar);
+				hDao.actualizarHorarioEsteticista(horariosEst.get(i));
+			}
+			
+		}
+		if(listaBloquesViernesSeleccionados.size()>0){
+			codigoDia =TabDias.get(4).getId();
+			for(int i=0; i<listaBloquesViernesSeleccionados.size();i++){
+				String codigo = hDao.TotalRegistros();
+				Horario ho = hDao.validarHorario(codigoDia, listaBloquesViernesSeleccionados.get(i).getCodigo());
+				if(horariosPorEsteticistas.size()>0){
+					for(int l=0;l<horariosPorEsteticistas.size();l++){
+						Horario h = new Horario(codigo, codigoDia, listaBloquesViernesSeleccionados.get(i).getCodigo(), "Activo");
+						if(horariosEst.get(l).getCodigo_horario().equals(ho.getCodigo())){
+							String codigoAgenda = hDao.codigoAgenda(codigoDia);
+							String codigoHorarioEst = hDao.TotalRegistrosHorarioEsteticista();
+							Horario horar=hDao.buscarHorario(horariosEst.get(l).getCodigo_horario());
+							if(!(h.getCodigo_bloque().equals(horar.getCodigo_bloque())& h.getCodigo_dia_laborable().equals(horar.getCodigo_dia_laborable()))){
+								hDao.registrarHorario(h);
+								estDao.agregarHoriarioEsteticista(h, cedula.getText(), codigoAgenda, codigoHorarioEst);
+							}
+							
+						}
+						else{
+								Horario horar=hDao.buscarHorario(horariosEst.get(l).getCodigo_horario());
+								hDao.actualizarHorario(horar);
+								hDao.actualizarHorarioEsteticista(horariosEst.get(l));
+
+						}
+						
+					}
+				}
+				else{
+					Horario h = new Horario(codigo, codigoDia, listaBloquesViernesSeleccionados.get(i).getCodigo(), "Activo");
+//					if(!horariosEst.get(l).getCodigo_horario().equals(ho.getCodigo())){
+//						Messagebox.show("IF");
+						String codigoAgenda = hDao.codigoAgenda(codigoDia);
+						String codigoHorarioEst = hDao.TotalRegistrosHorarioEsteticista();
+						hDao.registrarHorario(h);
+						estDao.agregarHoriarioEsteticista(h, cedula.getText(), codigoAgenda, codigoHorarioEst);
+//					}
+				}
+				
+			}
+		}
+		else{	
+			for(int i=0; i<horariosPorEsteticistas.size();i++){
+				Horario horar=hDao.buscarHorario(horariosEst.get(i).getCodigo_horario());
+				hDao.actualizarHorario(horar);
+				hDao.actualizarHorarioEsteticista(horariosEst.get(i));
+			}
+			
+		}
+		if(listaBloquesSabadoSeleccionados.size()>0){
+			codigoDia =TabDias.get(5).getId();
+			for(int i=0; i<listaBloquesSabadoSeleccionados.size();i++){
+				String codigo = hDao.TotalRegistros();
+				Horario ho = hDao.validarHorario(codigoDia, listaBloquesSabadoSeleccionados.get(i).getCodigo());
+				if(horariosPorEsteticistas.size()>0){
+					for(int l=0;l<horariosPorEsteticistas.size();l++){
+						Horario h = new Horario(codigo, codigoDia, listaBloquesSabadoSeleccionados.get(i).getCodigo(), "Activo");
+						if(horariosEst.get(l).getCodigo_horario().equals(ho.getCodigo())){
+							String codigoAgenda = hDao.codigoAgenda(codigoDia);
+							String codigoHorarioEst = hDao.TotalRegistrosHorarioEsteticista();
+							Horario horar=hDao.buscarHorario(horariosEst.get(l).getCodigo_horario());
+							if(!(h.getCodigo_bloque().equals(horar.getCodigo_bloque())& h.getCodigo_dia_laborable().equals(horar.getCodigo_dia_laborable()))){
+								hDao.registrarHorario(h);
+								estDao.agregarHoriarioEsteticista(h, cedula.getText(), codigoAgenda, codigoHorarioEst);
+							}
+							
+						}
+						else{
+								Horario horar=hDao.buscarHorario(horariosEst.get(l).getCodigo_horario());
+								hDao.actualizarHorario(horar);
+								hDao.actualizarHorarioEsteticista(horariosEst.get(l));
+
+						}
+						
+					}
+				}
+				else{
+					Horario h = new Horario(codigo, codigoDia, listaBloquesSabadoSeleccionados.get(i).getCodigo(), "Activo");
+//					if(!horariosEst.get(l).getCodigo_horario().equals(ho.getCodigo())){
+//						Messagebox.show("IF");
+						String codigoAgenda = hDao.codigoAgenda(codigoDia);
+						String codigoHorarioEst = hDao.TotalRegistrosHorarioEsteticista();
+						hDao.registrarHorario(h);
+						estDao.agregarHoriarioEsteticista(h, cedula.getText(), codigoAgenda, codigoHorarioEst);
+//					}
+				}
+				
+			}
+		}
+		else{	
+			for(int i=0; i<horariosPorEsteticistas.size();i++){
+				Horario horar=hDao.buscarHorario(horariosEst.get(i).getCodigo_horario());
+				hDao.actualizarHorario(horar);
+				hDao.actualizarHorarioEsteticista(horariosEst.get(i));
+			}
+			
+		}
+		if(listaBloquesDomingoSeleccionados.size()>0){
+			codigoDia =TabDias.get(6).getId();
+			for(int i=0; i<listaBloquesDomingoSeleccionados.size();i++){
+				String codigo = hDao.TotalRegistros();
+				Horario ho = hDao.validarHorario(codigoDia, listaBloquesDomingoSeleccionados.get(i).getCodigo());
+				if(horariosPorEsteticistas.size()>0){
+					for(int l=0;l<horariosPorEsteticistas.size();l++){
+						Horario h = new Horario(codigo, codigoDia, listaBloquesDomingoSeleccionados.get(i).getCodigo(), "Activo");
+						if(horariosEst.get(l).getCodigo_horario().equals(ho.getCodigo())){
+							String codigoAgenda = hDao.codigoAgenda(codigoDia);
+							String codigoHorarioEst = hDao.TotalRegistrosHorarioEsteticista();
+							Horario horar=hDao.buscarHorario(horariosEst.get(l).getCodigo_horario());
+							if(!(h.getCodigo_bloque().equals(horar.getCodigo_bloque())& h.getCodigo_dia_laborable().equals(horar.getCodigo_dia_laborable()))){
+								hDao.registrarHorario(h);
+								estDao.agregarHoriarioEsteticista(h, cedula.getText(), codigoAgenda, codigoHorarioEst);
+							}
+							
+						}
+						else{
+								Horario horar=hDao.buscarHorario(horariosEst.get(l).getCodigo_horario());
+								hDao.actualizarHorario(horar);
+								hDao.actualizarHorarioEsteticista(horariosEst.get(l));
+
+						}
+						
+					}
+				}
+				else{
+					Horario h = new Horario(codigo, codigoDia, listaBloquesDomingoSeleccionados.get(i).getCodigo(), "Activo");
+//					if(!horariosEst.get(l).getCodigo_horario().equals(ho.getCodigo())){
+//						Messagebox.show("IF");
+						String codigoAgenda = hDao.codigoAgenda(codigoDia);
+						String codigoHorarioEst = hDao.TotalRegistrosHorarioEsteticista();
+						hDao.registrarHorario(h);
+						estDao.agregarHoriarioEsteticista(h, cedula.getText(), codigoAgenda, codigoHorarioEst);
+//					}
+				}
+				
+			}
+		}
+		else{	
+			for(int i=0; i<horariosPorEsteticistas.size();i++){
+				Horario horar=hDao.buscarHorario(horariosEst.get(i).getCodigo_horario());
+				hDao.actualizarHorario(horar);
+				hDao.actualizarHorarioEsteticista(horariosEst.get(i));
+			}
+			
+		}
+		Messagebox.show("Horario Registrado Satisfactoriamente");
+	}
+	
+	
 	
 	
 }

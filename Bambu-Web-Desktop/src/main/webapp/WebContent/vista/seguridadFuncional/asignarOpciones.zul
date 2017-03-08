@@ -51,7 +51,7 @@
           <div class="row">
           	<div class="container">
        			
-	          <listbox id="listaOpciones" style="overflow:auto; height:600px;" >
+	          <listbox id="listaOpciones" style="overflow:auto; height:600px; width:85%;" >
 					<listhead>
 						<listheader label="Opcion"  />
 						<listheader label="Estado"  />

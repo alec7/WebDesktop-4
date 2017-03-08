@@ -8,7 +8,7 @@ public class ConexionDAO {
 		super();	
 
 
-		Conexion.establecerPropiedadesConexion("org.postgresql.Driver", "jdbc:postgresql://localhost:5432/", "BambuWS", "postgres", "12345");
+		Conexion.establecerPropiedadesConexion("org.postgresql.Driver", "jdbc:postgresql://localhost:5432/", "BambuWebservice", "postgres", "12345");
 
 	}	
 

@@ -29,6 +29,22 @@ public class BloqueDAO extends ConexionDAO {
 		}
 		return arr_bloque;
 	}
+	public Bloque buscarBloque(String codigo_bloque) { //para listar en el grid la informacion
+		String tiraSQL = "SELECT * FROM tb_bloque where status = 'Activo' and codigo='"+codigo_bloque+"' ";
+		ResultSet resultSet = Conexion.consultar(tiraSQL);
+		Bloque bloque = null;
+		try {
+			if(resultSet!=null){
+				while(resultSet.next()){
+					bloque = new Bloque(resultSet.getString("codigo"), resultSet.getString("descripcion"), resultSet.getString("status"), resultSet.getTimestamp("hora_inicio"), resultSet.getTimestamp("hora_fin"));
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return bloque;
+	}
 	
 	public void agregarBloque(Bloque b) {
 		
