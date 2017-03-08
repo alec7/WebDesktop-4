@@ -89,7 +89,7 @@ public class ControladorSlider extends  SelectorComposer<Component>{
 	@Listen("onCreate = #listaSlider")
 	public void acuerdo(CreateEvent event)
     {
-		Messagebox.show("getContextPath(): " + Sessions.getCurrent().getWebApp().getNativeContext());
+		
 		this.cargarTabla();
     }
 	

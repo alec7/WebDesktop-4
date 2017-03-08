@@ -73,7 +73,6 @@ public class ControladorMenu extends  GenericForwardComposer<Window> {
 			 nav.setIconSclass(icono);
 			 nav.setLabel(texto);
 			 nav.setParent(menuNav);
-			 //Messagebox.show(texto);
 			 submenu = dao.buscarHijos(miSession3.getAttribute("rol").toString(), menu.get(i).getCodigo());
 			
 			 if(submenu.size()!=0){
@@ -88,8 +87,7 @@ public class ControladorMenu extends  GenericForwardComposer<Window> {
 				 final String vinculo = opcionHijo.getVinculo();
 				 final String tabla = opcionHijo.getTabla();
 				 navHijo.addEventListener(Events.ON_OPEN ,new EventListener() {
-//					@Override
-						public void onEvent(Event event) throws Exception {
+                 public void onEvent(Event event) throws Exception {
 							
 							if(tabla!=null)
 					    	{
@@ -104,23 +102,9 @@ public class ControladorMenu extends  GenericForwardComposer<Window> {
 					    	}
 						}						 
 					 });
-					// @Override
-//					 public void onEvent(Event event1) throws Exception{
-//					    	
-//								myInclude.setSrc(null);
-//								myInclude.setSrc(vinculo);
-//					    	
-//					    	
-//					    	
-//					    	// Executions.sendRedirect(vinculo);
-//					    	 //Messagebox.show(opcionHijo.getVinculo());
-//					    }
-//					});
+					
 				 navHijo.setParent(nav);
 				 submenuNieto = dao.buscarNietos(miSession3.getAttribute("rol").toString(),  submenu.get(j).getCodigo());
-				 //System.out.println(menu.get(j).getId_opcion());
-				 // Messagebox.show(opcionHijo.getVinculo());
-				
 				 for(int k=0; k<submenuNieto.size(); k++)
 				 {
 					 opcionNieto = submenuNieto.get(k);
