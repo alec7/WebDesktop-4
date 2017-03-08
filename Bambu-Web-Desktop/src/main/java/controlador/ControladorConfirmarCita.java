@@ -11,7 +11,7 @@ import org.zkoss.zul.Window;
 import modelo.Cliente;
 import modeloDAO.ClienteDAO;
 
-public class ControladorConfirmarCita extends  GenericForwardComposer<Window>{
+public class ControladorConfirmarCita extends GenericForwardComposer<Window>{
 
 	/**
 	 * 

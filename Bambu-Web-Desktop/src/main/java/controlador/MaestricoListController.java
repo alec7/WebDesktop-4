@@ -260,8 +260,8 @@ public class MaestricoListController extends SelectorComposer<Component>{
 		case "tb_rol": 
 			t=t+"Rol";
 			return t;
-		case "tb_equipo": 
-			t=t+"Equipo";
+		case "tb_motivo_cancelacion": 
+			t=t+"Motivo de Cancelación";
 			return t;
 		case "tb_dia_laborable": 
 			t=t+"Día Laborable";
@@ -287,9 +287,6 @@ public class MaestricoListController extends SelectorComposer<Component>{
 		case "tb_tipo_incidencia": 
 			t=t+"Tipo de Incidencia";
 			return t;
-		case "tb_tipo_noticia": 
-			t=t+"Tipo de Noticia";
-			return t;
 		case "tb_tipo_notificacion": 
 			t=t+"Tipo de Notificación";
 			return t;
@@ -302,41 +299,15 @@ public class MaestricoListController extends SelectorComposer<Component>{
 		case "tb_tipo_preferencia": 
 			t=t+"Clasificación de Preferencia";
 			return t;
-		case "tb_tipo_servicio": 
-			t=t+"Tipo de Servicio";
-			return t;
 		case "tb_referencia": 
 			t=t+"Referencia";
 			return t;
-		case "tb_turno": 
-			t=t+"Turno";
-			return t;
-		case "tb_antecedente": 
-			t=t+"Antecedente";
-			return t;
-		case "tb_avance": 
-			t=t+"Avance";
-			return t;
-		case "tb_cubiculo": 
-			t=t+"Cubículo";
-			return t;
-		case "tb_habito": 
-			t=t+"Hábito";
-			return t;
+		
 		case "tb_necesidad": 
 			t=t+"Necesidad";
 			return t;
-		case "tb_ocupacion": 
-			t=t+"Ocupación";
-			return t;
-		case "tb_preferencia": 
-			t=t+"Preferencia";
-			return t;
 		case "tb_tipo_encuesta": 
 			t=t+"Tipo de Encuesta";
-			return t;
-		case "tb_tipo_formulario": 
-			t=t+"Tipo de Formulario";
 			return t;
 		
 		}

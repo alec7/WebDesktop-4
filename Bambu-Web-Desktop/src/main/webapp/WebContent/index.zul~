@@ -112,10 +112,6 @@
          <space></space>
             <div align="center">
             <include  id="myInclude"></include>
- 		<div class="" style="background:#ffffff; width:700px;height:auto; margin-top:60px;">
- 			<image  src="assets/img/bienvenido.png" />
-		</div>
-
            </div>
            
            <div class="footer" id="footer">
