@@ -20,6 +20,7 @@ import modelo.Bloque;
 import modelo.Cod_Des;
 import modelo.Cubiculo;
 import modelo.DisponibilidadCubiculo;
+import modelo.DisponibilidadEsteticista;
 import modelo.Maestro_servicio;
 import modelo.Servicio;
 import modeloDAO.MaestroDAO;
@@ -27,6 +28,7 @@ import modeloDAO.SolicitarCitaDAO;
 import controlador.MaestroListService;
 import org.postgresql.translation.messages_bg;
 import org.zkoss.lang.Strings;
+import org.zkoss.web.mesg.MWeb;
 import org.zkoss.zhtml.Messagebox;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Execution;
@@ -58,9 +60,14 @@ public class ControladorSolicitarCita extends SelectorComposer<Component>{
 	String diaEspecifico;
 	String de;
 	String esteticista;
+	Integer indiceComboEsteticista;
 	String servicio;
+	String sexo;
 	List<Bloque> arr_bloquesC = new ArrayList<Bloque>();
 	List<DisponibilidadCubiculo> arr_bloquesD = new ArrayList<DisponibilidadCubiculo>();
+	List<DisponibilidadEsteticista> arr_bloquesE = new ArrayList<DisponibilidadEsteticista>();
+	List<DisponibilidadEsteticista> arr_bloquesF = new ArrayList<DisponibilidadEsteticista>();
+	
 	
 	SolicitarCitaDAO solidao = new SolicitarCitaDAO();
 	
@@ -80,6 +87,8 @@ public class ControladorSolicitarCita extends SelectorComposer<Component>{
 	Listbox comboServicio;
 	@Wire
 	Listbox comboEsteticista;
+	@Wire
+	Listbox comboSexo;
 	@Wire
 	Label titulo;
 	@Wire
@@ -111,36 +120,32 @@ public class ControladorSolicitarCita extends SelectorComposer<Component>{
 	{
 		List<Bloque> arr_bloquesA = new ArrayList<Bloque>();
 		List<Bloque> arr_bloquesB = new ArrayList<Bloque>();
-		List<DisponibilidadCubiculo> vacio = new ArrayList<DisponibilidadCubiculo>();
+		List<DisponibilidadEsteticista> arr_bloquesG = new ArrayList<DisponibilidadEsteticista>();
 		List<DisponibilidadCubiculo> arr_bloquesFinal = new ArrayList<DisponibilidadCubiculo>();
 		List<Cubiculo> cubiculosSegunServicio = new ArrayList<>();
-
-		
-	
-		
-	
 		GregorianCalendar fe = new GregorianCalendar();
 		fe.setTime(fecha.getValue());
 		diaSemana= ObtenerDia(fe.get(Calendar.DAY_OF_WEEK));
 		diaEspecifico =  fecha.getText();
 		servicio = comboServicio.getSelectedItem().getLabel();
-		esteticista = comboEsteticista.getSelectedItem().getLabel();
+		
+		sexo = comboSexo.getSelectedItem().getLabel();
+		indiceComboEsteticista=comboEsteticista.getSelectedIndex();
 		
 		
-		
-		//de=DateFormat.getDateInstance().format(diaEspecifico);
-		
-		arr_bloquesA= solidao.VerificarEsteticistaDia(esteticista,diaSemana);
+	if(indiceComboEsteticista!= -1)
+	{		
+	
+		esteticista= comboEsteticista.getSelectedItem().getLabel();
+		arr_bloquesA= solidao.VerificarEsteticistaDia(esteticista,diaSemana); //Verifica si el esteticista seleccionado trabaja el dia especificado, y devuelve los bloques donde trabaja, en caso contrario retorna 0
 
-		//Messagebox.show(String.valueOf(arr_bloquesA.size()));
-		
 		if (arr_bloquesA.size()==0) //en caso de que el esteticista no trabaje el dia de la semana especificado
 		{
 			servicios.setEmptyMessage("No se encuentra el elemento solicitado");
 		}
 		
-	
-		
+		//arr_bloquesA = Tiene todos los bloques donde trabaja el esteticista especificado el dia de la semana especificado
+		//arr_bloquesB = Tiene los bloques donde trabaja (esta ocupado o activo) el esteticista especificando el dia del calendario 
 		
 		arr_bloquesB = solidao.VerficarEsteticistaDiaEspecifico(diaEspecifico,esteticista);
 		
@@ -148,7 +153,7 @@ public class ControladorSolicitarCita extends SelectorComposer<Component>{
 		
 		RestarElementos(arr_bloquesA,arr_bloquesB);
 		
-		//Messagebox.show(arr_bloquesC.get(0).getCodigo());
+		
 		
 		//------------------------------------------------------------------------------------------
 		
@@ -166,14 +171,24 @@ public class ControladorSolicitarCita extends SelectorComposer<Component>{
 		
 		//-----------------------Eliminando repetidos-------------------------------------------------------------------
 		
+		
+		//Messagebox.show("AQUIIII "+String.valueOf(arr_bloquesD.size()));
+		
+		for (int i = 0; i < arr_bloquesD.size(); i++) 
+		{
+			Messagebox.show(arr_bloquesD.get(i).getCodigo_bloque());
+			
+		}
+		
+		
 		for (int k = 0; k < arr_bloquesD.size(); k++)
 		{
 			
-			for (int l = 1; l < arr_bloquesD.size(); l++) 
+			for (int l = k+1; l < arr_bloquesD.size(); l++) 
 			{
 				if(arr_bloquesD.get(k).getCodigo_bloque().equals( arr_bloquesD.get(l).getCodigo_bloque()))
 				{
-					arr_bloquesD.remove(l);
+					arr_bloquesD.remove(l); 
 				}
 			}
 	
@@ -196,17 +211,143 @@ public class ControladorSolicitarCita extends SelectorComposer<Component>{
 		Messagebox.show(String.valueOf("Nro Total de Bloques Disponibles"+arr_bloquesFinal.size()));
 		
 
-		servicios.setModel(new ListModelList<DisponibilidadCubiculo>(vacio));
+	
 		
 		servicios.setModel(new ListModelList<DisponibilidadCubiculo>(arr_bloquesFinal));
 		
 		
+
+		//------------------------------------------------------------------------------------------
+		arr_bloquesC.clear();
+		arr_bloquesD.clear();
 		
+
+		//------------------------------------------------------------------------------------------
 		
+	}
 	
+	else
+
+	{
 		
+		arr_bloquesD.clear(); // limpio el arreglo
+		
+	//------------------------------------------------------------------------------------------
+		
+		cubiculosSegunServicio = solidao.BuscarCubiculosSegunServicio(servicio); //trae los cubiculos donde el cliente puede realizarce el servicio
 		
 		//------------------------------------------------------------------------------------------
+		
+		solidao.resultante = new ArrayList<DisponibilidadCubiculo>();
+		for (int i = 0; i < cubiculosSegunServicio.size(); i++) 
+		{
+			
+			arr_bloquesD= solidao.BloquesDisponiblesDelCubiculo(cubiculosSegunServicio.get(i).getCodigo(),diaEspecifico);
+			
+		}
+		
+		//-----------------------Eliminando repetidos-------------------------------------------------------------------
+		
+		for (int k = 0; k < arr_bloquesD.size(); k++)
+		{
+			
+			for (int l = 1; l < arr_bloquesD.size(); l++) 
+			{
+				if(arr_bloquesD.get(k).getCodigo_bloque().equals( arr_bloquesD.get(l).getCodigo_bloque()))
+				{
+					arr_bloquesD.remove(l); 
+				}
+			}
+	
+		}
+		
+		//------------------------------------------------------------------------------------------
+		
+		Messagebox.show("Bloque D tiene: "+String.valueOf(arr_bloquesD.size()));
+		
+		
+		for (int d = 0; d < arr_bloquesD.size(); d++)
+		{
+			Messagebox.show("Bloque D: "+ arr_bloquesD.get(d).getCodigo_bloque());
+		}
+		
+		//------------------------------------------------------------------------------------------
+		
+		
+		arr_bloquesE= solidao.VerficarDiaEspecifico(diaSemana); //devuelve todos los bloques posibles donde se puede trabajar el dia especificado
+		
+		Messagebox.show(String.valueOf(arr_bloquesE.size()));
+
+		solidao.arr_bloquesOcupados.clear();
+		for (int i = 0; i < arr_bloquesE.size(); i++)
+		{
+			arr_bloquesF=solidao.VerificarDisponibilidadBloquesDeTodosLosEsteticistas(arr_bloquesE.get(i),diaEspecifico);
+			
+		}
+		
+		Messagebox.show(String.valueOf(arr_bloquesF.size()));
+		
+		for (int i = 0; i < arr_bloquesF.size(); i++) 
+		{
+			Messagebox.show("OCUPADOS: "+arr_bloquesF.get(i).getCodigo_bloque()+" "+arr_bloquesF.get(i).getCodigo_esteticista());
+			
+		}
+		
+		
+		for (int i = 0; i < arr_bloquesE.size(); i++) {
+			
+			for (int k = 0; k < arr_bloquesF.size(); k++) 
+			{
+				if(!arr_bloquesE.get(i).getCodigo_bloque().equals(arr_bloquesF.get(k).getCodigo_bloque()) || !arr_bloquesE.get(i).getCodigo_esteticista().equals(arr_bloquesF.get(k).getCodigo_esteticista()))
+				{
+					arr_bloquesG.add(arr_bloquesE.get(i));
+							
+				}
+			}	
+		}
+		
+		for (int i = 0; i < arr_bloquesG.size(); i++) 
+		{
+			Messagebox.show("Bloques JK: "+arr_bloquesG.get(i).getCodigo_bloque()+" "+arr_bloquesG.get(i).getCodigo_esteticista());
+			
+		}
+		
+		
+		
+		//-----------------------Eliminando repetidos-------------------------------------------------------------------
+		
+		for (int k = 0; k < arr_bloquesG.size(); k++)
+		{
+			
+			for (int l = k+1; l < arr_bloquesG.size(); l++) 
+			{
+				if(arr_bloquesG.get(k).getCodigo_bloque().equals( arr_bloquesG.get(l).getCodigo_bloque()))
+				{
+					Messagebox.show("entro y elimino al bloque: "+arr_bloquesG.get(l).getCodigo_bloque()+"del est: "+arr_bloquesG.get(l).getCodigo_esteticista());
+					Messagebox.show("codigo del bloque G: "+arr_bloquesG.get(k).getCodigo_bloque() +"="+arr_bloquesG.get(l).getCodigo_bloque()+"?");
+					arr_bloquesG.remove(l);
+					
+				}
+			}
+	
+		}
+		
+		Messagebox.show(String.valueOf(arr_bloquesG.size()));
+		
+		//------------------------------------------------------------------------------------------
+		
+
+		servicios.setModel(new ListModelList<DisponibilidadEsteticista>(arr_bloquesG));
+		
+
+		//--------------------------------------------------------------------------------------------
+		
+		
+		
+		
+		
+		
+	}
 		
 		
 		
@@ -264,9 +405,18 @@ public class ControladorSolicitarCita extends SelectorComposer<Component>{
 	private void RestarElementos(List<Bloque> arr_bloquesA, List<Bloque> arr_bloquesB) 
 	{
 		
-			
+		arr_bloquesC.clear();
 			for (int i = 0; i < arr_bloquesA.size(); i++) {
 				
+			if(arr_bloquesB.size()==0)
+			{
+				Messagebox.show("entro");
+				arr_bloquesC = arr_bloquesA;
+				Messagebox.show(String.valueOf(arr_bloquesC.size()));
+			}
+			
+			else
+			{
 				for (int k = 0; k < arr_bloquesB.size(); k++) 
 				{
 					if(!arr_bloquesA.get(i).getCodigo().equals(arr_bloquesB.get(k).getCodigo()))
@@ -275,6 +425,7 @@ public class ControladorSolicitarCita extends SelectorComposer<Component>{
 								
 					}
 				}	
+			}
 			}
 		
 		

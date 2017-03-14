@@ -116,16 +116,16 @@
                                
                                          <listbox id="servicios" height="350px" width="740px" vflex="1"  >
 										<listhead>
-											<listheader  label="Dia" />
+											
 											<listheader  label="Bloque"/>
-											<listheader  label="Servicio"/>
+										
 											<listheader  label=""/>
 										</listhead>
 										<template name="model">
 											<listitem value="${each}">
-												<listcell ></listcell>
+												
 												<listcell label="${each.codigo_bloque}" ></listcell>
-												<listcell  ></listcell>
+												
 												<listcell >
 													<hbox>
                                         			<button class="btn btn-primary block full-width m-b"  forward="" iconSclass="fa fa-check-circle-o" width="36px"/>

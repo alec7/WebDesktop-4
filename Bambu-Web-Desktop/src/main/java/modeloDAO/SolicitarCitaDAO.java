@@ -16,6 +16,7 @@ import modelo.Bloque;
 import modelo.Cod_Des;
 import modelo.Cubiculo;
 import modelo.DisponibilidadCubiculo;
+import modelo.DisponibilidadEsteticista;
 import modelo.Maestro;
 import modelo.Maestro_servicio;
 import modelo.Servicio;
@@ -24,6 +25,7 @@ import modelo.Usuario;
 public class SolicitarCitaDAO extends ConexionDAO
 {
 	public List<DisponibilidadCubiculo> resultante = new ArrayList<DisponibilidadCubiculo>();
+	public List<DisponibilidadEsteticista> arr_bloquesOcupados = new ArrayList<DisponibilidadEsteticista>();
 	
 	public SolicitarCitaDAO() 
 	{		
@@ -189,6 +191,118 @@ public class SolicitarCitaDAO extends ConexionDAO
 		
 		
 	}
+	
+	
+	
+	//---------------------------------------------------------------------------------------------
+	
+	public List<DisponibilidadEsteticista> VerficarDiaEspecifico(String fecha) {
+		String tiraSQL = "SELECT codigo_bloque codigo_bloque, dl.descripcion , nombre||' '||apellido nombre, cedula cedula from tb_horario h, tb_esteticista e, tb_horario_esteticista he, tb_dia_laborable dl where h.codigo = he.codigo_horario and he.codigo_esteticista = e.cedula and dl.codigo = h.codigo_dia_laborable and dl.descripcion = '"+fecha+"'";
+		ResultSet resultSet = Conexion.consultar(tiraSQL);
+		List<DisponibilidadEsteticista> arr_bloques = new ArrayList<DisponibilidadEsteticista>();
+		try {
+			if(resultSet!=null){
+				while(resultSet.next()){
+					arr_bloques.add(new DisponibilidadEsteticista(null,resultSet.getString("cedula"),null,resultSet.getString("codigo_bloque")));
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			Messagebox.show(tiraSQL);
+			e.printStackTrace();
+		}
+		Messagebox.show(tiraSQL);
+		return arr_bloques;
+	
+		
+	}
+
+
+
+	public List<DisponibilidadEsteticista> VerificarDisponibilidadBloquesDeTodosLosEsteticistas( DisponibilidadEsteticista disponibilidadEsteticista, String dia) 
+	{
+	
+		String tiraSQL = "SELECT codigo_bloque, codigo_esteticista FROM tb_diponibilidad_esteticista de where fecha = '"+dia+"' AND codigo_esteticista = '"+disponibilidadEsteticista.getCodigo_esteticista()+"' AND Status = 'Activo' AND codigo_bloque= '"+disponibilidadEsteticista.getCodigo_bloque()+"'";
+		ResultSet resultSet = Conexion.consultar(tiraSQL);
+	
+		
+		try {
+			if(resultSet!=null){
+				while(resultSet.next()){
+					arr_bloquesOcupados.add(new DisponibilidadEsteticista(null,disponibilidadEsteticista.getCodigo_esteticista(),null,disponibilidadEsteticista.getCodigo_bloque()));
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			Messagebox.show(tiraSQL);
+			e.printStackTrace();
+		}
+		
+		Messagebox.show(tiraSQL);
+
+		return arr_bloquesOcupados;
+
+	}
+
+
+
+	/*public List<DisponibilidadCubiculo> BloquesDisponiblesDeEsteticistasEnUnDia(String fecha, String esteticista) {
+		List<Bloque> TodosLosBloques = new ArrayList<Bloque>();
+		List<DisponibilidadCubiculo> cubiculosSegunServicio = new ArrayList<DisponibilidadCubiculo>();
+		String tiraSQL = "SELECT codigo_bloque FROM tb_disponibilidad_esteticista de WHERE de.fecha = '"+fecha+"' AND de.codigo_esteticista = '"+esteticista+"' AND dc.status = 'Activo'";
+		ResultSet resultSet = Conexion.consultar(tiraSQL);
+		
+		try {
+			if(resultSet!=null){
+				while(resultSet.next()){
+					cubiculosSegunServicio.add(new DisponibilidadCubiculo(null,codigo_cubiculo,null,resultSet.getString("codigo_bloque")));
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			Messagebox.show(tiraSQL);
+			e.printStackTrace();
+		}
+		Messagebox.show("Todos los que estan ocupados:"+tiraSQL);
+		
+		TodosLosBloques = CargarTodosLosBLoques(); //cargo todos los bloques registrados en el sistema
+		
+	
+		
+		for (int i = 0; i < TodosLosBloques.size(); i++) //Todos menos los que esten ocupados para el dia en especifico
+		{
+			int cont=0;
+			
+			for (int j = 0; j < cubiculosSegunServicio.size(); j++)
+			{
+				if(TodosLosBloques.get(i).getCodigo().equals(cubiculosSegunServicio.get(j).getCodigo_bloque()))
+				{
+					cont++;
+					
+				
+				}
+				
+			}
+			
+			if(cont==0)
+			{
+				resultante.add(new DisponibilidadCubiculo(null,codigo_cubiculo,null,TodosLosBloques.get(i).getCodigo()));
+			}
+			
+		}
+		
+		
+		Messagebox.show("Resultante es : "+String.valueOf(resultante.size()));
+		
+		
+		
+		
+		
+		return resultante;
+		
+		
+		
+	}*/
 	
 	
 	
