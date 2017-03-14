@@ -194,7 +194,7 @@ public class SolicitarCitaDAO extends ConexionDAO
 	
 	
 	
-	//---------------------------------------------------------------------------------------------
+	//-----------------------------------------------------------------------------------------------------------------
 	
 	public List<DisponibilidadEsteticista> VerficarDiaEspecifico(String fecha) {
 		String tiraSQL = "SELECT codigo_bloque codigo_bloque, dl.descripcion , nombre||' '||apellido nombre, cedula cedula from tb_horario h, tb_esteticista e, tb_horario_esteticista he, tb_dia_laborable dl where h.codigo = he.codigo_horario and he.codigo_esteticista = e.cedula and dl.codigo = h.codigo_dia_laborable and dl.descripcion = '"+fecha+"'";

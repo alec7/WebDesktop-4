@@ -132,9 +132,12 @@ public class ControladorSolicitarCita extends SelectorComposer<Component>{
 		sexo = comboSexo.getSelectedItem().getLabel();
 		indiceComboEsteticista=comboEsteticista.getSelectedIndex();
 		
+		Messagebox.show(String.valueOf(indiceComboEsteticista));
+		
 		
 	if(indiceComboEsteticista!= -1)
 	{		
+		
 	
 		esteticista= comboEsteticista.getSelectedItem().getLabel();
 		arr_bloquesA= solidao.VerificarEsteticistaDia(esteticista,diaSemana); //Verifica si el esteticista seleccionado trabaja el dia especificado, y devuelve los bloques donde trabaja, en caso contrario retorna 0
@@ -172,7 +175,7 @@ public class ControladorSolicitarCita extends SelectorComposer<Component>{
 		//-----------------------Eliminando repetidos-------------------------------------------------------------------
 		
 		
-		//Messagebox.show("AQUIIII "+String.valueOf(arr_bloquesD.size()));
+		Messagebox.show("AQUIIII "+String.valueOf(arr_bloquesD.size()));
 		
 		for (int i = 0; i < arr_bloquesD.size(); i++) 
 		{
@@ -230,6 +233,8 @@ public class ControladorSolicitarCita extends SelectorComposer<Component>{
 
 	{
 		
+		
+		
 		arr_bloquesD.clear(); // limpio el arreglo
 		
 	//------------------------------------------------------------------------------------------
@@ -251,7 +256,7 @@ public class ControladorSolicitarCita extends SelectorComposer<Component>{
 		for (int k = 0; k < arr_bloquesD.size(); k++)
 		{
 			
-			for (int l = 1; l < arr_bloquesD.size(); l++) 
+			for (int l = k+1; l < arr_bloquesD.size(); l++) 
 			{
 				if(arr_bloquesD.get(k).getCodigo_bloque().equals( arr_bloquesD.get(l).getCodigo_bloque()))
 				{
@@ -276,7 +281,7 @@ public class ControladorSolicitarCita extends SelectorComposer<Component>{
 		
 		arr_bloquesE= solidao.VerficarDiaEspecifico(diaSemana); //devuelve todos los bloques posibles donde se puede trabajar el dia especificado
 		
-		Messagebox.show(String.valueOf(arr_bloquesE.size()));
+		Messagebox.show(String.valueOf("Aquiiiii"+arr_bloquesE.size()));
 
 		solidao.arr_bloquesOcupados.clear();
 		for (int i = 0; i < arr_bloquesE.size(); i++)
@@ -285,7 +290,7 @@ public class ControladorSolicitarCita extends SelectorComposer<Component>{
 			
 		}
 		
-		Messagebox.show(String.valueOf(arr_bloquesF.size()));
+		Messagebox.show(String.valueOf("nro de ocupados: "+arr_bloquesF.size()));
 		
 		for (int i = 0; i < arr_bloquesF.size(); i++) 
 		{
@@ -294,21 +299,28 @@ public class ControladorSolicitarCita extends SelectorComposer<Component>{
 		}
 		
 		
-		for (int i = 0; i < arr_bloquesE.size(); i++) {
+		if(arr_bloquesF.size()!=0)
+		{	
+		
+		for (int i = 0; i < arr_bloquesF.size(); i++) {
 			
-			for (int k = 0; k < arr_bloquesF.size(); k++) 
+			for (int k = 0; k < arr_bloquesE.size(); k++) 
 			{
-				if(!arr_bloquesE.get(i).getCodigo_bloque().equals(arr_bloquesF.get(k).getCodigo_bloque()) || !arr_bloquesE.get(i).getCodigo_esteticista().equals(arr_bloquesF.get(k).getCodigo_esteticista()))
+				if(arr_bloquesF.get(i).getCodigo_bloque().equals(arr_bloquesE.get(k).getCodigo_bloque()) && arr_bloquesF.get(i).getCodigo_esteticista().equals(arr_bloquesE.get(k).getCodigo_esteticista()))
 				{
-					arr_bloquesG.add(arr_bloquesE.get(i));
+					arr_bloquesE.remove(k);
 							
 				}
 			}	
 		}
+		}
 		
-		for (int i = 0; i < arr_bloquesG.size(); i++) 
+	
+		
+		
+		for (int i = 0; i < arr_bloquesE.size(); i++) 
 		{
-			Messagebox.show("Bloques JK: "+arr_bloquesG.get(i).getCodigo_bloque()+" "+arr_bloquesG.get(i).getCodigo_esteticista());
+			Messagebox.show("Bloques JK: "+arr_bloquesE.get(i).getCodigo_bloque()+" "+arr_bloquesE.get(i).getCodigo_esteticista());
 			
 		}
 		
@@ -316,28 +328,28 @@ public class ControladorSolicitarCita extends SelectorComposer<Component>{
 		
 		//-----------------------Eliminando repetidos-------------------------------------------------------------------
 		
-		for (int k = 0; k < arr_bloquesG.size(); k++)
+		for (int k = 0; k < arr_bloquesE.size(); k++)
 		{
 			
-			for (int l = k+1; l < arr_bloquesG.size(); l++) 
+			for (int l = k+1; l < arr_bloquesE.size(); l++) 
 			{
-				if(arr_bloquesG.get(k).getCodigo_bloque().equals( arr_bloquesG.get(l).getCodigo_bloque()))
+				if(arr_bloquesE.get(k).getCodigo_bloque().equals( arr_bloquesE.get(l).getCodigo_bloque()))
 				{
-					Messagebox.show("entro y elimino al bloque: "+arr_bloquesG.get(l).getCodigo_bloque()+"del est: "+arr_bloquesG.get(l).getCodigo_esteticista());
-					Messagebox.show("codigo del bloque G: "+arr_bloquesG.get(k).getCodigo_bloque() +"="+arr_bloquesG.get(l).getCodigo_bloque()+"?");
-					arr_bloquesG.remove(l);
+					Messagebox.show("entro y elimino al bloque: "+arr_bloquesE.get(l).getCodigo_bloque()+"del est: "+arr_bloquesE.get(l).getCodigo_esteticista());
+					Messagebox.show("codigo del bloque E: "+arr_bloquesE.get(k).getCodigo_bloque() +"="+arr_bloquesE.get(l).getCodigo_bloque()+"?");
+					arr_bloquesE.remove(l);
 					
 				}
 			}
 	
 		}
 		
-		Messagebox.show(String.valueOf(arr_bloquesG.size()));
+		Messagebox.show(String.valueOf(arr_bloquesE.size()));
 		
 		//------------------------------------------------------------------------------------------
 		
 
-		servicios.setModel(new ListModelList<DisponibilidadEsteticista>(arr_bloquesG));
+		servicios.setModel(new ListModelList<DisponibilidadEsteticista>(arr_bloquesE));
 		
 
 		//--------------------------------------------------------------------------------------------
