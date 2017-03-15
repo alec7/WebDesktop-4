@@ -1,0 +1,42 @@
+.label{
+	
+	text-decoration:none;
+	font-size:14px;
+	margin-left:80px;
+	padding:10px 25px;
+	color:#000000;
+	background:#000000;
+	border-radius:none;
+	
+	
+}
+
+.label:hover,
+.label:active{
+	background:#000000;
+	text-decoration:none;
+}
+
+.stepwizard{
+
+	margin-left:50px;
+
+}
+
+.lead{
+	
+	margin-left:300px;
+}
+
+.lbl{
+	
+	margin-left:150px;
+}
+
+.lbl1{
+	margin-left:430px;
+}
+
+.lbl2{
+	margin-left:300px;
+}

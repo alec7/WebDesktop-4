@@ -153,10 +153,9 @@
 					<div class="col-lg-3">
 						<listbox id="comboEsteticista" mold="select"
 							sclass="form-control">
-							<listitem label="Jose Molina" />
-							<listitem label="Andrés Teran" />
-							<listitem label="Luis Pérez" />
-							<listitem label="Me es indiferente" />
+							<template name="model">
+							<listitem label="${each.nombre} ${each.apellido}" />
+							</template>
 						</listbox>
 					</div>
 				</div>
@@ -186,21 +185,17 @@
 					<listhead>
 
 						<listheader label="Bloque" />
-
-						<listheader label="" />
+						<listheader label="Cedula" />
+						<listheader label="Esteticista" />
 					</listhead>
 					<template name="model">
 						<listitem value="${each}">
 
 							<listcell label="${each.codigo_bloque}"></listcell>
+							<listcell label="${each.codigo_esteticista}"></listcell>
+							<listcell label="${each.codigo_cubiculo}"></listcell>
+							
 
-							<listcell>
-								<hbox>
-									<button
-										class="btn btn-primary block full-width m-b" forward=""
-										iconSclass="fa fa-check-circle-o" width="36px" />
-								</hbox>
-							</listcell>
 						</listitem>
 					</template>
 				</listbox>
@@ -211,7 +206,8 @@
 						<hbox>
 							<button
 								class="btn btn-primary block full-width m-b" type="submit"
-								iconSclass="fa fa-save">
+								iconSclass="fa fa-save"
+								id="guardar">
 								Guardar
 							</button>
 							<space></space>

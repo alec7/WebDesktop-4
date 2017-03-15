@@ -19,10 +19,12 @@ import controlador.MaestroListServiceChapter6Impl;
 import modelo.Bloque;
 import modelo.Cod_Des;
 import modelo.Cubiculo;
-import modelo.DisponibilidadCubiculo;
-import modelo.DisponibilidadEsteticista;
+import modelo.Cita;
+import modelo.Esteticista;
 import modelo.Maestro_servicio;
+import modelo.Promocion;
 import modelo.Servicio;
+import modeloDAO.EsteticistaDAO;
 import modeloDAO.MaestroDAO;
 import modeloDAO.SolicitarCitaDAO;
 import controlador.MaestroListService;
@@ -63,10 +65,12 @@ public class ControladorSolicitarCita extends SelectorComposer<Component>{
 	Integer indiceComboEsteticista;
 	String servicio;
 	String sexo;
-	List<Bloque> arr_bloquesC = new ArrayList<Bloque>();
-	List<DisponibilidadCubiculo> arr_bloquesD = new ArrayList<DisponibilidadCubiculo>();
-	List<DisponibilidadEsteticista> arr_bloquesE = new ArrayList<DisponibilidadEsteticista>();
-	List<DisponibilidadEsteticista> arr_bloquesF = new ArrayList<DisponibilidadEsteticista>();
+	List<Cita> arr_bloquesC = new ArrayList<Cita>();
+	List<Cita> arr_bloquesD = new ArrayList<Cita>();
+	//List<Cita> arr_bloquesE = new ArrayList<Cita>();
+	List<Cita> arr_bloquesF = new ArrayList<Cita>();
+	List<Cita> arr_bloquesFinal = new ArrayList<Cita>();
+	List<Cita> arr_bloquesEst = new ArrayList<Cita>();
 	
 	
 	SolicitarCitaDAO solidao = new SolicitarCitaDAO();
@@ -101,7 +105,13 @@ public class ControladorSolicitarCita extends SelectorComposer<Component>{
 	Radiogroup selectedMaestroPriority;
 	@Wire
 	Datebox fecha;
-
+	@Wire
+	Button guardar;
+	
+	
+	ListModelList<Esteticista> esteticistaListModel;
+	List<Esteticista> listEsteticista= new ArrayList<Esteticista>();
+	EsteticistaDAO  estDao=  new EsteticistaDAO();
 
 	//-----------------------------------Inicio-----------------------------------------------------
 	@Override
@@ -111,6 +121,28 @@ public class ControladorSolicitarCita extends SelectorComposer<Component>{
 		
 		
 	}
+	@Listen("onSelect = #comboSexo")
+	public void cargarEsteticistas()
+	{
+		listEsteticista= new ArrayList<Esteticista>();
+		if(comboSexo.getSelectedItem().getLabel().equalsIgnoreCase("Masculino")){
+			comboEsteticista.setDisabled(false);
+			listEsteticista = estDao.buscarEsteticistaSexo("Masculino");
+			esteticistaListModel = new ListModelList<Esteticista>(listEsteticista);
+			comboEsteticista.setModel(esteticistaListModel);
+		}
+		if(comboSexo.getSelectedItem().getLabel().equalsIgnoreCase("Femenino")){
+			comboEsteticista.setDisabled(false);
+			listEsteticista = estDao.buscarEsteticistaSexo("Femenino");
+			esteticistaListModel = new ListModelList<Esteticista>(listEsteticista);
+			comboEsteticista.setModel(esteticistaListModel);
+		}
+		if(comboSexo.getSelectedItem().getLabel().equalsIgnoreCase("Me es indiferente")){
+			comboEsteticista.setDisabled(true);
+			comboEsteticista.clearSelection();
+		}
+		
+	}
 	
 //-----------------------------------------------------------------------------------------------------
 
@@ -118,11 +150,11 @@ public class ControladorSolicitarCita extends SelectorComposer<Component>{
 	@Listen("onClick = #buscarOpciones")
 	public void doBuscarOpciones()
 	{
-		List<Bloque> arr_bloquesA = new ArrayList<Bloque>();
-		List<Bloque> arr_bloquesB = new ArrayList<Bloque>();
-		List<DisponibilidadEsteticista> arr_bloquesG = new ArrayList<DisponibilidadEsteticista>();
-		List<DisponibilidadCubiculo> arr_bloquesFinal = new ArrayList<DisponibilidadCubiculo>();
-		List<Cubiculo> cubiculosSegunServicio = new ArrayList<>();
+		List<Cita> arr_bloquesA = new ArrayList<Cita>();
+		List<Cita> arr_bloquesB = new ArrayList<Cita>();
+		List<Cita> arr_bloquesG = new ArrayList<Cita>();
+		
+		List<Cita> cubiculosSegunServicio = new ArrayList<>();
 		GregorianCalendar fe = new GregorianCalendar();
 		fe.setTime(fecha.getValue());
 		diaSemana= ObtenerDia(fe.get(Calendar.DAY_OF_WEEK));
@@ -134,17 +166,20 @@ public class ControladorSolicitarCita extends SelectorComposer<Component>{
 		
 		Messagebox.show(String.valueOf(indiceComboEsteticista));
 		
+		arr_bloquesFinal.clear();
+		
 		
 	if(indiceComboEsteticista!= -1)
 	{		
 		
 	
+		
 		esteticista= comboEsteticista.getSelectedItem().getLabel();
 		arr_bloquesA= solidao.VerificarEsteticistaDia(esteticista,diaSemana); //Verifica si el esteticista seleccionado trabaja el dia especificado, y devuelve los bloques donde trabaja, en caso contrario retorna 0
 
 		if (arr_bloquesA.size()==0) //en caso de que el esteticista no trabaje el dia de la semana especificado
 		{
-			servicios.setEmptyMessage("No se encuentra el elemento solicitado");
+			servicios.setEmptyMessage("No se encuentra el elemento soliCitado");
 		}
 		
 		//arr_bloquesA = Tiene todos los bloques donde trabaja el esteticista especificado el dia de la semana especificado
@@ -164,11 +199,11 @@ public class ControladorSolicitarCita extends SelectorComposer<Component>{
 		
 		//------------------------------------------------------------------------------------------
 		
-		solidao.resultante = new ArrayList<DisponibilidadCubiculo>();
+		solidao.resultante = new ArrayList<Cita>();
 		for (int i = 0; i < cubiculosSegunServicio.size(); i++) 
 		{
 			
-			arr_bloquesD= solidao.BloquesDisponiblesDelCubiculo(cubiculosSegunServicio.get(i).getCodigo(),diaEspecifico);
+			arr_bloquesD= solidao.BloquesDisponiblesDelCubiculo(cubiculosSegunServicio.get(i).getCodigo_cubiculo(),diaEspecifico);
 			
 		}
 		
@@ -209,15 +244,16 @@ public class ControladorSolicitarCita extends SelectorComposer<Component>{
 		
 		//------------------------------------------------------------------------------------------
 		
-		arr_bloquesFinal=Intersectar(arr_bloquesC,arr_bloquesD);
+		arr_bloquesFinal=Intersectar(arr_bloquesC,arr_bloquesD); //bloque C tiene est y bloque y bloque D tiene cub y bloque
 		
 		Messagebox.show(String.valueOf("Nro Total de Bloques Disponibles"+arr_bloquesFinal.size()));
 		
 
-	
 		
-		servicios.setModel(new ListModelList<DisponibilidadCubiculo>(arr_bloquesFinal));
 		
+		servicios.setModel(new ListModelList<Cita>(arr_bloquesFinal));
+		
+
 		
 
 		//------------------------------------------------------------------------------------------
@@ -243,11 +279,11 @@ public class ControladorSolicitarCita extends SelectorComposer<Component>{
 		
 		//------------------------------------------------------------------------------------------
 		
-		solidao.resultante = new ArrayList<DisponibilidadCubiculo>();
+		solidao.resultante = new ArrayList<Cita>();
 		for (int i = 0; i < cubiculosSegunServicio.size(); i++) 
 		{
-			
-			arr_bloquesD= solidao.BloquesDisponiblesDelCubiculo(cubiculosSegunServicio.get(i).getCodigo(),diaEspecifico);
+			//AQUI TIENE LOS CODIGOS
+			arr_bloquesD= solidao.BloquesDisponiblesDelCubiculo(cubiculosSegunServicio.get(i).getCodigo_cubiculo(),diaEspecifico);
 			
 		}
 		
@@ -263,7 +299,7 @@ public class ControladorSolicitarCita extends SelectorComposer<Component>{
 					arr_bloquesD.remove(l); 
 				}
 			}
-	
+			
 		}
 		
 		//------------------------------------------------------------------------------------------
@@ -273,20 +309,21 @@ public class ControladorSolicitarCita extends SelectorComposer<Component>{
 		
 		for (int d = 0; d < arr_bloquesD.size(); d++)
 		{
-			Messagebox.show("Bloque D: "+ arr_bloquesD.get(d).getCodigo_bloque());
+			Messagebox.show("Bloque D: "+ arr_bloquesD.get(d).getCodigo_bloque() +"AQUIII"+ arr_bloquesD.get(d).getCodigo_cubiculo());
 		}
 		
 		//------------------------------------------------------------------------------------------
 		
 		
-		arr_bloquesE= solidao.VerficarDiaEspecifico(diaSemana); //devuelve todos los bloques posibles donde se puede trabajar el dia especificado
-		
-		Messagebox.show(String.valueOf("Aquiiiii"+arr_bloquesE.size()));
-
+		arr_bloquesEst= solidao.VerficarDiaEspecifico(diaSemana); //devuelve todos los bloques posibles donde se puede trabajar el dia especificado
+		System.out.println(arr_bloquesEst.get(0).getCodigo_cubiculo());
+		Messagebox.show(String.valueOf("Aquiiiii"+arr_bloquesEst.size()));
 		solidao.arr_bloquesOcupados.clear();
-		for (int i = 0; i < arr_bloquesE.size(); i++)
+		for (int i = 0; i < arr_bloquesEst.size(); i++)
 		{
-			arr_bloquesF=solidao.VerificarDisponibilidadBloquesDeTodosLosEsteticistas(arr_bloquesE.get(i),diaEspecifico);
+			
+			
+			arr_bloquesF=solidao.VerificarDisponibilidadBloquesDeTodosLosEsteticistas(arr_bloquesEst.get(i),diaEspecifico);
 			
 		}
 		
@@ -297,19 +334,18 @@ public class ControladorSolicitarCita extends SelectorComposer<Component>{
 			Messagebox.show("OCUPADOS: "+arr_bloquesF.get(i).getCodigo_bloque()+" "+arr_bloquesF.get(i).getCodigo_esteticista());
 			
 		}
-		
-		
+
 		if(arr_bloquesF.size()!=0)
 		{	
-		
+			
 		for (int i = 0; i < arr_bloquesF.size(); i++) {
 			
-			for (int k = 0; k < arr_bloquesE.size(); k++) 
+			for (int k = 0; k < arr_bloquesEst.size(); k++) 
 			{
-				if(arr_bloquesF.get(i).getCodigo_bloque().equals(arr_bloquesE.get(k).getCodigo_bloque()) && arr_bloquesF.get(i).getCodigo_esteticista().equals(arr_bloquesE.get(k).getCodigo_esteticista()))
+				if(arr_bloquesF.get(i).getCodigo_bloque().equals(arr_bloquesEst.get(k).getCodigo_bloque()) && arr_bloquesF.get(i).getCodigo_esteticista().equals(arr_bloquesEst.get(k).getCodigo_esteticista()))
 				{
-					arr_bloquesE.remove(k);
-							
+					arr_bloquesEst.remove(k);
+					
 				}
 			}	
 		}
@@ -318,9 +354,9 @@ public class ControladorSolicitarCita extends SelectorComposer<Component>{
 	
 		
 		
-		for (int i = 0; i < arr_bloquesE.size(); i++) 
+		for (int i = 0; i < arr_bloquesEst.size(); i++) 
 		{
-			Messagebox.show("Bloques JK: "+arr_bloquesE.get(i).getCodigo_bloque()+" "+arr_bloquesE.get(i).getCodigo_esteticista());
+			Messagebox.show("Bloques JK: "+arr_bloquesEst.get(i).getCodigo_bloque()+" "+arr_bloquesEst.get(i).getCodigo_esteticista());
 			
 		}
 		
@@ -328,54 +364,36 @@ public class ControladorSolicitarCita extends SelectorComposer<Component>{
 		
 		//-----------------------Eliminando repetidos-------------------------------------------------------------------
 		
-		for (int k = 0; k < arr_bloquesE.size(); k++)
+		for (int k = 0; k < arr_bloquesEst.size(); k++)
 		{
 			
-			for (int l = k+1; l < arr_bloquesE.size(); l++) 
+			for (int l = k+1; l < arr_bloquesEst.size(); l++) 
 			{
-				if(arr_bloquesE.get(k).getCodigo_bloque().equals( arr_bloquesE.get(l).getCodigo_bloque()))
+				if(arr_bloquesEst.get(k).getCodigo_bloque().equals( arr_bloquesEst.get(l).getCodigo_bloque()))
 				{
-					Messagebox.show("entro y elimino al bloque: "+arr_bloquesE.get(l).getCodigo_bloque()+"del est: "+arr_bloquesE.get(l).getCodigo_esteticista());
-					Messagebox.show("codigo del bloque E: "+arr_bloquesE.get(k).getCodigo_bloque() +"="+arr_bloquesE.get(l).getCodigo_bloque()+"?");
-					arr_bloquesE.remove(l);
+					
+					Messagebox.show("entro y elimino al bloque: "+arr_bloquesEst.get(l).getCodigo_bloque()+"del est: "+arr_bloquesEst.get(l).getCodigo_esteticista());
+					Messagebox.show("codigo del bloque E: "+arr_bloquesEst.get(k).getCodigo_bloque() +"="+arr_bloquesEst.get(l).getCodigo_bloque()+"?");
+					arr_bloquesEst.remove(l);
 					
 				}
 			}
 	
 		}
 		
-		Messagebox.show(String.valueOf(arr_bloquesE.size()));
+		Messagebox.show(String.valueOf(arr_bloquesEst.size()));
+		
+		arr_bloquesFinal.clear();
+		
+		arr_bloquesFinal=Intersectar(arr_bloquesEst, arr_bloquesD);
 		
 		//------------------------------------------------------------------------------------------
 		
-
-		servicios.setModel(new ListModelList<DisponibilidadEsteticista>(arr_bloquesE));
 		
-
-		//--------------------------------------------------------------------------------------------
+		servicios.setModel(new ListModelList<Cita>(arr_bloquesFinal));
 		
 		
-		
-		
-		
-		
-	}
-		
-		
-		
-		
-		
-		
-		
-	
-		
-		
-		
-	
-		
-		
-		
-	
+		//--------------------------------------------------------------------------------------------`
 		
 		
 		
@@ -387,14 +405,81 @@ public class ControladorSolicitarCita extends SelectorComposer<Component>{
 		
 		
 	}
-
-
-
+	
 	
 
-	private List<DisponibilidadCubiculo> Intersectar(List<Bloque> a1,List<DisponibilidadCubiculo> a2) 
+		
+		
+		
+		
+		
+		
+		
+	
+		
+		
+		
+	
+		
+		
+		
+	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	}
+	
+	
+	
+	
+	//Cuando el usuario hace clic en el Boton Guardar 
+	@Listen("onClick = #guardar")
+	public void doGuardarOpcion()
 	{
-		List<DisponibilidadCubiculo> af = new ArrayList<DisponibilidadCubiculo>();
+		
+		/*Messagebox.show(String.valueOf(servicios.getSelectedItem().getIndex()));
+		
+		for (int i = 0; i < arr_bloquesFinal.size(); i++) 
+		{
+			Messagebox.show("Posicion"+i+" "+arr_bloquesFinal.get(i).getCodigo_bloque());
+			
+		}*/
+		
+		int posicion= servicios.getSelectedIndex();
+		
+	
+		
+		String codigo= solidao.TotalRegistros("tb_cita");
+		Messagebox.show(arr_bloquesFinal.get(posicion).getCodigo_cubiculo());
+		
+		
+		Cita ci = new Cita(codigo, null, arr_bloquesFinal.get(posicion).getCodigo_cubiculo(), "Activo", null,fecha.getText() , arr_bloquesFinal.get(posicion).getCodigo_esteticista(), comboServicio.getSelectedItem().getLabel(), arr_bloquesFinal.get(posicion).getCodigo_bloque());
+		
+		
+		solidao.InsetarCita(ci);
+		
+		
+		
+	
+	}
+	
+	
+	
+
+
+
+	
+
+	private List<Cita> Intersectar(List<Cita> a1,List<Cita> a2)  //a1->est+bloque     a2->cub+bloque
+	{
+		List<Cita> af = new ArrayList<Cita>();
 	
 			
 			for (int i = 0; i < a1.size(); i++) 
@@ -402,9 +487,9 @@ public class ControladorSolicitarCita extends SelectorComposer<Component>{
 				
 				for (int k = 0; k < a2.size(); k++) 
 				{
-					if(a1.get(i).getCodigo().equals(a2.get(k).getCodigo_bloque()))
+					if(a1.get(i).getCodigo_bloque().equals(a2.get(k).getCodigo_bloque()))
 					{
-						af.add(new DisponibilidadCubiculo(null, a2.get(k).getCodigo_cubiculo(), null, a1.get(i).getCodigo()))	;	
+						af.add(new Cita(null, null, a2.get(k).getCodigo_cubiculo(), null, null, null, a1.get(i).getCodigo_esteticista(), null, a1.get(i).getCodigo_bloque()))	;
 					}
 				}	
 			}
@@ -414,7 +499,7 @@ public class ControladorSolicitarCita extends SelectorComposer<Component>{
 	}
 	
 
-	private void RestarElementos(List<Bloque> arr_bloquesA, List<Bloque> arr_bloquesB) 
+	private void RestarElementos(List<Cita> arr_bloquesA, List<Cita> arr_bloquesB) 
 	{
 		
 		arr_bloquesC.clear();
@@ -431,7 +516,7 @@ public class ControladorSolicitarCita extends SelectorComposer<Component>{
 			{
 				for (int k = 0; k < arr_bloquesB.size(); k++) 
 				{
-					if(!arr_bloquesA.get(i).getCodigo().equals(arr_bloquesB.get(k).getCodigo()))
+					if(!arr_bloquesA.get(i).getCodigo_bloque().equals(arr_bloquesB.get(k).getCodigo_bloque()))
 					{
 						arr_bloquesC.add(arr_bloquesA.get(i));
 								
