@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 
 import org.zkoss.util.media.Media;
 import org.zkoss.zk.ui.Component;
+import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.event.CreateEvent;
 import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zk.ui.event.ForwardEvent;
@@ -78,7 +79,10 @@ public class ControladorRegistrarServicio extends SelectorComposer<Component>{
 		listaServicios.setModel(new ListModelList<Servicio>(servicios));
 	}
 	
-
+	@Listen("onClick = #ayuda")
+	public void ayuda(){
+		Executions.sendRedirect("vista/ayudas/registrarServicio.html");
+	}
 	
 	@Listen("onUpload = #uploadImagen")
 	public void onUpload$uploadImagen(UploadEvent e)
@@ -95,25 +99,24 @@ public class ControladorRegistrarServicio extends SelectorComposer<Component>{
 		 if(media instanceof org.zkoss.image.Image) {
 	             try {
 	                
-	            	 String carpeta = "C:\\Users\\Jalid\\git\\WebDesktop\\Bambu-Web-Desktop\\src\\main\\webapp\\WebContent\\assets\\imagenesSlider";
+	            	 String carpeta = "C:\\Users\\Andres\\Documents\\GitHub\\WebDesktop\\Bambu-Web-Desktop\\src\\main\\webapp\\WebContent\\assets\\imagenesSlider";
 	            	 FileOutputStream fileOutputStream=new FileOutputStream(carpeta+"\\"+media.getName());
 	                 dir="Bambu-Web-Desktop/WebContent/assets/imagenesSlider/"+media.getName();
 	            	 fileOutputStream.write(media.getByteData());
-	            	 
 
 		         		
 
-		             if(tipo_servicio.getSelectedItem()==null|| titulo.getText().isEmpty()){
-		         			Messagebox.show("Debe llenar Todos los campos", "Información", Messagebox.OK, Messagebox.INFORMATION);
-		         		}else{
+//		             if(!tipo_servicio.getSelectedItem().getLabel().equals("")|| !titulo.getText().equals("")){
+//		         			Messagebox.show("Debe llenar Todos los campos", "Información", Messagebox.OK, Messagebox.INFORMATION);
+//		         		}else{
 		         			//Date fecha = new Date(System.currentTimeMillis());
-		         			servicio = new Servicio(servDao.TotalRegistros(),descripcion.getText(),tipoServicio.get(tipo_servicio.getSelectedIndex()).getCodigo(),"J315400626",dir,"Activo",precio.getValue(),titulo.getText(),duracion.getValue());
+		         			servicio = new Servicio(servDao.TotalRegistros(),descripcion.getText(),tipoServicio.get(tipo_servicio.getSelectedIndex()).getCodigo(),"J298137738",dir,"Activo",precio.getValue(),titulo.getText(),duracion.getValue());
 		         			servDao.agregarServicio(servicio);
 		         			Messagebox.show("Datos Guardados Exitosamente", "Información", Messagebox.OK, Messagebox.INFORMATION);
 		         			limpiarCampos();
 		         			cargarTabla();
-		         		};
-		         			 
+//		         		};
+//		         			 
 		         		fileOutputStream.close();
 		         		
 	            	

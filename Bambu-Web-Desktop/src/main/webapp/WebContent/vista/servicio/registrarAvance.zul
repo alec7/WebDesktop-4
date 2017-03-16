@@ -1,0 +1,127 @@
+    <?link href="../../assets/css/bootstrap.min.css" rel="stylesheet"?>
+    <?link href="../../assets/font-awesome/css/font-awesome.css" rel="stylesheet"?>
+
+    <!-- Toastr style -->
+    <?link href="../../assets/css/plugins/toastr/toastr.min.css" rel="stylesheet"?>
+
+    <!-- Gritter -->
+    <?link href="../../assets/js/plugins/gritter/jquery.gritter.css" rel="stylesheet"?>
+
+    <?link href="../../assets/css/animate.css" rel="stylesheet"?>
+    <?link href="../../assets/css/style.css" rel="stylesheet"?>
+    <?link href="../../assets/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet"?>
+    
+
+
+<?page title="Horario Esteticista" contentType="text/html;charset=UTF-8"?>
+<zk xmlns:h="http://www.w3.org/1999/xhtml" xmlns:zk="http://www.zkoss.org/2005/zk" >
+<window apply="controlador.ControladorAvance" id="" >
+
+                <div class="col-lg-12" >
+                    <h:div class="ibox float-e-margins">
+                        <h:div class="ibox-title">
+                            <h:h5>Registrar Avance</h:h5>
+                           
+                        </h:div>
+                        <div class="ibox-content">
+                            <h:form class="form-horizontal">
+                                 <div class="ibox float-e-margins">
+                                   <div class="form-group"><label class="col-lg-2 control-label">Descripción:</label>
+
+                                    <div class="col-lg-3"><textbox type="text" id="descripcion" class="form-control required" /></div>
+                               	<label class="col-lg-2 control-label">Unidad de Medida:</label>
+
+                                 <div class="col-lg-3"><textbox type="text" id="unidad_medida" class="form-control required" /></div>
+                                </div>
+                               
+                              
+                               
+                                 <h:div class="ibox-title">
+		                            <h:h5>Servicio</h:h5>
+		                        </h:div>
+                            
+		                        	
+					<div style="height:300px; border:0.1px solid #000000; padding:5px">
+					
+													<hbox><label style="margin-left:-100px">Todos los Servicios: </label><label style="margin-left:300px">Servicios Asociados</label></hbox>	
+								
+															<hbox>
+								
+															<listbox id="listaTodosServicios">
+																<template name="model">
+																	<listitem>
+																		<listcell
+																			label="${each.titulo} ">
+																		</listcell>
+																	</listitem>
+																</template>
+															</listbox>
+															<vbox>
+															
+															<button Style="padding:5px" id="agregar" class="btn btn-primary " type="button" iconSclass="fa fa-arrow-right" height= "30px" width="30px" >  </button>
+															<button Style="padding:5px;" id="quitar" class="btn btn-primary " type="button" iconSclass="fa fa-arrow-left"  height= "30px" width="30px">  </button>
+															</vbox>
+															
+															
+																			<listbox id="listaServiciosSeleccionados">
+																<template name="model">
+																	<listitem>
+																		<listcell
+																			label="${each.titulo} " >
+																		</listcell>
+																	</listitem>
+																</template>
+															</listbox>
+															</hbox>
+															</div>
+											
+                                </div>
+                                
+                              <div class="form-group">
+                                    <div class="col-lg-offset-8 col-lg-2">
+                                       <hbox>
+                                        <button class="btn btn-primary block full-width m-b" iconSclass="fa fa-save" id="guardar">Guardar</button><space></space>
+                                         <button class="btn btn-w-m btn-danger"  iconSclass="fa fa-times" id="cancelar">Cancelar</button>
+                                        	<space></space>
+                                        <button class="btn btn-primary" id="ayuda" iconSclass="fa fa-question"/>
+                                        </hbox>
+                                    </div>
+                                </div>
+                                
+                                           							<div class="form-group"> 
+								<listbox id="listaAvance"
+									height="250px" width="740px"  vflex="1"
+									emptyMessage="No hay avance registradas">
+									<listhead>
+										<listheader
+											label="Descripción" />
+										<listheader label="Unidad de Medida" />
+										
+									</listhead>
+									<template name="model">
+										<listitem value="${each}">
+											<listcell
+												label="${each.descripcion}">
+											</listcell>
+											<listcell
+												label="${each.unidad_medida}">
+											</listcell>
+											<listcell>
+
+												<button
+													class="btn btn-danger" id="${each.codigo}"
+													forward="onClick=listaAvance.onAvanceDelete"
+													iconSclass="fa fa-trash-o" width="36px" />
+											</listcell>
+										</listitem>
+									</template>
+								</listbox>
+
+							</div>
+                            </h:form>
+                        </div>
+                    </h:div>
+                </div>
+                
+            </window>
+</zk>

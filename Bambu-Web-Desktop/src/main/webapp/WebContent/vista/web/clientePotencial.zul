@@ -1,0 +1,446 @@
+ <?link href="../../assets/css/bootstrap.min.css" rel="stylesheet"?>
+    <?link href="../../assets/font-awesome/css/font-awesome.css" rel="stylesheet"?>
+
+    <!-- Toastr style -->
+    <?link href="../../assets/css/plugins/toastr/toastr.min.css" rel="stylesheet"?>
+
+    <!-- Gritter -->
+    <?link href="../../assets/js/plugins/gritter/jquery.gritter.css" rel="stylesheet"?>
+
+    <?link href="../../assets/css/animate.css" rel="stylesheet"?>
+     <?link href="../../assets/css/web/citas.css" rel="stylesheet"?>
+     <?link href="../../assets/css/web/material-kit.css" rel="stylesheet"?>
+ 		<?link href="../../assets/css/web/jquery.steps.css" rel="stylesheet"?>
+ 		<?link href="../../assets/css/web.css" rel="stylesheet"?>
+    <?link href="../../assets/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet"?>
+    
+
+
+<?page title="Registro Cliente" contentType="text/html;charset=UTF-8"?>
+<zk xmlns:h="http://www.w3.org/1999/xhtml" xmlns:zk="http://www.zkoss.org/2005/zk" >
+<window apply="controlador.ControladorClientePotencial" > 
+
+
+		<h:nav class="navbar navbar-success navbar-fixed-top">
+						<div class="container">
+							<div class="navbar-header">
+								
+								<div >
+								<image class="navbar-brand" src="logoBambu.png"/>
+								</div>
+							</div>
+
+							<div class="collapse navbar-collapse" >
+								<h:ul class="nav navbar-nav navbar-right">
+									<h:li class="active">
+		                               
+										<a></a>
+		                            </h:li>
+		                            <h:li>
+		                           <a></a>
+		                            </h:li>
+		                             <h:li>
+		                           <a></a>
+		                            </h:li>
+		                             <h:li>
+		                           <a></a>
+		                            </h:li>
+		                             <h:li>
+		                             
+		                              <a href="http://192.168.0.120:8084/Bambu-Web-Desktop/WebContent/vista/web/clientePotencial.zul">
+		                              	Reserva
+		                              </a>
+		                               
+		                            </h:li>
+		                            <h:li>
+		                            
+		                           <a></a>
+		                                
+		                            </h:li>
+		                            <h:li>
+		                            <a></a>
+		                            </h:li>
+		                            <h:li>
+		                                <a>
+											<h:i class="material-icons">account_circle</h:i>
+
+		                                </a>
+		                            </h:li>
+								</h:ul>
+							</div>
+						</div>
+					</h:nav>
+
+
+            
+            
+              <div class="container">
+                <div class="row m-b-lg">
+                    <div class="col-lg-12 text-center">
+                        <div class="navy-line"></div>
+                        <h:h1>Reservación</h:h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 ">
+                        <!--<img src="images/fondoreserva.png" class="img"/>-->
+                        <div> 
+                           <h:h5> <label class="lead">Reserva una consulta si es tu primera vez con nosotros.</label></h:h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="wrapper" >
+                <div class="wrapper wrapper-content animated fadeInRight">
+                    <div class="row">
+                        <div class="col-lg-8 col-lg-offset-2 citas">
+
+                        <div class="container">
+            
+                <div class="col-lg-12" >
+                    <h:div class="ibox float-e-margins">
+                        <div class="ibox-content">
+                            <h:form class="form-horizontal">
+                            
+                            <tabbox zclass="none" id="tb" height="600px" width="800px" >
+							   
+						
+              			
+							   
+							   
+							    <tabs sclass="stepwizard" zclass="none" id="tabs">
+							        <tab sclass="btn btn-default btn-circle label" zclass="none" id="A" label="1" />
+							         
+							        <tab sclass="btn btn-default btn-circle label" zclass="none" id="B" label="2" />
+							        <tab sclass="btn btn-default btn-circle label" zclass="none" id="C" label="3" />
+							    </tabs>
+							    
+							
+							    
+							    <tabpanels zclass="none">
+							        <tabpanel zclass="none">
+							        <label sclass="lbl" value="Datos del Cliente" />
+							        <space></space>
+									    <div class="form-group" style="margin-top:30px; margin-bottom:30px;"><label class="col-lg-2 control-label">Cédula:</label>
+
+		                                      <div class="col-sm-4"> <div class="input-group"><textbox id="cedula" type="text" class="form-control col-lg-2"/> </div>
+		                                </div>   
+		                                
+		                                <label class="col-lg-1 control-label">Correo:</label>
+		
+		                                    <div class="col-sm-4"><div class="input-group"><textbox type="text"  id="correo" class="form-control required" /> 
+		                                    </div></div>
+		                                      
+		                                </div>
+		                                
+		                                 <div class="ibox float-e-margins">
+		                                <div class="form-group"><label class="col-lg-2 control-label">Nombre:</label>
+		
+		                                    <div class="col-lg-4"><div class="input-group"><textbox type="text"  id="nombre" class="form-control required" /> 
+		                                    </div></div>
+		                                
+		                                <div class="form-group"><label class="col-lg-1 control-label">Apellido:</label>
+		
+		                                    <div class="col-lg-4"><div class="input-group"><textbox type="text" id="apellido" class="form-control required" /></div>
+		                                </div></div>
+		                                </div>
+		                                </div>
+
+		                                <div class="form-group"><label class="col-lg-2 control-label">Sexo:</label>
+		                                     <div class="col-lg-4"> <div class="">
+		                                     <combobox id="sexo1" >
+							                        <comboitem label="Femenino" />
+							                         <comboitem  label="Masculino" />
+							                </combobox>
+		                                 </div>	</div>
+		                                	 <label class="col-lg-1 control-label">Teléfono:</label>
+		
+		                                    <div class="col-lg-4"><div class="input-group"><textbox type="text" id="telefono" class="form-control required" /></div>
+		                                </div></div>
+		                                
+		                                <div class="form-group"><label class="col-lg-2 control-label">Estado:</label>
+		                                     <div class="col-lg-4"> 
+		                                     <combobox id="estado">
+		                                     <template name="model">
+							                        <comboitem zclass="none" label="${each.descripcion}" />
+							                          </template>
+							                </combobox>
+		                                 </div>	
+		                                 
+		                                	 <label class="col-lg-1 control-label">Ciudad:</label>
+		                                     <div class="col-lg-4"> 
+		                                     <combobox  id="ciudad" >
+		                                     <template name="model">
+							                        <comboitem label="${each.descripcion}" />
+							                 </template>
+							                </combobox>
+		                                 </div>	
+		                                 
+		                                </div>
+
+		                                <div class="form-group"><label class="col-lg-2 control-label">Referido:</label>
+		                                     <div class="col-lg-4"> 
+		                                     <combobox id="referido">
+		                                     <template name="model">
+							                        <comboitem  label="${each.descripcion}" />
+							                         </template>
+							                </combobox>
+		                                 </div>	
+		
+		                                </div>
+							        </tabpanel>      
+							       <tabpanel zclass="none">
+							        <label sclass="lbl2" value="Datos de la Cita" />	
+							        	<space></space>
+							<div class="row">
+							<div class="form-group">
+					<label class="col-lg-2 control-label">
+						Servicio:
+					</label>
+					<div class="col-lg-3">
+						<listbox id="comboServicio" mold="select"
+							sclass="form-control">
+							<listitem label="Cavitación" />
+							<listitem label="Mesoterapia" />
+							<listitem label="Sauna" />
+							<listitem label="Masaje" />
+							<listitem label="Depilación" />
+						</listbox>
+					</div>
+				</div>
+				
+				</div>
+				
+						<div class="row">
+				<div class="form-group">
+					<label class="col-lg-2 control-label">
+						Sexo del esteticista:
+					</label>
+					<div class="col-lg-3">
+						<listbox id="comboSexo" mold="select"
+							sclass="form-control">
+							<listitem label="Masculino" />
+							<listitem label="Femenino" />
+							<listitem label="Me es indiferente" />
+						</listbox>
+					</div>
+					<label class="col-lg-2 control-label">
+						Esteticista:
+					</label>
+					<div class="col-lg-3">
+						<listbox id="comboEsteticista" mold="select"
+							sclass="form-control">
+							<template name="model">
+							<listitem label="${each.nombre} ${each.apellido}" />
+							</template>
+						</listbox>
+					</div>
+				</div>
+</div>
+
+	<div class="ibox-title">
+					<div class="form-group">
+						<label class="col-lg-2 control-label">
+							Fecha
+						</label>
+
+						<div class="col-lg-3">
+							<datebox format="yyyy-MM-dd" id="fecha" />
+						</div>
+						<button id="buscarOpciones"
+							class="btn btn-primary">
+							Buscar
+						</button>
+
+					</div>
+
+
+				</div>
+				
+				<listbox id="servicios" height="350px" width="740px"
+					vflex="1">
+					<listhead>
+
+						<listheader label="Bloque" />
+						<listheader label="Cedula" />
+						<listheader label="Esteticista" />
+					</listhead>
+					<template name="model">
+						<listitem value="${each}">
+
+							<listcell label="${each.codigo_bloque}"></listcell>
+							<listcell label="${each.codigo_esteticista}"></listcell>
+							<listcell label="${each.codigo_cubiculo}"></listcell>
+							
+
+						</listitem>
+					</template>
+				</listbox>
+							        	
+							    <div>
+					<space></space>
+					
+					<hbox><label >Todos los Servicios: </label><label style="margin-left:65px">Selecciona lo que deseas Lograr en Spinetti Laser</label></hbox>	
+						
+				
+							
+							<hbox>
+						
+						
+							
+							<listbox id="listaServicios">
+								<template name="model">
+									<listitem>
+										<listcell
+											label="${each.descripcion}">
+										</listcell>
+									</listitem>
+								</template>
+							</listbox>
+					
+				
+							
+					
+				
+							
+							<vbox>
+							
+							<button  id="agregar" class="btn btn-primary " type="button" iconSclass="fa fa-arrow-right" height= "30px" width="30px" >  </button>
+							<button id="quitar" class="btn btn-primary " type="button" iconSclass="fa fa-arrow-left"  height= "30px" width="30px">  </button>
+							</vbox>
+							
+							
+											<listbox id="listaServiciosSeleccionados">
+								<template name="model">
+									<listitem>
+										<listcell
+											label="${each.descripcion}">
+										</listcell>
+									</listitem>
+								</template>
+							</listbox>
+							
+					
+							
+							
+							
+							
+							</hbox>
+							
+							
+
+					</div>
+	   
+							       
+							       
+							       
+							       
+							       
+							       
+							        </tabpanel>
+							        <tabpanel zclass="none">	
+							        <label sclass="lbl1" value="Sobre Nosotros" />
+							        	<space></space>
+							        	<space></space>
+							        	<div class="form-group" style="margin-top:30px; margin-bottom:30px;"><label class="col-lg-4 control-label" id="pregunta1">¿Porqué Spinetti Laser?</label>
+		                                     <div class="col-lg-6"><combobox  id="respuesta1" width="300px" >
+										 <comboitem label="Más económico"/>
+		                                 <comboitem label="Me lo recomendo un amigo"/>
+		                                 <comboitem label="Porque si"/>
+		                                 <comboitem label="Quisiera saber como es"/>
+		                                 <comboitem label="No lo se, solo lo encontré"/>
+		                                 </combobox>
+	                                 </div>	
+		
+		                                </div>
+		                                <div class="form-group" style="margin-top:30px; margin-bottom:30px;"><label class="col-lg-4 control-label" id="pregunta2">¿Está especialmente interesado en alguno de nuestros servicios?</label>
+		                                     <div class="col-lg-6"><combobox  id="respuesta2"  width="300px">
+										 <comboitem label="Si"/>
+		                                 <comboitem label="No"/>
+		                                 </combobox>
+	                                 </div>
+		
+		                                </div>
+		                                <div class="form-group" style="margin-top:30px; margin-bottom:30px;"><label class="col-lg-4 control-label" id="pregunta3">¿Ha asistido alguna vez a otro centro de belleza?</label>
+		                                     <div class="col-lg-6"><combobox  id="respuesta3" width="300px">
+										 <comboitem label="Si, pero no cumplió mis espectativas"/>
+		                                 <comboitem label="No, primera vez que asistiré a un centro de belleza"/>
+		                                 </combobox>
+	                                 </div>
+		
+		                                </div>
+							        	<div class="form-group" style="margin-top:30px;"><label class="col-lg-4 control-label" id="pregunta4">¿Está usted de acuerdo en que la conulta diagnóstico sea el primer servicio prestado en Spinetti Laser?</label>
+		                                    <div class="col-lg-6"><combobox  id="respuesta4" width="300px" >
+										 <comboitem label="Si, me parece bien que se haga un chequeo antes de prestar otro servicio"/>
+		                                 <comboitem label="No, es una perdida de tiempo"/>
+		                                 <comboitem label="No lo se "/>
+		                                 </combobox>
+	                                 </div>
+		
+		                                </div>
+							        	
+							        </tabpanel>
+							    </tabpanels>
+							</tabbox>
+							
+                              <div class="form-group">
+                                    <div class="col-lg-offset-8 col-lg-3">
+                                       <hbox>
+                                        <div class="col-md-6 col-md-offset-6">
+                    					<button class="btn btn-primary nextBtn btn-lg pull-right" type="button" id="guardar" >Guardar</button>
+              						    </div>        
+                                        </hbox>
+                                    </div>
+                                </div>
+                                                             
+                            </h:form>
+                        </div>
+                    </h:div>
+                </div>
+            
+            
+            </div>
+            </div>
+            </div>
+            </div>
+            </div>
+            
+             <h:footer class="footer">
+        <div class="container">
+         <h:p>Siguenos en Nuestras Redes</h:p>
+            <h:nav class="pull-left">
+                <h:ul>
+                    <h:li>
+                          <a class="btn" style="background: #B5BC65" ><span class="fa fa-facebook"></span></a>
+                    </h:li>
+                    <h:li>
+                        <a class="btn" style="background: #B5BC65"  ><span class="fa fa-google"></span></a>
+                    </h:li>
+                    <h:li>
+                       <a class="btn" style="background: #B5BC65"  ><span class="fa fa-instagram"></span></a>
+                    </h:li>
+                    <h:li>
+                        <a class="btn" style="background: #B5BC65" ><span class="fa fa-twitter"></span></a>
+                    </h:li>
+                    <h:li>
+                         <h:p><h:strong> 2017 Grupo Spinetti > </h:strong> Spinetti Spa Gym.</h:p>
+                    </h:li>
+                </h:ul>
+            </h:nav>
+           
+            <div class="copyright pull-right">
+              
+                    <div>
+                    <h:p>Horario de Trabajo:</h:p>
+                    <h:p>Lunes a Viernes de 8:00am a 5:00pm</h:p>
+                    </div>  
+                
+            </div>
+        </div>
+    </h:footer>
+            
+            
+            
+            </window>
+</zk>

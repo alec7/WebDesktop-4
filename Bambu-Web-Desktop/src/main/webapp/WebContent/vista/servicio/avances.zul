@@ -1,0 +1,138 @@
+    <?link href="../../assets/css/bootstrap.min.css" rel="stylesheet"?>
+    <?link href="../../assets/font-awesome/css/font-awesome.css" rel="stylesheet"?>
+
+    <!-- Toastr style -->
+    <?link href="../../assets/css/plugins/toastr/toastr.min.css" rel="stylesheet"?>
+
+    <!-- Gritter -->
+    <?link href="../../assets/js/plugins/gritter/jquery.gritter.css" rel="stylesheet"?>
+    <?link href="../../assets/css/animate.css" rel="stylesheet"?>
+    <?link href="../../assets/css/style.css" rel="stylesheet"?>
+    <?link href="../../assets/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet"?>
+    
+
+
+<?page title="Registro de Sesión" contentType="text/html;charset=UTF-8"?>
+<zk xmlns:h="http://www.w3.org/1999/xhtml" xmlns:zk="http://www.zkoss.org/2005/zk" >
+<window apply="controlador.ControladorAvance" >
+
+            
+                <div class="col-lg-12" >
+                    <h:div class="ibox float-e-margins">
+                        <h:div class="ibox-title">
+                            <h:h5>Registrar Sesión</h:h5>
+                           
+                        </h:div>
+                        <div class="ibox-content">
+                        	<h:h4>Datos del Cliente</h:h4>
+                            <h:form class="form-horizontal">
+                              <div class="form-group"><label class="col-lg-2 control-label">Cédula</label>
+                                      <div class="col-sm-5"> <div class="input-group"><textbox id="cedula" type="text" class="form-control col-lg-2"/> <span class="input-group-btn"> <button type="button" id="BuscarCliente" class="btn btn-primary">Buscar
+                                        </button> </span></div>
+                                </div>   
+                                      
+                                </div>
+                                
+                                 <div class="ibox float-e-margins">
+                                <div class="form-group"><label class="col-lg-2 control-label">Nombre</label>
+
+                                    <div class="col-lg-3"><textbox type="text"  id="nombre" class="form-control required" /> 
+                                    </div>
+                                
+                                <div class="form-group"><label class="col-lg-1 control-label">Apellido:</label>
+
+                                    <div class="col-lg-3"><textbox type="text" id="apellido" class="form-control required" /></div>
+                                </div>
+                                </div>
+                                </div>
+                                
+                                <div class="form-group">
+								<label class="col-lg-2 control-label">
+									Servicio
+								</label>
+
+								<div class="col-lg-3">
+									<combobox  id="servicios">
+									 <template name="model">
+									<comboitem label="${each.titulo}">
+									
+									</comboitem>
+									</template>
+									</combobox>
+								</div>
+                              
+                               
+                               <div class="form-group">
+								<label class="col-lg-1 control-label">
+								  Indicador
+								</label>
+
+								<div class="col-lg-3">
+									<combobox  id="avances1">
+									<template name="model">
+									<comboitem label="${each.descripcion}">
+									
+									</comboitem>
+									</template>
+									</combobox>
+								</div>
+                               </div>
+                                 </div>
+                                
+                                
+                                
+                                 <space></space>
+                                  <h:div class="ibox-title">
+                                  
+                                  </h:div>
+                                 
+                                  
+                                  <h:h4>Paquete o Servicio</h:h4>
+                                 
+                                   
+                                  
+                                  
+                                  
+                                   
+                                  <listbox id="listaAvances"  emptyMessage="No hay sesiones registradas"  >
+										<listhead>
+											<listheader  label="Sesion"  />
+											<listheader  label="Fecha"/>
+											<listheader  label="Valor Actual"/>
+										</listhead>
+										<template name="model">
+											<listitem value="${each}">
+												<listcell
+											     label="${each.numero_sesion}">
+										        </listcell>
+										
+												<listcell
+												 label="${each.fecha}">
+												</listcell>
+												
+												<listcell
+												    label="${each.valor}">                  
+												</listcell>
+												
+											</listitem>
+										</template>
+									</listbox>
+                                 
+                                 
+                                 <h:div class="ibox-title">
+                                 		<space></space>
+                               
+                                  
+                                  </h:div>
+                                
+                            </h:form>
+                            
+                            <div class="form-group">
+							
+						</div>
+                        </div>
+                    </h:div>
+                </div>
+            
+            </window>
+</zk>

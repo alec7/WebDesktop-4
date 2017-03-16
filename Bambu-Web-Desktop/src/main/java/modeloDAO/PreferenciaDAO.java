@@ -8,6 +8,7 @@ import java.util.List;
 
 import bean.Conexion;
 import modelo.Maestrico;
+import modelo.Paquete;
 import modelo.Preferencia;
 
 public class PreferenciaDAO extends ConexionDAO {
@@ -80,5 +81,49 @@ public class PreferenciaDAO extends ConexionDAO {
 		}
 		return arr_maestricos;
 	}
-
+	
+		public String TotalRegistrosPreferenciaServicio(){
+		String tiraSQL = "SELECT * FROM tb_preferencia_servicio ";
+		ResultSet resultSet = Conexion.consultar(tiraSQL);
+		int numero=1;
+		try {
+			if(resultSet!=null){
+				while(resultSet.next()){
+					numero++;
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			
+		} 
+		Formatter fmt = new Formatter();
+		fmt.format("%05d", numero);
+		return String.valueOf(fmt);
+	}
+	
+	public void agregarPreferenciaServicio(String codigo_servicio,String codigo_preferencia,String status,String codigo) {
+		
+		String tiraSQL= "INSERT INTO tb_preferencia_servicio (codigo_servicio,codigo_preferencia,status,codigo) "
+				+ "VALUES ('"+codigo_servicio+"'"+",'"+ codigo_preferencia+"','"+ status+"','"+ codigo+"')";
+		Conexion.ejecutar(tiraSQL);
+	}
+	
+	public String buscarDescpTipoPreferencia(String codigo) { //para listar en el grid la informacion
+		String tiraSQL = "SELECT * FROM tb_tipo_preferencia where codigo = '"+codigo+"'";
+		ResultSet resultSet = Conexion.consultar(tiraSQL);
+		String descripcion="";
+		try {
+			if(resultSet!=null){
+				while(resultSet.next()){
+					descripcion= resultSet.getString("descripcion");
+					//arr_maestricos.add(new Maestrico(i,resultSet.getString("codigo"), resultSet.getString("descripcion"),resultSet.getString("status") ));
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return descripcion;
+	}
+	
 }

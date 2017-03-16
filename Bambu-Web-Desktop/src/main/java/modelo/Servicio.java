@@ -42,6 +42,10 @@ public class Servicio
 	}
 
 
+	public Servicio(String codigo, String titulo) {
+		this.codigo = codigo;
+		this.titulo = titulo;
+	}
 	public String getCodigo() {
 		return codigo;
 	}

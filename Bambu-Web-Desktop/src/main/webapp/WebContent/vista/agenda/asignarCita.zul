@@ -70,8 +70,8 @@
                                </div>
                                 <div class="form-group"><label class="col-lg-3 control-label">Esteticista:</label>
 	                                 <div class="col-lg-4"><listbox mold="select" sclass="form-control" id="esteticista">
-										 <listitem label="Oliver Gatieza"/>
-		                                 <listitem label="Rosa Melo"/>
+										 <listitem label="Andres Tera"/>
+		                                 <listitem label="Karina Vargas"/>
 		                                 </listbox>
 	                                 </div>
                                   </div>

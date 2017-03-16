@@ -54,6 +54,8 @@
                                         <button class="btn btn-primary block full-width m-b" id="guardar" type="button" iconSclass="fa fa-save">Guardar</button>
                                         <space></space>
                                         <button class="btn btn-w-m btn-danger" id="cancelar" iconSclass="fa fa-times" type="button">Cancelar</button>
+                                        <space></space>
+                                        <button class="btn btn-primary" id="ayuda" iconSclass="fa fa-question"/>
                                         </hbox>
                                     </div>
                             </h:form>

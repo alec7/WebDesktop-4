@@ -21,6 +21,7 @@ import org.zkoss.zul.Messagebox.ClickEvent;
 import modelo.Maestrico;
 import modelo.PerfilUsuario;
 import modelo.Usuario;
+import modeloDAO.EmailHTMLDao;
 import modeloDAO.EsteticistaDAO;
 import modeloDAO.PerfilUsuarioDAO;
 import modeloDAO.RolDAO;
@@ -58,7 +59,18 @@ public class ControladorPerfilUsuario extends SelectorComposer<Component>{
 	ListModelList<Usuario> usuarioListModel;
 	ListModelList<Maestrico> descripcionRoles;
 	List<Usuario> listUsuario = new ArrayList<Usuario>();
+	List<Usuario> listUsuarioTabla = new ArrayList<Usuario>();
 	Usuario u;
+	
+	@Override
+	public void doAfterCompose(Component comp) throws Exception {
+		// TODO Auto-generated method stub
+		super.doAfterCompose(comp);
+
+		//this.cargarTabala();
+		//Messagebox.show(String.valueOf(ocupacion.getItemCount()));
+		//ocupacion.setSelectedIndex(posicion);
+	}
 	
 	@Listen("onCreate = #usuarios")
 	public void usuarios(CreateEvent event)
@@ -73,9 +85,16 @@ public class ControladorPerfilUsuario extends SelectorComposer<Component>{
 		descripcionRoles = new ListModelList<Maestrico>(descripcion);
 		rol.setModel(descripcionRoles);
     }
-	
+//	
 	@Listen("onClick = #guardar")
 	public void guargar(){
+		String ced = cedula.getText();
+		String emaile = correo.getText();
+		String nom = nombre.getText();
+		String ape = apellido.getText();
+		//metodo para enviar correo una vez se guardan los datos del usuario
+		EmailHTMLDao emailHtml = new EmailHTMLDao();
+		emailHtml.enviarEmail("richard0227@gmail.com", "Registro de Usuario Spinetti Laser",  emaile, ced, nom, ape);
 		PerfilUsuario pf = new PerfilUsuario(cedula.getText(), nombre.getText(), apellido.getText(), direccion.getText(), correo.getText(), sexo.getSelectedItem().getLabel(), estado_civil.getSelectedItem().getLabel(), telefono.getText(), "00001","Activo");
 		String codigo = roldao.buscarRol(rol.getSelectedItem().getLabel());
 		u = new Usuario(correo.getText(), cedula.getText(),codigo,"Activo");
@@ -96,6 +115,7 @@ public class ControladorPerfilUsuario extends SelectorComposer<Component>{
 		}
 		 Messagebox.show("Usuario Registrado Exitosamente", "Información", Messagebox.OK, Messagebox.INFORMATION);
 		this.cargarTabala();
+
 	}
 	
 	@Listen("onClick = #cancelar")
@@ -131,18 +151,27 @@ public class ControladorPerfilUsuario extends SelectorComposer<Component>{
 	
 	
 	public void nombreRoles(){
-		
+		 listUsuario = udao.listarUsuario();
+		String codigoRol = roldao.buscarRol("Cliente");
 		for(int i=0;i<listUsuario.size();i++){
+			if(!listUsuario.get(i).getRol().equalsIgnoreCase(codigoRol)){
+				listUsuarioTabla.add(listUsuario.get(i));
+			}
+		}
+		for(int i=0;i<listUsuarioTabla.size();i++){
 			String descripcion;
-			descripcion= roldao.buscarDescpRol(listUsuario.get(i).getRol());
-			listUsuario.get(i).setRol(descripcion);
+			descripcion= roldao.buscarDescpRol(listUsuarioTabla.get(i).getRol());
+			listUsuarioTabla.get(i).setRol(descripcion);
+			
 		}
 		
+		
+		
 	}
+	
 	public void cargarTabala(){
-		listUsuario = udao.listarUsuario();
 		nombreRoles();
-		usuarioListModel = new ListModelList<Usuario>(listUsuario);
+		usuarioListModel = new ListModelList<Usuario>(listUsuarioTabla);
 		usuarios.setModel(usuarioListModel);
 	}
 

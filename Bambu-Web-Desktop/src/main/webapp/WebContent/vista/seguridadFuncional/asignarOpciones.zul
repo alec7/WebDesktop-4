@@ -30,11 +30,14 @@
 	         		<h:h4>Seleccione un Rol de la lista :</h:h4>
                
 	               <div class="col-md-6"  sclass="form-control">
+	              
 		                <combobox id="comboRol"  width="350px" >
 		                    <template name="model">
 		                        <comboitem label="${each.descripcion}" />
 		                    </template>
 		                </combobox>
+		                  <space></space>
+ <button class="btn btn-primary" id="ayuda"  iconSclass="fa fa-question"/>
 	                </div>
 	         	
 	         	

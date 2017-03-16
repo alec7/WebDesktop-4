@@ -171,6 +171,8 @@
 										id="cancelar">
 										Cancelar
 									</button>
+									<space></space>
+                                        <button class="btn btn-primary" id="ayuda" iconSclass="fa fa-question"/>
 								</hbox>
 							</div>
 						</div>

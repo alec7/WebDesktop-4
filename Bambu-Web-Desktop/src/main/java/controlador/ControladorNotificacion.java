@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.zkoss.zhtml.Messagebox;
 import org.zkoss.zk.ui.Component;
+import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.event.CreateEvent;
 import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zk.ui.event.ForwardEvent;
@@ -43,6 +44,11 @@ public class ControladorNotificacion extends SelectorComposer<Component>{
 	ListModelList<Notificacion> notificacionListModel;
 	List<Notificacion> listNotificacion = new ArrayList<Notificacion>();
 	ListModelList<Maestrico> descripcionNotificacion;
+	
+	@Listen("onClick = #ayuda")
+	public void ayuda(){
+		Executions.sendRedirect("vista/ayudas/registrarNotificacion.html");
+	}
 	
 	@Listen("onCreate = #notificaciones")
 	public void notifi(CreateEvent event)

@@ -1,0 +1,41 @@
+<zk xmlns:h="http://www.w3.org/1999/xhtml" xmlns:zk="http://www.zkoss.org/2005/zk" xmlns:n="native">
+    <?link href="assets/css/bootstrap.min.css" rel="stylesheet"?>
+    <?link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet"?>
+
+    <?link href="assets/css/animate.css" rel="stylesheet"?>
+    <?link href="assets/css/style.css" rel="stylesheet"?>
+    
+<div class="gray-bg" style="height: 100%;" apply="controlador.ControladorSesion">
+
+    <div class="middle-box text-center loginscreen animated fadeInDown">
+        <div>
+        <div>
+
+                <h:h1 class="logo-name"><image  class="img-circle" src="assets/img/logo.png" /></h:h1>
+
+            </div>
+        
+       
+            <h:h3>Recuperar Contraseña</h:h3>
+            
+            <h:p>Ingrese el correo asociado a su cuenta Bambú</h:p>
+            <h:form class="m-t" role="form" action="">
+                <div class="form-group">
+                    <textbox type="email" class="form-control" placeholder="Usuario"  id="correo"/>
+                </div>
+                <button  class="btn btn-primary block full-width m-b" id="recuperarContrasennanueva">Enviar</button>
+
+               
+            </h:form>
+            
+        </div>
+    </div>
+
+    <!-- Mainly scripts -->
+    <?script src="assets/js/jquery-3.1.1.min.js"?>
+    <?script src="assets/js/bootstrap.min.js"?>
+
+</div>
+
+
+</zk>

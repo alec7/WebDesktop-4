@@ -27,13 +27,13 @@
 				<div class="ibox-content">
 					<h:form class="form-horizontal">
 
-						<tabbox id="tb" height="500px" width="1000px">
+						<tabbox id="tb" >
 							<tabs id="tabs">
 								<tab id="A" label="Datos Personales" />
 								<tab id="C" label="Usuario" />
 							</tabs>
 							<tabpanels>
-								<tabpanel style="overflow:auto;">
+								<tabpanel >
 									<space></space>
 
 									<h:div class="ibox-title">
@@ -53,7 +53,7 @@
 
 											<div class="form-group">
 												<label
-													class="col-lg-1 control-label">
+													class="col-lg-2 control-label">
 													Apellido:
 												</label>
 
@@ -77,22 +77,18 @@
 											</div>
 											<div class="form-group">
 												<label
-													class="col-lg-1 control-label">
+													class="col-lg-2 control-label">
 													Estado Civil:
 												</label>
 
-												<div class="col-lg-3">
-													<listbox
-														mold="select" id="estado_civil" sclass="form-control">
-														<listitem
-															label="Soltero" />
-														<listitem
-															label="Casado" />
-														<listitem
-															label="Divorciado" />
-														<listitem
-															label="Viudo" />
-													</listbox>
+												<div class="col-lg-1">
+												<combobox id="estado_civil"  >
+							                        <comboitem label="Soltero" />
+							                        <comboitem label="Casado" />
+							                        <comboitem label="Divorciado" />
+							                        <comboitem label="Viudo" />
+							               		</combobox>
+													
 												</div>
 											</div>
 
@@ -106,36 +102,26 @@
 												Sexo:
 											</label>
 
-											<div class="col-lg-3">
-												<listbox mold="select"
-													id="sexo" sclass="form-control">
-													<listitem
+											<div class="col-lg-1">
+												<combobox
+													id="sexo" >
+													<comboitem
 														label="Femenino" />
-													<listitem
+													<comboitem
 														label="Masculino" />
-												</listbox>
+												</combobox>
 											</div>
 
-											<div class="form-group">
-												<label
-													class="col-lg-1 control-label">
-													Ocupación:
-												</label>
-
-												<div class="col-lg-3">
-													<listbox
-														mold="select" id="ocupacion" sclass="form-control">
-														<listitem
-															label="Ama de Casa" />
-														<listitem
-															label="Enfermera" />
-														<listitem
-															label="Obrero" />
-														<listitem
-															label="Comenciante" />
-													</listbox>
-												</div>
-											</div>
+											<div class="form-group"><label class="col-lg-4 control-label" id="labelOcupacion">Ocupación:</label>
+		
+		                                     <div class="col-lg-1">
+		                                     <combobox  id="ocupacion">
+				                                 <template name="model" >
+													 <comboitem label="${each.descripcion}"/>
+					                              </template>
+				                               </combobox>
+		                                 </div>
+		                                </div>
 										</div>
 									</div>
 
@@ -156,18 +142,16 @@
 
 											<div class="form-group">
 												<label
-													class="col-lg-1 control-label">
+													class="col-lg-1 control-label" id="labelCiudad">
 													Ciudad:
 												</label>
 
-												<div class="col-lg-3">
-													<listbox
-														mold="select" id="ciudad" sclass="form-control">
-														<listitem
-															label="Barquisimeto" />
-														<listitem
-															label="Cabudare" />
-													</listbox>
+												<div class="col-lg-2">
+													<combobox  id="ciudad">
+														<template name="model" >
+														 <comboitem label="${each.descripcion}"/>
+						                              </template>
+													</combobox>
 												</div>
 											</div>
 										</div>
@@ -180,7 +164,7 @@
 									
 										<div class="ibox float-e-margins">
 										<div class="form-group">
-											<label class="col-lg-1 control-label">Correo:</label>
+											<label class="col-lg-2 control-label">Correo:</label>
 											<div class="col-lg-5">
 												<textbox type="text" id="correo" class="form-control required" />
 											</div>
@@ -191,7 +175,7 @@
 												Teléfono:
 											</label>
 
-												<div class="col-lg-3">
+												<div class="col-lg-2">
 												<textbox type="text"
 													id="telefono" class="form-control required" />
 											</div>
@@ -206,14 +190,14 @@
 									
 										<div class="ibox float-e-margins">
 										<div class="form-group">
-											<label class="col-lg-1 control-label">Referido por:</label>
+											<label class="col-lg-2 control-label">Referido por:</label>
 											<div class="col-lg-5">
 												<textbox type="text" id="referencia" class="form-control required" />
 											</div>
 
 											<div class="form-group">
 												<label
-												class="col-lg-2 control-label">
+												class="col-lg-1 control-label" id="labelEmpresa">
 												Empresa:
 											</label>
 
@@ -224,10 +208,21 @@
 											</div>
 										</div>
 									</div>
+									<div class="form-group">
+							<div class="col-lg-offset-8 col-lg-2">
+								<hbox>
+									<button
+										class="btn btn-info block full-width m-b"
+										iconSclass="fa fa-pencil-square-o" id="editarDatos">
+										Editar
+									</button>
+								</hbox>
+							</div>
+						</div>
 					
 								</tabpanel>
 
-								<tabpanel style="overflow:auto;">
+								<tabpanel style="" id="tabUsuario">
 									<space></space>
 
 
@@ -239,35 +234,70 @@
 											</label>
 
 											<div class="col-lg-3">
-												<textbox type="text"
+												<textbox type="text" id="usuario_texto"
 													class="form-control required" />
 											</div>
 											<label
 												class="col-lg-2 control-label">
-												Contraseña:
+											Rol:
+											</label>
+											<div class="col-lg-3">
+												<textbox type="text" id="rol"
+													class="form-control required" />
+											</div>
+											
+										</div>
+									</div>
+									<div class="ibox float-e-margins">
+										<div class="form-group">
+											<label
+												class="col-lg-2 control-label">
+												Contraseña Anterior:
 											</label>
 
 											<div class="col-lg-3">
-												<textbox type="text"
+												<textbox type="text" id="contrasenna"
 													class="form-control required" />
 											</div>
-											<h:br></h:br>
+											<label
+												class="col-lg-2 control-label">
+												Nueva Contraseña:
+											</label>
+
+											<div class="col-lg-3">
+												<textbox type="text" id="contrasenna_nueva"
+													class="form-control required" />
+											</div>
+											</div>
+									</div>	
+											<div class="ibox float-e-margins">
+											<div class="form-group">
+												
+											<label
+												class="col-lg-7 control-label">
+												Confirmar Contraseña:
+											</label>
+
+											<div class="col-lg-3">
+												<textbox type="text" id="confirmar_contrasenna"
+													class="form-control required" />
+											</div>
+											</div>
+											</div>
+																					<h:br></h:br>
 											<space></space>
 											<div class="form-group">
 												<div
-													class="col-lg-offset-8 col-lg-2">
+													class="col-lg-offset-8 col-lg-4">
 													<hbox>
-														<button
-															class="btn btn-info " type="submit"
-															iconSclass="fa fa-pencil-square-o">
-															Editar
-														</button>
-
+														<button class="btn btn-info" id="guardar" iconSclass="fa fa-pencil-square-o">Editar</button>
+														<button class="btn btn-danger" id="cancelar" iconSclass="fa fa-times">Cancelar</button>
+														<space></space>
+                                        		<button class="btn btn-primary" id="ayuda" iconSclass="fa fa-question"/>
 													</hbox>
 												</div>
 											</div>
-										</div>
-									</div>
+										
 
 								</tabpanel>
 
@@ -275,22 +305,7 @@
 							</tabpanels>
 						</tabbox>
 						<space></space>
-						<div class="form-group">
-							<div class="col-lg-offset-8 col-lg-2">
-								<hbox>
-									<button
-										class="btn btn-primary block full-width m-b" type="submit"
-										iconSclass="fa fa-save">
-										Guardar
-									</button>
-									<space></space>
-									<button
-										class="btn btn-w-m btn-danger" iconSclass="fa fa-times">
-										Cancelar
-									</button>
-								</hbox>
-							</div>
-						</div>
+						
 
 
 					</h:form>

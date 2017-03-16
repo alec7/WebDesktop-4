@@ -25,7 +25,7 @@ public class OpcionDAO extends ConexionDAO{
 	
      public ArrayList<Opcion> buscarPadre(String idrol){
 		ArrayList<Opcion> padres = new ArrayList<Opcion>();
-		String tiraSQL = "select b.codigo_opcion, a.codigo_padre, a.vinculo, a.texto, a.status, a.icono, a.tabla from tb_opcion a, tb_opcion_rol b where a.codigo = b.codigo_opcion and b.codigo_rol='"+idrol+"' and a.codigo_padre = '0' order by b.codigo_opcion";
+		String tiraSQL = "select b.codigo_opcion, a.codigo_padre, a.vinculo, a.texto, a.status, a.icono, a.tabla from tb_opcion a, tb_opcion_rol b where a.codigo = b.codigo_opcion and b.codigo_rol='"+idrol+"' and a.codigo_padre = '0' and b.status='true' order by b.codigo_opcion";
 		ResultSet resultSet = Conexion.consultar(tiraSQL);
 		try {
 			while(resultSet.next()){
@@ -49,7 +49,7 @@ public class OpcionDAO extends ConexionDAO{
 	
 	public ArrayList<Opcion> buscarHijos(String idrol, String idopcion){
 		ArrayList<Opcion> hijos = new ArrayList<Opcion>();
-		String tiraSQL ="select b.codigo_opcion, a.codigo_padre, a.vinculo, a.texto, a.status, a.icono, a.tabla from tb_opcion a, tb_opcion_rol b where a.codigo = b.codigo_opcion and b.codigo_rol ='"+idrol+"' and a.codigo_padre='"+idopcion+"' order by b.codigo_opcion";
+		String tiraSQL ="select b.codigo_opcion, a.codigo_padre, a.vinculo, a.texto, a.status, a.icono, a.tabla from tb_opcion a, tb_opcion_rol b where a.codigo = b.codigo_opcion and b.codigo_rol ='"+idrol+"' and a.codigo_padre='"+idopcion+"' and b.status='true' order by b.codigo_opcion";
 		ResultSet resultSet = Conexion.consultar(tiraSQL);
 		try {
 			while(resultSet.next()){
@@ -72,7 +72,7 @@ public class OpcionDAO extends ConexionDAO{
 	
 	public ArrayList<Opcion> buscarNietos(String idrol, String idopcion){
 		ArrayList<Opcion> nietos = new ArrayList<Opcion>();
-		String tiraSQL ="select b.codigo_opcion, a.codigo_padre, a.vinculo, a.texto, a.status, a.icono, a.tabla from tb_opcion a, tb_opcion_rol b where a.codigo = b.codigo_opcion and b.codigo_rol ='"+idrol+"' and a.codigo_padre='"+idopcion+"' order by b.codigo_opcion";
+		String tiraSQL ="select b.codigo_opcion, a.codigo_padre, a.vinculo, a.texto, a.status, a.icono, a.tabla from tb_opcion a, tb_opcion_rol b where a.codigo = b.codigo_opcion and b.codigo_rol ='"+idrol+"' and a.codigo_padre='"+idopcion+"' and b.status='true' order by b.codigo_opcion";
 		ResultSet resultSet = Conexion.consultar(tiraSQL);
 		try {
 			while(resultSet.next()){
@@ -95,7 +95,7 @@ public class OpcionDAO extends ConexionDAO{
 	
 	public ArrayList<Opcion> ObtenerTodos(){
 		ArrayList<Opcion> padres = new ArrayList<Opcion>();
-		String tiraSQL ="select * from tb_opcion";
+		String tiraSQL ="select * from tb_opcion where status='false' order by codigo";
 		ResultSet resultSet = Conexion.consultar(tiraSQL);
 		try {
 			while(resultSet.next()){

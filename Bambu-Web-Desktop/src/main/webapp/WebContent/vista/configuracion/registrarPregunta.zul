@@ -1,0 +1,149 @@
+ <?link href="../../assets/css/bootstrap.min.css" rel="stylesheet"?>
+    <?link href="../../assets/font-awesome/css/font-awesome.css" rel="stylesheet"?>
+
+    <!-- Toastr style -->
+    <?link href="../../assets/css/plugins/toastr/toastr.min.css" rel="stylesheet"?>
+
+    <!-- Gritter -->
+    <?link href="../../assets/js/plugins/gritter/jquery.gritter.css" rel="stylesheet"?>
+
+    <?link href="../../assets/css/animate.css" rel="stylesheet"?>
+    <?link href="../../assets/css/style.css" rel="stylesheet"?>
+    <?link href="../../assets/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet"?>
+    
+
+<?page title="Registrar Pregunta de Encuesta" contentType="text/html;charset=UTF-8"?>
+<zk xmlns:h="http://www.w3.org/1999/xhtml" xmlns:zk="http://www.zkoss.org/2005/zk" >
+<window apply="controlador.ControladorPregunta" id="pregunta" >
+
+                <div class="col-lg-12" >
+                    <h:div class="ibox float-e-margins">
+                        <h:div class="ibox-title">
+                            <h:h5>Registrar Pregunta de Encuesta</h:h5>
+                           
+                        </h:div>
+                        <div class="ibox-content">
+                       	<h:form class="form-horizontal">
+						<space></space>
+							        
+						<div class="row">
+						<div class="col-lg-6">     
+						<div class="ibox float-e-margins">
+							<div class="form-group">
+								<label class="col-lg-4 control-label">
+									Tipo de Pregunta
+								</label>
+
+								<div class="col-lg-8">
+									<listbox mold="select" sclass="form-control" id="tipo_pregunta">
+		                                 <template name="model">
+											 <listitem label="${each.descripcion}"/>
+			                              </template>
+		                               </listbox>
+								</div>
+							</div>
+						</div>
+						<div class="ibox float-e-margins">
+							<div class="form-group">
+								<label class="col-lg-4 control-label">
+									Descripcion
+								</label>
+								<div class="col-lg-8">
+									<textbox type="text" id="descripcion"
+										class="form-control required" />
+								</div>
+							</div>
+						</div>
+
+						</div>
+						
+                                </div>
+                                
+                                <hbox><label style="margin-left:-100px">Todos las Respuestas: </label><label style="margin-left:300px">Respuestas Asociados</label></hbox>	
+					
+												<hbox>
+					
+												<listbox id="listaTodasRespuestas" height="400px" width="400px">
+													<template name="model">
+														<listitem>
+															<listcell
+																label="${each.descripcion} ">
+															</listcell>
+														</listitem>
+													</template>
+												</listbox>
+												<vbox>
+												
+												<button  id="agregar" class="btn btn-primary " type="button" iconSclass="fa fa-arrow-right" height= "30px" width="30px" >  </button>
+												<button id="quitar" class="btn btn-primary " type="button" iconSclass="fa fa-arrow-left"  height= "30px" width="30px">  </button>
+												</vbox>
+												
+												
+																<listbox id="listaRespuestasSeleccionadas" height="400px" width="400px">
+													<template name="model">
+														<listitem>
+															<listcell
+																label="${each.descripcion} " >
+															</listcell>
+														</listitem>
+													</template>
+												</listbox>
+												</hbox>
+                                
+                             
+                            <h:br></h:br>
+                             <div class="form-group">
+                                    <div class="col-lg-offset-8 col-lg-2">
+                                       <hbox>
+                                        <button class="btn btn-primary block full-width m-b" iconSclass="fa fa-save" id="guardar">Guardar</button>
+                                        <space></space>
+                                        <button class="btn btn-w-m btn-danger"  iconSclass="fa fa-times" id="cancelar">Cancelar</button>
+                                        </hbox>
+                                    </div>
+                                </div>
+                             <h:br></h:br>
+                              <h:br></h:br>
+                            <space></space>
+                            <space></space>
+                            <space></space>
+                            <space></space>
+                            <space></space>
+                            <space></space>
+                               							<div class="form-group"> 
+								<listbox id="listaPregunta"
+									height="150px" width="740px" vflex="1"
+									emptyMessage="No hay pregunta registradas">
+									<listhead>
+										<listheader
+											label="Tipo de Pregunta " />
+										<listheader label="Pregunta" />
+										
+									</listhead>
+									<template name="model">
+										<listitem value="${each}">
+											<listcell
+												label="${each.tipo_pregunta}">
+											</listcell>
+											<listcell
+												label="${each.descripcion}">
+											</listcell>
+											<listcell>
+
+												<button
+													class="btn btn-danger" id="${each.codigo}"
+													forward="onClick=listaPregunta.onPreguntaDelete"
+													iconSclass="fa fa-trash-o" width="36px" />
+											</listcell>
+										</listitem>
+									</template>
+								</listbox>
+
+							</div>
+
+							         
+                            </h:form>
+                        </div>
+                    </h:div>
+                </div>              
+            </window>
+</zk>

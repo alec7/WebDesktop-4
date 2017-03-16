@@ -5,18 +5,32 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.zkoss.zhtml.Messagebox;
+
 import modelo.Acuerdo;
 import modelo.Cliente;
 import modelo.Maestrico;
 import modelo.Noticia;
+import modelo.Objetivo;
 import bean.Conexion;
 
 public class ClienteDAO extends ConexionDAO {
 	
-	public void modificarCliente(String cedula, String estado_civil) {
-		String tiraSQL = "UPDATE tb_cliente SET estado_civil = '"+estado_civil+"' WHERE cedula = '"+cedula+"'";
+	public void agregarClientePotencial(Cliente c) {
+		
+		String tiraSQL= "INSERT INTO tb_cliente (cedula,nombre,apellido,sexo,telefono,correo,ciudad,tipo_cliente,codigo_referencia,codigo_organizacion,status) "
+				+ "VALUES ('"+c.getCedula()+"'"+",'"+c.getNombre()+"','"+ c.getApellido()+"','"+ c.getSexo()+"','"+ c.getTelefeno()+"','"+ c.getCorreo()+"','"+ c.getCuidad()+"','"+ c.getTipo_cliente()+"','"+ c.getCodigo_referecnia()+"','"+ c.getCodigo_organizacion()+"','"+ c.getStatus()+"')";
 		Conexion.ejecutar(tiraSQL);
-		System.out.println(estado_civil);
+	}
+	public void modificarCliente(String cedula, String estado_civil, String direccion,String codigo_ocupacion, String fecha_nac,String rifOrg,String codigo_organizacion) {
+		String tiraSQL = "UPDATE tb_cliente SET estado_civil = '"+estado_civil+"', direccion='"+direccion+"', tipo_cliente='00002', codigo_ocupacion='"+codigo_ocupacion+"', fecha_nacimiento='"+fecha_nac+"', codigo_organizacion='"+rifOrg+"', codigo_acuerdo='"+codigo_organizacion+"' WHERE cedula = '"+cedula+"'";
+		Conexion.ejecutar(tiraSQL);
+		Messagebox.show(tiraSQL);
+			
+	}
+	public void modificarClientePerfil( String estado_civil, String direccion,String codigo_ocupacion,String cedula,String telefono) {
+		String tiraSQL = "UPDATE tb_cliente SET estado_civil = '"+estado_civil+"', direccion='"+direccion+"', codigo_ocupacion='"+codigo_ocupacion+"', telefono='"+telefono+"' WHERE cedula = '"+cedula+"'";
+		Conexion.ejecutar(tiraSQL);
 			
 	}
 
@@ -39,7 +53,7 @@ public class ClienteDAO extends ConexionDAO {
 	
 	public List<Maestrico> ocupacion() { //para listar en el grid la informacion
 		int i=0;
-		String tiraSQL = "SELECT * FROM tb_ocupacion";
+		String tiraSQL = "SELECT * FROM tb_ocupacion  WHERE status='Activo' ORDER BY codigo";
 		ResultSet resultSet = Conexion.consultar(tiraSQL);
 		List<Maestrico> arr_maestricos = new ArrayList<Maestrico>();
 		try {
@@ -55,6 +69,23 @@ public class ClienteDAO extends ConexionDAO {
 		}
 		return arr_maestricos;
 	}
+	public String codigoOcupacion(String descrip) { //para listar en el grid la informacion
+		String tiraSQL = "SELECT * FROM tb_ocupacion  WHERE descripcion='"+descrip+"'";
+		ResultSet resultSet = Conexion.consultar(tiraSQL);
+		String codigo="";
+		try {
+			if(resultSet!=null){
+				while(resultSet.next()){
+					codigo = resultSet.getString("codigo");
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return codigo;
+	}
+	
 	public ClienteDAO(){
 		super();
 	}
@@ -203,6 +234,40 @@ public class ClienteDAO extends ConexionDAO {
 			if(resultSet!=null){
 				while(resultSet.next()){
 					descripcion= resultSet.getString("nombre_empresa");
+					//arr_maestricos.add(new Maestrico(i,resultSet.getString("codigo"), resultSet.getString("descripcion"),resultSet.getString("status") ));
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return descripcion;
+	}
+	public String buscarCodigoEmpresa(String nombre_empresa) { //para listar en el grid la informacion
+		String tiraSQL = "SELECT * FROM tb_acuerdo where nombre_empresa = '"+nombre_empresa+"'";
+		ResultSet resultSet = Conexion.consultar(tiraSQL);
+		String descripcion="";
+		try {
+			if(resultSet!=null){
+				while(resultSet.next()){
+					descripcion= resultSet.getString("codigo");
+					//arr_maestricos.add(new Maestrico(i,resultSet.getString("codigo"), resultSet.getString("descripcion"),resultSet.getString("status") ));
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return descripcion;
+	}
+	public String buscarCodigoOcupacion(String nombre_ocupacion) { //para listar en el grid la informacion
+		String tiraSQL = "SELECT * FROM tb_ocupacion where descripcion = '"+nombre_ocupacion+"'";
+		ResultSet resultSet = Conexion.consultar(tiraSQL);
+		String descripcion="";
+		try {
+			if(resultSet!=null){
+				while(resultSet.next()){
+					descripcion= resultSet.getString("codigo");
 					//arr_maestricos.add(new Maestrico(i,resultSet.getString("codigo"), resultSet.getString("descripcion"),resultSet.getString("status") ));
 				}
 			}

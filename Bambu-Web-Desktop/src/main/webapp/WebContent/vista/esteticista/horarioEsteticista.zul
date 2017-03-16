@@ -32,10 +32,16 @@
                                 		</div> 
                                 </div>
                                
-                                 <div class="form-group"><label class="col-lg-2 control-label">Nombre:</label>
+                                   <div class="form-group"><label class="col-lg-2 control-label">Nombre:</label>
 
-                                    <div class="col-lg-3"><textbox type="text"  id="nombre"  class="form-control" /> </div>
+                                    <div class="col-lg-3"><textbox type="text" id="nombre" class="form-control required" /></div>
+                               	<label class="col-lg-2 control-label">Apellido:</label>
+
+                                 <div class="col-lg-3"><textbox type="text" id="apellido" class="form-control required" /></div>
                                 </div>
+                               
+                              
+                               
                                  <h:div class="ibox-title">
 		                            <h:h5>Bloque Laborable por Día</h:h5>
 		                        </h:div>
@@ -66,7 +72,7 @@
 																<template name="model">
 																	<listitem>
 																		<listcell
-																			label="${each.descripcion}" id="${each.descripcion}">
+																			label="${each.descripcion} ">
 																		</listcell>
 																	</listitem>
 																</template>
@@ -82,7 +88,7 @@
 																<template name="model">
 																	<listitem>
 																		<listcell
-																			label="${each.descripcion}">
+																			label="${each.descripcion} " >
 																		</listcell>
 																	</listitem>
 																</template>
@@ -102,7 +108,7 @@
 																<template name="model">
 																	<listitem>
 																		<listcell
-																			label="${each.descripcion}">
+																			label="${each.descripcion} ">
 																		</listcell>
 																	</listitem>
 																</template>
@@ -118,7 +124,7 @@
 																<template name="model">
 																	<listitem>
 																		<listcell
-																			label="${each.descripcion}">
+																			label="${each.descripcion} ">
 																		</listcell>
 																	</listitem>
 																</template>
@@ -138,7 +144,7 @@
 																<template name="model">
 																	<listitem>
 																		<listcell
-																			label="${each.descripcion}">
+																			label="${each.descripcion} ">
 																		</listcell>
 																	</listitem>
 																</template>
@@ -154,7 +160,7 @@
 																<template name="model">
 																	<listitem>
 																		<listcell
-																			label="${each.descripcion}">
+																			label="${each.descripcion} ">
 																		</listcell>
 																	</listitem>
 																</template>
@@ -174,7 +180,7 @@
 																<template name="model">
 																	<listitem>
 																		<listcell
-																			label="${each.descripcion}">
+																			label="${each.descripcion} ">
 																		</listcell>
 																	</listitem>
 																</template>
@@ -190,7 +196,7 @@
 																<template name="model">
 																	<listitem>
 																		<listcell
-																			label="${each.descripcion}">
+																			label="${each.descripcion} ">
 																		</listcell>
 																	</listitem>
 																</template>
@@ -210,7 +216,7 @@
 																<template name="model">
 																	<listitem>
 																		<listcell
-																			label="${each.descripcion}">
+																			label="${each.descripcion} ">
 																		</listcell>
 																	</listitem>
 																</template>
@@ -226,7 +232,7 @@
 																<template name="model">
 																	<listitem>
 																		<listcell
-																			label="${each.descripcion}">
+																			label="${each.descripcion} ">
 																		</listcell>
 																	</listitem>
 																</template>
@@ -246,7 +252,7 @@
 																<template name="model">
 																	<listitem>
 																		<listcell
-																			label="${each.descripcion}">
+																			label="${each.descripcion} ">
 																		</listcell>
 																	</listitem>
 																</template>
@@ -262,7 +268,7 @@
 																<template name="model">
 																	<listitem>
 																		<listcell
-																			label="${each.descripcion}">
+																			label="${each.descripcion} ">
 																		</listcell>
 																	</listitem>
 																</template>
@@ -282,7 +288,7 @@
 																<template name="model">
 																	<listitem>
 																		<listcell
-																			label="${each.descripcion}">
+																			label="${each.descripcion} ">
 																		</listcell>
 																	</listitem>
 																</template>
@@ -298,7 +304,7 @@
 																<template name="model">
 																	<listitem>
 																		<listcell
-																			label="${each.descripcion}">
+																			label="${each.descripcion} ">
 																		</listcell>
 																	</listitem>
 																</template>
@@ -311,10 +317,7 @@
 									       
 									    </tabpanels>
 									</tabbox>
-									
-                                <h:div class="ibox-title">
-		                            
-		                        </h:div>
+								
                                 
                                 </div>
                                 
@@ -322,6 +325,8 @@
                                     <div class="col-lg-offset-8 col-lg-2">
                                        <hbox>
                                         <button class="btn btn-primary block full-width m-b" iconSclass="fa fa-save" id="guardar">Guardar</button>
+                                        <space></space>
+                                        <button class="btn btn-primary" id="ayuda" iconSclass="fa fa-question"/>
                                         </hbox>
                                     </div>
                                 </div>

@@ -98,7 +98,8 @@
                 </div>
                 
                 
-                <listbox id="usuarios" vflex="1">
+                <listbox id="usuarios" vflex="1" height="350px"
+								width="850px">
 					<listhead>
 						<listheader  label="Usuario" />
 						<listheader  label="Rol"/>

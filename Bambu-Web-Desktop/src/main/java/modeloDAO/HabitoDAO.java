@@ -6,22 +6,25 @@ import java.util.ArrayList;
 import java.util.Formatter;
 import java.util.List;
 
+import modelo.Habito;
 import modelo.HabitoCliente;
 import modelo.Maestrico;
+import modelo.Opcion;
 import bean.Conexion;
 
 public class HabitoDAO extends ConexionDAO{
 	
-	public ArrayList<Maestrico> listaHabito() { //para listar en el grid la informacion
-		int i=0;
-		String tiraSQL = "SELECT * FROM tb_habito where status = 'Activo'";
+	public List<Habito> listaHabito() { //para listar en el grid la informacion
+		//int i=0;
+		String tiraSQL = "SELECT * FROM tb_habito WHERE status = 'false' ORDER BY codigo";
 		ResultSet resultSet = Conexion.consultar(tiraSQL);
-		ArrayList<Maestrico> arr_habito = new ArrayList<Maestrico>();
+		ArrayList<Habito> arr_habito = new ArrayList<Habito>();
 		try {
 			if(resultSet!=null){
 				while(resultSet.next()){
-					i++;
-					arr_habito.add(new Maestrico(i,resultSet.getString("codigo"), resultSet.getString("descripcion"), resultSet.getString("status")));
+				//	i++;
+					
+					arr_habito.add(new Habito(resultSet.getString("codigo"), resultSet.getString("descripcion"), resultSet.getBoolean("status")));
 				}
 			}
 		} catch (SQLException e) {
@@ -34,7 +37,7 @@ public class HabitoDAO extends ConexionDAO{
 	
 	
 	public String TotalRegistros(){
-		String tiraSQL = "SELECT * FROM tb_Habito_cliente";
+		String tiraSQL = "SELECT * FROM tb_Habito";
 		ResultSet resultSet = Conexion.consultar(tiraSQL);
 		int numero=1;
 		try {
@@ -61,5 +64,31 @@ public void agregarHabitoACliente(HabitoCliente habito) {
 		
 		
 	}
+
+public ArrayList<HabitoCliente> buscarHabitosXCliente(String cedula){
+	ArrayList<HabitoCliente> habitos = new ArrayList<HabitoCliente>();
+	String tiraSQL = "select codigo_habito,codigo_cliente, codigo, status from tb_habito_cliente where codigo_cliente = '"+cedula+"'";
+	ResultSet resultSet = Conexion.consultar(tiraSQL);
+	try {
+		while(resultSet.next()){
+			String codigo_habito = resultSet.getString("codigo_habito");
+			String codigo_cliente = resultSet.getString("codigo_cliente");
+			String codigo = resultSet.getString("codigo");
+			Boolean status = resultSet.getBoolean("status");
+			
+			HabitoCliente habito = new HabitoCliente(codigo_habito, codigo_cliente , codigo, status);
+			habitos.add(habito);
+		}
+		resultSet.close();
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+	return habitos;
+			
+
+}
+
+
+
 
 }

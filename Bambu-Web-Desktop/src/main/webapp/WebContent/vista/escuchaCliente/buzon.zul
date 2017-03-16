@@ -1,5 +1,5 @@
 <?link href="../../assets/css/bootstrap.min.css" rel="stylesheet"?>
-    <?link href="../../assets/font-awesome/css/font-awesome.css" rel="stylesheet"?>
+<?link href="../../assets/font-awesome/css/font-awesome.css" rel="stylesheet"?>
 
 <!-- Toastr style -->
 <?link href="../../assets/css/plugins/toastr/toastr.min.css" rel="stylesheet"?>
@@ -11,52 +11,110 @@
 <?link href="../../assets/css/style.css" rel="stylesheet"?>
 
 
-<zk xmlns:h="http://www.w3.org/1999/xhtml" xmlns:zk="http://www.zkoss.org/2005/zk">
- 
- 
-  <div class="col-lg-9 animated fadeInRight" height="600px" width="1100px" apply="controlador.ControladorComentario">
-  <div class="mail-box-header">
- <h:form method="get" action="index.html" class="pull-right mail-search">
-                   <div class="input-group">
-                        <textbox type="text" class="form-control input-sm" name="buscar" placeholder=""/>
-                        <div class="input-group-btn">
-                            <button type="submit" class="btn btn-sm btn-primary">
-                                Buscar
-                            </button>
-                        </div>
-                    </div>
-                </h:form>
-                
-                 <h:h2>
-                    Bandeja de Entrada (0)
-                </h:h2>
-                <div class="mail-tools tooltip-demo m-t-md">
-                    <div class="btn-group pull-right">
-                        
-                    </div>
-                    
+<zk xmlns:h="http://www.w3.org/1999/xhtml"
+	xmlns:zk="http://www.zkoss.org/2005/zk">
 
-                </div>
-                <div >
-                <listbox id="listaComentarios"  emptyMessage="No hay mensajes"  mold="paging" pageSize="9">
-                   <template name="model">
+
+	<div class="col-lg-9 animated fadeInRight" height="600px"
+		width="1100px" apply="controlador.ControladorComentario">
+		<div id="bandejaEntrada" class="mail-box-header">
+			<h:form method="get" action="index.html"
+				class="pull-right mail-search">
+				<div class="input-group">
+					<textbox type="text" class="form-control input-sm"
+						name="buscar" placeholder="" />
+					<div class="input-group-btn">
+						<button type="submit"
+							class="btn btn-sm btn-primary">
+							Buscar
+						</button>
+					</div>
+				</div>
+			</h:form>
+
+			<h:h2>Bandeja de Entrada</h:h2>
+			<div class="mail-tools tooltip-demo m-t-md">
+				<div class="btn-group pull-right">
+
+				</div>
+
+
+			</div>
+			<div class="col-md-3">
+				<listbox id="listaTipos" emptyMessage="No hay mensajes"
+					mold="paging" pageSize="9" checkmark="true">
+					<template name="model">
+						<listitem value="${each}">
+							<listcell>
+
+								<label value="${each.descripcion}" />
+
+							</listcell>
+						</listitem>
+					</template>
+
+				</listbox>
+
+			</div>
+			<div class="col-md-9">
+
+				<listbox id="listaComentarios"
+					emptyMessage="No hay mensajes" mold="paging" pageSize="9">
+					<template name="model">
 						<listitem value="${each}">
 							<listcell>
 								<hbox>
-								 <image src="../../assets/img/comentarios.png" width="15px" height="10px" />
+									<image
+										src="assets/img/comentarios.png" width="15px" height="10px" />
 									<hbox>
-									    <label value="${each.tipo_comentario}"/> 
-									    <label value="${each.codigo_usuario}" />
-			                            <label value="${each.descripcion}" /> 
-										
-                                   </hbox>
+										<label
+											value="${each.tipo_comentario}" />
+										<label
+											value="${each.codigo_usuario}" />
+										<label
+											value="${each.descripcion}" />
+
+									</hbox>
 								</hbox>
 							</listcell>
 						</listitem>
 					</template>
 
 				</listbox>
-                </div>
-                </div>
-                </div>
+			</div>
+		</div>
+
+		<div id="detalleMensaje" visible="false">
+			<button id="btnAtras" label="Atras"
+				class="pull-right btn  btn-primary">
+			</button>
+			<div class="row">
+			<div class="col-xs-12">
+				<label class="pull-left">Email usuario:</label>
+					<textbox id="txtEmailUsuario" readonly="true"
+						class="form-control">
+					</textbox>
+				</div>
+				<div class="col-xs-12">
+				<label class="pull-left">Comentario:</label>
+					<textbox id="txtDetalleMensaje" readonly="true"
+						class="form-control" rows="10">
+					</textbox>
+				</div>
+				<div class="col-xs-12">
+				<label class="pull-left">Respuesta:</label>
+					<textbox id="txtRespuestaMensaje" rows="5"
+						class="form-control">
+					</textbox>
+					<button id="btnResponder"
+							class="btn  btn-primary pull-left">
+							Responder
+						</button>
+				</div>
+				
+				
+			</div>
+
+		</div>
+	</div>
 </zk>

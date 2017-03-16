@@ -12,6 +12,7 @@ import modeloDAO.AcuerdoDAO;
 
 import org.zkoss.zhtml.Messagebox;
 import org.zkoss.zk.ui.Component;
+import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.event.CreateEvent;
 import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zk.ui.event.ForwardEvent;
@@ -80,6 +81,10 @@ private static final long serialVersionUID = 1L;
 		descripcionAcuerdo = new ListModelList<Maestrico>(descripcion);
 		tipoAcuerdo.setModel(descripcionAcuerdo);
     }
+	@Listen("onClick = #ayuda")
+	public void ayuda(){
+		Executions.sendRedirect("vista/ayudas/ayudaAlianza.html");
+	}
 	
 	@Listen("onClick = #guardar")
 	public void guargar(){

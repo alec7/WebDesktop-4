@@ -4,7 +4,8 @@ package modeloDAO;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+import java.util.ArrayList;
+import java.util.List;
 
 import bean.Conexion;
 import modelo.Esteticista;
@@ -19,12 +20,12 @@ public void agregarPerfilEsteticista(PerfilUsuario pf) {
 				+ "VALUES ('"+pf.getCedula()+"'"+",'"+ pf.getNombre()+"','"+ pf.getApellido()+"','"+ pf.getDireccion()+"','"+ pf.getTelefono()+"','"+ pf.getSexo()+"','"+ pf.getEstado_civil()+"','"+ pf.getCorreo()+"','"+ pf.getEstado()+"','"+ pf.getStatus()+"')";
 		Conexion.ejecutar(tiraSQL);
 	}
-public void agregarHoriarioEsteticista(Horario h,String codigo_esteticista,String codigo_agenda,String codigo) {
-	
-	String tiraSQL= "INSERT INTO tb_horario_esteticista (codigo_horario,codigo_esteticista,codigo,status,codigo_agenda) "
-			+ "VALUES ('"+h.getCodigo()+"'"+",'"+ codigo_esteticista+"','"+codigo+"','Activo','"+codigo_agenda+"')";
-	Conexion.ejecutar(tiraSQL);
-}
+//public void agregarHoriarioEsteticista(Horario h,String codigo_esteticista,String codigo_agenda,String codigo) {
+//	
+//	String tiraSQL= "INSERT INTO tb_horario_esteticista (codigo_horario,codigo_esteticista,codigo,status,codigo_agenda) "
+//			+ "VALUES ('"+h.getCodigo()+"'"+",'"+ codigo_esteticista+"','"+codigo+"','Activo','"+codigo_agenda+"')";
+//	Conexion.ejecutar(tiraSQL);
+//}
 
 
 public Esteticista buscarEsteticista(String cedula) {
@@ -40,6 +41,20 @@ public Esteticista buscarEsteticista(String cedula) {
 		e.printStackTrace();
 	}
 	return null;
+}
+
+public List<Esteticista> buscarEsteticistaSexo(String sexo) {
+	String tiraSQL = "SELECT * FROM tb_esteticista WHERE sexo='"+sexo+"'and  status='Activo' ";
+	ResultSet resultSet = Conexion.consultar(tiraSQL);
+	List<Esteticista> arr_esteticista = new ArrayList<Esteticista>();
+	try {
+		while (resultSet.next()) {
+			arr_esteticista.add(new Esteticista(resultSet.getString("cedula"), resultSet.getString("nombre"), resultSet.getString("apellido"), resultSet.getString("sexo"), resultSet.getString("estado_civil"), resultSet.getString("telefono"), resultSet.getString("direccion"), resultSet.getString("correo"), resultSet.getString("codigo_estado"), resultSet.getString("status"),resultSet.getString("codigo_organizacion")));
+		}
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+	return arr_esteticista;
 }
 
 

@@ -1,4 +1,4 @@
-    <?init class="controlador.ChequearSesion"?> 
+<!-- <?init class="controlador.ChequearSesion"?> -->
     <?link href="assets/css/bootstrap.min.css" rel="stylesheet"?>
     <?link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet"?>
 
@@ -31,7 +31,7 @@
                     </h:li>
 
 
-        <navbar orient="vertical"  id="menuNav" style="overflow:auto;" height="500px">
+        <navbar orient="vertical" id="menuNav" height="500px" style="overflow:auto;">
        
         </navbar>
                
@@ -40,13 +40,10 @@
         <div sclass="pagewrapper gray-bg" id="pagewrapper">
         <div class="row border-bottom">
         <h:nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
-        <div class="navbar-header">
-            <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><h:i class="fa fa-bars"></h:i> </a>
-            
-        </div>
+        
             <h:ul class="nav navbar-top-links navbar-right">
                 <h:li>
-                    <h:span class="m-r-sm text-muted welcome-message">Spinneti Spa Gym.</h:span>
+                    <h:span class="m-r-sm text-muted welcome-message">Spinetti Laser.</h:span>
                 </h:li>
              
                 <h:li class="dropdown">
@@ -54,16 +51,41 @@
                         <h:i class="fa fa-bell"></h:i>  <span class="label label-primary">8</span>
                     </h:a>
                     <h:ul class="dropdown-menu dropdown-alerts">
-                         <listbox id="listaObjtivos" >
-										
-											<listitem >
-												<listcell label="Servicio 1"></listcell>
-												<listcell>
-													<button class="btn btn-danger"  iconSclass="fa fa-trash-o" width="36px"/>
-												</listcell>
-											</listitem>
-											
-									</listbox>
+                        <h:li>
+                            <a href="mailbox.html">
+                                <div>
+                                    <h:i class="fa fa-envelope fa-fw"></h:i> Tienes 16 mensajes
+                                    <h:span class="pull-right text-muted small">hace 4 minutos</h:span>
+                                </div>
+                            </a>
+                        </h:li>
+                        <h:li class="divider"></h:li>
+                        <h:li>
+                            <a href="profile.html">
+                                <h:div>
+                                    <h:i class="fa fa-twitter fa-fw"></h:i> 3 Nuevos Seguidores
+                                    <h:span class="pull-right text-muted small">hace 12 minutos</h:span>
+                                </h:div>
+                            </a>
+                        </h:li>
+                        <h:li class="divider"></h:li>
+                        <h:li>
+                            <a href="grid_options.html">
+                                <div>
+                                    <h:i class="fa fa-upload fa-fw"></h:i> Servidor reiniciado
+                                    <h:span class="pull-right text-muted small">hace 4 minutos</h:span>
+                                </div>
+                            </a>
+                        </h:li>
+                        <h:li class="divider"></h:li>
+                        <h:li>
+                            <div class="text-center link-block">
+                                <a href="notifications.html">
+                                    <h:strong>Todas las notificaciones</h:strong>
+                                    <h:i class="fa fa-angle-right"></h:i>
+                                </a>
+                            </div>
+                        </h:li>
                     </h:ul>
                 </h:li>
 
@@ -87,10 +109,6 @@
          <space></space>
             <div align="center">
             <include  id="myInclude"></include>
- 		<div class="" style="background:#ffffff; width:700px;height:auto; margin-top:60px;">
- 			<image  src="assets/img/bienvenido.png" />
-		</div>
-
            </div>
            
            <div class="footer" id="footer">
@@ -123,5 +141,3 @@
     <?script src="assets/js/plugins/pace/pace.min.js"?>
    
   </zk>
-   
-     

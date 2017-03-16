@@ -28,9 +28,23 @@ public class Cliente {
 		this.codigo_ocupacion = codigo_ocupacion;
 		this.fecha_nacimiento = fecha_nacimiento;
 	}
-	public Cliente() {
+	public Cliente(String cedula, String nombre, String aprellido, String sexo,String correo, String cuidad, String tipo_cliente, String codigo_referecnia,String codigo_organizacion, String status,String telefono) {
 		super();
 		// TODO Auto-generated constructor stub
+		this.cedula=cedula;
+		this.nombre=nombre;
+		this.apellido=aprellido;this.tipo_cliente=tipo_cliente;
+		this.sexo= sexo;
+		this.correo=correo;
+		this.cuidad=cuidad;
+		this.codigo_referecnia=codigo_referecnia;
+		this.codigo_organizacion= codigo_organizacion;
+		this.status=status;
+		this.telefeno=telefono;
+		
+	}
+	public Cliente(){
+		
 	}
 
 	public String getCedula() {

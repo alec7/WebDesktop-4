@@ -22,18 +22,6 @@
                     <h:div class="ibox float-e-margins">
                     <div class="ibox-title">
                             <h:h5>Registro de Alianzas y Convenios</h:h5>
-                            <div class="ibox-tools">
-                                <h:a class="collapse-link">
-                                    <h:i class="fa fa-chevron-up"></h:i>
-                                </h:a>
-                                <h:a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                    <h:i class="fa fa-wrench"></h:i>
-                                </h:a>
-                                
-                                <a class="close-link">
-                                    <h:i class="fa fa-times"></h:i>
-                                </a>
-                            </div>
                         </div>
                         <h:div class="ibox-title">
                             <h:h5>Datos del Convenio</h:h5>
@@ -80,6 +68,8 @@
                                         <button class="btn btn-primary block full-width m-b" id="guardar" iconSclass="fa fa-save">Guardar</button>
                                         <space></space>
                                         <button class="btn btn-w-m btn-danger" id="cancelar" iconSclass="fa fa-times">Cancelar</button>
+                                        <space></space>
+                                        <button class="btn btn-primary" id="ayuda" iconSclass="fa fa-question"/>
                                         </hbox>
                                     </div>
                                 </div> 

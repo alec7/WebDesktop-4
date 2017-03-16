@@ -4,9 +4,9 @@ import java.sql.Date;
 
 public class Promocion {
 	
-	private String codigo,descripcion,codigo_paquete,status,fecha_inicio, fecha_fin,eslogan;
+	private String codigo,descripcion,codigo_paquete,status,fecha_inicio, fecha_fin,eslogan,imagen;
 	public Promocion(String codigo, String descripcion, String codigo_paquete, String status, String fecha_inicio,
-			String fecha_fin,String eslogan) {
+			String fecha_fin,String eslogan,String imagen) {
 		super();
 		this.codigo = codigo;
 		this.descripcion = descripcion;
@@ -15,9 +15,20 @@ public class Promocion {
 		this.fecha_inicio = fecha_inicio;
 		this.fecha_fin = fecha_fin;
 		this.eslogan = eslogan;
+		this.imagen = imagen;
 	}
 	
 	
+	public String getImagen() {
+		return imagen;
+	}
+
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
+
+
 	public String getEslogan() {
 		return eslogan;
 	}

@@ -110,11 +110,39 @@
 							<tabpanels>
 								<tabpanel id="tabHabitos">
 									<space></space>
-
+									 <listbox id="listaHabitos" style="overflow:auto;" zclass="none;" >
+										<listhead>
+											<listheader label=""  />
+											<listheader label=""  />
+										</listhead>
+										<template name="model">
+											<listitem>
+												<listcell label="${each.descripcion}" />
+												<listcell>      
+												  	<checkbox zclass="none" class="i-checks" forward="listaHabitos.onCheck" checked="${each.status }" />
+												</listcell>		
+											</listitem>
+										</template>
+								  </listbox>
 								</tabpanel>
 
 								<tabpanel id="tabAntecedentes">
 									<space></space>
+									 <listbox id="listaAntencedentes" style="overflow:auto;" zclass="none;" >
+										<listhead>
+											<listheader label=""  />
+											<listheader label=""  />
+										</listhead>
+										<template name="model">
+											<listitem>
+												<listcell label="${each.descripcion}" />
+												<listcell>      
+												  	<checkbox zclass="none" class="i-checks" forward="listaAntencedentes.onCheck" checked="${each.status }" />
+												
+												</listcell>		
+											</listitem>
+										</template>
+								  </listbox>
 								</tabpanel>
 
 								<tabpanel id="tabIndicadores">
@@ -131,7 +159,7 @@
 									<hbox>
 										<button
 											class="btn btn-primary block full-width m-b"
-											iconSclass="fa fa-save">
+											iconSclass="fa fa-save" id="guardar">
 											Guardar
 										</button>
 										<space></space>
@@ -139,6 +167,8 @@
 											class="btn btn-w-m btn-danger" iconSclass="fa fa-times">
 											Cancelar
 										</button>
+										 <space></space>
+ <button class="btn btn-primary" id="ayuda"  iconSclass="fa fa-question"/>
 									</hbox>
 								</div>
 							</div>
@@ -149,22 +179,20 @@
 					<h:h4>(Ejemplo de Modal Guardar)</h:h4>
 					<div class="ibox float-e-margins">
 						<div class="form-group">
-							<listbox id="listaRedes" height="200px"
+							<listbox id="listaRecomendados" height="200px"
 								width="740px" vflex="1"
 								emptyMessage="No puede realizarse ningún servicio">
 								<listhead>
 									<listheader
 										label="Servicios Recomendados" />
 								</listhead>
-								<listitem>
-									<listcell label="Servicio 1"></listcell>
-								</listitem>
-								<listitem>
-									<listcell label="Servicio 2"></listcell>
-								</listitem>
-								<listitem>
-									<listcell label="Servicio 3"></listcell>
-								</listitem>
+								<template name="model">
+									<listitem value="${each}">
+										<listcell label="${each.titulo}"></listcell>
+									</listitem>
+								
+								</template>
+								
 							</listbox>
 						</div>
 					</div>

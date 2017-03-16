@@ -76,6 +76,23 @@ public class RedSocialDAO extends ConexionDAO {
 		}
 		return codigo;
 	}
+	public String buscarTipoRedSocialString(String codigo) { //para listar en el grid la informacion
+		String tiraSQL = "SELECT * FROM tb_tipo_red_social where codigo = '"+codigo+"'";
+		ResultSet resultSet = Conexion.consultar(tiraSQL);
+		String descripcion="";
+		try {
+			if(resultSet!=null){
+				while(resultSet.next()){
+					descripcion= resultSet.getString("descripcion");
+					//arr_maestricos.add(new Maestrico(i,resultSet.getString("codigo"), resultSet.getString("descripcion"),resultSet.getString("status") ));
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return descripcion;
+	}
 	
 	public List<RedSocial> listaRedesSociales() { //para listar en el grid la informacion
 		String tiraSQL = "SELECT * FROM tb_red_social WHERE status='Activo'";

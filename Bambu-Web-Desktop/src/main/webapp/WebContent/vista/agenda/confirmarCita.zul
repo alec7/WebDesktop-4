@@ -28,8 +28,7 @@
                             <h:form class="form-horizontal">
                              
                               <div class="form-group"><label class="col-lg-2 control-label">Cédula</label>
-                                      <div class="col-sm-5"> <div class="input-group"><textbox type="text" id="cedula" class="form-control col-lg-2"/> <span class="input-group-btn"> <button id="BuscarCliente" type="button" class="btn btn-primary">Buscar
-                                        </button> </span></div>
+                                      <div class="col-sm-2"> <div class="input-group"><textbox type="text" id="cedula" class="form-control col-lg-2"/> <span class="input-group-btn"> </span></div>
                                 </div>   
                                       
                                 </div>
@@ -37,80 +36,124 @@
                                  <div class="ibox float-e-margins">
                                 <div class="form-group"><label class="col-lg-2 control-label">Nombre</label>
 
-                                    <div class="col-lg-3"><textbox type="text"  id="nombre" class="form-control required" /> 
+                                    <div class="col-lg-2"><textbox type="text"  id="nombre" class="form-control required" /> 
                                     </div>
                                 
-                                <div class="form-group"><label class="col-lg-1 control-label">Apellido</label>
+                                <div class="form-group"><label class="col-lg-2 control-label">Apellido</label>
 
-                                    <div class="col-lg-3"><textbox type="text" id="apellido" class="form-control required" /></div>
+                                    <div class="col-lg-2"><textbox type="text" id="apellido" class="form-control required" /></div>
                                 </div>
                                 </div>
                                 </div>
                         <h:div class="ibox-title">
                             <h:h5>Citas</h:h5>
                        </h:div> 
-         <div>
-               <listbox model="${win$composer.carsModel}" checkmark="true" mold="paging" pageSize="9" width="50%">
-        <listhead>
-            <listheader width="32px" />
-            <listheader label="fecha" align="center" sort="auto(model)" />
-            <listheader label="hora" align="center" sort="auto(make)" />
-            <listheader label="Servicio" align="center" sort="auto(make)" />
-        </listhead>
-        <template name="model">
-            <listitem>
-                <listcell />
-                <listcell label="${each.model}" />
-                <listcell label="${each.make}" />
-                <listcell label="${each.model}" />
-              
-                
-            </listitem>
-        </template>
-    </listbox>
-                </div> 
-                
-                <space></space>   
-                 <space></space>     
+                    <div class="ibox-content">   
+ 					<h:form class="form-horizontal">
+
+						<tabbox id="tb" >
+							<tabs id="tabs">
+								<tab id="A" label="Servicios" />
+								<tab id="C" label="Paquetes" />
+							</tabs>
+							<tabpanels>
+								<tabpanel >
+									<space></space>
+
+									<h:div class="ibox-title">
+										<h:h4>Servicios Solicitados</h:h4>
+									</h:div>
+									
+									           
+                         <div class="form-group">
+	                                 <listbox id="servicios" height="350px" width="740px" vflex="1" emptyMessage="No hay Servicios Solicitados"  >
+										<listhead>
+											<listheader  label="Fecha" />
+											<listheader  label="Bloque"/>
+											<listheader  label="Servicio"/>
+											<listheader  label=""/>
+										</listhead>
+										<template name="model">
+										<listitem value="${each}">
+											<listcell label="${each.fecha}" />
+											<listcell label="${each.codigo_bloque}" />
+											<listcell label="${each.codigo_servicio}" />
+											<listcell label="${each.codigo_servicio}" />
+										</listitem>
+											
+											<!--  	<listitem >
+                                        			<button class="btn btn-primary block full-width m-b" forward="" iconSclass="fa fa-check-circle-o" width="36px"/>
+                                         			 <space></space>
+                                          				<button class="btn btn-primary block full-width m-b"   forward="" iconSclass="fa fa-calendar-plus-o" width="36px"/>
+                                         			 <space></space>
+                                         			 <button class="btn btn-w-m btn-danger"  forward="" iconSclass="fa fa-times" width="36px"/>
+											</listitem>-->
+										</template>
+									</listbox>
+	                                 
+                                  </div>
+                        
+									
+									
+									
+								</tabpanel>
+
+								<tabpanel >
+							
+								<space></space>
+								
+									<h:div class="ibox-title">
+										<h:h4>Paquetes Solicitados</h:h4>
+									</h:div>
+									  <div class="form-group">
+	                                 <listbox id="paquetes" height="350px" width="740px" vflex="1" emptyMessage="No hay Paquetes Solicitados"  >
+										<listhead>
+											<listheader  label="Fecha" />
+											<listheader  label="Bloque"/>
+											<listheader  label="Paquete"/>
+											<listheader  label="Servicio"/>
+											<listheader  label="Sección Actual"/>
+											<listheader  label="Total Sesiones"/>
+											<listheader  label=""/>
+										</listhead>
+										<template name="model">
+											<listitem value="${each}">
+												<listcell label="${each.}"></listcell>
+												<listcell label="${each.}"></listcell>
+												<listcell label="${each.}"></listcell>
+												<listcell label="${each.}"></listcell>
+												<listcell label="${each.}"></listcell>
+												<listcell label="${each.}"></listcell>
+												<listcell >
+													<hbox>
+                                        			<button class="btn btn-primary block full-width m-b" id="${each.}" forward="" iconSclass="fa fa-check-circle-o" width="36px"/>
+                                         			 <space></space>
+                                          				<button class="btn btn-primary block full-width m-b"  id="${each.}" forward="" iconSclass="fa fa-calendar-plus-o" width="36px"/>
+                                         			 <space></space>
+                                         			 <button class="btn btn-w-m btn-danger" id="${each.}" forward="" iconSclass="fa fa-times" width="36px"/>
+                                       				 </hbox>
+												</listcell>
+											</listitem>
+										</template>
+									</listbox>
+	                                 
+                                  </div>
+                        
+									
+
+
+								
+
+								</tabpanel>
+
+
+							</tabpanels>
+						</tabbox>
+						<space></space>
+					</h:form>
+             </div>   
                                 
-                               
-                       <h:div class="ibox-title">
-                            <h:h5>Confirmación de Cita</h:h5>
-                       </h:div>  
-                               
-                            
-                              <div class="form-group"><label class="col-lg-2 control-label">Servicio</label>
-                                    <div class="col-lg-3"><textbox type="text" id="servicio" class="form-control required" /></div>
-                                </div>
-                                
-                                 <div class="form-group"><label class="col-lg-2 control-label">Esteticista</label>
-                                    <div class="col-lg-3"><textbox type="text" id="esteticista" class="form-control required" /></div>
-                                </div>
-                                
-                                 
-                                <div class="form-group"><label class="col-lg-2 control-label">Fecha de la cita:</label>
-                                <div class="col-lg-3"><textbox type="text" id="fecha" class="form-control required" /></div>
-                                </div>
-                                
-                                 <div class="form-group"><label class="col-lg-2 control-label">Hora de la cita:</label>
-                                <div class="col-lg-3"><textbox type="text" id="hora" class="form-control required" /></div>
-                                </div>
-                                 
-                                <div class="form-group">
-                                    <div class="col-lg-offset-6 col-lg-2">
-                                       <hbox>
-                                        <button class="btn btn-primary block full-width m-b" type="submit" iconSclass="fa fa-check-circle-o">Confirmar</button>
-                                          <space></space>
-                                          <button class="btn btn-primary block full-width m-b"  iconSclass="fa fa-times">Reprogramar</button>
-                                          <space></space>
-                                          <button class="btn btn-w-m btn-danger"  iconSclass="fa fa-times">Cancelar</button>
-                                        </hbox>
-                                    </div>
-                                </div>
-                                
-                             
-                                
-                                
+                         
                                 
                               
                             </h:form>

@@ -1,6 +1,11 @@
 package modelo;
 
 public class Preferencia {
+	private String codigo,descripcion,status, tipo_preferencia, imagen;
+	public Preferencia() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	public Preferencia(String codigo, String descripcion, String status, String tipo_preferencia, String imagen) {
 		super();
 		this.codigo = codigo;
@@ -10,7 +15,7 @@ public class Preferencia {
 		this.imagen = imagen;
 
 	}
-	private String codigo,descripcion,status, tipo_preferencia, imagen;
+	
 	public String getCodigo() {
 		return codigo;
 	}

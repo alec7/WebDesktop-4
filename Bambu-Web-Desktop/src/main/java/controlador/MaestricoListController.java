@@ -293,6 +293,9 @@ public class MaestricoListController extends SelectorComposer<Component>{
 		case "tb_tipo_organizacion": 
 			t=t+"Tipo de Organización";
 			return t;
+		case "tb_tipo_red_social": 
+			t=t+"Tipo de Red Social";
+			return t;
 		case "tb_tipo_pregunta": 
 			t=t+"Tipo de Pregunta";
 			return t;

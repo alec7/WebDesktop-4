@@ -21,7 +21,28 @@ public class UsuarioDAO extends ConexionDAO{
 				+ "VALUES ('"+usuario.getUsuario()+"'"+",'"+ usuario.getContrasenna()+"','"+ usuario.getRol()+"','"+ usuario.getStatus()+"')";
 		Conexion.ejecutar(tiraSQL);
 		
-	}   
+	}  
+
+	public void cambiarContrasenna(String usuario, String contrasenna_nueva) {
+		String tiraSQL = "UPDATE tb_usuario SET contrasenna = '"+contrasenna_nueva+"' WHERE usuario = '"+usuario+"'";
+		Conexion.ejecutar(tiraSQL);
+		
+	}
+	public String buscarContrasenna(String usuario) {
+		String contrasenna="";
+		String tiraSQL = "select u.contrasenna from tb_usuario u WHERE usuario = '"+usuario+"'";
+		ResultSet resultSet = Conexion.consultar(tiraSQL);
+		try{
+			while(resultSet.next()){
+				contrasenna = resultSet.getString("contrasenna");
+			}
+			resultSet.close();
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}	
+		
+		return contrasenna;
+	}
 	
 	public List<Usuario> listarUsuario() { //para listar en el grid la informacion
 		String tiraSQL = "SELECT * FROM tb_usuario where status='Activo' ";

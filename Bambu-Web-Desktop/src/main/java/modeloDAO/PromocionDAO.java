@@ -14,8 +14,15 @@ public class PromocionDAO extends ConexionDAO {
 	
 	public void registrarPromocion(Promocion p){
 		
-		String tiraSQL= "INSERT INTO  tb_promocion (codigo,descripcion,status,codigo_paquete,fecha_inicio,fecha_fin,eslogan) "
-				+ "VALUES ('"+p.getCodigo()+"'"+",'"+p.getDescripcion()+"','"+p.getStatus()+"','"+ p.getCodigo_paquete()+"','"+ p.getFecha_inicio()+"','"+p.getFecha_fin()+"','"+p.getEslogan()+"')";
+		String tiraSQL= "INSERT INTO  tb_promocion (codigo,descripcion,status,codigo_paquete,fecha_inicio,fecha_fin,eslogan,imagen) "
+				+ "VALUES ('"+p.getCodigo()+"'"+",'"+p.getDescripcion()+"','"+p.getStatus()+"','"+ p.getCodigo_paquete()+"','"+ p.getFecha_inicio()+"','"+p.getFecha_fin()+"','"+p.getEslogan()+"','"+p.getImagen()+"')";
+		Conexion.ejecutar(tiraSQL);
+		
+	} 
+public void registrarPromocionSlider(Promocion p){
+		
+		String tiraSQL= "INSERT INTO  tb_slider (codigo,titulo,leer_mas,status,subtitulo,codigo_sistema,imagen) "
+				+ "VALUES ('"+p.getCodigo()+"'"+",'"+p.getDescripcion()+"','"+p.getEslogan()+"','Activo','Desde:"+p.getFecha_inicio()+ " Hasta:"+p.getFecha_fin()+"','00001','"+p.getEslogan()+"')";
 		Conexion.ejecutar(tiraSQL);
 		
 	} 
@@ -27,7 +34,7 @@ public class PromocionDAO extends ConexionDAO {
 		try {
 			if(resultSet!=null){
 				while(resultSet.next()){
-					arr_promo.add(new Promocion(resultSet.getString("codigo"),  resultSet.getString("descripcion"), resultSet.getString("codigo_paquete"), resultSet.getString("status"), resultSet.getString("fecha_inicio"), resultSet.getString("fecha_fin"), resultSet.getString("eslogan"))); 
+					arr_promo.add(new Promocion(resultSet.getString("codigo"),  resultSet.getString("descripcion"), resultSet.getString("codigo_paquete"), resultSet.getString("status"), resultSet.getString("fecha_inicio"), resultSet.getString("fecha_fin"), resultSet.getString("eslogan"), resultSet.getString("imagen"))); 
 				}
 			}
 		} catch (SQLException e) {

@@ -167,7 +167,6 @@ public class MaestroListController extends SelectorComposer<Component>{
 
 	//-------------------------cuando el usuario selecciona un Maestro del listbox------------------------------
 	@Listen("onSelect = #maestroListbox")
-	
 	public void doMaestroSelect() {
 		if(maestroListModel.isSelectionEmpty()){
 			//just in case for the no selection
@@ -182,6 +181,9 @@ public class MaestroListController extends SelectorComposer<Component>{
 			//Cargo los Servicios asociados
 			listaServiciosAsociados= mdao.CargarServiciosAsociados(selectedMaestro.getCodigo(),tabla+"_servicio" );
 			
+			for (int i = 0; i < listaServiciosAsociados.size(); i++) {
+				System.out.println(listaServiciosAsociados.get(i).getDescripcion()); 
+			}
 		//Filtro los servicios. (listaTodosServicios INTERSECTADO listaServiciosAsociados)	
 			Filtrar(listaTodosServicios,listaServiciosAsociados);
 			
@@ -337,25 +339,25 @@ public class MaestroListController extends SelectorComposer<Component>{
 	
 	public String titulo(){		
 		String t= null;
-		t = "Registrar ";
+		t = "";
 		switch (tabla){
 		case "tb_habito": 
-			t=t+"Hábito";
+			t=t+"Hábito por Servicio";
 			return t;
 		case "tb_antecedente": 
-			t=t+"Antecedente";
+			t=t+"Antecedente por Servicio";
 			return t;
 		case "tb_indicador": 
-			t=t+"Indicador del Servicio";
+			t=t+"Indicador del Diagnóstico por Servicio";
 			return t;
 		case "tb_avance": 
-			t=t+"Avance";
+			t=t+"Avance por Servicio";
 			return t;
 		case "tb_ocupacion": 
-			t=t+"Ocupación";
+			t=t+"Ocupación por Servicio";
 			return t;
 		case "tb_cubiculo": 
-			t=t+"Cubículo";
+			t=t+"Cubículo por Servicio";
 			return t;
 		
 		}

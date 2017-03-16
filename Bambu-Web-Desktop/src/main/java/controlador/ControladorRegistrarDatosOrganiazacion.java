@@ -1,11 +1,15 @@
 package controlador;
 
+import java.io.FileOutputStream;
 import java.util.Formatter;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.zkoss.util.media.Media;
 import org.zkoss.zhtml.Textarea;
 import org.zkoss.zk.ui.Component;
+import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.event.CreateEvent;
 import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zk.ui.event.ForwardEvent;
@@ -15,6 +19,7 @@ import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zk.ui.util.GenericForwardComposer;
 import org.zkoss.zul.Button;
+import org.zkoss.zul.Combobox;
 import org.zkoss.zul.Image;
 import org.zkoss.zul.ListModelList;
 import org.zkoss.zul.Listbox;
@@ -43,9 +48,9 @@ public class ControladorRegistrarDatosOrganiazacion extends SelectorComposer<Com
 	@Wire
 	private Textbox direccion;
 	@Wire
-	private Listbox estado;
+	private Combobox estado;
 	@Wire
-	private Listbox ciudad;
+	private Combobox ciudad;
 	@Wire
 	private Textbox telefono;
 	@Wire
@@ -57,11 +62,11 @@ public class ControladorRegistrarDatosOrganiazacion extends SelectorComposer<Com
 	@Wire
 	private Textbox objetivos;
 	@Wire
-	private Listbox tipo_objetivo;
+	private Combobox tipo_objetivo;
 	@Wire
-	private Listbox tipo_organizacion;
+	private Combobox tipo_organizacion;
 	@Wire
-	private Listbox tipo_red_social;
+	private Combobox tipo_red_social;
 	@Wire
 	private Listbox listaObjtivos;
 	@Wire
@@ -71,18 +76,18 @@ public class ControladorRegistrarDatosOrganiazacion extends SelectorComposer<Com
 	@Wire
 	private Window registrarDatos;
 	@Wire
-	private Media media2;
+	private Image imagen;
+	
 	@Wire
-	private Image image2;
+	private Media media;
+	
 	@Wire
-	private Image imgCerrarImg2;
-	@Wire
-	private Button  uploadBtnImg2;
+	private Button uploadImagen;
 	
 	OrganizacionDAO odao = new OrganizacionDAO();
 	RedSocialDAO reddao = new RedSocialDAO();
 	ObjetivoDAO objdao = new ObjetivoDAO();
-	Organizacion o;
+	Organizacion o = odao.buscarRegistro();;
 	Objetivo obj;
 	RedSocial rs;
 	ListModelList<Objetivo> listObjt;
@@ -93,12 +98,31 @@ public class ControladorRegistrarDatosOrganiazacion extends SelectorComposer<Com
 	List<Objetivo> listaObjetivos = objdao.listaObjetivo();
 	List<RedSocial> listaRedSocial = reddao.listaRedesSociales();
 	String tipoOrg = "";
+	List<Maestrico> tipo_orga = odao.tipo_organizacion();
 	
 	
+	@Override
+	public void doAfterCompose(Component comp) throws Exception{
+		super.doAfterCompose(comp);
+		tipoOrg();
+
+	}
+	@Listen("onClick = #ayuda")
+	public void ayuda(){
+		Executions.sendRedirect("vista/ayudas/regOrganizacionDatosBasicos.html");
+	}
+	@Listen("onClick = #ayuda1")
+	public void ayuda1(){
+		Executions.sendRedirect("vista/ayudas/regOrganizacionFilosofia.html");
+	}
+	@Listen("onClick = #ayuda2")
+	public void ayuda2(){
+		Executions.sendRedirect("vista/ayudas/regOrganizacionRedesSociales.html");
+	}
 	@Listen("onCreate = #registrarDatos")
 	public void cargarOrg(CreateEvent event){
 		if(odao.buscarRegistro()!=null){
-    		o = odao.buscarRegistro();
+    		
     		rif.setText(o.getRif());
     		nombre.setText(o.getNombre());
     		direccion.setText(o.getDireccion());
@@ -108,13 +132,20 @@ public class ControladorRegistrarDatosOrganiazacion extends SelectorComposer<Com
     		vision.setText(o.getVision());
     		tipoOrg = odao.buscarTipoOrganizacionString(o.getTipo_organizacion());
     		rif.setDisabled(true);  
+    		ciudad.setDisabled(true);
+    		estado.setDisabled(true);
     		cargarTablaObjetivos();
     		cargarComboBox();
-		}
-		
+    		int posicion = 0;
     		
+    		for (int i = 0; i < tipoOrganizacion.size(); i++) {
+    			if (tipoOrganizacion.get(i).getCodigo().equals(o.getTipo_organizacion())) {
+    				posicion = i;
+    			}
+    		}
+    		tipo_organizacion.setSelectedIndex(posicion);
+		}
 
-    
 		
     }
 	
@@ -131,26 +162,25 @@ public class ControladorRegistrarDatosOrganiazacion extends SelectorComposer<Com
 			}
 		}
 		
-		for(int i=0;i<tipo_organizacion.getItemCount();i++){
-			if(tipo_organizacion.getItemAtIndex(i).getLabel().equalsIgnoreCase(tipoOrg)){
-				tipo_organizacion.setSelectedIndex(i);
-				
-			}
-		}
 	}
 	
 	
-	@Listen("onCreate = #tipo_organizacion")
-	public void tipoOrg(CreateEvent event)
+	public void tipoOrg()
     {	
-		List<Maestrico> descripcion = odao.tipo_organizacion();
 		
-		tipoOrganizacion = new ListModelList<Maestrico>(descripcion);
+		
+		tipoOrganizacion = new ListModelList<Maestrico>(tipo_orga);
 		
 		tipo_organizacion.setModel(tipoOrganizacion);
-		cargarComboBox();
+		
+		//cargarComboBox();
     }
-	
+//	@Listen("onSelect = combobox#tipo_organizacion")
+//	public void opcionSeleccionada(){
+//		List<Maestrico> descripcion = odao.tipo_organizacion();
+//		int index = tipo_organizacion.getSelectedIndex();
+//		tipoOrg = descripcion.get(index).getDescripcion();
+//	}
 	
 	
 	
@@ -200,35 +230,54 @@ public class ControladorRegistrarDatosOrganiazacion extends SelectorComposer<Com
 	
 	@Listen("onClick = #guardar")
 	public void guargar(){
-		if(tipo_organizacion.getSelectedItem()==null|| estado.getSelectedItem()==null|| ciudad.getSelectedItem()==null){
-			Messagebox.show("Debe llenar Todos los campos", "Información", Messagebox.OK, Messagebox.INFORMATION);
-		}
-		else{
-			String codigoTipoOrg = odao.buscarTipoOrganizacion(tipo_organizacion.getSelectedItem().getLabel());
-			o = new Organizacion(rif.getText(), nombre.getText(),codigoTipoOrg , correo.getText(), direccion.getText(), telefono.getText(), mision.getValue(), vision.getValue(), "Activo");
-			if(odao.buscarRegistro()!=null){
-				odao.actualizarOrganizacion(o);
-			}
-			else{
-				odao.agregarOganizacion(o);
-			}
-			
-			for(int i=0;i<listaObjetivos.size();i++){
-				obj = listaObjetivos.get(i);
-				objdao.agregarObjetivo(obj);
-			}		
-			for(int i=0;i<listaRedSocial.size();i++){
-				rs = listaRedSocial.get(i);
-				reddao.agregarRedSocial(rs);
-			}
-			//obj = new Objetivo(objdao.TotalRegistros(), objetivos.getText(),tipo_objetivo.getSelectedItem().getLabel() , o.getRif(), "Activo");
-			
-			//String codigoTipoRedSocial = reddao.buscarTipoRedSocial(tipo_red_social.getSelectedItem().getLabel());
-			//rs = new RedSocial(reddao.TotalRegistros(), red_social.getText(), codigoTipoRedSocial , o.getRif(), "Activo");
-			//reddao.agregarRedSocial(rs); 
-			Messagebox.show("Datos Guardados Exitosamente", "Información", Messagebox.OK, Messagebox.INFORMATION);
-			//cancelar();
-		}
+		String dir="";
+		
+		 if(media instanceof org.zkoss.image.Image) {
+			 try {
+            	 String carpeta = "C:\\Users\\Andres\\Documents\\GitHub\\WebDesktop\\Bambu-Web-Desktop\\src\\main\\webapp\\WebContent\\assets\\imagenesSlider";
+            	 FileOutputStream fileOutputStream=new FileOutputStream(carpeta+"\\"+media.getName());
+                 dir="Bambu-Web-Desktop/WebContent/assets/imagenesSlider/"+media.getName();
+            	 fileOutputStream.write(media.getByteData());
+            	 if(tipo_organizacion.getSelectedItem()==null|| estado.getSelectedItem()==null|| ciudad.getSelectedItem()==null){
+         			Messagebox.show("Debe llenar Todos los campos", "Información", Messagebox.OK, Messagebox.INFORMATION);
+         		}
+         		else{
+         			String codigoTipoOrg = odao.buscarTipoOrganizacion(tipo_organizacion.getSelectedItem().getLabel());
+         			o = new Organizacion(rif.getText(), nombre.getText(),codigoTipoOrg , correo.getText(), direccion.getText(), telefono.getText(), mision.getValue(), vision.getValue(), "Activo",dir);
+         			if(odao.buscarRegistro()!=null){
+         				odao.actualizarOrganizacion(o);
+         			}
+         			else{
+         				odao.agregarOganizacion(o);
+         			}
+         			
+         			for(int i=0;i<listaObjetivos.size();i++){
+         				obj = listaObjetivos.get(i);
+         				objdao.agregarObjetivo(obj);
+         			}		
+         			for(int i=0;i<listaRedSocial.size();i++){
+         				rs = listaRedSocial.get(i);
+         				String codigo= reddao.buscarTipoRedSocial(rs.getTipo_red_social());
+         				rs.setTipo_red_social(codigo);
+         				reddao.agregarRedSocial(rs);
+         			}
+         			//obj = new Objetivo(objdao.TotalRegistros(), objetivos.getText(),tipo_objetivo.getSelectedItem().getLabel() , o.getRif(), "Activo");
+         			
+         			//String codigoTipoRedSocial = reddao.buscarTipoRedSocial(tipo_red_social.getSelectedItem().getLabel());
+         			//rs = new RedSocial(reddao.TotalRegistros(), red_social.getText(), codigoTipoRedSocial , o.getRif(), "Activo");
+         			//reddao.agregarRedSocial(rs); 
+         			Messagebox.show("Datos Guardados Exitosamente", "Información", Messagebox.OK, Messagebox.INFORMATION);
+         			//cancelar();
+         		}
+            	 
+            	 fileOutputStream.close();
+			 }
+			 
+			 catch (Exception ex) {
+                 Logger.getLogger(ControladorNoticia.class.getName()).log(Level.SEVERE, null, ex);
+             }
+		 }
+		
 		
 	}
 //	@Listen("onClick = #cancelar")
@@ -248,37 +297,16 @@ public class ControladorRegistrarDatosOrganiazacion extends SelectorComposer<Com
 //		tipo_organizacion.clearSelection();
 //		tipo_red_social.clearSelection();
 //	}
-	
-	@Listen("onUpload = #uploadBtnImg2")
-	public void imagen(UploadEvent e) throws Exception
+	@Listen("onUpload = #uploadImagen")
+	public void onUpload$uploadImagen(UploadEvent e)
 	{
-	 media2 = e.getMedia();
-	     
-        //media.getByteData()
-        //media.getStreamData()
-        //media.getReaderData()
-        if(media2 instanceof org.zkoss.image.Image) {
-        	image2.setVisible(true);
-        	image2.setWidth("100px");
-        	image2.setHeight("100px");
-        	image2.setContent((org.zkoss.image.Image) media2);
-        	imgCerrarImg2.setVisible(true);
-        	
-        	
-        }
-        uploadBtnImg2.setVisible(false);
+		media = e.getMedia();
+	    imagen.setContent((org.zkoss.image.Image) media);
+	    uploadImagen.setVisible(false);
 	}
 	
-	@Listen("onClick = #imgCerrarImg2")
-	public void cerrarImagen()
-	{
-		
-	            image2.setVisible(false);
-	            
-	        
-	        uploadBtnImg2.setVisible(true);
-	        imgCerrarImg2.setVisible(false);
-	}
+	
+
 	
 	@Listen("onObjetivoDelete = #listaObjtivos")
 	public void onObjetivoDelete$listaOjtivos(ForwardEvent evt){
@@ -323,6 +351,10 @@ public class ControladorRegistrarDatosOrganiazacion extends SelectorComposer<Com
 	
 	public void cargarTablaRedesSociales(){
 		//listaRedSocial = reddao.listaRedesSociales();
+		for(int i=0; i<listaRedSocial.size();i++){
+			String descripion = reddao.buscarTipoRedSocialString(listaRedSocial.get(i).getTipo_red_social());
+			listaRedSocial.get(i).setTipo_red_social(descripion);
+		}
 		listRed = new ListModelList<RedSocial>(listaRedSocial);
 		listaRedes.setModel(listRed);
 	}

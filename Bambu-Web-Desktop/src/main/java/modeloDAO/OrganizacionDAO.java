@@ -14,7 +14,7 @@ import modelo.Usuario;
 public class OrganizacionDAO extends ConexionDAO {
 	
 	public void actualizarOrganizacion(Organizacion o) {
-		String tiraSQL = "UPDATE tb_organizacion SET rif = '"+o.getRif()+"', nombre='"+o.getNombre()+"', tipo_organizacion='"+o.getTipo_organizacion()+"', correo='"+o.getCorreo()+"', direccion='"+o.getDireccion()+"', telefono='"+o.getTelefono()+"', mision='"+o.getMision()+"', vision='"+o.getVision()+"' WHERE status = 'Activo'";
+		String tiraSQL = "UPDATE tb_organizacion SET rif = '"+o.getRif()+"', nombre='"+o.getNombre()+"', tipo_organizacion='"+o.getTipo_organizacion()+"', correo='"+o.getCorreo()+"', direccion='"+o.getDireccion()+"', telefono='"+o.getTelefono()+"', mision='"+o.getMision()+"', vision='"+o.getVision()+"', imagen='"+o.getImagen()+"' WHERE status = 'Activo'";
 		Conexion.ejecutar(tiraSQL);
 		
 		
@@ -53,7 +53,7 @@ public class OrganizacionDAO extends ConexionDAO {
 		try {
 			if(resultSet!=null){
 				while(resultSet.next()){
-					organizacion = new Organizacion(resultSet.getString("rif"), resultSet.getString("nombre"), resultSet.getString("tipo_organizacion"), resultSet.getString("correo"), resultSet.getString("direccion"), resultSet.getString("telefono"),resultSet.getString("mision"), resultSet.getString("vision"), resultSet.getString("status"));
+					organizacion = new Organizacion(resultSet.getString("rif"), resultSet.getString("nombre"), resultSet.getString("tipo_organizacion"), resultSet.getString("correo"), resultSet.getString("direccion"), resultSet.getString("telefono"),resultSet.getString("mision"), resultSet.getString("vision"), resultSet.getString("status"),resultSet.getString("imagen"));
 				}
 			}
 		} catch (SQLException e) {

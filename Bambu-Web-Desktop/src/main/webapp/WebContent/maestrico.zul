@@ -11,7 +11,8 @@
     <?link href="assets/css/style.css" rel="stylesheet"?>
 <window apply="controlador.MaestricoListController" border="none" width="1100px" height="600px" contentStyle="overflow:auto">
 	
-	<label id="titulo" value="" style="font-size:40px" > </label>
+	
+	<label id="titulo" value="" style="font-size:20px" > </label>
 	<borderlayout>
 		<center autoscroll="true" border="none">
 			<vlayout hflex="1" vflex="1">

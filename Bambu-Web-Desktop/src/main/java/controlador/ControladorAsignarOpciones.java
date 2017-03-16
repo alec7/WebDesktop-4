@@ -71,7 +71,10 @@ public class ControladorAsignarOpciones extends SelectorComposer<Component>{
 		
 
 	}
-	
+	@Listen("onClick = #ayuda")
+	public void ayuda(){
+		Executions.sendRedirect("vista/ayudas/asignarOpcionesPorRol.html");
+	}
 	public void llenarComoboRoles()
 	{
 		
@@ -304,8 +307,7 @@ public class ControladorAsignarOpciones extends SelectorComposer<Component>{
 			arrOpcionesModificadas = new ArrayList<Opcion>();
 		arrOpcionesModificadas = opciondao.ObtenerTodos();
 		*/
-	
-		Messagebox.show("Opciones guardadas con exito");
+		 Messagebox.show("Opciones guardas exitosamente", "Información", Messagebox.OK, Messagebox.INFORMATION);
 		//Executions.sendRedirect("http://localhost:8080/Bambu-Web-Desktop/WebContent/index.zul");
 		
 		

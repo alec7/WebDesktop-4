@@ -23,10 +23,6 @@
                     <div class="ibox-title">
                             <h:h5>Registro de Notificación</h:h5>
                         </div>
-                        <h:div class="ibox-title">
-                            <h:h5>Datos de la Notificación</h:h5>
-                           
-                        </h:div>
                         <div class="ibox-content">
                             <h:form class="form-horizontal">
                             
@@ -70,6 +66,8 @@
                                         <button class="btn btn-primary block full-width m-b" id="guardar" iconSclass="fa fa-save">Guardar</button>
                                         <space></space>
                                         <button class="btn btn-w-m btn-danger" id="cancelar"  iconSclass="fa fa-times">Cancelar</button>
+                                       <space></space>
+                                        <button class="btn btn-primary" id="ayuda" iconSclass="fa fa-question"/>
                                         </hbox>
                                     </div>
                                 </div> 

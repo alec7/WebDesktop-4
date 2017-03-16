@@ -3,11 +3,11 @@ package modelo;
 import java.io.FileInputStream;
 
 public class Organizacion {
-	private String rif,nombre, tipo_organizacion, correo, direccion, telefono,mision, vision,status;
+	private String rif,nombre, tipo_organizacion, correo, direccion, telefono,mision, vision,status,imagen;
 	//private FileInputStream logo;
 
 	public Organizacion(String rif, String nombre, String tipo_organizacion, String correo, String direccion,
-			String telefono, String mision, String vision, String status) {
+			String telefono, String mision, String vision, String status,String imagen) {
 		super();
 		this.rif = rif;
 		this.nombre = nombre;
@@ -18,10 +18,23 @@ public class Organizacion {
 		this.mision = mision;
 		this.vision = vision;
 		this.status = status;
+		this.imagen=imagen;
 		
 	}
 	
 	
+
+	public String getImagen() {
+		return imagen;
+	}
+
+
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
+
+
 
 	public String getRif() {
 		return rif;

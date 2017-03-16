@@ -78,7 +78,7 @@ public class ControladorTipoServicio extends SelectorComposer<Component>{
 		 if(media instanceof org.zkoss.image.Image) {
 	             try {
 	                
-	            	 String carpeta = "C:\\Users\\Jalid\\git\\WebDesktop\\Bambu-Web-Desktop\\src\\main\\webapp\\WebContent\\assets\\imagenesSlider";
+	            	 String carpeta = "C:\\Users\\Andres\\Documents\\GitHub\\WebDesktop\\Bambu-Web-Desktop\\src\\main\\webapp\\WebContent\\assets\\imagenesSlider";
 	            	 FileOutputStream fileOutputStream=new FileOutputStream(carpeta+"\\"+media.getName());
 	                 dir="Bambu-Web-Desktop/WebContent/assets/imagenesSlider/"+media.getName();
 	            	 fileOutputStream.write(media.getByteData());
@@ -114,6 +114,7 @@ public class ControladorTipoServicio extends SelectorComposer<Component>{
 		
 	    descripcion.setText("");
 		imagen.setContent((org.zkoss.image.Image) null);
+		uploadImagen.setVisible(true);
 	}
 	
 	

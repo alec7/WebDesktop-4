@@ -84,6 +84,23 @@ public void eliminarMaestrico(String tabla, String codigo){
 		
 		
 	}
+	public String buscarCodigoReferencia(String descripcion) { //para listar en el grid la informacion
+		String tiraSQL = "SELECT * FROM tb_referencia where descripcion = '"+descripcion+"'";
+		ResultSet resultSet = Conexion.consultar(tiraSQL);
+		String codigo="";
+		try {
+			if(resultSet!=null){
+				while(resultSet.next()){
+					codigo= resultSet.getString("codigo");
+					//arr_maestricos.add(new Maestrico(i,resultSet.getString("codigo"), resultSet.getString("descripcion"),resultSet.getString("status") ));
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return codigo;
+	}
 	
 		
 }   

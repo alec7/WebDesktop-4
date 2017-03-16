@@ -1,161 +1,178 @@
-    <?link href="../../assets/css/bootstrap.min.css" rel="stylesheet"?>
-    <?link href="../../assets/font-awesome/css/font-awesome.css" rel="stylesheet"?>
+<?link href="../../assets/css/bootstrap.min.css" rel="stylesheet"?>
+<?link href="../../assets/font-awesome/css/font-awesome.css" rel="stylesheet"?>
 
-    <!-- Toastr style -->
-    <?link href="../../assets/css/plugins/toastr/toastr.min.css" rel="stylesheet"?>
+<!-- Toastr style -->
+<?link href="../../assets/css/plugins/toastr/toastr.min.css" rel="stylesheet"?>
 
-    <!-- Gritter -->
-    <?link href="../../assets/js/plugins/gritter/jquery.gritter.css" rel="stylesheet"?>
+<!-- Gritter -->
+<?link href="../../assets/js/plugins/gritter/jquery.gritter.css" rel="stylesheet"?>
 
-    <?link href="../../assets/css/animate.css" rel="stylesheet"?>
-    <?link href="../../assets/css/style.css" rel="stylesheet"?>
-    <?link href="../../assets/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet"?>
-    <?link href="../../assets/css/plugins/dataTables/datatables.min.css" rel="stylesheet"?>
+<?link href="../../assets/css/animate.css" rel="stylesheet"?>
+<?link href="../../assets/css/style.css" rel="stylesheet"?>
+<?link href="../../assets/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet"?>
+<?link href="../../assets/css/plugins/dataTables/datatables.min.css" rel="stylesheet"?>
 
 
 <?page title="Registro de Paquete" contentType="text/html;charset=UTF-8"?>
-<zk xmlns:h="http://www.w3.org/1999/xhtml" xmlns:zk="http://www.zkoss.org/2005/zk" >
-<window >
+<zk xmlns:h="http://www.w3.org/1999/xhtml"
+	xmlns:zk="http://www.zkoss.org/2005/zk">
+	<window apply="controlador.ControladorPaquete">
 
-            
-                <div class="col-lg-12" >
-                    <h:div class="ibox float-e-margins">
-                    <div class="ibox-title">
-                            <h:h5>Registro de Paquete</h:h5>
-                            <div class="ibox-tools">
-                                <h:a class="collapse-link">
-                                    <h:i class="fa fa-chevron-up"></h:i>
-                                </h:a>
-                                <h:a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                    <h:i class="fa fa-wrench"></h:i>
-                                </h:a>
-                                
-                                <a class="close-link">
-                                    <h:i class="fa fa-times"></h:i>
-                                </a>
-                            </div>
-                        </div>
-                        <h:div class="ibox-title">
-                            <h:h5>Datos del Paquete</h:h5>
-                           
-                        </h:div>
-                        <div class="ibox-content">
-                            <h:form class="form-horizontal">
-                            
-                                
-                             
-                             <div class="form-group"><label class="col-lg-2 control-label">Tipo de Paquete:</label>
 
-                                     <div class="col-lg-3"><listbox mold="select" sclass="form-control">
-                                 <listitem label="Algo"/>
-                                 <listitem label="Debe"/>
-                                 <listitem label="Ir"/>
-                                 <listitem label="Aqui"/>
-                                 </listbox>
-                                 </div>
-                                </div>
-                             
-                                <div class="form-group"><label class="col-lg-2 control-label">Nombre:</label>
+		<div class="col-lg-12">
+			<h:div class="ibox float-e-margins">
+				<div class="ibox-title">
+					<h:h5>Registrar Paquete</h:h5>
+				</div>
+				<h:div class="ibox-title">
+					<h:h5>Datos del Paquete</h:h5>
 
-                                    <div class="col-lg-3"><textbox type="text"  id="nombre" class="form-control required" /> 
-                                    </div>
-                                   
-                                </div>
+				</h:div>
+				<div class="ibox-content">
+					<h:form class="form-horizontal">
 
-                                
-                                 
-                                 <div class="form-group"><label class="col-lg-2 control-label">Servicio:</label>
-                                 
-                                  <div class="form-group">
-                                  <!-- View of customized component DualListbox -->
-<hlayout height="300px" style="padding:10px">
-    <listbox id="candidateLb" hflex="1" vflex="true" multiple="true" rows="8">
-        <listhead>
-            <listheader label="Servicio" width="80px"></listheader>
-        </listhead>
-        <template name="model">
-            <listitem>
-                <listcell label="${each.firstName }"/>
-            </listitem>
-        </template>
-    </listbox>
-    <zscript><![CDATA[
-    String imgPath = "/widgets/listbox/dual_listbox/img";
-]]></zscript>
-    <vbox spacing="10px" width="24px">
-        <image style="cursor:pointer" id="chooseAllBtn" src="${imgPath}/rightrightarrow_g.png" />
-        <image style="cursor:pointer" id="chooseBtn" src="${imgPath}/rightarrow_g.png" />
-        <image style="cursor:pointer" id="removeBtn" src="${imgPath}/leftarrow_g.png" />
-        <image style="cursor:pointer" id="removeAllBtn" src="${imgPath}/leftleftarrow_g.png" />
-    </vbox>
-    <listbox id="chosenLb" hflex="1" vflex="true" multiple="true" rows="8">
-        <listhead>
-            <listheader label="Servicio Seleccionado" width="200px"></listheader>
-        </listhead>
-        <template name="model">
-            <listitem>
-                <listcell label="${each.firstName }"/>
-            </listitem>
-        </template>
-    </listbox>
- 
-    <vbox spacing="10px" width="24px">
-        <image style="cursor:pointer" id="topBtn" src="${imgPath}/upuparrow_g.png" />
-        <image style="cursor:pointer" id="upBtn" src="${imgPath}/uparrow_g.png" />
-        <image style="cursor:pointer" id="downBtn" src="${imgPath}/downarrow_g.png" />
-        <image style="cursor:pointer" id="bottomBtn" src="${imgPath}/downdownarrow_g.png" />
-    </vbox>
-</hlayout>
 
-                                   
-                                </div>
-                                </div>
-                               
-                               
-                                 <div class="col-lg-12">
-                                 
-                        <space></space>     
-                        <space></space> 
-                        <div class="form-group">
-                                    <div class="col-lg-offset-8 col-lg-2">
-                                    <hbox>
-                                        <button class="btn btn-primary block full-width m-b" type="submit" iconSclass="fa fa-save">Guardar</button>
-                                        <space></space>
-                                        <button class="btn btn-w-m btn-danger"  iconSclass="fa fa-times">Cancelar</button>
-                                        </hbox>
-                                    </div>
-                                </div> 
-                                
-                         <div class="form-group"><label class="col-lg-2 control-label">Lista de Paquetes</label>
-	                                 <listbox id="listaObjtivos" height="150px" width="740px" vflex="1" emptyMessage="No hay paquetes registradas"  >
-										<listhead>
-											<listheader  label="Tipo de Paquete" />
-											<listheader  label="Nombre"/>
-											<listheader  label="Fecha"/>
-										</listhead>
-										<template name="model">
-											<listitem value="${each}">
-												<listcell label="${each.descripcion}"></listcell>
-												<listcell label="${each.tipo_objetivo}"></listcell>
-												<listcell >
+<div class="ibox float-e-margins">
+						<div class="form-group">
+							<label class="col-lg-2 control-label">Tipo de Paquete:</label>
+		
+		                                    <div class="col-lg-3"><listbox mold="select" id="tipo_paquete" sclass="form-control">
+		                                 <listitem label="Difusión"/>
+		                                 <listitem label="Organización"/>
+		                      		                                 </listbox>
+		                                 </div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-lg-2 control-label">
+								Nombre:
+							</label>
+
+							<div class="col-lg-3">
+								<textbox type="text" id="descripcion"
+									class="form-control required" />
+							</div>
+
+						</div>
+						<div class="col-lg-6">
+									<div class="col-lg-6">
+									<button
+										style="width:200px; height:200px;" id="uploadImagen" label=""
+										upload="true" sclass="button"
+										image="../../imgs/SubirImagen.jpg" />
+									<image id="imagen" width="200px" height="200px" />
+									<image src="../../imgs/cerrar.png"
+										id="imgCerrarImg2" width="30px" height="30px" visible="false" />
+									<space></space>
+								</div>
+							</div>
+						<div class="form-group">
+							<label class="col-lg-2 control-label">
+								Precio:
+							</label>
+
+							<div class="col-lg-3">
+								<textbox type="text" id="precio"
+									class="form-control required" />
+							</div>
+
+						</div>
+						<hbox><label style="margin-left:-100px">Todos los Servicios: </label><label style="margin-left:300px">Servicios Asociados</label></hbox>	
+					
+												<hbox>
+					
+												<listbox id="listaTodosServicios" height="400px" width="400px">
+													<template name="model">
+														<listitem>
+															<listcell
+																label="${each.titulo} ">
+															</listcell>
+														</listitem>
+													</template>
+												</listbox>
+												<vbox>
 												
-													<button class="btn btn-danger" id="${each.codigo}" forward="onClick=listaObjtivos.onObjetivoDelete" iconSclass="fa fa-trash-o" width="36px"/>
-												</listcell>
-											</listitem>
-										</template>
-									</listbox>
-	                                 
-                                  </div>
-                        
-                                                
-                        </div>
-                                
-                            </h:form>
-                        </div>
-                    </h:div>
-                </div>
-            
-            </window>
-                
-            
+												<button  id="agregar" class="btn btn-primary " type="button" iconSclass="fa fa-arrow-right" height= "30px" width="30px" >  </button>
+												<button id="quitar" class="btn btn-primary " type="button" iconSclass="fa fa-arrow-left"  height= "30px" width="30px">  </button>
+												</vbox>
+												
+												
+																<listbox id="listaServiciosSeleccionados" height="400px" width="400px">
+													<template name="model">
+														<listitem>
+															<listcell
+																label="${each.titulo} " ><doublebox  forward="onChange=listaServiciosSeleccionados.onSesiones" placeholder="Cantidad de Sesiones" id="${each.codigo} "  width="150px" />
+															</listcell>
+														</listitem>
+													</template>
+												</listbox>
+												</hbox>
+
+		
+
+						<div class="col-lg-12">
+
+							<space></space>
+							<space></space>
+							<div class="form-group">
+								<div class="col-lg-offset-8 col-lg-2">
+									<hbox>
+										<button
+											class="btn btn-primary block full-width m-b" id="guardar"
+											iconSclass="fa fa-save">
+											Guardar
+										</button>
+										<space></space>
+										<button
+											class="btn btn-w-m btn-danger" id="cancelar" iconSclass="fa fa-times">
+											Cancelar
+										</button>
+									</hbox>
+								</div>
+							</div>
+
+							<div class="form-group"> 
+								<listbox id="listaPaquete"
+									height="150px" width="740px" vflex="1"
+									emptyMessage="No hay paquetes registradas">
+									<listhead>
+										<listheader
+											label="Tipo de Paquete" />
+										<listheader label="Nombre" />
+										<listheader label="Fecha" />
+									</listhead>
+									<template name="model">
+										<listitem value="${each}">
+											<listcell
+												label="${each.tipo_paquete}">
+											</listcell>
+											<listcell
+												label="${each.descripcion}">
+											</listcell>
+											<listcell>
+
+												<button
+													class="btn btn-danger" id="${each.codigo}"
+													forward="onClick=listaPaquete.onPaqueteDelete"
+													iconSclass="fa fa-trash-o" width="36px" />
+													<space></space>
+                                        <button class="btn btn-primary" id="ayuda" iconSclass="fa fa-question"/>
+											</listcell>
+										</listitem>
+									</template>
+								</listbox>
+
+							</div>
+
+
+						</div>
+					</div>
+					</h:form>
+				</div>
+			</h:div>
+		</div>
+
+	</window>
+
+
 </zk>

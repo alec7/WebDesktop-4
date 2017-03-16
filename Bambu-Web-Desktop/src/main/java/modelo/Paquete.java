@@ -1,14 +1,37 @@
 package modelo;
 
 public class Paquete {
-	private String codigo,descripcion,tipo_paquete,status;
+	private String codigo,descripcion,tipo_paquete,status,imagen;
+	private double precio;
+	public Paquete() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
-	public Paquete(String codigo, String descripcion, String tipo_paquete, String status) {
+	public Paquete(String codigo, String descripcion, String tipo_paquete, String status,String imagen, double precio) {
 		super();
 		this.codigo = codigo;
 		this.descripcion = descripcion;
 		this.tipo_paquete = tipo_paquete;
 		this.status = status;
+		this.precio = precio;
+		this.imagen = imagen;
+	}
+	
+	public double getPrecio() {
+		return precio;
+	}
+
+	public void setPrecio(double precio) {
+		this.precio = precio;
+	}
+
+	public String getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
 	}
 
 	public String getCodigo() {

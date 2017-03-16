@@ -26,8 +26,9 @@
                 </div>
                 <button  class="btn btn-primary block full-width m-b" id="iniciar">Iniciar Sesión</button>
 
-                <a href="#"><h:small>Olvidó su contraseña?</h:small></a>
-               
+                <a id="recuperarContrasenna" ><h:small style="font-size:14px; color:#000000">¿Olvidó su contraseña?</h:small></a>
+               <space></space>
+                                        <button class="btn btn-primary" id="ayuda" iconSclass="fa fa-question"/>
             </h:form>
             <h:p class="m-t"> <h:small>Bambú</h:small> </h:p>
         </div>

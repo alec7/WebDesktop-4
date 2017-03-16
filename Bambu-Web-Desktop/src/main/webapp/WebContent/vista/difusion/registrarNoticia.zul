@@ -86,36 +86,47 @@
 							</div>
 
 						</div>
-
+						
 						
 
 						<space></space>
+						<div class="form-group">
+							<div class="col-lg-offset-8 col-lg-2">
+								<hbox>
+									<button
+										class="btn btn-primary block full-width m-b"
+										iconSclass="fa fa-save" id="guardar">
+										Guardar
+									</button>
+									<space></space>
+									<button
+										class="btn btn-w-m btn-danger" iconSclass="fa fa-times"
+										id="cancelar">
+										Cancelar
+									</button>
+									<space></space>
+                                        <button class="btn btn-primary" id="ayuda" iconSclass="fa fa-question"/>
+								</hbox>
+							</div>
+						</div>
 						<div class="ibox float-e-margins">
 
 						</div>
 						<h:br></h:br>
-						<h:br></h:br>
-						<space></space>
-						<space></space>
-						<space></space>
-						<space></space>
-						<space></space>
-						<space></space>
+
+						
+					
 						
 						
 						<div class="form-group">
-							<label class="col-lg-2 control-label">
-								Noticias
-							</label>
-							<listbox id="listaNoticias" height="150px"
-								width="740px" vflex="1"
+							<listbox id="listaNoticias" height="350px" width="740px"  vflex="1"
 								emptyMessage="No hay noticias registradas">
 								<listhead>
 									<listheader label="Titulo"
 										width="460px" />
 									<listheader
 										label="Imagen" />
-									<listheader label="Acción" />
+									<listheader  />
 								</listhead>
 								<template name="model">
 									<listitem value="${each}">
@@ -132,7 +143,7 @@
 										<listcell>
 											<button
 												class="btn btn-danger" id="${each.codigo}"
-												forward="onClick=listaObjtivos.onObjetivoDelete"
+												forward="onClick=listaNoticias.onNoticiaDelete"
 												iconSclass="fa fa-trash-o" width="36px" />
 										</listcell>
 									</listitem>
@@ -141,23 +152,7 @@
 
 						</div>
 
-						<div class="form-group">
-							<div class="col-lg-offset-8 col-lg-2">
-								<hbox>
-									<button
-										class="btn btn-primary block full-width m-b"
-										iconSclass="fa fa-save" id="guardar">
-										Guardar
-									</button>
-									<space></space>
-									<button
-										class="btn btn-w-m btn-danger" iconSclass="fa fa-times"
-										id="cancelar">
-										Cancelar
-									</button>
-								</hbox>
-							</div>
-						</div>
+						
 					</h:form>
 				</div>
 			</h:div>

@@ -20,6 +20,7 @@ import org.apache.commons.codec.binary.Base64;
 import org.postgresql.core.Utils;
 import org.zkoss.util.media.Media;
 import org.zkoss.zk.ui.Component;
+import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.Page;
 import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.event.CreateEvent;
@@ -85,6 +86,10 @@ public class ControladorSlider extends  SelectorComposer<Component>{
     
 	SliderDAO dao = new SliderDAO();
 	Slider slider = new Slider();
+	@Listen("onClick = #ayuda")
+	public void ayuda(){
+		Executions.sendRedirect("vista/ayudas/registrarSlider.html");
+	}
 	
 	@Listen("onCreate = #listaSlider")
 	public void acuerdo(CreateEvent event)
@@ -151,7 +156,7 @@ public class ControladorSlider extends  SelectorComposer<Component>{
      return bytes; 
     }
 	
-	@Listen("onClick = #registrar")
+	@Listen("onClick = #guardar")
 	public void onClick$registrar() throws IOException 
 	{
 		String dir="";
@@ -164,7 +169,6 @@ public class ControladorSlider extends  SelectorComposer<Component>{
 	            	 fileOutputStream.write(media.getByteData());
 	            	 
 	            	 String codigo = dao.TotalRegistros();
-	            	 Messagebox.show(codigo);
 	            	 
 	            	 slider = new Slider(codigo,titulo.getText(),contenido.getText(),"Activo", subtitulo.getText(),dir);
 	                 dao.agregarImagen(slider);
@@ -174,7 +178,7 @@ public class ControladorSlider extends  SelectorComposer<Component>{
 	                 subtitulo.setText("");
 	                 contenido.setText("");
 	                 imagen.setSrc("");
-	                 
+	                 cargarTabla();
 	               
 	                 
 	                  

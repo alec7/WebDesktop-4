@@ -97,7 +97,7 @@ public void eliminarMaestro(String tabla, String codigo){
 	
 	public List<Cod_Des> CargarServiciosAsociados( String codigo, String tabla_maestro_servicio) { //para listar en el grid la informacion
 		int i=0;
-		String tiraSQL = "select tb_servicio.descripcion, tb_servicio.codigo from tb_servicio, "+tabla_maestro_servicio+" where codigo_maestro = '"+codigo+"'  and codigo_servicio = tb_servicio.codigo and "+tabla_maestro_servicio+".status = 'Activo'" ;
+		String tiraSQL = "select tb_servicio.titulo, tb_servicio.codigo from tb_servicio, "+tabla_maestro_servicio+" where codigo_maestro = '"+codigo+"'  and codigo_servicio = tb_servicio.codigo and "+tabla_maestro_servicio+".status = 'Activo'" ;
 		Maestro_servicio mase;
 		String cod;
 		ResultSet resultSet = Conexion.consultar(tiraSQL);
@@ -114,7 +114,7 @@ public void eliminarMaestro(String tabla, String codigo){
 					//Messagebox.show("Codigo del maestro " +resultSet.getString("codigo_maestro"));
 					//Messagebox.show("codigo del servicio "+resultSet.getString("codigo"));
 					
-					arr_cod_des.add(new Cod_Des(resultSet.getString("codigo"),resultSet.getString("descripcion")));
+					arr_cod_des.add(new Cod_Des(resultSet.getString("codigo"),resultSet.getString("titulo")));
 					//Messagebox.show(String.valueOf(arr_mase.size()));
 				}
 			}
@@ -184,7 +184,7 @@ public List<Servicio> listarServicios() { //para listar todos los servicios
 		if(resultSet!=null){
 			while(resultSet.next()){
 				
-				arr_servicios.add(new Servicio(resultSet.getString("codigo"), resultSet.getString("descripcion"), resultSet.getString("status")));
+				arr_servicios.add(new Servicio(resultSet.getString("codigo"), resultSet.getString("titulo"), resultSet.getString("status")));
 			
 			}
 		}

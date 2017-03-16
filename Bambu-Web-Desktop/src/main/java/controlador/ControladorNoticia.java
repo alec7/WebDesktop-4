@@ -14,6 +14,7 @@ import java.util.logging.Logger;
 import org.zkoss.util.media.Media;
 import org.zkoss.zhtml.Textarea;
 import org.zkoss.zk.ui.Component;
+import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.event.CreateEvent;
 import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zk.ui.event.ForwardEvent;
@@ -35,6 +36,7 @@ import org.zkoss.zul.Messagebox.ClickEvent;
 import modelo.Maestrico;
 import modelo.Noticia;
 import modelo.Organizacion;
+import modelo.Promocion;
 import modelo.Slider;
 import modelo.Usuario;
 import modeloDAO.MaestricoDAO;
@@ -83,6 +85,10 @@ public class ControladorNoticia extends SelectorComposer<Component> {
 		
 		
     }
+	@Listen("onClick = #ayuda")
+	public void ayuda(){
+		Executions.sendRedirect("vista/ayudas/registrarNoticia.html");
+	}
 	
 	@Listen("onCreate = #listaNoticias")
 	public void noticia(CreateEvent event)
@@ -142,15 +148,10 @@ public class ControladorNoticia extends SelectorComposer<Component> {
 		String dir="";
 		 if(media instanceof org.zkoss.image.Image) {
 	             try {
-	                
-	            	 String carpeta = "C:\\Users\\Jalid\\git\\WebDesktop\\Bambu-Web-Desktop\\src\\main\\webapp\\WebContent\\assets\\imagenesSlider";
+	            	 String carpeta = "C:\\Users\\Andres\\Documents\\GitHub\\WebDesktop\\Bambu-Web-Desktop\\src\\main\\webapp\\WebContent\\assets\\imagenesSlider";
 	            	 FileOutputStream fileOutputStream=new FileOutputStream(carpeta+"\\"+media.getName());
 	                 dir="Bambu-Web-Desktop/WebContent/assets/imagenesSlider/"+media.getName();
 	            	 fileOutputStream.write(media.getByteData());
-	            	 
-
-		         		
-
 		             if(tipo_noticia.getSelectedItem()==null|| titulo.getText().isEmpty()){
 		         			Messagebox.show("Debe llenar Todos los campos", "Información", Messagebox.OK, Messagebox.INFORMATION);
 		         		}else{
@@ -158,7 +159,8 @@ public class ControladorNoticia extends SelectorComposer<Component> {
 		         			n = new Noticia(ndao.TotalRegistros().toString(),"Activo","00001",fecha,tipo_noticia1.get(tipo_noticia.getSelectedIndex()).getCodigo(),titulo.getText(),contenido.getText(),dir);
 		         			ndao.agregarNoticia(n);
 		         			Messagebox.show("Datos Guardados Exitosamente", "Información", Messagebox.OK, Messagebox.INFORMATION);
-		         			Messagebox.show(tipo_noticia.getSelectedItem().toString());
+		         			limpiarCampos();
+		         			cargarTabla();
 		         		};
 		         			 
 		         		fileOutputStream.close();
@@ -176,12 +178,39 @@ public class ControladorNoticia extends SelectorComposer<Component> {
 		
 	}
 	
+	public void limpiarCampos()
+	{
+		titulo.setText("");
+	    contenido.setText("");
+	    tipo_noticia.clearSelection();
+		imagen.setContent((org.zkoss.image.Image) null);
+	}
+	
 	
 	@Listen("onClick = #cancelar")
 public void cancelar(){
 	    titulo.setText("");
 		tipo_noticia.clearSelection();
+		imagen.setContent((org.zkoss.image.Image) null);
 
+	}
+	@Listen("onNoticiaDelete = #listaNoticias")
+	public void onIncidenciaDelete$incidencias(ForwardEvent evt){
+		Button btn = (Button)evt.getOrigin().getTarget();
+		Listitem litem = (Listitem)btn.getParent().getParent();
+		 n = (Noticia)litem.getValue();
+		EventListener<ClickEvent> clickListener = new EventListener<Messagebox.ClickEvent>() {
+	        public void onEvent(ClickEvent event) throws Exception {
+	            if(Messagebox.Button.YES.equals(event.getButton())) {
+	            	ndao.modificarStatus(n.getCodigo());
+	            	//pdao.modificarStatus(p.getCodigo());
+	            	 cargarTabla();
+					   
+	            }
+	        }
+	    };
+	    Messagebox.show("¿Seguro de eliminar esta Promoción?", "Mensaje de confirmación", new Messagebox.Button[]{
+	            Messagebox.Button.YES, Messagebox.Button.NO },Messagebox.QUESTION,clickListener);
 	}
 	
 
